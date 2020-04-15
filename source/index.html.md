@@ -1,9 +1,9 @@
 ---
-title: API Reference
+title: VQR Data Catalogue
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
-  - ruby
+  - java
   - python
   - javascript
 
