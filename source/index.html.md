@@ -11,9 +11,6 @@ toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
   - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
 
-includes:
-  - errors
-
 search: true
 ---
 
@@ -23,49 +20,128 @@ Welcome to the VQR-Data-Catalogue! The document gives you descriptions on databa
 
 Database is [InfluxDB](https://docs.influxdata.com/influxdb/v1.8/),whihc is a time-series database. Few terminologies to explain, tags in the influxdb is the unqie index and it is very useful to sort tickers via taging. Measurement is another word for table in the influxdb. Currently, we have two influxbd servers, one is primary server and another one is backup server.
 
-Influxdb:
-Host-1 (Primary): 99-79-47-186
-Host-2 (Backup): 15-223-68-239
-
-# Authentication
-
-> To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
+Host Server: 
+`Host-1 (Primary): 99-79-47-186`
+`Host-2 (Backup): 15-223-68-239`
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+Ask credentials to log in.
 </aside>
+
+# Data Catalogue Summary
+
+The summary for all available data feeds. 
+
+<aside class="notice"> <code> Case Sensitive </code> applys in table names </aside>
+
+TableName | Frequency | DataType | CurrentStatus
+--------- | ------- | -----------
+bigone_orderbook | 30 seconds | Orderbook Data | Running
+bigone_trades | RealTime | Trades Data | 
+binance_borrow_rates_clean | 30 seconds | Borrow Rates | Running
+binance_funding_rates | 8 hours | Trades Data | Running
+binance_future_stats_long_short_ratio | Varies | Futures Data | Running
+binance_future_stats_long_short_ratio_account | Varies | Futures Data | Running
+binance_future_stats_long_short_ratio_position | Varies | Futures Data | Running
+binance_future_stats_open_interest | Varies | Futures Data | Running
+binance_future_stats_taker_buy_sell_ratio | Varies | Futures Data | Running
+binance_liquidation_trades | 8 hours | Liquidation Trades Data | Running
+binance_open_interest_clean | 8 hours | Open Interest | Running
+binance_orderbook_futures_clean | 30 seconds | Orderbook Data | Running
+binance_orderbook_spot_clean | 30 seconds | Orderbook Data | Running
+binance_trade_futures | RealTime | Trades Data | Running
+binance_trade_spot | RealTime | Trades Data | Running
+bitfinex_funding_orderbook | 30 seconds | Funding Orderbook | Running
+bitfinex_funding_trade | RealTime | Funding Trades | Running
+bitmex_full_orderbook | RealTime | Orderbook | Running
+bitmex_funding | 8 hours | Funding | Running
+bitmex_funding_rates | 8 hours | Funding | Running
+bitmex_instrument | 1 minute | Market Summary | Running 
+bitmex_insurance | None | None | Running
+bitmex_leaderboard_notional | 1 hour | Leaderboard | Running
+bitmex_leaderboard_ROE | 1 hour | Leaderboard | Running
+bitmex_liquidation | RealTime | Liquidation | Running
+bitmex_settlement | 1 week | Settlement | NoLongerUpated
+bitmex_trade | RealTime | Trade Data | Running
+bybit_funding_rate | 8 hours | Funding Rates | Running 
+bybit_tickers | 1 minute | Ticker | Running
+bybit_trades | RealTime | Trade Data | Running
+cftc_futures_report | 1 week | Commodity Futures Report | Running
+cme_futures_index | 1 hour | CME BTC Futures | Running
+coinbase_custody | 1 hour | Custody Data | Running
+coinbase_orderbook | 30 seconds | Orderbook | Running
+coinbase_trades | 1 minutes | Trades Data | Running
+coinex_orderbook | 30 seconds | Orderbook | Running
+coinex_trades | 1 minute | Trade Data | Running
+coinflex_burn_fees | 1 hour | Burn Fees | Running
+compound_borrow_rates | 1 minute | Borrow Rates | Running
+cosmos_validator_ranking | 1 hour | Validator Ranking | Running
+cosmos_validator_status | 1 hour | Validator Status | Running
+deribit_fundingRate | 8 hours | Funding Rate | Running
+deribit_optoinTicker | RealTime | Option Ticker | Running
+deribit_orderbook | RealTime | Orderbok | Running
+deribit_ticker | RealTime | Ticker | Running
+deribit_trades | RealTime | Trade Data | Running
+dydx_borrow_rates | 1 minute | Borrow Rates | Running
+exchange_open_interest | 1 minute | Open Interest | Running
+FTX_funding_rates | 8 hours | Funding Rates | Running
+FTX_future_stats | 1 minute | Market Summary | Running
+FTX_option_request | RealTime | Request Data | Running
+FTX_orderbook | 30 seconds | Orderbook | Running
+FTX_trades | RealTime | Trades | Running
+FTX_trades_option | RealTime | Trades | Running
+gateio_orderbook | 30 seconds | Orderbook | Running
+gateio_trades_data | RealTime | Trades | Running
+hashpool_coins | 1 hour | Summary | Running
+hnscan_block_info | RealTime | BlockChain | Running
+hnscan_chart_data | 1 day | Chart | Running
+hnscan_chart_data_snapshot | 1 day | Chart | Running
+hnscan_status | 1 hour | Summary | Running
+hnscan_summary | 1 hour | Summary | Running
+hnscan_transaction | RealTime | BlockChian | Running
+huobidm_contract_delivery_price | 1 minute | Delivery Price | Running
+huobidm_contract_market_overvoew | 1 minute | Market Overview | Running
+huobidm_contract_price_limit | 1 minute | Price Limit | Running  
+huobidm_contract_risk_info | 1 minute | Risk Info | Running
+huobidm_index_price | 1 minute | Index Price | Running
+huobidm_insurance_fund | 1 minute | Insurance Fund | Running
+huobidm_open_interest | 1 minute | Open Interest | Running
+huobidm_orderbook | 30 seconds | Orderbook | Running
+huobidm_trades | RealTime | Trade | Running
+mxc_trades | RealTime | Trade | Running
+mxc_orderbook | 30 seconds | Orderbook | Running
+namebase_domain | 8 hours | Domain Data | Running
+namebase_orderbook |30 seconds | Orderbook | Running 
+namebase_trade | RealTime | Trade | Running
+nervos_block | 1 minute | BLockChain | Running
+nervos_hashrate | 1 minute | Hash Rate | Running
+okex_fundingRate | 8 hours | Funding Rate | Running
+okex_future_stats_contractBasis | Varies | Futures Data | Running
+okex_future_stats_FutureTakerBuySell | Varies | Futures Data | Running
+okex_future_stats_longShortPositionRatio | Varies | Futures Data | Running
+okex_future_stats_OpenInterestVolume | Varies | Futures Data | Running
+okex_future_stats_SwapFundingRate | Varies | Futures Data | Running
+okex_future_stats_topTraderAverageMarginUsed | Varies | Futures Data | Running
+okex_future_stats_topTraderSentimentIndex | Varies | Futures Data | Running
+okex_liquidation | RealTime | Liquidation | Running
+okex_markPrice | RealTime | Mark Price | Running
+okex_Orderbook | RealTime | Orderbook | Running
+okex_priceRange | RealTime | Price Range | Running
+okex_recentTrades | RealTime | Trade | Running
+okex_spotTrades | RealTime | Trade | Running
+okex_SwapOpenInterest | RealTime | Open Interest | Running
+okex_ticker | RealTime | Ticker | Running
+okex_ticker_swap | RealTime | Ticker | Running
+okex_ticker_v1 | RealTime | Ticker | Running
+poloniex_funding_orderbook | 1 minute | Orderbook | Running
+poloniex_leaderboard | 1 hour | Leaderboard | Running
+poloniex_orderbook | 1 minute | Orderbook | Running
+poloniex_trades | 1 minute | Trade | Running
+sp500_futures | 1 second | Trade | Running
+tether_richlist | 1 hour | Leaderboard | Running
+tezos_leaderboard | 1 hour | Leaderboard | Running
+wazirx_tickers | 1 hour | Ticker | Running
+
 
 # Kittens
 
