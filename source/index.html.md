@@ -2,10 +2,8 @@
 title: VQR Data Catalogue
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
-  - java
   - python
-  - javascript
+  - sql
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
@@ -39,7 +37,7 @@ TableName | Frequency | DataType | CurrentStatus
 --------- | --------- | ---------| -----------|
 [bigone_orderbook](#bigone-orderbook) | 30 seconds | Orderbook Data | Running
 [bigone_trades](#bigone-trade)  | RealTime | Trades Data | Running
-[binance_borrow_rates_clean](#binance-borrow-rate) | 30 seconds | Borrow Rates | Running
+[binance_borrow_rates_clean](#binance-borrow-rate) | 30 minutes | Borrow Rates | Running
 [binance_funding_rates](#binance-funding-rate) | 8 hours | Trades Data | Running
 [binance_future_stats_long_short_ratio](#binance-long-short-ratio) | Varies | Futures Data | Running
 [binance_future_stats_long_short_ratio_account](#binance-long-short-ratio-account) | Varies | Futures Data | Running
@@ -145,8 +143,40 @@ wazirx_tickers | 1 hour | Ticker | Running
 
 
 # Binance 
+[Binance](https://www.binance.com/en) is a cryptocurrency exchange that provides a platform for trading various cryptocurrencies. Biance provide a powerful [api](https://binance-docs.github.io/apidocs/spot/en/#change-log).
 
 ## Binance Borrow Rate 
+
+```python
+# getting data
+import requests
+endpoint = "https://www.binance.com/gateway-api/v1/public/margin/vip/spec/list-all"
+response = requests.get(endpoint)
+data = response.json()
+```
+
+```sql
+# fetch one ticker
+select * from binance_borrow_rates_clean where symbol = 'ADA'
+```
+
+### Description
+[Binance borrow rate](https://www.binance.com/en/margin-fee) is part of margin data listed in the website. Binance borrow rate has a frequency of 30 minutes and data time range is from 2019-12-02 21:34:09 till now.
+
+### HTTP Request
+`GET https://www.binance.com/gateway-api/v1/public/margin/vip/spec/list-all`
+
+### API Reference
+No information
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | 
+borrowLimit | float | 
+dailyInterestRate | float |
+timestamp | string | time that wrote into db
+vipLevel | string |
+symbol | string | symbol is tag
 
 ## Binance Funding Rate
 
