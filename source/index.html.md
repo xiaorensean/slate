@@ -37,8 +37,8 @@ The summary for all available data feeds.
 
 TableName | Frequency | DataType | CurrentStatus
 --------- | --------- | ---------| -----------|
-[bigone_orderbook](#cryptocurrency-market-data) | 30 seconds | Orderbook Data | Running
-bigone_trades | RealTime | Trades Data | Running
+[bigone_orderbook](#bigone-orderbook) | 30 seconds | Orderbook Data | Running
+[bigone_trades](#bigone-trade)  | RealTime | Trades Data | Running
 binance_borrow_rates_clean | 30 seconds | Borrow Rates | Running
 binance_funding_rates | 8 hours | Trades Data | Running
 binance_future_stats_long_short_ratio | Varies | Futures Data | Running
@@ -144,9 +144,13 @@ tezos_leaderboard | 1 hour | Leaderboard | Running
 wazirx_tickers | 1 hour | Ticker | Running
 
 
-# Cryptocurrency Market Data
+# BigOne
+[BigOne exchange](https://big.one/) is a cryptocurrency exchange with [api documents](https://open.big.one/docs/api.html) 
 
-All crypto related data feeds are explainied in details in this section 
+## BigOne Trade
+
+## BigOne Orderbook
+
 
 ## Aggregated Crypto Exchange
 aggregated crypto exchange data
