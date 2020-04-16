@@ -201,7 +201,7 @@
       <script src="javascripts/all-c5541673.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;sql&quot;,&quot;python&quot;]">
+  <body class="index" data-languages="[&quot;sql&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -212,7 +212,6 @@
       <img src="images/logo-1e815a84.png" class="logo" alt="Logo" />
         <div class="lang-selector">
               <a href="#" data-language-name="sql">sql</a>
-              <a href="#" data-language-name="python">python</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -223,7 +222,7 @@
             <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
           </li>
           <li>
-            <a href="#data-catalogue-summary" class="toc-h1 toc-link" data-title="Data Catalogue Summary">Data Catalogue Summary</a>
+            <a href="#data-catalogue" class="toc-h1 toc-link" data-title="Data Catalogue">Data Catalogue</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#table-summary" class="toc-h2 toc-link" data-title="Table Summary">Table Summary</a>
@@ -313,7 +312,7 @@
 <aside class="notice">
 Ask credentials to log in.
 </aside>
-<h1 id='data-catalogue-summary'>Data Catalogue Summary</h1>
+<h1 id='data-catalogue'>Data Catalogue</h1>
 <p>The summary for all available data feeds. </p>
 
 <aside class="warning"> <code> Case Sensitive </code> applys in table names </aside>
@@ -959,14 +958,30 @@ Ask credentials to log in.
 </tbody></table>
 <h1 id='binance'>Binance</h1>
 <p><a href="https://www.binance.com/en">Binance</a> is a cryptocurrency exchange that provides a platform for trading various cryptocurrencies. Biance provide a powerful <a href="https://binance-docs.github.io/apidocs/spot/en/#change-log">api</a>.</p>
-<h2 id='binance-borrow-rate'>Binance Borrow Rate</h2><pre class="highlight python tab-python"><code><span class="c"># getting api data</span>
-<span class="kn">import</span> <span class="nn">requests</span>
-<span class="n">endpoint</span> <span class="o">=</span> <span class="s">"https://www.binance.com/gateway-api/v1/public/margin/vip/spec/list-all"</span>
-<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">endpoint</span><span class="p">)</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
-</code></pre><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch one ticker</span>
+<h2 id='binance-borrow-rate'>Binance Borrow Rate</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch one ticker</span>
 <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">binance_borrow_rates_clean</span> <span class="k">where</span> <span class="n">symbol</span> <span class="o">=</span> <span class="s1">'ADA'</span>
-</code></pre><h3 id='description'>Description</h3>
+</code></pre>
+<blockquote>
+<p>response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-04-16 20:39:55.416015"",
+        "</span><span class="err">borrowLimit</span><span class="s2">": 5000000"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"dailyInterestRate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0016</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ADA"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-04-16 20:39:55.416015"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"vipLevel"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+
+   </span><span class="p">{</span><span class="w">
+
+    </span><span class="err">...</span><span class="w">
+
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre><h3 id='description'>Description</h3>
 <p><a href="https://www.binance.com/en/margin-fee">Binance borrow rate</a> is part of margin data listed in the website. Binance borrow rate has a frequency of 30 minutes and data time range is from 2019-12-02 21:34:09 till now. Collectors are continously runing in two hosts.</p>
 <h3 id='tag-vlaues'>Tag Vlaues</h3>
 <p>Ticker tags are ADA, ATOM, BAT, BCH, BNB, BTC, BUSD, DASH, EOS, ETC, ETH, IOST, IOTA, LINK, LTC, MATIC, NEO, ONT, QTUM, RVN, TRX, USDC, USDT, VET, XLM, XMR, XRP, XTZ, ZEC. </p>
@@ -978,6 +993,11 @@ Ask credentials to log in.
 <th>description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>time</td>
+<td>string</td>
+<td>time record for writing into db</td>
+</tr>
 <tr>
 <td>borrowLimit</td>
 <td>float</td>
@@ -1003,11 +1023,6 @@ Ask credentials to log in.
 <td>string</td>
 <td>symbol is tag</td>
 </tr>
-<tr>
-<td>time</td>
-<td>string</td>
-<td>time record for writing into db</td>
-</tr>
 </tbody></table>
 <h3 id='data-sanity'>Data Sanity</h3>
 <p>No downtime.</p>
@@ -1017,17 +1032,7 @@ Ask credentials to log in.
 <p>No information</p>
 <h2 id='binance-funding-rate'>Binance Funding Rate</h2>
 <blockquote>
-<p>http request</p>
-</blockquote>
-<pre class="highlight python tab-python"><code><span class="c"># getting api data</span>
-<span class="kn">import</span> <span class="nn">requests</span>
-<span class="n">symbol</span> <span class="o">=</span> <span class="s">"BTCUSDT"</span>
-<span class="n">endpoint</span> <span class="o">=</span> <span class="s">"https://fapi.binance.com/fapi/v1/fapi/v1/fundingRate?symbol={}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">symbol</span><span class="p">)</span>
-<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">endpoint</span><span class="p">)</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
-</code></pre>
-<blockquote>
-<p>database: </p>
+<p>database request</p>
 </blockquote>
 <pre class="highlight sql tab-sql"><code><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">binance_funding_rates_clean</span><span class="s1">'
 </span></code></pre>
@@ -1088,11 +1093,11 @@ Ask credentials to log in.
 <h3 id='api-reference-2'>API Reference</h3>
 <p><strong>Parameters:</strong> 
 Name | Type | Mandatory | Description
---------- | --------- | ---------- | -------- |
+---- | ---- | ---------- | -------- |
 symbol | string | yes | 
 startTime | long | no | Timestamp in ms to get funding rate from INCLUSIVE
 endTime | long | no | Timestamp in ms to get funding rate from INCLUSIVE
-limit | integer | no | Default 100; max 1000</p>
+limit | integer | no | Default 100  max 1000</p>
 
 <ul>
 <li>If <code>startTime</code> and <code>endTime</code> are not sent, the most recent <code>limit</code> datas are returned.</li>
@@ -1249,7 +1254,6 @@ Remember — a happy kitten is an authenticated kitten!
       <div class="dark-box">
           <div class="lang-selector">
                 <a href="#" data-language-name="sql">sql</a>
-                <a href="#" data-language-name="python">python</a>
           </div>
       </div>
     </div>
