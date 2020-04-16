@@ -1026,10 +1026,15 @@ Ask credentials to log in.
 </tbody></table>
 <h3 id='data-sanity'>Data Sanity</h3>
 <p>No downtime.</p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code>GET https://www.binance.com/gateway-api/v1/public/margin/vip/spec/list-all</code></p>
 <h3 id='api-reference'>API Reference</h3>
-<p>No information</p>
+<ul>
+<li><p>Endpoint
+<code>GET https://www.binance.com/gateway-api/v1/public/margin/vip/spec/list-all</code></p></li>
+<li><p>API Query Parameters
+No parameters.</p></li>
+<li><p>API Query Schema
+No Information.</p></li>
+</ul>
 <h2 id='binance-funding-rate'>Binance Funding Rate</h2>
 <blockquote>
 <p>database request</p>
@@ -1088,23 +1093,30 @@ Ask credentials to log in.
 </tbody></table>
 <h3 id='data-sanity-2'>Data Sanity</h3>
 <p>No downtime.</p>
-<h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET https://fapi.binance.com/fapi/v1/fapi/v1/fundingRate</code></p>
 <h3 id='api-reference-2'>API Reference</h3>
-<p><strong>Parameters:</strong> 
+<ul>
+<li><p>API Endpoint 
+<code>GET https://fapi.binance.com/fapi/v1/fapi/v1/fundingRate</code></p></li>
+<li><p>API Query Parameters
 Name | Type | Mandatory | Description
 ---- | ---- | ---------- | -------- |
 symbol | string | yes | 
 startTime | long | no | Timestamp in ms to get funding rate from INCLUSIVE
 endTime | long | no | Timestamp in ms to get funding rate from INCLUSIVE
-limit | integer | no | Default 100  max 1000</p>
+limit | integer | no | Default 100  max 1000</p></li>
+</ul>
 
-<ul>
+<ol>
 <li>If <code>startTime</code> and <code>endTime</code> are not sent, the most recent <code>limit</code> datas are returned.</li>
 <li>If the number of data between <code>startTime</code> and <code>endTime</code> is larger than <code>limit</code>, return as <code>startTime</code> + <code>limit</code>.</li>
 <li>In ascending order.</li>
+</ol>
+
+<ul>
+<li>API Query Schema
+No information</li>
 </ul>
-<h2 id='binance-long-short-ratio'>Binance Long Short Ratio</h2><h2 id='binance-long-short-ratio-account'>Binance Long Short Ratio Account</h2><h2 id='binance-long-short-ratio-position'>Binance Long Short Ratio Position</h2><h2 id='binance-future-stats-open-interest'>Binance Future Stats Open Interest</h2><h2 id='binance-taker-buy-sell-ratio'>Binance Taker Buy Sell Ratio</h2><h2 id='binance-liquidation-trade'>Binance Liquidation Trade</h2><h2 id='binance-open-interest'>Binance Open Interest</h2><h2 id='binance-orderbook'>Binance Orderbook</h2><h2 id='binance-trade'>Binance Trade</h2><h1 id='bigone'>BigOne</h1>
+<h3 id='api-query'>API Query</h3><h2 id='binance-long-short-ratio'>Binance Long Short Ratio</h2><h2 id='binance-long-short-ratio-account'>Binance Long Short Ratio Account</h2><h2 id='binance-long-short-ratio-position'>Binance Long Short Ratio Position</h2><h2 id='binance-future-stats-open-interest'>Binance Future Stats Open Interest</h2><h2 id='binance-taker-buy-sell-ratio'>Binance Taker Buy Sell Ratio</h2><h2 id='binance-liquidation-trade'>Binance Liquidation Trade</h2><h2 id='binance-open-interest'>Binance Open Interest</h2><h2 id='binance-orderbook'>Binance Orderbook</h2><h2 id='binance-trade'>Binance Trade</h2><h1 id='bigone'>BigOne</h1>
 <p><a href="https://big.one/">BigOne exchange</a> is a cryptocurrency exchange with <a href="https://open.big.one/docs/api.html">api documents</a> </p>
 <h2 id='bigone-trade'>BigOne Trade</h2><h2 id='bigone-orderbook'>BigOne Orderbook</h2><h3 id='open-interest'>Open Interest</h3><h3 id='coinflex'>Coinflex</h3><h3 id='cosmos'>Cosmos</h3><h3 id='hnscan'>HNScan</h3><h3 id='namebase'>Namebase</h3><h3 id='nervos'>Nervos</h3><h3 id='tether'>Tether</h3><h3 id='tezos'>Tezos</h3><h3 id='bitfinex'>Bitfinex</h3><h3 id='bitmex'>Bitmex</h3><h3 id='bigone-orderbook-2'>Bigone Orderbook</h3><h3 id='bybit'>Bybit</h3><h3 id='coinbase'>Coinbase</h3><h3 id='coinex'>Coinex</h3><h3 id='compound'>Compound</h3><h3 id='deribit'>Deribit</h3><h3 id='dydx'>Dydx</h3><h3 id='ftx'>FTX</h3><h3 id='gateio'>Gateio</h3><h3 id='huobidm'>HuobiDM</h3><h3 id='mxc'>MXC</h3><h3 id='okex'>OKEX</h3><h3 id='poloniex'>Poloniex</h3><h3 id='wazirx'>Wazirx</h3><h3 id='cme-group'>CME Group</h3><h3 id='commodity-futures-trading-commission'>Commodity Futures Trading Commission</h3><h3 id='investing-com'>Investing.com</h3><h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
 
@@ -1142,7 +1154,7 @@ limit | integer | no | Default 100  max 1000</p>
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves all kittens.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
+<h3 id='http-request'>HTTP Request</h3>
 <p><code>GET http://example.com/api/kittens</code></p>
 <h3 id='query-parameters'>Query Parameters</h3>
 <table><thead>
@@ -1196,7 +1208,7 @@ Remember — a happy kitten is an authenticated kitten!
 <p>This endpoint retrieves a specific kitten.</p>
 
 <aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-<h3 id='http-request-4'>HTTP Request</h3>
+<h3 id='http-request-2'>HTTP Request</h3>
 <p><code>GET http://example.com/kittens/&lt;ID&gt;</code></p>
 <h3 id='url-parameters'>URL Parameters</h3>
 <table><thead>
@@ -1235,7 +1247,7 @@ Remember — a happy kitten is an authenticated kitten!
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint deletes a specific kitten.</p>
-<h3 id='http-request-5'>HTTP Request</h3>
+<h3 id='http-request-3'>HTTP Request</h3>
 <p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
 <h3 id='url-parameters-2'>URL Parameters</h3>
 <table><thead>
