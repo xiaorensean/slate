@@ -2,8 +2,9 @@
 title: VQR Data Catalogue
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - python
   - sql
+  - python
+
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
@@ -161,13 +162,10 @@ select * from binance_borrow_rates_clean where symbol = 'ADA'
 ```
 
 ### Description
-[Binance borrow rate](https://www.binance.com/en/margin-fee) is part of margin data listed in the website. Binance borrow rate has a frequency of 30 minutes and data time range is from 2019-12-02 21:34:09 till now. All tickers are ADA, ATOM, BAT, BCH, BNB, BTC, BUSD, DASH, EOS, ETC, ETH, IOST, IOTA, LINK, LTC, MATIC, NEO, ONT, QTUM, RVN, TRX, USDC, USDT, VET, XLM, XMR, XRP, XTZ, ZEC. Collectors are continously runing in two host.
+[Binance borrow rate](https://www.binance.com/en/margin-fee) is part of margin data listed in the website. Binance borrow rate has a frequency of 30 minutes and data time range is from 2019-12-02 21:34:09 till now. Collectors are continously runing in two host.
 
-### HTTP Request
-`GET https://www.binance.com/gateway-api/v1/public/margin/vip/spec/list-all`
-
-### API Reference
-No information
+### Tag Vlaues 
+Ticker tags are ADA, ATOM, BAT, BCH, BNB, BTC, BUSD, DASH, EOS, ETC, ETH, IOST, IOTA, LINK, LTC, MATIC, NEO, ONT, QTUM, RVN, TRX, USDC, USDT, VET, XLM, XMR, XRP, XTZ, ZEC. 
 
 ### Data Schema
 fieldName | fieldType | description
@@ -177,6 +175,18 @@ dailyInterestRate | float |
 timestamp | string | time that wrote into db
 vipLevel | string |
 symbol | string | symbol is tag
+
+### Data Sanity
+No downtime.
+
+### HTTP Request
+`GET https://www.binance.com/gateway-api/v1/public/margin/vip/spec/list-all`
+
+### API Reference
+No information
+
+
+
 
 ## Binance Funding Rate
 
