@@ -198,13 +198,12 @@ No downtime.
 
 ### API Reference
 
-* Endpoint
 `GET https://www.binance.com/gateway-api/v1/public/margin/vip/spec/list-all`
 
-* API Query Parameters
+### API Query Parameters
 No parameters.
 
-* API Query Schema
+### API Query Schema
 No Information.
 
 
@@ -254,12 +253,10 @@ symbol | string |
 ### Data Sanity
 No downtime.
 
-### API Reference
-
-* API Endpoint 
+### API Endpoint
 `GET https://fapi.binance.com/fapi/v1/fapi/v1/fundingRate`
 
-* API Query Parameters
+### API Query Parameters
 Name | Type | Mandatory | Description
 ---- | ---- | ---------- | -------- |
 symbol | string | yes | 
@@ -271,10 +268,8 @@ limit | integer | no | Default 100  max 1000
 2. If the number of data between `startTime` and `endTime` is larger than `limit`, return as `startTime` + `limit`.
 3. In ascending order.
 
-* API Query Schema
+### API Query Schema
 No information
-
-### API Query 
 
 ## Binance Long Short Ratio
 
