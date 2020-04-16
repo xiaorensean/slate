@@ -21,8 +21,7 @@ Welcome to the VQR-Data-Catalogue! The document gives you descriptions on databa
 Database is [InfluxDB](https://docs.influxdata.com/influxdb/v1.8/),whihc is a time-series database. Few terminologies to explain, tags in the influxdb is the unqie index and it is very useful to sort tickers via taging. Measurement is another word for table in the influxdb. Currently, we have two influxbd servers, one is primary server and another one is backup server.
 
 Host Server: 
-`Host-1 (Primary): 99-79-47-186`
-`Host-2 (Backup): 15-223-68-239`
+`Host-1 (Primary): 99-79-47-186 &&&& Host-2 (Backup): 15-223-68-239`
 
 <aside class="notice">
 Ask credentials to log in.
@@ -32,10 +31,12 @@ Ask credentials to log in.
 
 The summary for all available data feeds. 
 
-<aside class="notice"> <code> Case Sensitive </code> applys in table names </aside>
+<aside class="warning"> <code> Case Sensitive </code> applys in table names </aside>
+
+##Table Summary 
 
 TableName | Frequency | DataType | CurrentStatus
---------- | ------- | -----------
+--------- | --------- | ---------| -----------|
 bigone_orderbook | 30 seconds | Orderbook Data | Running
 bigone_trades | RealTime | Trades Data | 
 binance_borrow_rates_clean | 30 seconds | Borrow Rates | Running
