@@ -39,19 +39,19 @@ TableName | Frequency | DataType | CurrentStatus
 --------- | --------- | ---------| -----------|
 [bigone_orderbook](#bigone-orderbook) | 30 seconds | Orderbook Data | Running
 [bigone_trades](#bigone-trade)  | RealTime | Trades Data | Running
-binance_borrow_rates_clean | 30 seconds | Borrow Rates | Running
-binance_funding_rates | 8 hours | Trades Data | Running
-binance_future_stats_long_short_ratio | Varies | Futures Data | Running
-binance_future_stats_long_short_ratio_account | Varies | Futures Data | Running
-binance_future_stats_long_short_ratio_position | Varies | Futures Data | Running
-binance_future_stats_open_interest | Varies | Futures Data | Running
-binance_future_stats_taker_buy_sell_ratio | Varies | Futures Data | Running
-binance_liquidation_trades | 8 hours | Liquidation Trades Data | Running
-binance_open_interest_clean | 8 hours | Open Interest | Running
-binance_orderbook_futures_clean | 30 seconds | Orderbook Data | Running
-binance_orderbook_spot_clean | 30 seconds | Orderbook Data | Running
-binance_trade_futures | RealTime | Trades Data | Running
-binance_trade_spot | RealTime | Trades Data | Running
+[binance_borrow_rates_clean](#binance-borrow-rate) | 30 seconds | Borrow Rates | Running
+[binance_funding_rates](#binance-funding-rate) | 8 hours | Trades Data | Running
+[binance_future_stats_long_short_ratio](#binance-long-short-ratio) | Varies | Futures Data | Running
+[binance_future_stats_long_short_ratio_account](#binance-long-short-ratio-account) | Varies | Futures Data | Running
+[binance_future_stats_long_short_ratio_position](#binance-long-short-ratio-position) | Varies | Futures Data | Running
+[binance_future_stats_open_interest](#binance-future-stats-open-interest) | Varies | Futures Data | Running
+[binance_future_stats_taker_buy_sell_ratio](#binance-taker-buy-sell-ratio) | Varies | Futures Data | Running
+[binance_liquidation_trades](#binance-liquidation-trade) | 8 hours | Liquidation Trades Data | Running
+[binance_open_interest_clean](#binance-open-interest) | 8 hours | Open Interest | Running
+[binance_orderbook_futures_clean](#binance-orderbook) | 30 seconds | Orderbook Data | Running
+[binance_orderbook_spot_clean](#binance-orderbook) | 30 seconds | Orderbook Data | Running
+[binance_trade_futures](#binance-trade) | RealTime | Trades Data | Running
+[binance_trade_spot](#binance-trade) | RealTime | Trades Data | Running
 bitfinex_funding_orderbook | 30 seconds | Funding Orderbook | Running
 bitfinex_funding_trade | RealTime | Funding Trades | Running
 bitmex_full_orderbook | RealTime | Orderbook | Running
@@ -144,6 +144,30 @@ tezos_leaderboard | 1 hour | Leaderboard | Running
 wazirx_tickers | 1 hour | Ticker | Running
 
 
+# Binance 
+
+## Binance Borrow Rate 
+
+## Binance Funding Rate
+
+## Binance Long Short Ratio
+
+## Binance Long Short Ratio Account
+
+## Binance Long Short Ratio Position
+
+## Binance Future Stats Open Interest
+
+## Binance Taker Buy Sell Ratio
+
+## Binance Liquidation Trade
+
+## Binance Open Interest
+
+## Binance Orderbook
+
+## Binance Trade
+
 # BigOne
 [BigOne exchange](https://big.one/) is a cryptocurrency exchange with [api documents](https://open.big.one/docs/api.html) 
 
@@ -152,13 +176,8 @@ wazirx_tickers | 1 hour | Ticker | Running
 ## BigOne Orderbook
 
 
-## Aggregated Crypto Exchange
-aggregated crypto exchange data
 ### Open Interest
 
-
-## Blockchain
-Blockchian data
 ### Coinflex
 
 ### Cosmos
@@ -174,16 +193,11 @@ Blockchian data
 ### Tezos
 
 
-## Crypto Exchange 
-crypto exchange data
-### Binance
 
 ### Bitfinex
 
 ### Bitmex
 
-### Bigone
-#### Bigone Trade
 
 ### Bigone Orderbook 
 
@@ -213,9 +227,6 @@ crypto exchange data
 
 ### Wazirx
 
-
-# Futures Market Data
-All Financail Market data feeds are explained in this section
 
 ### CME Group 
 
