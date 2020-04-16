@@ -201,7 +201,7 @@
       <script src="javascripts/all-c5541673.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;python&quot;,&quot;sql&quot;]">
+  <body class="index" data-languages="[&quot;sql&quot;,&quot;python&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -211,8 +211,8 @@
     <div class="toc-wrapper">
       <img src="images/logo-1e815a84.png" class="logo" alt="Logo" />
         <div class="lang-selector">
-              <a href="#" data-language-name="python">python</a>
               <a href="#" data-language-name="sql">sql</a>
+              <a href="#" data-language-name="python">python</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -967,11 +967,9 @@ Ask credentials to log in.
 </code></pre><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch one ticker</span>
 <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">binance_borrow_rates_clean</span> <span class="k">where</span> <span class="n">symbol</span> <span class="o">=</span> <span class="s1">'ADA'</span>
 </code></pre><h3 id='description'>Description</h3>
-<p><a href="https://www.binance.com/en/margin-fee">Binance borrow rate</a> is part of margin data listed in the website. Binance borrow rate has a frequency of 30 minutes and data time range is from 2019-12-02 21:34:09 till now. All tickers are ADA, ATOM, BAT, BCH, BNB, BTC, BUSD, DASH, EOS, ETC, ETH, IOST, IOTA, LINK, LTC, MATIC, NEO, ONT, QTUM, RVN, TRX, USDC, USDT, VET, XLM, XMR, XRP, XTZ, ZEC. Collectors are continously runing in two host.</p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code>GET https://www.binance.com/gateway-api/v1/public/margin/vip/spec/list-all</code></p>
-<h3 id='api-reference'>API Reference</h3>
-<p>No information</p>
+<p><a href="https://www.binance.com/en/margin-fee">Binance borrow rate</a> is part of margin data listed in the website. Binance borrow rate has a frequency of 30 minutes and data time range is from 2019-12-02 21:34:09 till now. Collectors are continously runing in two host.</p>
+<h3 id='tag-vlaues'>Tag Vlaues</h3>
+<p>Ticker tags are ADA, ATOM, BAT, BCH, BNB, BTC, BUSD, DASH, EOS, ETC, ETH, IOST, IOTA, LINK, LTC, MATIC, NEO, ONT, QTUM, RVN, TRX, USDC, USDT, VET, XLM, XMR, XRP, XTZ, ZEC. </p>
 <h3 id='data-schema'>Data Schema</h3>
 <table><thead>
 <tr>
@@ -1006,6 +1004,12 @@ Ask credentials to log in.
 <td>symbol is tag</td>
 </tr>
 </tbody></table>
+<h3 id='data-sanity'>Data Sanity</h3>
+<p>No downtime.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>GET https://www.binance.com/gateway-api/v1/public/margin/vip/spec/list-all</code></p>
+<h3 id='api-reference'>API Reference</h3>
+<p>No information</p>
 <h2 id='binance-funding-rate'>Binance Funding Rate</h2><h2 id='binance-long-short-ratio'>Binance Long Short Ratio</h2><h2 id='binance-long-short-ratio-account'>Binance Long Short Ratio Account</h2><h2 id='binance-long-short-ratio-position'>Binance Long Short Ratio Position</h2><h2 id='binance-future-stats-open-interest'>Binance Future Stats Open Interest</h2><h2 id='binance-taker-buy-sell-ratio'>Binance Taker Buy Sell Ratio</h2><h2 id='binance-liquidation-trade'>Binance Liquidation Trade</h2><h2 id='binance-open-interest'>Binance Open Interest</h2><h2 id='binance-orderbook'>Binance Orderbook</h2><h2 id='binance-trade'>Binance Trade</h2><h1 id='bigone'>BigOne</h1>
 <p><a href="https://big.one/">BigOne exchange</a> is a cryptocurrency exchange with <a href="https://open.big.one/docs/api.html">api documents</a> </p>
 <h2 id='bigone-trade'>BigOne Trade</h2><h2 id='bigone-orderbook'>BigOne Orderbook</h2><h3 id='open-interest'>Open Interest</h3><h3 id='coinflex'>Coinflex</h3><h3 id='cosmos'>Cosmos</h3><h3 id='hnscan'>HNScan</h3><h3 id='namebase'>Namebase</h3><h3 id='nervos'>Nervos</h3><h3 id='tether'>Tether</h3><h3 id='tezos'>Tezos</h3><h3 id='bitfinex'>Bitfinex</h3><h3 id='bitmex'>Bitmex</h3><h3 id='bigone-orderbook-2'>Bigone Orderbook</h3><h3 id='bybit'>Bybit</h3><h3 id='coinbase'>Coinbase</h3><h3 id='coinex'>Coinex</h3><h3 id='compound'>Compound</h3><h3 id='deribit'>Deribit</h3><h3 id='dydx'>Dydx</h3><h3 id='ftx'>FTX</h3><h3 id='gateio'>Gateio</h3><h3 id='huobidm'>HuobiDM</h3><h3 id='mxc'>MXC</h3><h3 id='okex'>OKEX</h3><h3 id='poloniex'>Poloniex</h3><h3 id='wazirx'>Wazirx</h3><h3 id='cme-group'>CME Group</h3><h3 id='commodity-futures-trading-commission'>Commodity Futures Trading Commission</h3><h3 id='investing-com'>Investing.com</h3><h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
@@ -1155,8 +1159,8 @@ Remember — a happy kitten is an authenticated kitten!
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="python">python</a>
                 <a href="#" data-language-name="sql">sql</a>
+                <a href="#" data-language-name="python">python</a>
           </div>
       </div>
     </div>
