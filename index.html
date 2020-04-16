@@ -226,6 +226,11 @@
           </li>
           <li>
             <a href="#data-catalogue-summary" class="toc-h1 toc-link" data-title="Data Catalogue Summary">Data Catalogue Summary</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#table-summary" class="toc-h2 toc-link" data-title="Table Summary">Table Summary</a>
+                  </li>
+              </ul>
           </li>
           <li>
             <a href="#kittens" class="toc-h1 toc-link" data-title="Kittens">Kittens</a>
@@ -256,8 +261,7 @@
 <p>Database is <a href="https://docs.influxdata.com/influxdb/v1.8/">InfluxDB</a>,whihc is a time-series database. Few terminologies to explain, tags in the influxdb is the unqie index and it is very useful to sort tickers via taging. Measurement is another word for table in the influxdb. Currently, we have two influxbd servers, one is primary server and another one is backup server.</p>
 
 <p>Host Server: 
-<code>Host-1 (Primary): 99-79-47-186</code>
-<code>Host-2 (Backup): 15-223-68-239</code></p>
+<code>Host-1 (Primary): 99-79-47-186 &amp;&amp;&amp;&amp; Host-2 (Backup): 15-223-68-239</code></p>
 
 <aside class="notice">
 Ask credentials to log in.
@@ -265,115 +269,647 @@ Ask credentials to log in.
 <h1 id='data-catalogue-summary'>Data Catalogue Summary</h1>
 <p>The summary for all available data feeds. </p>
 
-<aside class="notice"> <code> Case Sensitive </code> applys in table names </aside>
-
-<p>TableName | Frequency | DataType | CurrentStatus
---------- | ------- | -----------
-bigone_orderbook | 30 seconds | Orderbook Data | Running
-bigone_trades | RealTime | Trades Data | 
-binance_borrow_rates_clean | 30 seconds | Borrow Rates | Running
-binance_funding_rates | 8 hours | Trades Data | Running
-binance_future_stats_long_short_ratio | Varies | Futures Data | Running
-binance_future_stats_long_short_ratio_account | Varies | Futures Data | Running
-binance_future_stats_long_short_ratio_position | Varies | Futures Data | Running
-binance_future_stats_open_interest | Varies | Futures Data | Running
-binance_future_stats_taker_buy_sell_ratio | Varies | Futures Data | Running
-binance_liquidation_trades | 8 hours | Liquidation Trades Data | Running
-binance_open_interest_clean | 8 hours | Open Interest | Running
-binance_orderbook_futures_clean | 30 seconds | Orderbook Data | Running
-binance_orderbook_spot_clean | 30 seconds | Orderbook Data | Running
-binance_trade_futures | RealTime | Trades Data | Running
-binance_trade_spot | RealTime | Trades Data | Running
-bitfinex_funding_orderbook | 30 seconds | Funding Orderbook | Running
-bitfinex_funding_trade | RealTime | Funding Trades | Running
-bitmex_full_orderbook | RealTime | Orderbook | Running
-bitmex_funding | 8 hours | Funding | Running
-bitmex_funding_rates | 8 hours | Funding | Running
-bitmex_instrument | 1 minute | Market Summary | Running 
-bitmex_insurance | None | None | Running
-bitmex_leaderboard_notional | 1 hour | Leaderboard | Running
-bitmex_leaderboard_ROE | 1 hour | Leaderboard | Running
-bitmex_liquidation | RealTime | Liquidation | Running
-bitmex_settlement | 1 week | Settlement | NoLongerUpated
-bitmex_trade | RealTime | Trade Data | Running
-bybit_funding_rate | 8 hours | Funding Rates | Running 
-bybit_tickers | 1 minute | Ticker | Running
-bybit_trades | RealTime | Trade Data | Running
-cftc_futures_report | 1 week | Commodity Futures Report | Running
-cme_futures_index | 1 hour | CME BTC Futures | Running
-coinbase_custody | 1 hour | Custody Data | Running
-coinbase_orderbook | 30 seconds | Orderbook | Running
-coinbase_trades | 1 minutes | Trades Data | Running
-coinex_orderbook | 30 seconds | Orderbook | Running
-coinex_trades | 1 minute | Trade Data | Running
-coinflex_burn_fees | 1 hour | Burn Fees | Running
-compound_borrow_rates | 1 minute | Borrow Rates | Running
-cosmos_validator_ranking | 1 hour | Validator Ranking | Running
-cosmos_validator_status | 1 hour | Validator Status | Running
-deribit_fundingRate | 8 hours | Funding Rate | Running
-deribit_optoinTicker | RealTime | Option Ticker | Running
-deribit_orderbook | RealTime | Orderbok | Running
-deribit_ticker | RealTime | Ticker | Running
-deribit_trades | RealTime | Trade Data | Running
-dydx_borrow_rates | 1 minute | Borrow Rates | Running
-exchange_open_interest | 1 minute | Open Interest | Running
-FTX_funding_rates | 8 hours | Funding Rates | Running
-FTX_future_stats | 1 minute | Market Summary | Running
-FTX_option_request | RealTime | Request Data | Running
-FTX_orderbook | 30 seconds | Orderbook | Running
-FTX_trades | RealTime | Trades | Running
-FTX_trades_option | RealTime | Trades | Running
-gateio_orderbook | 30 seconds | Orderbook | Running
-gateio_trades_data | RealTime | Trades | Running
-hashpool_coins | 1 hour | Summary | Running
-hnscan_block_info | RealTime | BlockChain | Running
-hnscan_chart_data | 1 day | Chart | Running
-hnscan_chart_data_snapshot | 1 day | Chart | Running
-hnscan_status | 1 hour | Summary | Running
-hnscan_summary | 1 hour | Summary | Running
-hnscan_transaction | RealTime | BlockChian | Running
-huobidm_contract_delivery_price | 1 minute | Delivery Price | Running
-huobidm_contract_market_overvoew | 1 minute | Market Overview | Running
-huobidm_contract_price_limit | 1 minute | Price Limit | Running<br>
-huobidm_contract_risk_info | 1 minute | Risk Info | Running
-huobidm_index_price | 1 minute | Index Price | Running
-huobidm_insurance_fund | 1 minute | Insurance Fund | Running
-huobidm_open_interest | 1 minute | Open Interest | Running
-huobidm_orderbook | 30 seconds | Orderbook | Running
-huobidm_trades | RealTime | Trade | Running
-mxc_trades | RealTime | Trade | Running
-mxc_orderbook | 30 seconds | Orderbook | Running
-namebase_domain | 8 hours | Domain Data | Running
-namebase_orderbook |30 seconds | Orderbook | Running 
-namebase_trade | RealTime | Trade | Running
-nervos_block | 1 minute | BLockChain | Running
-nervos_hashrate | 1 minute | Hash Rate | Running
-okex_fundingRate | 8 hours | Funding Rate | Running
-okex_future_stats_contractBasis | Varies | Futures Data | Running
-okex_future_stats_FutureTakerBuySell | Varies | Futures Data | Running
-okex_future_stats_longShortPositionRatio | Varies | Futures Data | Running
-okex_future_stats_OpenInterestVolume | Varies | Futures Data | Running
-okex_future_stats_SwapFundingRate | Varies | Futures Data | Running
-okex_future_stats_topTraderAverageMarginUsed | Varies | Futures Data | Running
-okex_future_stats_topTraderSentimentIndex | Varies | Futures Data | Running
-okex_liquidation | RealTime | Liquidation | Running
-okex_markPrice | RealTime | Mark Price | Running
-okex_Orderbook | RealTime | Orderbook | Running
-okex_priceRange | RealTime | Price Range | Running
-okex_recentTrades | RealTime | Trade | Running
-okex_spotTrades | RealTime | Trade | Running
-okex_SwapOpenInterest | RealTime | Open Interest | Running
-okex_ticker | RealTime | Ticker | Running
-okex_ticker_swap | RealTime | Ticker | Running
-okex_ticker_v1 | RealTime | Ticker | Running
-poloniex_funding_orderbook | 1 minute | Orderbook | Running
-poloniex_leaderboard | 1 hour | Leaderboard | Running
-poloniex_orderbook | 1 minute | Orderbook | Running
-poloniex_trades | 1 minute | Trade | Running
-sp500_futures | 1 second | Trade | Running
-tether_richlist | 1 hour | Leaderboard | Running
-tezos_leaderboard | 1 hour | Leaderboard | Running
-wazirx_tickers | 1 hour | Ticker | Running</p>
+<aside class="warning"> <code> Case Sensitive </code> applys in table names </aside>
+<h2 id='table-summary'>Table Summary</h2>
+<table><thead>
+<tr>
+<th>TableName</th>
+<th>Frequency</th>
+<th>DataType</th>
+<th>CurrentStatus</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>bigone_orderbook</td>
+<td>30 seconds</td>
+<td>Orderbook Data</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>bigone_trades</td>
+<td>RealTime</td>
+<td>Trades Data</td>
+<td></td>
+</tr>
+<tr>
+<td>binance_borrow_rates_clean</td>
+<td>30 seconds</td>
+<td>Borrow Rates</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>binance_funding_rates</td>
+<td>8 hours</td>
+<td>Trades Data</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>binance_future_stats_long_short_ratio</td>
+<td>Varies</td>
+<td>Futures Data</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>binance_future_stats_long_short_ratio_account</td>
+<td>Varies</td>
+<td>Futures Data</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>binance_future_stats_long_short_ratio_position</td>
+<td>Varies</td>
+<td>Futures Data</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>binance_future_stats_open_interest</td>
+<td>Varies</td>
+<td>Futures Data</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>binance_future_stats_taker_buy_sell_ratio</td>
+<td>Varies</td>
+<td>Futures Data</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>binance_liquidation_trades</td>
+<td>8 hours</td>
+<td>Liquidation Trades Data</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>binance_open_interest_clean</td>
+<td>8 hours</td>
+<td>Open Interest</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>binance_orderbook_futures_clean</td>
+<td>30 seconds</td>
+<td>Orderbook Data</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>binance_orderbook_spot_clean</td>
+<td>30 seconds</td>
+<td>Orderbook Data</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>binance_trade_futures</td>
+<td>RealTime</td>
+<td>Trades Data</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>binance_trade_spot</td>
+<td>RealTime</td>
+<td>Trades Data</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>bitfinex_funding_orderbook</td>
+<td>30 seconds</td>
+<td>Funding Orderbook</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>bitfinex_funding_trade</td>
+<td>RealTime</td>
+<td>Funding Trades</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>bitmex_full_orderbook</td>
+<td>RealTime</td>
+<td>Orderbook</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>bitmex_funding</td>
+<td>8 hours</td>
+<td>Funding</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>bitmex_funding_rates</td>
+<td>8 hours</td>
+<td>Funding</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>bitmex_instrument</td>
+<td>1 minute</td>
+<td>Market Summary</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>bitmex_insurance</td>
+<td>None</td>
+<td>None</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>bitmex_leaderboard_notional</td>
+<td>1 hour</td>
+<td>Leaderboard</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>bitmex_leaderboard_ROE</td>
+<td>1 hour</td>
+<td>Leaderboard</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>bitmex_liquidation</td>
+<td>RealTime</td>
+<td>Liquidation</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>bitmex_settlement</td>
+<td>1 week</td>
+<td>Settlement</td>
+<td>NoLongerUpated</td>
+</tr>
+<tr>
+<td>bitmex_trade</td>
+<td>RealTime</td>
+<td>Trade Data</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>bybit_funding_rate</td>
+<td>8 hours</td>
+<td>Funding Rates</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>bybit_tickers</td>
+<td>1 minute</td>
+<td>Ticker</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>bybit_trades</td>
+<td>RealTime</td>
+<td>Trade Data</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>cftc_futures_report</td>
+<td>1 week</td>
+<td>Commodity Futures Report</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>cme_futures_index</td>
+<td>1 hour</td>
+<td>CME BTC Futures</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>coinbase_custody</td>
+<td>1 hour</td>
+<td>Custody Data</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>coinbase_orderbook</td>
+<td>30 seconds</td>
+<td>Orderbook</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>coinbase_trades</td>
+<td>1 minutes</td>
+<td>Trades Data</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>coinex_orderbook</td>
+<td>30 seconds</td>
+<td>Orderbook</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>coinex_trades</td>
+<td>1 minute</td>
+<td>Trade Data</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>coinflex_burn_fees</td>
+<td>1 hour</td>
+<td>Burn Fees</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>compound_borrow_rates</td>
+<td>1 minute</td>
+<td>Borrow Rates</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>cosmos_validator_ranking</td>
+<td>1 hour</td>
+<td>Validator Ranking</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>cosmos_validator_status</td>
+<td>1 hour</td>
+<td>Validator Status</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>deribit_fundingRate</td>
+<td>8 hours</td>
+<td>Funding Rate</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>deribit_optoinTicker</td>
+<td>RealTime</td>
+<td>Option Ticker</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>deribit_orderbook</td>
+<td>RealTime</td>
+<td>Orderbok</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>deribit_ticker</td>
+<td>RealTime</td>
+<td>Ticker</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>deribit_trades</td>
+<td>RealTime</td>
+<td>Trade Data</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>dydx_borrow_rates</td>
+<td>1 minute</td>
+<td>Borrow Rates</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>exchange_open_interest</td>
+<td>1 minute</td>
+<td>Open Interest</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>FTX_funding_rates</td>
+<td>8 hours</td>
+<td>Funding Rates</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>FTX_future_stats</td>
+<td>1 minute</td>
+<td>Market Summary</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>FTX_option_request</td>
+<td>RealTime</td>
+<td>Request Data</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>FTX_orderbook</td>
+<td>30 seconds</td>
+<td>Orderbook</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>FTX_trades</td>
+<td>RealTime</td>
+<td>Trades</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>FTX_trades_option</td>
+<td>RealTime</td>
+<td>Trades</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>gateio_orderbook</td>
+<td>30 seconds</td>
+<td>Orderbook</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>gateio_trades_data</td>
+<td>RealTime</td>
+<td>Trades</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>hashpool_coins</td>
+<td>1 hour</td>
+<td>Summary</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>hnscan_block_info</td>
+<td>RealTime</td>
+<td>BlockChain</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>hnscan_chart_data</td>
+<td>1 day</td>
+<td>Chart</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>hnscan_chart_data_snapshot</td>
+<td>1 day</td>
+<td>Chart</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>hnscan_status</td>
+<td>1 hour</td>
+<td>Summary</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>hnscan_summary</td>
+<td>1 hour</td>
+<td>Summary</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>hnscan_transaction</td>
+<td>RealTime</td>
+<td>BlockChian</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>huobidm_contract_delivery_price</td>
+<td>1 minute</td>
+<td>Delivery Price</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>huobidm_contract_market_overvoew</td>
+<td>1 minute</td>
+<td>Market Overview</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>huobidm_contract_price_limit</td>
+<td>1 minute</td>
+<td>Price Limit</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>huobidm_contract_risk_info</td>
+<td>1 minute</td>
+<td>Risk Info</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>huobidm_index_price</td>
+<td>1 minute</td>
+<td>Index Price</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>huobidm_insurance_fund</td>
+<td>1 minute</td>
+<td>Insurance Fund</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>huobidm_open_interest</td>
+<td>1 minute</td>
+<td>Open Interest</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>huobidm_orderbook</td>
+<td>30 seconds</td>
+<td>Orderbook</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>huobidm_trades</td>
+<td>RealTime</td>
+<td>Trade</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>mxc_trades</td>
+<td>RealTime</td>
+<td>Trade</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>mxc_orderbook</td>
+<td>30 seconds</td>
+<td>Orderbook</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>namebase_domain</td>
+<td>8 hours</td>
+<td>Domain Data</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>namebase_orderbook</td>
+<td>30 seconds</td>
+<td>Orderbook</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>namebase_trade</td>
+<td>RealTime</td>
+<td>Trade</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>nervos_block</td>
+<td>1 minute</td>
+<td>BLockChain</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>nervos_hashrate</td>
+<td>1 minute</td>
+<td>Hash Rate</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>okex_fundingRate</td>
+<td>8 hours</td>
+<td>Funding Rate</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>okex_future_stats_contractBasis</td>
+<td>Varies</td>
+<td>Futures Data</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>okex_future_stats_FutureTakerBuySell</td>
+<td>Varies</td>
+<td>Futures Data</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>okex_future_stats_longShortPositionRatio</td>
+<td>Varies</td>
+<td>Futures Data</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>okex_future_stats_OpenInterestVolume</td>
+<td>Varies</td>
+<td>Futures Data</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>okex_future_stats_SwapFundingRate</td>
+<td>Varies</td>
+<td>Futures Data</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>okex_future_stats_topTraderAverageMarginUsed</td>
+<td>Varies</td>
+<td>Futures Data</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>okex_future_stats_topTraderSentimentIndex</td>
+<td>Varies</td>
+<td>Futures Data</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>okex_liquidation</td>
+<td>RealTime</td>
+<td>Liquidation</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>okex_markPrice</td>
+<td>RealTime</td>
+<td>Mark Price</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>okex_Orderbook</td>
+<td>RealTime</td>
+<td>Orderbook</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>okex_priceRange</td>
+<td>RealTime</td>
+<td>Price Range</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>okex_recentTrades</td>
+<td>RealTime</td>
+<td>Trade</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>okex_spotTrades</td>
+<td>RealTime</td>
+<td>Trade</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>okex_SwapOpenInterest</td>
+<td>RealTime</td>
+<td>Open Interest</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>okex_ticker</td>
+<td>RealTime</td>
+<td>Ticker</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>okex_ticker_swap</td>
+<td>RealTime</td>
+<td>Ticker</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>okex_ticker_v1</td>
+<td>RealTime</td>
+<td>Ticker</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>poloniex_funding_orderbook</td>
+<td>1 minute</td>
+<td>Orderbook</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>poloniex_leaderboard</td>
+<td>1 hour</td>
+<td>Leaderboard</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>poloniex_orderbook</td>
+<td>1 minute</td>
+<td>Orderbook</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>poloniex_trades</td>
+<td>1 minute</td>
+<td>Trade</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>sp500_futures</td>
+<td>1 second</td>
+<td>Trade</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>tether_richlist</td>
+<td>1 hour</td>
+<td>Leaderboard</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>tezos_leaderboard</td>
+<td>1 hour</td>
+<td>Leaderboard</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>wazirx_tickers</td>
+<td>1 hour</td>
+<td>Ticker</td>
+<td>Running</td>
+</tr>
+</tbody></table>
 <h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
 
 <span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
