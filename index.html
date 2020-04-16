@@ -201,7 +201,7 @@
       <script src="javascripts/all-c5541673.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;java&quot;,&quot;python&quot;,&quot;javascript&quot;]">
+  <body class="index" data-languages="[&quot;python&quot;,&quot;sql&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -211,10 +211,8 @@
     <div class="toc-wrapper">
       <img src="images/logo-1e815a84.png" class="logo" alt="Logo" />
         <div class="lang-selector">
-              <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="java">java</a>
               <a href="#" data-language-name="python">python</a>
-              <a href="#" data-language-name="javascript">javascript</a>
+              <a href="#" data-language-name="sql">sql</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -342,7 +340,7 @@ Ask credentials to log in.
 </tr>
 <tr>
 <td><a href="#binance-borrow-rate">binance_borrow_rates_clean</a></td>
-<td>30 seconds</td>
+<td>30 minutes</td>
 <td>Borrow Rates</td>
 <td>Running</td>
 </tr>
@@ -959,7 +957,30 @@ Ask credentials to log in.
 <td>Running</td>
 </tr>
 </tbody></table>
-<h1 id='binance'>Binance</h1><h2 id='binance-borrow-rate'>Binance Borrow Rate</h2><h2 id='binance-funding-rate'>Binance Funding Rate</h2><h2 id='binance-long-short-ratio'>Binance Long Short Ratio</h2><h2 id='binance-long-short-ratio-account'>Binance Long Short Ratio Account</h2><h2 id='binance-long-short-ratio-position'>Binance Long Short Ratio Position</h2><h2 id='binance-future-stats-open-interest'>Binance Future Stats Open Interest</h2><h2 id='binance-taker-buy-sell-ratio'>Binance Taker Buy Sell Ratio</h2><h2 id='binance-liquidation-trade'>Binance Liquidation Trade</h2><h2 id='binance-open-interest'>Binance Open Interest</h2><h2 id='binance-orderbook'>Binance Orderbook</h2><h2 id='binance-trade'>Binance Trade</h2><h1 id='bigone'>BigOne</h1>
+<h1 id='binance'>Binance</h1>
+<p><a href="https://www.binance.com/en">Binance</a> is a cryptocurrency exchange that provides a platform for trading various cryptocurrencies. Biance provide a powerful <a href="https://binance-docs.github.io/apidocs/spot/en/#change-log">api</a>.</p>
+<h2 id='binance-borrow-rate'>Binance Borrow Rate</h2><pre class="highlight python tab-python"><code><span class="c"># getting data</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="n">endpoint</span> <span class="o">=</span> <span class="s">"https://www.binance.com/gateway-api/v1/public/margin/vip/spec/list-all"</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">endpoint</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre><pre class="highlight sql tab-sql"><code><span class="o">#</span> <span class="k">fetch</span> <span class="n">one</span> <span class="n">ticker</span>
+<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">binance_borrow_rates_clean</span> <span class="k">where</span> <span class="n">symbol</span> <span class="o">=</span> <span class="s1">'ADA'</span>
+</code></pre><h3 id='description'>Description</h3>
+<p><a href="https://www.binance.com/en/margin-fee">Binance borrow rate</a> is part of margin data listed in the website. Binance borrow rate has a frequency of 30 minutes and data time range is from 2019-12-02 21:34:09 till now.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>GET https://www.binance.com/gateway-api/v1/public/margin/vip/spec/list-all</code></p>
+<h3 id='api-reference'>API Reference</h3>
+<p>No information</p>
+<h3 id='data-schema'>Data Schema</h3>
+<p>fieldName | fieldType | description
+--------- | --------- | 
+borrowLimit | float | 
+dailyInterestRate | float |
+timestamp | string | time that wrote into db
+vipLevel | string |
+symbol | string | symbol is tag</p>
+<h2 id='binance-funding-rate'>Binance Funding Rate</h2><h2 id='binance-long-short-ratio'>Binance Long Short Ratio</h2><h2 id='binance-long-short-ratio-account'>Binance Long Short Ratio Account</h2><h2 id='binance-long-short-ratio-position'>Binance Long Short Ratio Position</h2><h2 id='binance-future-stats-open-interest'>Binance Future Stats Open Interest</h2><h2 id='binance-taker-buy-sell-ratio'>Binance Taker Buy Sell Ratio</h2><h2 id='binance-liquidation-trade'>Binance Liquidation Trade</h2><h2 id='binance-open-interest'>Binance Open Interest</h2><h2 id='binance-orderbook'>Binance Orderbook</h2><h2 id='binance-trade'>Binance Trade</h2><h1 id='bigone'>BigOne</h1>
 <p><a href="https://big.one/">BigOne exchange</a> is a cryptocurrency exchange with <a href="https://open.big.one/docs/api.html">api documents</a> </p>
 <h2 id='bigone-trade'>BigOne Trade</h2><h2 id='bigone-orderbook'>BigOne Orderbook</h2><h3 id='open-interest'>Open Interest</h3><h3 id='coinflex'>Coinflex</h3><h3 id='cosmos'>Cosmos</h3><h3 id='hnscan'>HNScan</h3><h3 id='namebase'>Namebase</h3><h3 id='nervos'>Nervos</h3><h3 id='tether'>Tether</h3><h3 id='tezos'>Tezos</h3><h3 id='bitfinex'>Bitfinex</h3><h3 id='bitmex'>Bitmex</h3><h3 id='bigone-orderbook-2'>Bigone Orderbook</h3><h3 id='bybit'>Bybit</h3><h3 id='coinbase'>Coinbase</h3><h3 id='coinex'>Coinex</h3><h3 id='compound'>Compound</h3><h3 id='deribit'>Deribit</h3><h3 id='dydx'>Dydx</h3><h3 id='ftx'>FTX</h3><h3 id='gateio'>Gateio</h3><h3 id='huobidm'>HuobiDM</h3><h3 id='mxc'>MXC</h3><h3 id='okex'>OKEX</h3><h3 id='poloniex'>Poloniex</h3><h3 id='wazirx'>Wazirx</h3><h3 id='cme-group'>CME Group</h3><h3 id='commodity-futures-trading-commission'>Commodity Futures Trading Commission</h3><h3 id='investing-com'>Investing.com</h3><h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
 
@@ -997,7 +1018,7 @@ Ask credentials to log in.
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves all kittens.</p>
-<h3 id='http-request'>HTTP Request</h3>
+<h3 id='http-request-2'>HTTP Request</h3>
 <p><code>GET http://example.com/api/kittens</code></p>
 <h3 id='query-parameters'>Query Parameters</h3>
 <table><thead>
@@ -1051,7 +1072,7 @@ Remember — a happy kitten is an authenticated kitten!
 <p>This endpoint retrieves a specific kitten.</p>
 
 <aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-<h3 id='http-request-2'>HTTP Request</h3>
+<h3 id='http-request-3'>HTTP Request</h3>
 <p><code>GET http://example.com/kittens/&lt;ID&gt;</code></p>
 <h3 id='url-parameters'>URL Parameters</h3>
 <table><thead>
@@ -1090,7 +1111,7 @@ Remember — a happy kitten is an authenticated kitten!
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint deletes a specific kitten.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
+<h3 id='http-request-4'>HTTP Request</h3>
 <p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
 <h3 id='url-parameters-2'>URL Parameters</h3>
 <table><thead>
@@ -1108,10 +1129,8 @@ Remember — a happy kitten is an authenticated kitten!
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="java">java</a>
                 <a href="#" data-language-name="python">python</a>
-                <a href="#" data-language-name="javascript">javascript</a>
+                <a href="#" data-language-name="sql">sql</a>
           </div>
       </div>
     </div>
