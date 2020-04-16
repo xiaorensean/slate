@@ -189,6 +189,8 @@ No information
 
 ## Binance Funding Rate
 
+> http request
+
 ```python
 # getting api data
 import requests
@@ -197,6 +199,13 @@ endpoint = "https://fapi.binance.com/fapi/v1/fapi/v1/fundingRate?symbol={}".form
 response = requests.get(endpoint)
 data = response.json()
 ```
+
+> database: 
+
+```sql
+select * from binance_funding_rates_clean'
+```
+
 > response:
 
 ```json
@@ -216,9 +225,7 @@ data = response.json()
 ]
 ```
 
-```sql
-select * from binance_funding_rates_clean'
-```
+
 
 ### Description
 Binance funding rate has a frequency of 8 hours and data time range is from 2020-01-27 18:07:37 till now. Collectors are continously runing in two hosts. 
