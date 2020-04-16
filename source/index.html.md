@@ -142,11 +142,13 @@ tezos_leaderboard | 1 hour | Leaderboard | Running
 wazirx_tickers | 1 hour | Ticker | Running
 
 
+
 # Binance 
 [Binance](https://www.binance.com/en) is a cryptocurrency exchange that provides a platform for trading various cryptocurrencies. Biance provide a powerful [api](https://binance-docs.github.io/apidocs/spot/en/#change-log).
 
-## Binance Borrow Rate 
 
+
+## Binance Borrow Rate 
 
 ```sql
 -- fetch one ticker
@@ -191,15 +193,20 @@ timestamp | string | timestamp record for data updating
 vipLevel | string |
 symbol | string | symbol is tag
 
-
 ### Data Sanity
 No downtime.
 
-### HTTP Request
+### API Reference
+
+* Endpoint
 `GET https://www.binance.com/gateway-api/v1/public/margin/vip/spec/list-all`
 
-### API Reference
-No information
+* API Query Parameters
+No parameters.
+
+* API Query Schema
+No Information.
+
 
 
 ## Binance Funding Rate
@@ -247,11 +254,12 @@ symbol | string |
 ### Data Sanity
 No downtime.
 
-### HTTP Request
+### API Reference
+
+* API Endpoint 
 `GET https://fapi.binance.com/fapi/v1/fapi/v1/fundingRate`
 
-### API Reference
-**Parameters:** 
+* API Query Parameters
 Name | Type | Mandatory | Description
 ---- | ---- | ---------- | -------- |
 symbol | string | yes | 
@@ -259,9 +267,14 @@ startTime | long | no | Timestamp in ms to get funding rate from INCLUSIVE
 endTime | long | no | Timestamp in ms to get funding rate from INCLUSIVE
 limit | integer | no | Default 100  max 1000
 
-* If `startTime` and `endTime` are not sent, the most recent `limit` datas are returned.
-* If the number of data between `startTime` and `endTime` is larger than `limit`, return as `startTime` + `limit`.
-* In ascending order.
+1. If `startTime` and `endTime` are not sent, the most recent `limit` datas are returned.
+2. If the number of data between `startTime` and `endTime` is larger than `limit`, return as `startTime` + `limit`.
+3. In ascending order.
+
+* API Query Schema
+No information
+
+### API Query 
 
 ## Binance Long Short Ratio
 
