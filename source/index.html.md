@@ -1,6 +1,12 @@
 ---
 title: VQR Data Catalogue
 
+language_tabs: # must be one of https://git.io/vQNgJ
+  - shell
+  - java
+  - python
+  - javascript
+
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
   - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
@@ -27,12 +33,12 @@ The summary for all available data feeds.
 
 <aside class="warning"> <code> Case Sensitive </code> applys in table names </aside>
 
-##Table Summary 
+## Table Summary 
 
 TableName | Frequency | DataType | CurrentStatus
 --------- | --------- | ---------| -----------|
-bigone_orderbook | 30 seconds | Orderbook Data | Running
-bigone_trades | RealTime | Trades Data | 
+bigone_orderbook(Bigone Orderbook) | 30 seconds | Orderbook Data | Running
+bigone_trades | RealTime | Trades Data | Running
 binance_borrow_rates_clean | 30 seconds | Borrow Rates | Running
 binance_funding_rates | 8 hours | Trades Data | Running
 binance_future_stats_long_short_ratio | Varies | Futures Data | Running
@@ -136,6 +142,84 @@ sp500_futures | 1 second | Trade | Running
 tether_richlist | 1 hour | Leaderboard | Running
 tezos_leaderboard | 1 hour | Leaderboard | Running
 wazirx_tickers | 1 hour | Ticker | Running
+
+
+# Cryptocurrency Market Data
+
+All crypto related data feeds are explainied in details in this section 
+
+## Aggregated Crypto Exchange
+aggregated crypto exchange data
+### Open Interest
+
+
+## Blockchain
+Blockchian data
+### Coinflex
+
+### Cosmos
+
+### HNScan
+
+### Namebase
+
+### Nervos
+
+### Tether
+
+### Tezos
+
+
+## Crypto Exchange 
+crypto exchange data
+### Binance
+
+### Bitfinex
+
+### Bitmex
+
+### Bigone
+#### Bigone Trade
+
+### Bigone Orderbook 
+
+### Bybit
+
+### Coinbase
+
+### Coinex
+
+### Compound
+
+### Deribit
+
+### Dydx
+
+### FTX
+
+### Gateio
+
+### HuobiDM
+
+### MXC
+
+### OKEX
+
+### Poloniex
+
+### Wazirx
+
+
+# Futures Market Data
+All Financail Market data feeds are explained in this section
+
+### CME Group 
+
+### Commodity Futures Trading Commission
+
+### Investing.com
+
+
 
 
 # Kittens
