@@ -148,7 +148,7 @@ wazirx_tickers | 1 hour | Ticker | Running
 ## Binance Borrow Rate 
 
 ```python
-# getting data
+# getting api data
 import requests
 endpoint = "https://www.binance.com/gateway-api/v1/public/margin/vip/spec/list-all"
 response = requests.get(endpoint)
@@ -156,12 +156,12 @@ data = response.json()
 ```
 
 ```sql
-# fetch one ticker
+-- fetch one ticker
 select * from binance_borrow_rates_clean where symbol = 'ADA'
 ```
 
 ### Description
-[Binance borrow rate](https://www.binance.com/en/margin-fee) is part of margin data listed in the website. Binance borrow rate has a frequency of 30 minutes and data time range is from 2019-12-02 21:34:09 till now.
+[Binance borrow rate](https://www.binance.com/en/margin-fee) is part of margin data listed in the website. Binance borrow rate has a frequency of 30 minutes and data time range is from 2019-12-02 21:34:09 till now. All tickers are ADA, ATOM, BAT, BCH, BNB, BTC, BUSD, DASH, EOS, ETC, ETH, IOST, IOTA, LINK, LTC, MATIC, NEO, ONT, QTUM, RVN, TRX, USDC, USDT, VET, XLM, XMR, XRP, XTZ, ZEC. Collectors are continously runing in two host.
 
 ### HTTP Request
 `GET https://www.binance.com/gateway-api/v1/public/margin/vip/spec/list-all`
@@ -171,7 +171,7 @@ No information
 
 ### Data Schema
 fieldName | fieldType | description
---------- | --------- | 
+--------- | --------- | ---------- |
 borrowLimit | float | 
 dailyInterestRate | float |
 timestamp | string | time that wrote into db
