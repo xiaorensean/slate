@@ -3,7 +3,6 @@ title: VQR Data Catalogue
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - sql
-  - python
 
 
 toc_footers:
@@ -26,7 +25,7 @@ Host Server:
 Ask credentials to log in.
 </aside>
 
-# Data Catalogue Summary
+# Data Catalogue
 
 The summary for all available data feeds. 
 
@@ -148,17 +147,32 @@ wazirx_tickers | 1 hour | Ticker | Running
 
 ## Binance Borrow Rate 
 
-```python
-# getting api data
-import requests
-endpoint = "https://www.binance.com/gateway-api/v1/public/margin/vip/spec/list-all"
-response = requests.get(endpoint)
-data = response.json()
-```
 
 ```sql
 -- fetch one ticker
 select * from binance_borrow_rates_clean where symbol = 'ADA'
+```
+
+> response
+
+```json
+[
+    {
+        "time": "2020-04-16 20:39:55.416015"",
+        "borrowLimit": 5000000",
+        "dailyInterestRate": 0.0016,
+        "symbol": "ADA",
+        "timestamp": "2020-04-16 20:39:55.416015",
+        "vipLevel": 9
+    },
+    ...
+    
+   {
+   
+    ...
+    
+    }
+]
 ```
 
 ### Description
@@ -170,12 +184,13 @@ Ticker tags are ADA, ATOM, BAT, BCH, BNB, BTC, BUSD, DASH, EOS, ETC, ETH, IOST, 
 ### Data Schema
 fieldName | fieldType | description
 --------- | --------- | ---------- |
+time | string | time record for writing into db
 borrowLimit | float | 
 dailyInterestRate | float |
 timestamp | string | timestamp record for data updating
 vipLevel | string |
 symbol | string | symbol is tag
-time | string | time record for writing into db
+
 
 ### Data Sanity
 No downtime.
@@ -189,18 +204,7 @@ No information
 
 ## Binance Funding Rate
 
-> http request
-
-```python
-# getting api data
-import requests
-symbol = "BTCUSDT"
-endpoint = "https://fapi.binance.com/fapi/v1/fapi/v1/fundingRate?symbol={}".format(symbol)
-response = requests.get(endpoint)
-data = response.json()
-```
-
-> database: 
+> database request
 
 ```sql
 select * from binance_funding_rates_clean'
@@ -226,7 +230,6 @@ select * from binance_funding_rates_clean'
 ```
 
 
-
 ### Description
 Binance funding rate has a frequency of 8 hours and data time range is from 2020-01-27 18:07:37 till now. Collectors are continously runing in two hosts. 
 
@@ -250,11 +253,11 @@ No downtime.
 ### API Reference
 **Parameters:** 
 Name | Type | Mandatory | Description
---------- | --------- | ---------- | -------- |
+---- | ---- | ---------- | -------- |
 symbol | string | yes | 
 startTime | long | no | Timestamp in ms to get funding rate from INCLUSIVE
 endTime | long | no | Timestamp in ms to get funding rate from INCLUSIVE
-limit | integer | no | Default 100; max 1000
+limit | integer | no | Default 100  max 1000
 
 * If `startTime` and `endTime` are not sent, the most recent `limit` datas are returned.
 * If the number of data between `startTime` and `endTime` is larger than `limit`, return as `startTime` + `limit`.
