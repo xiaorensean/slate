@@ -15,9 +15,9 @@ search: true
 
 # Introduction
 
-Welcome to the VQR-Data-Catalogue! The document gives you descriptions on database we are using, all available data feeds we are collecting, and all available api that we are tracking.
+Welcome to the **VQR Data Catalogue**! The document gives you descriptions on database we are using, all available data feeds we are collecting, and all available api that we are tracking.
 
-Database is [InfluxDB](https://docs.influxdata.com/influxdb/v1.8/),whihc is a time-series database. Few terminologies to explain, tags in the influxdb is the unqie index and it is very useful to sort tickers via taging. Measurement is another word for table in the influxdb. Currently, we have two influxbd servers, one is primary server and another one is backup server.
+Database is [InfluxDB](https://docs.influxdata.com/influxdb/v1.8/),whihc is a time-series database. Few terminologies to explain, tags in the influxdb is the unqie index and it is very useful to sort tickers via taging. Measurement is another word for table in the influxdb. Time is the defalut column in the table, which means the time that data wrote into database. Currently, we have two influxbd servers, one is primary server and another one is backup server.
 
 Host Server: 
 `Host-1 (Primary): 99-79-47-186 &&&& Host-2 (Backup): 15-223-68-239`
@@ -162,7 +162,7 @@ select * from binance_borrow_rates_clean where symbol = 'ADA'
 ```
 
 ### Description
-[Binance borrow rate](https://www.binance.com/en/margin-fee) is part of margin data listed in the website. Binance borrow rate has a frequency of 30 minutes and data time range is from 2019-12-02 21:34:09 till now. Collectors are continously runing in two host.
+[Binance borrow rate](https://www.binance.com/en/margin-fee) is part of margin data listed in the website. Binance borrow rate has a frequency of 30 minutes and data time range is from 2019-12-02 21:34:09 till now. Collectors are continously runing in two hosts.
 
 ### Tag Vlaues 
 Ticker tags are ADA, ATOM, BAT, BCH, BNB, BTC, BUSD, DASH, EOS, ETC, ETH, IOST, IOTA, LINK, LTC, MATIC, NEO, ONT, QTUM, RVN, TRX, USDC, USDT, VET, XLM, XMR, XRP, XTZ, ZEC. 
@@ -172,9 +172,10 @@ fieldName | fieldType | description
 --------- | --------- | ---------- |
 borrowLimit | float | 
 dailyInterestRate | float |
-timestamp | string | time that wrote into db
+timestamp | string | timestamp record for data updating
 vipLevel | string |
 symbol | string | symbol is tag
+time | string | time record for writing into db
 
 ### Data Sanity
 No downtime.
@@ -186,9 +187,71 @@ No downtime.
 No information
 
 
-
-
 ## Binance Funding Rate
+
+```python
+# getting api data
+import requests
+symbol = "BTCUSDT"
+endpoint = "https://fapi.binance.com/fapi/v1/fapi/v1/fundingRate?symbol={}".format(symbol)
+response = requests.get(endpoint)
+data = response.json()
+```
+> response:
+
+```json
+[
+    {
+        "symbol": "BTCUSDT",
+        "fundingRate": "-0.03750000",
+        "fundingTime": 1570608000000,
+        "time": 1576566020000
+    },
+    {
+        "symbol": "BTCUSDT",
+        "fundingRate": "0.00010000",
+        "fundingTime": 1570636800000,
+        "time": 1576566020000
+    }
+]
+```
+
+```sql
+select * from binance_funding_rates_clean'
+```
+
+### Description
+Binance funding rate has a frequency of 8 hours and data time range is from 2020-01-27 18:07:37 till now. Collectors are continously runing in two hosts. 
+
+### Tag Vlaues 
+No tags in the table. All available symbols are BTCUSDT ETHUSDT, BCHUSDT, XRPUSDT, EOSUSDT, LTCUSDT, TRXUSDT, ETCUSDT, LINKUSDT, XLMUSDT, ADAUSDT, XMRUSDT, DASHUSDT, ZECUSDT, XTZUSDT, BNBUSDT, ATOMUSDT, ONTUSDT, IOTAUSDT, BATUSDT, VETUSDT, NEOUSDT.
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+fundingRate | float | 
+fundingTime | integer |
+time | string | time record for data updating  
+symbol | string | 
+
+### Data Sanity
+No downtime.
+
+### HTTP Request
+`GET https://fapi.binance.com/fapi/v1/fapi/v1/fundingRate`
+
+### API Reference
+**Parameters:** 
+Name | Type | Mandatory | Description
+--------- | --------- | ---------- | -------- |
+symbol | string | yes | 
+startTime | long | no | Timestamp in ms to get funding rate from INCLUSIVE
+endTime | long | no | Timestamp in ms to get funding rate from INCLUSIVE
+limit | integer | no | Default 100; max 1000
+
+* If `startTime` and `endTime` are not sent, the most recent `limit` datas are returned.
+* If the number of data between `startTime` and `endTime` is larger than `limit`, return as `startTime` + `limit`.
+* In ascending order.
 
 ## Binance Long Short Ratio
 
