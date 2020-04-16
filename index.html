@@ -303,9 +303,9 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the VQR-Data-Catalogue! The document gives you descriptions on database we are using, all available data feeds we are collecting, and all available api that we are tracking.</p>
+<p>Welcome to the <strong>VQR Data Catalogue</strong>! The document gives you descriptions on database we are using, all available data feeds we are collecting, and all available api that we are tracking.</p>
 
-<p>Database is <a href="https://docs.influxdata.com/influxdb/v1.8/">InfluxDB</a>,whihc is a time-series database. Few terminologies to explain, tags in the influxdb is the unqie index and it is very useful to sort tickers via taging. Measurement is another word for table in the influxdb. Currently, we have two influxbd servers, one is primary server and another one is backup server.</p>
+<p>Database is <a href="https://docs.influxdata.com/influxdb/v1.8/">InfluxDB</a>,whihc is a time-series database. Few terminologies to explain, tags in the influxdb is the unqie index and it is very useful to sort tickers via taging. Measurement is another word for table in the influxdb. Time is the defalut column in the table, which means the time that data wrote into database. Currently, we have two influxbd servers, one is primary server and another one is backup server.</p>
 
 <p>Host Server: 
 <code>Host-1 (Primary): 99-79-47-186 &amp;&amp;&amp;&amp; Host-2 (Backup): 15-223-68-239</code></p>
@@ -967,7 +967,7 @@ Ask credentials to log in.
 </code></pre><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch one ticker</span>
 <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">binance_borrow_rates_clean</span> <span class="k">where</span> <span class="n">symbol</span> <span class="o">=</span> <span class="s1">'ADA'</span>
 </code></pre><h3 id='description'>Description</h3>
-<p><a href="https://www.binance.com/en/margin-fee">Binance borrow rate</a> is part of margin data listed in the website. Binance borrow rate has a frequency of 30 minutes and data time range is from 2019-12-02 21:34:09 till now. Collectors are continously runing in two host.</p>
+<p><a href="https://www.binance.com/en/margin-fee">Binance borrow rate</a> is part of margin data listed in the website. Binance borrow rate has a frequency of 30 minutes and data time range is from 2019-12-02 21:34:09 till now. Collectors are continously runing in two hosts.</p>
 <h3 id='tag-vlaues'>Tag Vlaues</h3>
 <p>Ticker tags are ADA, ATOM, BAT, BCH, BNB, BTC, BUSD, DASH, EOS, ETC, ETH, IOST, IOTA, LINK, LTC, MATIC, NEO, ONT, QTUM, RVN, TRX, USDC, USDT, VET, XLM, XMR, XRP, XTZ, ZEC. </p>
 <h3 id='data-schema'>Data Schema</h3>
@@ -991,7 +991,7 @@ Ask credentials to log in.
 <tr>
 <td>timestamp</td>
 <td>string</td>
-<td>time that wrote into db</td>
+<td>timestamp record for data updating</td>
 </tr>
 <tr>
 <td>vipLevel</td>
@@ -1003,6 +1003,11 @@ Ask credentials to log in.
 <td>string</td>
 <td>symbol is tag</td>
 </tr>
+<tr>
+<td>time</td>
+<td>string</td>
+<td>time record for writing into db</td>
+</tr>
 </tbody></table>
 <h3 id='data-sanity'>Data Sanity</h3>
 <p>No downtime.</p>
@@ -1010,7 +1015,83 @@ Ask credentials to log in.
 <p><code>GET https://www.binance.com/gateway-api/v1/public/margin/vip/spec/list-all</code></p>
 <h3 id='api-reference'>API Reference</h3>
 <p>No information</p>
-<h2 id='binance-funding-rate'>Binance Funding Rate</h2><h2 id='binance-long-short-ratio'>Binance Long Short Ratio</h2><h2 id='binance-long-short-ratio-account'>Binance Long Short Ratio Account</h2><h2 id='binance-long-short-ratio-position'>Binance Long Short Ratio Position</h2><h2 id='binance-future-stats-open-interest'>Binance Future Stats Open Interest</h2><h2 id='binance-taker-buy-sell-ratio'>Binance Taker Buy Sell Ratio</h2><h2 id='binance-liquidation-trade'>Binance Liquidation Trade</h2><h2 id='binance-open-interest'>Binance Open Interest</h2><h2 id='binance-orderbook'>Binance Orderbook</h2><h2 id='binance-trade'>Binance Trade</h2><h1 id='bigone'>BigOne</h1>
+<h2 id='binance-funding-rate'>Binance Funding Rate</h2><pre class="highlight python tab-python"><code><span class="c"># getting api data</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="n">symbol</span> <span class="o">=</span> <span class="s">"BTCUSDT"</span>
+<span class="n">endpoint</span> <span class="o">=</span> <span class="s">"https://fapi.binance.com/fapi/v1/fapi/v1/fundingRate?symbol={}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">symbol</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">endpoint</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre>
+<blockquote>
+<p>response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSDT"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"fundingRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.03750000"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"fundingTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1570608000000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="mi">1576566020000</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSDT"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"fundingRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00010000"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"fundingTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1570636800000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="mi">1576566020000</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre><pre class="highlight sql tab-sql"><code><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">binance_funding_rates_clean</span><span class="s1">'
+</span></code></pre><h3 id='description-2'>Description</h3>
+<p>Binance funding rate has a frequency of 8 hours and data time range is from 2020-01-27 18:07:37 till now. Collectors are continously runing in two hosts. </p>
+<h3 id='tag-vlaues-2'>Tag Vlaues</h3>
+<p>No tags in the table. All available symbols are BTCUSDT ETHUSDT, BCHUSDT, XRPUSDT, EOSUSDT, LTCUSDT, TRXUSDT, ETCUSDT, LINKUSDT, XLMUSDT, ADAUSDT, XMRUSDT, DASHUSDT, ZECUSDT, XTZUSDT, BNBUSDT, ATOMUSDT, ONTUSDT, IOTAUSDT, BATUSDT, VETUSDT, NEOUSDT.</p>
+<h3 id='data-schema-2'>Data Schema</h3>
+<table><thead>
+<tr>
+<th>fieldName</th>
+<th>fieldType</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>fundingRate</td>
+<td>float</td>
+<td></td>
+</tr>
+<tr>
+<td>fundingTime</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>time</td>
+<td>string</td>
+<td>time record for data updating</td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='data-sanity-2'>Data Sanity</h3>
+<p>No downtime.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>GET https://fapi.binance.com/fapi/v1/fapi/v1/fundingRate</code></p>
+<h3 id='api-reference-2'>API Reference</h3>
+<p><strong>Parameters:</strong> 
+Name | Type | Mandatory | Description
+--------- | --------- | ---------- | -------- |
+symbol | string | yes | 
+startTime | long | no | Timestamp in ms to get funding rate from INCLUSIVE
+endTime | long | no | Timestamp in ms to get funding rate from INCLUSIVE
+limit | integer | no | Default 100; max 1000</p>
+
+<ul>
+<li>If <code>startTime</code> and <code>endTime</code> are not sent, the most recent <code>limit</code> datas are returned.</li>
+<li>If the number of data between <code>startTime</code> and <code>endTime</code> is larger than <code>limit</code>, return as <code>startTime</code> + <code>limit</code>.</li>
+<li>In ascending order.</li>
+</ul>
+<h2 id='binance-long-short-ratio'>Binance Long Short Ratio</h2><h2 id='binance-long-short-ratio-account'>Binance Long Short Ratio Account</h2><h2 id='binance-long-short-ratio-position'>Binance Long Short Ratio Position</h2><h2 id='binance-future-stats-open-interest'>Binance Future Stats Open Interest</h2><h2 id='binance-taker-buy-sell-ratio'>Binance Taker Buy Sell Ratio</h2><h2 id='binance-liquidation-trade'>Binance Liquidation Trade</h2><h2 id='binance-open-interest'>Binance Open Interest</h2><h2 id='binance-orderbook'>Binance Orderbook</h2><h2 id='binance-trade'>Binance Trade</h2><h1 id='bigone'>BigOne</h1>
 <p><a href="https://big.one/">BigOne exchange</a> is a cryptocurrency exchange with <a href="https://open.big.one/docs/api.html">api documents</a> </p>
 <h2 id='bigone-trade'>BigOne Trade</h2><h2 id='bigone-orderbook'>BigOne Orderbook</h2><h3 id='open-interest'>Open Interest</h3><h3 id='coinflex'>Coinflex</h3><h3 id='cosmos'>Cosmos</h3><h3 id='hnscan'>HNScan</h3><h3 id='namebase'>Namebase</h3><h3 id='nervos'>Nervos</h3><h3 id='tether'>Tether</h3><h3 id='tezos'>Tezos</h3><h3 id='bitfinex'>Bitfinex</h3><h3 id='bitmex'>Bitmex</h3><h3 id='bigone-orderbook-2'>Bigone Orderbook</h3><h3 id='bybit'>Bybit</h3><h3 id='coinbase'>Coinbase</h3><h3 id='coinex'>Coinex</h3><h3 id='compound'>Compound</h3><h3 id='deribit'>Deribit</h3><h3 id='dydx'>Dydx</h3><h3 id='ftx'>FTX</h3><h3 id='gateio'>Gateio</h3><h3 id='huobidm'>HuobiDM</h3><h3 id='mxc'>MXC</h3><h3 id='okex'>OKEX</h3><h3 id='poloniex'>Poloniex</h3><h3 id='wazirx'>Wazirx</h3><h3 id='cme-group'>CME Group</h3><h3 id='commodity-futures-trading-commission'>Commodity Futures Trading Commission</h3><h3 id='investing-com'>Investing.com</h3><h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
 
@@ -1048,7 +1129,7 @@ Ask credentials to log in.
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves all kittens.</p>
-<h3 id='http-request-2'>HTTP Request</h3>
+<h3 id='http-request-3'>HTTP Request</h3>
 <p><code>GET http://example.com/api/kittens</code></p>
 <h3 id='query-parameters'>Query Parameters</h3>
 <table><thead>
@@ -1102,7 +1183,7 @@ Remember — a happy kitten is an authenticated kitten!
 <p>This endpoint retrieves a specific kitten.</p>
 
 <aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-<h3 id='http-request-3'>HTTP Request</h3>
+<h3 id='http-request-4'>HTTP Request</h3>
 <p><code>GET http://example.com/kittens/&lt;ID&gt;</code></p>
 <h3 id='url-parameters'>URL Parameters</h3>
 <table><thead>
@@ -1141,7 +1222,7 @@ Remember — a happy kitten is an authenticated kitten!
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint deletes a specific kitten.</p>
-<h3 id='http-request-4'>HTTP Request</h3>
+<h3 id='http-request-5'>HTTP Request</h3>
 <p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
 <h3 id='url-parameters-2'>URL Parameters</h3>
 <table><thead>
