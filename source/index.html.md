@@ -37,7 +37,7 @@ The summary for all available data feeds.
 
 TableName | Frequency | DataType | CurrentStatus
 --------- | --------- | ---------| -----------|
-bigone_orderbook(Bigone Orderbook) | 30 seconds | Orderbook Data | Running
+[bigone_orderbook](Cryptocurrency Market Data) | 30 seconds | Orderbook Data | Running
 bigone_trades | RealTime | Trades Data | Running
 binance_borrow_rates_clean | 30 seconds | Borrow Rates | Running
 binance_funding_rates | 8 hours | Trades Data | Running
