@@ -1015,13 +1015,22 @@ Ask credentials to log in.
 <p><code>GET https://www.binance.com/gateway-api/v1/public/margin/vip/spec/list-all</code></p>
 <h3 id='api-reference'>API Reference</h3>
 <p>No information</p>
-<h2 id='binance-funding-rate'>Binance Funding Rate</h2><pre class="highlight python tab-python"><code><span class="c"># getting api data</span>
+<h2 id='binance-funding-rate'>Binance Funding Rate</h2>
+<blockquote>
+<p>http request</p>
+</blockquote>
+<pre class="highlight python tab-python"><code><span class="c"># getting api data</span>
 <span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">symbol</span> <span class="o">=</span> <span class="s">"BTCUSDT"</span>
 <span class="n">endpoint</span> <span class="o">=</span> <span class="s">"https://fapi.binance.com/fapi/v1/fapi/v1/fundingRate?symbol={}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">symbol</span><span class="p">)</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">endpoint</span><span class="p">)</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </code></pre>
+<blockquote>
+<p>database: </p>
+</blockquote>
+<pre class="highlight sql tab-sql"><code><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">binance_funding_rates_clean</span><span class="s1">'
+</span></code></pre>
 <blockquote>
 <p>response:</p>
 </blockquote>
@@ -1039,7 +1048,6 @@ Ask credentials to log in.
         </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="mi">1576566020000</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre><pre class="highlight sql tab-sql"><code><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">binance_funding_rates_clean</span><span class="s1">'
 </span></code></pre><h3 id='description-2'>Description</h3>
 <p>Binance funding rate has a frequency of 8 hours and data time range is from 2020-01-27 18:07:37 till now. Collectors are continously runing in two hosts. </p>
 <h3 id='tag-vlaues-2'>Tag Vlaues</h3>
