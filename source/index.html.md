@@ -186,10 +186,10 @@ Ticker tags are ADA, ATOM, BAT, BCH, BNB, BTC, BUSD, DASH, EOS, ETC, ETH, IOST, 
 ### Data Schema
 fieldName | fieldType | description
 --------- | --------- | ---------- |
-time | string | time record for writing into db
+time | string | default database timestamp
 borrowLimit | float | 
 dailyInterestRate | float |
-timestamp | string | timestamp record for data updating
+timestamp | string | data timstamp
 vipLevel | string |
 symbol | string | symbol is tag
 
@@ -247,7 +247,7 @@ fieldName | fieldType | description
 --------- | --------- | ---------- |
 fundingRate | float | 
 fundingTime | integer |
-time | string | time record for data updating  
+time | string | data timestamp
 symbol | string | 
 
 ### Data Sanity
@@ -313,16 +313,16 @@ select * from binance_future_stats_long_short_ratio'
 [Binance long short ratio](https://www.binance.com/en/futures/funding-history/4) is trading data in the Binance futures. Binance long short ratio data has a variety of frequency, which includes 5 minutes, 15 minutes, 30 minutes, 1 hour, 2 hour, 4 hour, 6 hour, 12 hour, and 1 day. Data time range is from 2019-12-10 00:00:00 till now. Collectors are continously runing in two hosts. 
 
 ### Tag Vlaues 
-* Frequency
+**Frequency**:
 5 minutes, 15 minutes, 30 minutes, 1 hour, 2 hour, 4 hour, 6 hour, 12 hour, and 1 day
 
-* Symbol
+**Symbol**:
 ADAUSDT, ATOMUSDT, BATUSDT, BCHUSDT, BNBUSDT, BTCUSDT, DASHUSDT, EOSUSDT, ETCUSDT, ETHUSDT, IOSUSDT, IOATUSDT, LINKUSDT, LTCUSDT, NEOUSDT,ONTUSDT,QTUMUSDT, TRXUSDT, VETUSDT, XLMUSDT, XMRUSDT, XRPUSDT, XTZUSDT, ZECUSDT
 
 ### Data Schema
 fieldName | fieldType | description
 --------- | --------- | ---------- |
-time | string | consistent with timestamp fields
+time | string | default database timestamp
 frequency | string | tag values 
 long_account | string | 
 short_account | string | 
