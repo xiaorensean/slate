@@ -996,7 +996,7 @@ Ask credentials to log in.
 <tr>
 <td>time</td>
 <td>string</td>
-<td>time record for writing into db</td>
+<td>default database timestamp</td>
 </tr>
 <tr>
 <td>borrowLimit</td>
@@ -1011,7 +1011,7 @@ Ask credentials to log in.
 <tr>
 <td>timestamp</td>
 <td>string</td>
-<td>timestamp record for data updating</td>
+<td>data timstamp</td>
 </tr>
 <tr>
 <td>vipLevel</td>
@@ -1080,7 +1080,7 @@ Ask credentials to log in.
 <tr>
 <td>time</td>
 <td>string</td>
-<td>time record for data updating</td>
+<td>data timestamp</td>
 </tr>
 <tr>
 <td>symbol</td>
@@ -1168,12 +1168,11 @@ Ask credentials to log in.
 </span></code></pre><h3 id='description-3'>Description</h3>
 <p><a href="https://www.binance.com/en/futures/funding-history/4">Binance long short ratio</a> is trading data in the Binance futures. Binance long short ratio data has a variety of frequency, which includes 5 minutes, 15 minutes, 30 minutes, 1 hour, 2 hour, 4 hour, 6 hour, 12 hour, and 1 day. Data time range is from 2019-12-10 00:00:00 till now. Collectors are continously runing in two hosts. </p>
 <h3 id='tag-vlaues-3'>Tag Vlaues</h3>
-<ul>
-<li><p>Frequency
-5 minutes, 15 minutes, 30 minutes, 1 hour, 2 hour, 4 hour, 6 hour, 12 hour, and 1 day</p></li>
-<li><p>Symbol
-ADAUSDT, ATOMUSDT, BATUSDT, BCHUSDT, BNBUSDT, BTCUSDT, DASHUSDT, EOSUSDT, ETCUSDT, ETHUSDT, IOSUSDT, IOATUSDT, LINKUSDT, LTCUSDT, NEOUSDT,ONTUSDT,QTUMUSDT, TRXUSDT, VETUSDT, XLMUSDT, XMRUSDT, XRPUSDT, XTZUSDT, ZECUSDT</p></li>
-</ul>
+<p><strong>Frequency</strong>:
+5 minutes, 15 minutes, 30 minutes, 1 hour, 2 hour, 4 hour, 6 hour, 12 hour, and 1 day</p>
+
+<p><strong>Symbol</strong>:
+ADAUSDT, ATOMUSDT, BATUSDT, BCHUSDT, BNBUSDT, BTCUSDT, DASHUSDT, EOSUSDT, ETCUSDT, ETHUSDT, IOSUSDT, IOATUSDT, LINKUSDT, LTCUSDT, NEOUSDT,ONTUSDT,QTUMUSDT, TRXUSDT, VETUSDT, XLMUSDT, XMRUSDT, XRPUSDT, XTZUSDT, ZECUSDT</p>
 <h3 id='data-schema-3'>Data Schema</h3>
 <table><thead>
 <tr>
@@ -1185,7 +1184,7 @@ ADAUSDT, ATOMUSDT, BATUSDT, BCHUSDT, BNBUSDT, BTCUSDT, DASHUSDT, EOSUSDT, ETCUSD
 <tr>
 <td>time</td>
 <td>string</td>
-<td>consistent with timestamp fields</td>
+<td>default database timestamp</td>
 </tr>
 <tr>
 <td>frequency</td>
