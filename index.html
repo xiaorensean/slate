@@ -2319,9 +2319,23 @@ ADAUSDT, ATOMUSDT, BATUSDT, BCHUSDT, BNBUSDT, BTCUSDT, DASHUSDT, EOSUSDT, ETCUSD
 <h3 id='api-reference-6'>API Reference</h3>
 <p><code>GET https://big.one/api/v3/asset_pairs/{symbol}/trades</code></p>
 <h3 id='api-query-parameters-12'>API Query Parameters</h3>
-<p>Attribute Name | Type | Require | Description | Excample
--------------- | ---- | ---------- | -------- |
-asset_pair_name | string | True |name of asset pair | BTC-USDT</p>
+<table><thead>
+<tr>
+<th>Attribute Name</th>
+<th>Type</th>
+<th>Require</th>
+<th>Description</th>
+<th>Excample</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>asset_pair_name</td>
+<td>string</td>
+<td>True</td>
+<td>name of asset pair</td>
+<td>BTC-USDT</td>
+</tr>
+</tbody></table>
 <h3 id='api-return-schema-8'>API Return Schema</h3>
 <table><thead>
 <tr>
@@ -2436,25 +2450,85 @@ asset_pair_name | string | True |name of asset pair | BTC-USDT</p>
 <h3 id='api-reference-7'>API Reference</h3>
 <p><code>GET https://big.one/api/v3/asset_pairs/{asset_pair_name}/depth</code></p>
 <h3 id='api-query-parameters-13'>API Query Parameters</h3>
-<p>Attribute Name | Type | Require | Description | Excample
--------------- | ---- | ---------- | -------- |
-asset_pair_name | string | True |name of asset pair | BTC-USDT</p>
+<table><thead>
+<tr>
+<th>Attribute Name</th>
+<th>Type</th>
+<th>Require</th>
+<th>Description</th>
+<th>Excample</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>asset_pair_name</td>
+<td>string</td>
+<td>True</td>
+<td>name of asset pair</td>
+<td>BTC-USDT</td>
+</tr>
+</tbody></table>
 <h3 id='api-return-schema-9'>API Return Schema</h3>
-<ol>
-<li><p>PriceLevel
-Attribute Name | Type | Description | Excample
--------------- | ---- | ---------- | -------- |
-price | string |  price | 5098.37
-quantity | string | quantity | 0.0679 
-order_count | string | order count in this level | 10</p></li>
-<li><p>Depth
-Attribute Name | Type | Description | Excample
--------------- | ---- | ---------- | -------- |
-id | number | id of trade| 
-asset_pair_name | string | name of asset pair | BTC-USDT
-bids | PriceLevel array | bids |
-asks | PriceaLevel array | asks </p></li>
-</ol>
+<table><thead>
+<tr>
+<th>Attribute Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Excample</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>price</td>
+<td>string</td>
+<td>price</td>
+<td>5098.37</td>
+</tr>
+<tr>
+<td>quantity</td>
+<td>string</td>
+<td>quantity</td>
+<td>0.0679</td>
+</tr>
+<tr>
+<td>order_count</td>
+<td>string</td>
+<td>order count in this level</td>
+<td>10</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Attribute Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Excample</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>number</td>
+<td>id of trade</td>
+<td></td>
+</tr>
+<tr>
+<td>asset_pair_name</td>
+<td>string</td>
+<td>name of asset pair</td>
+<td>BTC-USDT</td>
+</tr>
+<tr>
+<td>bids</td>
+<td>PriceLevel array</td>
+<td>bids</td>
+<td></td>
+</tr>
+<tr>
+<td>asks</td>
+<td>PriceaLevel array</td>
+<td>asks</td>
+<td></td>
+</tr>
+</tbody></table>
 <h1 id='bybit'>Bybit</h1><h1 id='coinbase'>Coinbase</h1><h1 id='coinex'>Coinex</h1><h1 id='compound'>Compound</h1><h1 id='deribit'>Deribit</h1><h1 id='dydx'>Dydx</h1><h1 id='ftx'>FTX</h1><h1 id='gateio'>Gateio</h1><h1 id='huobidm'>HuobiDM</h1><h1 id='mxc'>MXC</h1><h1 id='okex'>OKEX</h1><h1 id='poloniex'>Poloniex</h1><h1 id='wazirx'>Wazirx</h1><h1 id='coinflex'>Coinflex</h1><h1 id='cosmos'>Cosmos</h1><h1 id='hnscan'>HNScan</h1><h1 id='namebase'>Namebase</h1><h1 id='nervos'>Nervos</h1><h1 id='tether'>Tether</h1><h1 id='tezos'>Tezos</h1><h1 id='aggregate-exchange-open-interest'>Aggregate Exchange Open Interest</h1><h1 id='futures-market-data'>Futures Market Data</h1><h2 id='cme-group'>CME Group</h2><h2 id='commodity-futures-trading-commission'>Commodity Futures Trading Commission</h2><h2 id='investing-com'>Investing.com</h2>
       </div>
       <div class="dark-box">
