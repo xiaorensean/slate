@@ -44,12 +44,12 @@ TableName | Frequency | DataType | CurrentStatus
 [binance_future_stats_long_short_ratio_position](#binance-long-short-ratio-position) | Varies | Futures Data | Running
 [binance_future_stats_open_interest](#binance-future-stats-open-interest) | Varies | Futures Data | Running
 [binance_future_stats_taker_buy_sell_ratio](#binance-taker-buy-sell-ratio) | Varies | Futures Data | Running
-[binance_liquidation_trades](#binance-liquidation-trade) | 8 hours | Liquidation Trades Data | Running
-[binance_open_interest_clean](#binance-open-interest) | 8 hours | Open Interest | Running
+[binance_liquidation_trades](#binance-liquidation-trade) | 1 hour | Liquidation Trades Data | Running
+[binance_open_interest_clean](#binance-open-interest) | 1 minute | Open Interest | Running
 [binance_orderbook_futures_clean](#binance-orderbook) | 30 seconds | Orderbook Data | Running
 [binance_orderbook_spot_clean](#binance-orderbook) | 30 seconds | Orderbook Data | Running
-[binance_trade_futures](#binance-trade) | RealTime | Trades Data | Running
-[binance_trade_spot](#binance-trade) | RealTime | Trades Data | Running
+[binance_trade_futures](#binance-trade) | 2 minutes | Trades Data | Running
+[binance_trade_spot](#binance-trade) | 2 minutes | Trades Data | Running
 bitfinex_funding_orderbook | 30 seconds | Funding Orderbook | Running
 bitfinex_funding_trade | RealTime | Funding Trades | Running
 bitmex_full_orderbook | RealTime | Orderbook | Running
@@ -932,7 +932,7 @@ select * from bigone_trades
    "time": "2020-03-11T16:47:38Z",
    "amount":1.0,
    "price":4.5,
-   "type": BID,
+   "type": "BID",
    "symbol": "HNS-USDT",
    "timestamp": "2020-03-11T16:47:38Z",
    "tradeID": 123456,
@@ -1002,7 +1002,7 @@ select * from bigone_orderbook
    "size": 798.3,
    "symbol": "HNS-USDT",
    "snapshot": "2020-03-11T16:47:38Z",
-   "type": ask,
+   "type": "ask",
  }
 
 ]
@@ -1038,14 +1038,14 @@ Attribute Name | Type | Require | Description | Excample
 asset_pair_name | string | True |name of asset pair | BTC-USDT
 
 ### API Return Schema
-
+### PriceLevel
 Attribute Name | Type | Description | Excample
 -------------- | ---- | ---------- | -------- |
 price | string |  price | 5098.37
 quantity | string | quantity | 0.0679 
 order_count | string | order count in this level | 10
 
-
+### OrderCount
 Attribute Name | Type | Description | Excample
 -------------- | ---- | ---------- | -------- |
 id | number | id of trade| 
@@ -1056,6 +1056,7 @@ asks | PriceaLevel array | asks
 
 
 # Bybit
+
 
 # Coinbase
 
