@@ -286,6 +286,17 @@
           </li>
           <li>
             <a href="#bybit" class="toc-h1 toc-link" data-title="Bybit">Bybit</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#bybit-trades" class="toc-h2 toc-link" data-title="Bybit Trades">Bybit Trades</a>
+                  </li>
+                  <li>
+                    <a href="#bybit-funding-rate" class="toc-h2 toc-link" data-title="Bybit Funding Rate">Bybit Funding Rate</a>
+                  </li>
+                  <li>
+                    <a href="#bybit-tickers" class="toc-h2 toc-link" data-title="Bybit Tickers">Bybit Tickers</a>
+                  </li>
+              </ul>
           </li>
           <li>
             <a href="#coinbase" class="toc-h1 toc-link" data-title="Coinbase">Coinbase</a>
@@ -443,7 +454,7 @@ Need credentials to log in.
 <td>Running</td>
 </tr>
 <tr>
-<td><a href="#binance-taker-buy-sell-ratio">binance_future_stats_taker_buy_sell_ratio</a></td>
+<td><a href="#binance-taker-buy-sell-ratio">binance_future_stats_taker_buy_sell_volume</a></td>
 <td>Varies</td>
 <td>Futures Data</td>
 <td>Running</td>
@@ -494,6 +505,12 @@ Need credentials to log in.
 <td>bitfinex_funding_trade</td>
 <td>RealTime</td>
 <td>Funding Trades</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>bitfinex_leaderboard</td>
+<td>Varies</td>
+<td>Leaderboard</td>
 <td>Running</td>
 </tr>
 <tr>
@@ -557,19 +574,19 @@ Need credentials to log in.
 <td>Running</td>
 </tr>
 <tr>
-<td>bybit_funding_rate</td>
+<td><a href="#bybit-funding-rate">bybit_funding_rate</a></td>
 <td>8 hours</td>
 <td>Funding Rates</td>
 <td>Running</td>
 </tr>
 <tr>
-<td>bybit_tickers</td>
+<td><a href="#bybit-tickers">bybit_tickers</a></td>
 <td>1 minute</td>
 <td>Ticker</td>
 <td>Running</td>
 </tr>
 <tr>
-<td>bybit_trades</td>
+<td><a href="#bybit-trades">bybit_trades</a></td>
 <td>RealTime</td>
 <td>Trade Data</td>
 <td>Running</td>
@@ -692,6 +709,12 @@ Need credentials to log in.
 <td>FTX_future_stats</td>
 <td>1 minute</td>
 <td>Market Summary</td>
+<td>Running</td>
+</tr>
+<tr>
+<td>FTX_leaderboard</td>
+<td>1 hour</td>
+<td>Leaderboard</td>
 <td>Running</td>
 </tr>
 <tr>
@@ -1098,8 +1121,8 @@ Need credentials to log in.
 <blockquote>
 <p>database request</p>
 </blockquote>
-<pre class="highlight sql tab-sql"><code><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">binance_funding_rates_clean</span><span class="s1">'
-</span></code></pre>
+<pre class="highlight sql tab-sql"><code><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">binance_funding_rates_clean</span> 
+</code></pre>
 <blockquote>
 <p>response:</p>
 </blockquote>
@@ -1200,8 +1223,8 @@ Need credentials to log in.
 <blockquote>
 <p>database request</p>
 </blockquote>
-<pre class="highlight sql tab-sql"><code><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">binance_future_stats_long_short_ratio</span><span class="s1">'
-</span></code></pre>
+<pre class="highlight sql tab-sql"><code><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">binance_future_stats_long_short_ratio</span> <span class="k">where</span> <span class="n">symbol</span> <span class="o">=</span> <span class="s1">'BTCUSDT'</span>
+</code></pre>
 <blockquote>
 <p>response:</p>
 </blockquote>
@@ -1264,7 +1287,7 @@ ADAUSDT, ATOMUSDT, BATUSDT, BCHUSDT, BNBUSDT, BTCUSDT, DASHUSDT, EOSUSDT, ETCUSD
 <td></td>
 </tr>
 <tr>
-<td>long_short_account</td>
+<td>long_short_ratio</td>
 <td>float</td>
 <td></td>
 </tr>
@@ -1334,8 +1357,8 @@ ADAUSDT, ATOMUSDT, BATUSDT, BCHUSDT, BNBUSDT, BTCUSDT, DASHUSDT, EOSUSDT, ETCUSD
 <blockquote>
 <p>database request</p>
 </blockquote>
-<pre class="highlight sql tab-sql"><code><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">binance_future_stats_long_short_ratio_account</span><span class="s1">'
-</span></code></pre>
+<pre class="highlight sql tab-sql"><code><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">binance_future_stats_long_short_ratio_account</span> <span class="k">where</span> <span class="n">symbol</span> <span class="o">=</span> <span class="s1">'BTCUSDT'</span>
+</code></pre>
 <blockquote>
 <p>response:</p>
 </blockquote>
@@ -1398,7 +1421,7 @@ ADAUSDT, ATOMUSDT, BATUSDT, BCHUSDT, BNBUSDT, BTCUSDT, DASHUSDT, EOSUSDT, ETCUSD
 <td></td>
 </tr>
 <tr>
-<td>long_short_account</td>
+<td>long_short_ratio</td>
 <td>float</td>
 <td></td>
 </tr>
@@ -1466,8 +1489,8 @@ ADAUSDT, ATOMUSDT, BATUSDT, BCHUSDT, BNBUSDT, BTCUSDT, DASHUSDT, EOSUSDT, ETCUSD
 <blockquote>
 <p>database request</p>
 </blockquote>
-<pre class="highlight sql tab-sql"><code><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">binance_future_stats_long_short_ratio_position</span><span class="s1">'
-</span></code></pre>
+<pre class="highlight sql tab-sql"><code><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">binance_future_stats_long_short_ratio_position</span> <span class="k">where</span> <span class="n">symbol</span> <span class="o">=</span> <span class="s1">'BTCUSDT'</span>
+</code></pre>
 <blockquote>
 <p>response:</p>
 </blockquote>
@@ -1598,8 +1621,8 @@ ADAUSDT, ATOMUSDT, BATUSDT, BCHUSDT, BNBUSDT, BTCUSDT, DASHUSDT, EOSUSDT, ETCUSD
 <blockquote>
 <p>database request</p>
 </blockquote>
-<pre class="highlight sql tab-sql"><code><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">binance_future_stats_open_interest</span><span class="s1">'
-</span></code></pre>
+<pre class="highlight sql tab-sql"><code><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">binance_future_stats_open_interest</span> <span class="k">where</span> <span class="n">symbol</span> <span class="o">=</span> <span class="s1">'BTCUSDT'</span>
+</code></pre>
 <blockquote>
 <p>response:</p>
 </blockquote>
@@ -1724,8 +1747,8 @@ ADAUSDT, ATOMUSDT, BATUSDT, BCHUSDT, BNBUSDT, BTCUSDT, DASHUSDT, EOSUSDT, ETCUSD
 <blockquote>
 <p>database request</p>
 </blockquote>
-<pre class="highlight sql tab-sql"><code><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">binance_future_stats_taker_buy_sell_ratio</span><span class="s1">'
-</span></code></pre>
+<pre class="highlight sql tab-sql"><code><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">binance_future_stats_taker_buy_sell_volume</span> <span class="k">where</span> <span class="n">symbol</span> <span class="o">=</span> <span class="s1">'BTCUSDT'</span>
+</code></pre>
 <blockquote>
 <p>response:</p>
 </blockquote>
@@ -1733,24 +1756,26 @@ ADAUSDT, ATOMUSDT, BATUSDT, BCHUSDT, BNBUSDT, BTCUSDT, DASHUSDT, EOSUSDT, ETCUSD
     </span><span class="p">{</span><span class="w"> 
           </span><span class="s2">"time"</span><span class="p">:</span><span class="s2">"1585614900000"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"long_short_ratio"</span><span class="p">:</span><span class="s2">"1.5586"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"long_account"</span><span class="p">:</span><span class="w"> </span><span class="s2">"387.3300"</span><span class="p">,</span><span class="w"> 
-          </span><span class="s2">"short_account"</span><span class="p">:</span><span class="s2">"248.5030"</span><span class="p">,</span><span class="w"> 
-          </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="s2">"1585614900000"</span><span class="w">
+          </span><span class="s2">"long_volume"</span><span class="p">:</span><span class="w"> </span><span class="s2">"387.3300"</span><span class="p">,</span><span class="w"> 
+          </span><span class="s2">"short_volume"</span><span class="p">:</span><span class="s2">"248.5030"</span><span class="p">,</span><span class="w"> 
+          </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="s2">"1585614900000"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSDT"</span><span class="w">
 
      </span><span class="p">},</span><span class="w">
 
      </span><span class="p">{</span><span class="w">
           </span><span class="s2">"time"</span><span class="p">:</span><span class="s2">"1583139900000"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"long_short_ratio"</span><span class="p">:</span><span class="s2">"1.3104"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"long_account"</span><span class="p">:</span><span class="w"> </span><span class="s2">"343.9290"</span><span class="p">,</span><span class="w"> 
-          </span><span class="s2">"short_account"</span><span class="p">:</span><span class="s2">"248.5030"</span><span class="p">,</span><span class="w">                     
-          </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="s2">"1583139900000"</span><span class="w">
+          </span><span class="s2">"long_volume"</span><span class="p">:</span><span class="w"> </span><span class="s2">"343.9290"</span><span class="p">,</span><span class="w"> 
+          </span><span class="s2">"short_volume"</span><span class="p">:</span><span class="s2">"248.5030"</span><span class="p">,</span><span class="w">                     
+          </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="s2">"1583139900000"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"BTCUSDT"</span><span class="w">
 
         </span><span class="p">},</span><span class="w">   
 
 </span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='description-7'>Description</h3>
-<p><a href="https://www.binance.com/en/futures/funding-history/4">Binance taker buy sell ratio</a> is trading data in the Binance futures. Binance taker buy sell  ratio data has a variety of frequency, which includes 5 minutes, 15 minutes, 30 minutes, 1 hour, 2 hour, 4 hour, 6 hour, 12 hour, and 1 day. Data time range is from 2019-12-10 00:00:00 till now. Collectors are continously runing in two hosts. </p>
+<p><a href="https://www.binance.com/en/futures/funding-history/4">Binance taker buy sell volume</a> is trading data in the Binance futures. Binance taker buy sell  ratio data has a variety of frequency, which includes 5 minutes, 15 minutes, 30 minutes, 1 hour, 2 hour, 4 hour, 6 hour, 12 hour, and 1 day. Data time range is from 2019-12-10 00:00:00 till now. Collectors are continously runing in two hosts. </p>
 <h3 id='tag-vlaues-7'>Tag Vlaues</h3>
 <p><strong>Frequency</strong>:
 5 minutes, 15 minutes, 30 minutes, 1 hour, 2 hour, 4 hour, 6 hour, 12 hour, and 1 day</p>
@@ -1776,17 +1801,17 @@ ADAUSDT, ATOMUSDT, BATUSDT, BCHUSDT, BNBUSDT, BTCUSDT, DASHUSDT, EOSUSDT, ETCUSD
 <td>tag values</td>
 </tr>
 <tr>
-<td>long_account</td>
+<td>long_volume</td>
 <td>float</td>
 <td></td>
 </tr>
 <tr>
-<td>short_account</td>
+<td>short_volume</td>
 <td>float</td>
 <td></td>
 </tr>
 <tr>
-<td>long_short_account</td>
+<td>long_short_ratio</td>
 <td>float</td>
 <td></td>
 </tr>
@@ -1851,7 +1876,7 @@ ADAUSDT, ATOMUSDT, BATUSDT, BCHUSDT, BNBUSDT, BTCUSDT, DASHUSDT, EOSUSDT, ETCUSD
 <li>Only the data of the latest 30 days is available.</li>
 </ol>
 <h2 id='binance-liquidation-trade'>Binance Liquidation Trade</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch one ticker</span>
-<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">binance_liquidation_trades</span> <span class="k">where</span> <span class="n">symbol</span> <span class="o">=</span> <span class="s1">'ADAUSDT'</span>
+<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">binance_liquidation_trades</span> <span class="k">where</span> <span class="n">symbol</span> <span class="o">=</span> <span class="s1">'BTCUSDT'</span>
 </code></pre>
 <blockquote>
 <p>response</p>
@@ -2035,10 +2060,10 @@ ADAUSDT, ATOMUSDT, BATUSDT, BCHUSDT, BNBUSDT, BTCUSDT, DASHUSDT, EOSUSDT, ETCUSD
 <h3 id='api-return-schema-5'>API Return Schema</h3>
 <p>See code comments.</p>
 <h2 id='binance-orderbook'>Binance Orderbook</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch futures </span>
-<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">binance_orderbook_futures_clean</span>
+<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">binance_orderbook_futures_clean</span> <span class="k">where</span> <span class="n">symbol</span> <span class="o">=</span> <span class="s1">'BTCUSDT'</span>
 
 <span class="c1">-- fetch spot</span>
-<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">binance_orderbook_spot_clean</span>
+<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">binance_orderbook_spot_clean</span> <span class="k">where</span> <span class="n">symbol</span> <span class="o">=</span> <span class="s1">'BTCUSDT'</span>
 
 
 </code></pre>
@@ -2138,10 +2163,10 @@ ADAUSDT, ATOMUSDT, BATUSDT, BCHUSDT, BNBUSDT, BTCUSDT, DASHUSDT, EOSUSDT, ETCUSD
 <h3 id='api-return-schema-6'>API Return Schema</h3>
 <p>See code comments.</p>
 <h2 id='binance-trade'>Binance Trade</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch futures </span>
-<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">binance_trade_futures</span>
+<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">binance_trade_futures</span> <span class="k">where</span> <span class="n">symbol</span> <span class="o">=</span> <span class="s1">'BTCUSDT'</span>
 
 <span class="c1">-- fetch spot</span>
-<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">binance_trade_spot</span>
+<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">binance_trade_spot</span> <span class="k">where</span> <span class="n">symbol</span> <span class="o">=</span> <span class="s1">'BTCUSDT'</span>
 </code></pre>
 <blockquote>
 <p>response</p>
@@ -2247,7 +2272,7 @@ ADAUSDT, ATOMUSDT, BATUSDT, BCHUSDT, BNBUSDT, BTCUSDT, DASHUSDT, EOSUSDT, ETCUSD
 <h1 id='bitfinex'>Bitfinex</h1><h1 id='bitmex'>Bitmex</h1><h1 id='bigone'>BigOne</h1>
 <p><a href="https://big.one/">BigOne exchange</a> is a cryptocurrency exchange with <a href="https://open.big.one/docs/api.html">api documents</a> </p>
 <h2 id='bigone-trade'>BigOne Trade</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch trades</span>
-<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">bigone_trades</span>
+<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">bigone_trades</span> <span class="k">where</span> <span class="n">symbol</span> <span class="o">=</span> <span class="nv">"HNS-USDT"</span>
 
 </code></pre>
 <blockquote>
@@ -2383,7 +2408,7 @@ ADAUSDT, ATOMUSDT, BATUSDT, BCHUSDT, BNBUSDT, BTCUSDT, DASHUSDT, EOSUSDT, ETCUSD
 </tr>
 </tbody></table>
 <h2 id='bigone-orderbook'>BigOne Orderbook</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch trades</span>
-<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">bigone_orderbook</span>
+<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">bigone_orderbook</span> <span class="k">where</span> <span class="n">symbol</span> <span class="o">=</span> <span class="s1">'HNS-USDT'</span>
 
 </code></pre>
 <blockquote>
@@ -2529,7 +2554,115 @@ ADAUSDT, ATOMUSDT, BATUSDT, BCHUSDT, BNBUSDT, BTCUSDT, DASHUSDT, EOSUSDT, ETCUSD
 <td></td>
 </tr>
 </tbody></table>
-<h1 id='bybit'>Bybit</h1><h1 id='coinbase'>Coinbase</h1><h1 id='coinex'>Coinex</h1><h1 id='compound'>Compound</h1><h1 id='deribit'>Deribit</h1><h1 id='dydx'>Dydx</h1><h1 id='ftx'>FTX</h1><h1 id='gateio'>Gateio</h1><h1 id='huobidm'>HuobiDM</h1><h1 id='mxc'>MXC</h1><h1 id='okex'>OKEX</h1><h1 id='poloniex'>Poloniex</h1><h1 id='wazirx'>Wazirx</h1><h1 id='coinflex'>Coinflex</h1><h1 id='cosmos'>Cosmos</h1><h1 id='hnscan'>HNScan</h1><h1 id='namebase'>Namebase</h1><h1 id='nervos'>Nervos</h1><h1 id='tether'>Tether</h1><h1 id='tezos'>Tezos</h1><h1 id='aggregate-exchange-open-interest'>Aggregate Exchange Open Interest</h1><h1 id='futures-market-data'>Futures Market Data</h1><h2 id='cme-group'>CME Group</h2><h2 id='commodity-futures-trading-commission'>Commodity Futures Trading Commission</h2><h2 id='investing-com'>Investing.com</h2>
+<h1 id='bybit'>Bybit</h1>
+<p><a href="https://www.bybit.com/">Bybit</a> is a cryptocurrency exchange that only has BTCUSD, ETHUSD, EOSUSD, XRPUSD, and BTCUSDT with inverse perpetual and USDT perpetual <a href="https://bybit-exchange.github.io/docs/inverse/#t-introduction">api</a>.</p>
+<h2 id='bybit-trades'>Bybit Trades</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch trades</span>
+<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">bybit_trades</span> <span class="k">where</span> <span class="n">symbol</span> <span class="o">=</span> <span class="s1">'BTCUSDT'</span>
+
+</code></pre>
+<blockquote>
+<p>response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+
+ </span><span class="p">{</span><span class="w">
+   </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-01-23T16:47:38Z"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"current_snapshot"</span><span class="p">:</span><span class="s2">"2020-01-23T16:47:38Z"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">32665362</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8324"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">3000</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSD"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sell"</span><span class="p">,</span><span class="w">
+ </span><span class="p">}</span><span class="w">
+
+</span><span class="p">]</span><span class="w">
+</span></code></pre><h3 id='description-14'>Description</h3>
+<p>Bybit trades has a frequency of 60 seconds and data time range is from 2020-01-23 17:28:19 till now. Collectors are continously runing in two hosts.</p>
+<h3 id='tag-vlaues-14'>Tag Vlaues</h3>
+<p><strong>Symbol</strong>: BTCUSD, BTCUSDT, EOSUSD, ETHUSD, XRPUSD</p>
+<h3 id='data-schema-14'>Data Schema</h3>
+<table><thead>
+<tr>
+<th>fieldName</th>
+<th>fieldType</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>time</td>
+<td>string</td>
+<td>default database timestamp</td>
+</tr>
+<tr>
+<td>current_snapshot</td>
+<td>string</td>
+<td>data timestamp</td>
+</tr>
+<tr>
+<td>id</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>price</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>qty</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>side</td>
+<td>string</td>
+<td>ask/bid</td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>tag values</td>
+</tr>
+</tbody></table>
+<h3 id='data-sanity-14'>Data Sanity</h3>
+<p>Inverse perpetual collection starts from 2020-01-23 and USDT perpetual starts from 2020-04-17. </p>
+<h3 id='api-reference-8'>API Reference</h3>
+<p><strong>Inverse Perpetual</strong>
+<code>GET &quot;https://api.bybit.com/v2/public/trading-records</code></p>
+
+<p><strong>USDT Perpetual</strong> 
+<code>GET &quot;https://api.bybit.com/v2/public/public/linear/recent-trading-records</code></p>
+<h3 id='api-query-parameters-14'>API Query Parameters</h3>
+<table><thead>
+<tr>
+<th>parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>True</td>
+<td>Contract Type</td>
+</tr>
+<tr>
+<td>from</td>
+<td>int</td>
+<td>False</td>
+<td>From ID. Default: return latest data</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>int</td>
+<td>False</td>
+<td>default 500; max 1000</td>
+</tr>
+</tbody></table>
+<h3 id='api-return-schema-10'>API Return Schema</h3>
+<p>No information.</p>
+<h2 id='bybit-funding-rate'>Bybit Funding Rate</h2><h2 id='bybit-tickers'>Bybit Tickers</h2><h1 id='coinbase'>Coinbase</h1><h1 id='coinex'>Coinex</h1><h1 id='compound'>Compound</h1><h1 id='deribit'>Deribit</h1><h1 id='dydx'>Dydx</h1><h1 id='ftx'>FTX</h1><h1 id='gateio'>Gateio</h1><h1 id='huobidm'>HuobiDM</h1><h1 id='mxc'>MXC</h1><h1 id='okex'>OKEX</h1><h1 id='poloniex'>Poloniex</h1><h1 id='wazirx'>Wazirx</h1><h1 id='coinflex'>Coinflex</h1><h1 id='cosmos'>Cosmos</h1><h1 id='hnscan'>HNScan</h1><h1 id='namebase'>Namebase</h1><h1 id='nervos'>Nervos</h1><h1 id='tether'>Tether</h1><h1 id='tezos'>Tezos</h1><h1 id='aggregate-exchange-open-interest'>Aggregate Exchange Open Interest</h1><h1 id='futures-market-data'>Futures Market Data</h1><h2 id='cme-group'>CME Group</h2><h2 id='commodity-futures-trading-commission'>Commodity Futures Trading Commission</h2><h2 id='investing-com'>Investing.com</h2>
       </div>
       <div class="dark-box">
           <div class="lang-selector">
