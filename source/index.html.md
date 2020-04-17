@@ -967,9 +967,9 @@ No downtime.
 `GET https://big.one/api/v3/asset_pairs/{symbol}/trades`
 
 ### API Query Parameters
-Attribute Name | Type | Require | Description | Excample
--------------- | ---- | ---------- | -------- |
-asset_pair_name | string | True |name of asset pair | BTC-USDT
+Attribute Name | Type | Require | Description | Excample|
+-------------- | ---- | ---------- | -------- |---------|
+asset_pair_name | string | True | name of asset pair | BTC-USDT
 
 ### API Return Schema
 Attribute Name | Type | Description | Excample
@@ -981,8 +981,8 @@ amount | string | amount
 taker_side | string | order side | one of "ASK/BID"
 created_at | string | order created datetime|
 
-## BigOne Orderbook
 
+## BigOne Orderbook
 
 ```sql
 -- fetch trades
@@ -1034,18 +1034,18 @@ No downtime.
 
 ### API Query Parameters
 Attribute Name | Type | Require | Description | Excample
--------------- | ---- | ---------- | -------- |
+-------------- | ---- | ---------- | -------- | ------- |
 asset_pair_name | string | True |name of asset pair | BTC-USDT
 
 ### API Return Schema
-1. PriceLevel
+
 Attribute Name | Type | Description | Excample
 -------------- | ---- | ---------- | -------- |
 price | string |  price | 5098.37
 quantity | string | quantity | 0.0679 
 order_count | string | order count in this level | 10
 
-2. Depth
+
 Attribute Name | Type | Description | Excample
 -------------- | ---- | ---------- | -------- |
 id | number | id of trade| 
