@@ -268,6 +268,12 @@
               </ul>
           </li>
           <li>
+            <a href="#bitfinex" class="toc-h1 toc-link" data-title="Bitfinex">Bitfinex</a>
+          </li>
+          <li>
+            <a href="#bitmex" class="toc-h1 toc-link" data-title="Bitmex">Bitmex</a>
+          </li>
+          <li>
             <a href="#bigone" class="toc-h1 toc-link" data-title="BigOne">BigOne</a>
               <ul class="toc-list-h2">
                   <li>
@@ -277,12 +283,6 @@
                     <a href="#bigone-orderbook" class="toc-h2 toc-link" data-title="BigOne Orderbook">BigOne Orderbook</a>
                   </li>
               </ul>
-          </li>
-          <li>
-            <a href="#bitfinex" class="toc-h1 toc-link" data-title="Bitfinex">Bitfinex</a>
-          </li>
-          <li>
-            <a href="#bitmex" class="toc-h1 toc-link" data-title="Bitmex">Bitmex</a>
           </li>
           <li>
             <a href="#bybit" class="toc-h1 toc-link" data-title="Bybit">Bybit</a>
@@ -345,12 +345,7 @@
             <a href="#tezos" class="toc-h1 toc-link" data-title="Tezos">Tezos</a>
           </li>
           <li>
-            <a href="#aggregate-exchange-data" class="toc-h1 toc-link" data-title="Aggregate Exchange Data">Aggregate Exchange Data</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#open-interest" class="toc-h2 toc-link" data-title="Open Interest">Open Interest</a>
-                  </li>
-              </ul>
+            <a href="#aggregate-exchange-open-interest" class="toc-h1 toc-link" data-title="Aggregate Exchange Open Interest">Aggregate Exchange Open Interest</a>
           </li>
           <li>
             <a href="#futures-market-data" class="toc-h1 toc-link" data-title="Futures Market Data">Futures Market Data</a>
@@ -2167,7 +2162,7 @@ ADAUSDT, ATOMUSDT, BATUSDT, BCHUSDT, BNBUSDT, BTCUSDT, DASHUSDT, EOSUSDT, ETCUSD
 
 </span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='description-11'>Description</h3>
-<p>Binance trade has a frequency of 2 minutess and data time range is from 2019-12-20 18:28:09 till now. Collectors are continously runing in two hosts.</p>
+<p>Binance trade has a frequency of 2 minutes and data time range is from 2019-12-20 18:28:09 till now. Collectors are continously runing in two hosts.</p>
 <h3 id='tag-vlaues-11'>Tag Vlaues</h3>
 <p><strong>Futures Symbols</strong>: ADAUSDT, ATOMUSDT, BATUSDT, BCHUSDT, BNBUSDT, BTCUSDT, DASHUSDT, EOSUSDT, ETCUSDT, ETHUSDT, IOSTUSDT, IOTAUSDT, LINKUSDT, LTCUSDT,  NEOUSDT, ONTUSDT, QTUMUSDT, TRXUSDT, VETUSDT, XLMUSDT, XMRUSDT, XRPUSDT, XTZUSDT, ZECUSDT. </p>
 
@@ -2249,9 +2244,218 @@ ADAUSDT, ATOMUSDT, BATUSDT, BCHUSDT, BNBUSDT, BTCUSDT, DASHUSDT, EOSUSDT, ETCUSD
 </tbody></table>
 <h3 id='api-return-schema-7'>API Return Schema</h3>
 <p>See code comments.</p>
-<h1 id='bigone'>BigOne</h1>
+<h1 id='bitfinex'>Bitfinex</h1><h1 id='bitmex'>Bitmex</h1><h1 id='bigone'>BigOne</h1>
 <p><a href="https://big.one/">BigOne exchange</a> is a cryptocurrency exchange with <a href="https://open.big.one/docs/api.html">api documents</a> </p>
-<h2 id='bigone-trade'>BigOne Trade</h2><h2 id='bigone-orderbook'>BigOne Orderbook</h2><h1 id='bitfinex'>Bitfinex</h1><h1 id='bitmex'>Bitmex</h1><h1 id='bybit'>Bybit</h1><h1 id='coinbase'>Coinbase</h1><h1 id='coinex'>Coinex</h1><h1 id='compound'>Compound</h1><h1 id='deribit'>Deribit</h1><h1 id='dydx'>Dydx</h1><h1 id='ftx'>FTX</h1><h1 id='gateio'>Gateio</h1><h1 id='huobidm'>HuobiDM</h1><h1 id='mxc'>MXC</h1><h1 id='okex'>OKEX</h1><h1 id='poloniex'>Poloniex</h1><h1 id='wazirx'>Wazirx</h1><h1 id='coinflex'>Coinflex</h1><h1 id='cosmos'>Cosmos</h1><h1 id='hnscan'>HNScan</h1><h1 id='namebase'>Namebase</h1><h1 id='nervos'>Nervos</h1><h1 id='tether'>Tether</h1><h1 id='tezos'>Tezos</h1><h1 id='aggregate-exchange-data'>Aggregate Exchange Data</h1><h2 id='open-interest'>Open Interest</h2><h1 id='futures-market-data'>Futures Market Data</h1><h2 id='cme-group'>CME Group</h2><h2 id='commodity-futures-trading-commission'>Commodity Futures Trading Commission</h2><h2 id='investing-com'>Investing.com</h2>
+<h2 id='bigone-trade'>BigOne Trade</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch trades</span>
+<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">bigone_trades</span>
+
+</code></pre>
+<blockquote>
+<p>response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+
+ </span><span class="p">{</span><span class="w">
+   </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-03-11T16:47:38Z"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"price"</span><span class="p">:</span><span class="mf">4.5</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="err">BID</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HNS-USDT"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-03-11T16:47:38Z"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"tradeID"</span><span class="p">:</span><span class="w"> </span><span class="mi">123456</span><span class="p">,</span><span class="w">
+ </span><span class="p">}</span><span class="w">
+
+</span><span class="p">]</span><span class="w">
+</span></code></pre><h3 id='description-12'>Description</h3>
+<p>Bigone trade has a frequency of 30 seconds and data time range is from 2020-03-11 16:47:38 till now. Collectors are continously runing in two hosts.</p>
+<h3 id='tag-vlaues-12'>Tag Vlaues</h3>
+<p><strong>Symbol</strong>: HNS-BTC, HNS-USDT</p>
+<h3 id='data-schema-12'>Data Schema</h3>
+<table><thead>
+<tr>
+<th>fieldName</th>
+<th>fieldType</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>time</td>
+<td>string</td>
+<td>default database timestamp</td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td>string</td>
+<td>data timestamp</td>
+</tr>
+<tr>
+<td>tradeID</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>price</td>
+<td>float</td>
+<td></td>
+</tr>
+<tr>
+<td>amount</td>
+<td>float</td>
+<td></td>
+</tr>
+<tr>
+<td>type</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>tag values</td>
+</tr>
+</tbody></table>
+<h3 id='data-sanity-12'>Data Sanity</h3>
+<p>No downtime.</p>
+<h3 id='api-reference-6'>API Reference</h3>
+<p><code>GET https://big.one/api/v3/asset_pairs/{symbol}/trades</code></p>
+<h3 id='api-query-parameters-12'>API Query Parameters</h3>
+<p>Attribute Name | Type | Require | Description | Excample
+-------------- | ---- | ---------- | -------- |
+asset_pair_name | string | True |name of asset pair | BTC-USDT</p>
+<h3 id='api-return-schema-8'>API Return Schema</h3>
+<table><thead>
+<tr>
+<th>Attribute Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Excample</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>number</td>
+<td>id of trade</td>
+<td></td>
+</tr>
+<tr>
+<td>asset_pair_name</td>
+<td>string</td>
+<td>name of asset pair</td>
+<td>BTC-USDT</td>
+</tr>
+<tr>
+<td>price</td>
+<td>string</td>
+<td>deal price</td>
+<td></td>
+</tr>
+<tr>
+<td>amount</td>
+<td>string</td>
+<td>amount</td>
+<td></td>
+</tr>
+<tr>
+<td>taker_side</td>
+<td>string</td>
+<td>order side</td>
+<td>one of &quot;ASK/BID&quot;</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>string</td>
+<td>order created datetime</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='bigone-orderbook'>BigOne Orderbook</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch trades</span>
+<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">bigone_orderbook</span>
+
+</code></pre>
+<blockquote>
+<p>response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+
+ </span><span class="p">{</span><span class="w">
+   </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-03-13T16:47:38Z"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"order_count"</span><span class="p">:</span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"price"</span><span class="p">:</span><span class="mf">0.00039</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"size"</span><span class="p">:</span><span class="w"> </span><span class="mf">798.3</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HNS-USDT"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"snapshot"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-03-11T16:47:38Z"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="err">ask</span><span class="p">,</span><span class="w">
+ </span><span class="p">}</span><span class="w">
+
+</span><span class="p">]</span><span class="w">
+</span></code></pre><h3 id='description-13'>Description</h3>
+<p>Bigone orderbook has a frequency of 30 seconds and data time range is from 2020-03-13 16:47:38 till now. Collectors are continously runing in two hosts.</p>
+<h3 id='tag-vlaues-13'>Tag Vlaues</h3>
+<p><strong>Symbol</strong>: HNS-BTC, HNS-USDT</p>
+<h3 id='data-schema-13'>Data Schema</h3>
+<table><thead>
+<tr>
+<th>fieldName</th>
+<th>fieldType</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>time</td>
+<td>string</td>
+<td>default database timestamp</td>
+</tr>
+<tr>
+<td>snapshot</td>
+<td>string</td>
+<td>data timestamp</td>
+</tr>
+<tr>
+<td>price</td>
+<td>float</td>
+<td></td>
+</tr>
+<tr>
+<td>size</td>
+<td>float</td>
+<td></td>
+</tr>
+<tr>
+<td>type</td>
+<td>string</td>
+<td>ask/bid</td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>tag values</td>
+</tr>
+</tbody></table>
+<h3 id='data-sanity-13'>Data Sanity</h3>
+<p>No downtime.</p>
+<h3 id='api-reference-7'>API Reference</h3>
+<p><code>GET https://big.one/api/v3/asset_pairs/{asset_pair_name}/depth</code></p>
+<h3 id='api-query-parameters-13'>API Query Parameters</h3>
+<p>Attribute Name | Type | Require | Description | Excample
+-------------- | ---- | ---------- | -------- |
+asset_pair_name | string | True |name of asset pair | BTC-USDT</p>
+<h3 id='api-return-schema-9'>API Return Schema</h3>
+<ol>
+<li><p>PriceLevel
+Attribute Name | Type | Description | Excample
+-------------- | ---- | ---------- | -------- |
+price | string |  price | 5098.37
+quantity | string | quantity | 0.0679 
+order_count | string | order count in this level | 10</p></li>
+<li><p>Depth
+Attribute Name | Type | Description | Excample
+-------------- | ---- | ---------- | -------- |
+id | number | id of trade| 
+asset_pair_name | string | name of asset pair | BTC-USDT
+bids | PriceLevel array | bids |
+asks | PriceaLevel array | asks </p></li>
+</ol>
+<h1 id='bybit'>Bybit</h1><h1 id='coinbase'>Coinbase</h1><h1 id='coinex'>Coinex</h1><h1 id='compound'>Compound</h1><h1 id='deribit'>Deribit</h1><h1 id='dydx'>Dydx</h1><h1 id='ftx'>FTX</h1><h1 id='gateio'>Gateio</h1><h1 id='huobidm'>HuobiDM</h1><h1 id='mxc'>MXC</h1><h1 id='okex'>OKEX</h1><h1 id='poloniex'>Poloniex</h1><h1 id='wazirx'>Wazirx</h1><h1 id='coinflex'>Coinflex</h1><h1 id='cosmos'>Cosmos</h1><h1 id='hnscan'>HNScan</h1><h1 id='namebase'>Namebase</h1><h1 id='nervos'>Nervos</h1><h1 id='tether'>Tether</h1><h1 id='tezos'>Tezos</h1><h1 id='aggregate-exchange-open-interest'>Aggregate Exchange Open Interest</h1><h1 id='futures-market-data'>Futures Market Data</h1><h2 id='cme-group'>CME Group</h2><h2 id='commodity-futures-trading-commission'>Commodity Futures Trading Commission</h2><h2 id='investing-com'>Investing.com</h2>
       </div>
       <div class="dark-box">
           <div class="lang-selector">
