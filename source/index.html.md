@@ -870,7 +870,7 @@ select * from binance_trade_spot
 ```
 
 ### Description
-Binance trade has a frequency of 2 minutess and data time range is from 2019-12-20 18:28:09 till now. Collectors are continously runing in two hosts.
+Binance trade has a frequency of 2 minutes and data time range is from 2019-12-20 18:28:09 till now. Collectors are continously runing in two hosts.
 
 ### Tag Vlaues 
 **Futures Symbols**: ADAUSDT, ATOMUSDT, BATUSDT, BCHUSDT, BNBUSDT, BTCUSDT, DASHUSDT, EOSUSDT, ETCUSDT, ETHUSDT, IOSTUSDT, IOTAUSDT, LINKUSDT, LTCUSDT,  NEOUSDT, ONTUSDT, QTUMUSDT, TRXUSDT, VETUSDT, XLMUSDT, XMRUSDT, XRPUSDT, XTZUSDT, ZECUSDT. 
@@ -908,16 +908,152 @@ See code comments.
 
 
 
+# Bitfinex
+
+# Bitmex
+
 # BigOne
 [BigOne exchange](https://big.one/) is a cryptocurrency exchange with [api documents](https://open.big.one/docs/api.html) 
 
 ## BigOne Trade
 
+```sql
+-- fetch trades
+select * from bigone_trades
+
+```
+
+> response
+
+```json
+[
+
+ {
+   "time": "2020-03-11T16:47:38Z",
+   "amount":1.0,
+   "price":4.5,
+   "type": BID,
+   "symbol": "HNS-USDT",
+   "timestamp": "2020-03-11T16:47:38Z",
+   "tradeID": 123456,
+ }
+
+]
+```
+
+### Description
+Bigone trade has a frequency of 30 seconds and data time range is from 2020-03-11 16:47:38 till now. Collectors are continously runing in two hosts.
+
+### Tag Vlaues 
+**Symbol**: HNS-BTC, HNS-USDT
+
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | default database timestamp
+timestamp | string | data timestamp
+tradeID | integer | 
+price | float | 
+amount | float |
+type | string |
+symbol | string | tag values
+
+### Data Sanity
+No downtime.
+
+### API Reference
+
+`GET https://big.one/api/v3/asset_pairs/{symbol}/trades`
+
+### API Query Parameters
+Attribute Name | Type | Require | Description | Excample
+-------------- | ---- | ---------- | -------- |
+asset_pair_name | string | True |name of asset pair | BTC-USDT
+
+### API Return Schema
+Attribute Name | Type | Description | Excample
+-------------- | ---- | ---------- | -------- |
+id | number | id of trade| 
+asset_pair_name | string | name of asset pair | BTC-USDT
+price | string | deal price |
+amount | string | amount 
+taker_side | string | order side | one of "ASK/BID"
+created_at | string | order created datetime|
+
 ## BigOne Orderbook
 
-# Bitfinex
 
-# Bitmex
+```sql
+-- fetch trades
+select * from bigone_orderbook
+
+```
+
+> response
+
+```json
+[
+
+ {
+   "time": "2020-03-13T16:47:38Z",
+   "order_count":1.0,
+   "price":0.00039,
+   "size": 798.3,
+   "symbol": "HNS-USDT",
+   "snapshot": "2020-03-11T16:47:38Z",
+   "type": ask,
+ }
+
+]
+```
+
+### Description
+Bigone orderbook has a frequency of 30 seconds and data time range is from 2020-03-13 16:47:38 till now. Collectors are continously runing in two hosts.
+
+### Tag Vlaues 
+**Symbol**: HNS-BTC, HNS-USDT
+
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | default database timestamp
+snapshot | string | data timestamp
+price | float | 
+size | float |
+type | string | ask/bid
+symbol | string | tag values
+
+### Data Sanity
+No downtime.
+
+### API Reference
+
+`GET https://big.one/api/v3/asset_pairs/{asset_pair_name}/depth`
+
+### API Query Parameters
+Attribute Name | Type | Require | Description | Excample
+-------------- | ---- | ---------- | -------- |
+asset_pair_name | string | True |name of asset pair | BTC-USDT
+
+### API Return Schema
+1. PriceLevel
+Attribute Name | Type | Description | Excample
+-------------- | ---- | ---------- | -------- |
+price | string |  price | 5098.37
+quantity | string | quantity | 0.0679 
+order_count | string | order count in this level | 10
+
+2. Depth
+Attribute Name | Type | Description | Excample
+-------------- | ---- | ---------- | -------- |
+id | number | id of trade| 
+asset_pair_name | string | name of asset pair | BTC-USDT
+bids | PriceLevel array | bids |
+asks | PriceaLevel array | asks 
+
+
 
 # Bybit
 
@@ -960,8 +1096,8 @@ See code comments.
 # Tezos
 
 
-# Aggregate Exchange Data
-## Open Interest
+# Aggregate Exchange Open Interest
+
 
 # Futures Market Data
 ## CME Group 
