@@ -1030,7 +1030,7 @@ Ask credentials to log in.
 <p><code>GET https://www.binance.com/gateway-api/v1/public/margin/vip/spec/list-all</code></p>
 <h3 id='api-query-parameters'>API Query Parameters</h3>
 <p>No parameters.</p>
-<h3 id='api-query-schema'>API Query Schema</h3>
+<h3 id='api-return-schema'>API Return Schema</h3>
 <p>No Information.</p>
 <h2 id='binance-funding-rate'>Binance Funding Rate</h2>
 <blockquote>
@@ -1132,9 +1132,144 @@ Ask credentials to log in.
 <li>If the number of data between <code>startTime</code> and <code>endTime</code> is larger than <code>limit</code>, return as <code>startTime</code> + <code>limit</code>.</li>
 <li>In ascending order.</li>
 </ol>
-<h3 id='api-query-schema-2'>API Query Schema</h3>
+<h3 id='api-return-schema-2'>API Return Schema</h3>
 <p>No information</p>
-<h2 id='binance-long-short-ratio'>Binance Long Short Ratio</h2><h2 id='binance-long-short-ratio-account'>Binance Long Short Ratio Account</h2><h2 id='binance-long-short-ratio-position'>Binance Long Short Ratio Position</h2><h2 id='binance-future-stats-open-interest'>Binance Future Stats Open Interest</h2><h2 id='binance-taker-buy-sell-ratio'>Binance Taker Buy Sell Ratio</h2><h2 id='binance-liquidation-trade'>Binance Liquidation Trade</h2><h2 id='binance-open-interest'>Binance Open Interest</h2><h2 id='binance-orderbook'>Binance Orderbook</h2><h2 id='binance-trade'>Binance Trade</h2><h1 id='bigone'>BigOne</h1>
+<h2 id='binance-long-short-ratio'>Binance Long Short Ratio</h2>
+<blockquote>
+<p>database request</p>
+</blockquote>
+<pre class="highlight sql tab-sql"><code><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">binance_future_stats_long_short_ratio</span><span class="s1">'
+</span></code></pre>
+<blockquote>
+<p>response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w"> 
+         </span><span class="s2">"time"</span><span class="p">:</span><span class="s2">"1583139600000""
+         "</span><span class="err">symbol</span><span class="s2">":"</span><span class="err">BTCUSDT</span><span class="s2">",  // long/short account num ratio of all traders
+          "</span><span class="err">long_short_ratio</span><span class="s2">":0.1960,  //long account num ratio of all traders
+          "</span><span class="err">long_account</span><span class="s2">": "</span><span class="mf">0.6622</span><span class="s2">",   // short account num ratio of all traders
+          "</span><span class="err">short_account</span><span class="s2">":"</span><span class="mf">0.3378</span><span class="s2">", 
+          "</span><span class="err">timestamp</span><span class="s2">":"</span><span class="mi">1583139600000</span><span class="s2">"
+
+     },
+
+     {
+         "</span><span class="err">time</span><span class="s2">":"</span><span class="mi">1583139900000</span><span class="s2">"
+         "</span><span class="err">symbol</span><span class="s2">":"</span><span class="err">BTCUSDT</span><span class="s2">",
+          "</span><span class="err">long_short_ratio</span><span class="s2">":"</span><span class="mf">1.9559</span><span class="s2">",
+          "</span><span class="err">long_account</span><span class="s2">": "</span><span class="mf">0.6617</span><span class="s2">", 
+          "</span><span class="err">short_account</span><span class="s2">":"</span><span class="mf">0.3382</span><span class="s2">",                  
+          "</span><span class="err">timestamp</span><span class="s2">":"</span><span class="mi">1583139900000</span><span class="s2">"
+
+        },   
+
+]
+</span></code></pre><h3 id='description-3'>Description</h3>
+<p><a href="https://www.binance.com/en/futures/funding-history/4">Binance long short ratio</a> is trading data in the Binance futures. Binance long short ratio data has a variety of frequency, which includes 5 minutes, 15 minutes, 30 minutes, 1 hour, 2 hour, 4 hour, 6 hour, 12 hour, and 1 day. Data time range is from 2019-12-10 00:00:00 till now. Collectors are continously runing in two hosts. </p>
+<h3 id='tag-vlaues-3'>Tag Vlaues</h3>
+<ul>
+<li><p>Frequency
+5 minutes, 15 minutes, 30 minutes, 1 hour, 2 hour, 4 hour, 6 hour, 12 hour, and 1 day</p></li>
+<li><p>Symbol
+ADAUSDT, ATOMUSDT, BATUSDT, BCHUSDT, BNBUSDT, BTCUSDT, DASHUSDT, EOSUSDT, ETCUSDT, ETHUSDT, IOSUSDT, IOATUSDT, LINKUSDT, LTCUSDT, NEOUSDT,ONTUSDT,QTUMUSDT, TRXUSDT, VETUSDT, XLMUSDT, XMRUSDT, XRPUSDT, XTZUSDT, ZECUSDT</p></li>
+</ul>
+<h3 id='data-schema-3'>Data Schema</h3>
+<table><thead>
+<tr>
+<th>fieldName</th>
+<th>fieldType</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>time</td>
+<td>string</td>
+<td>consistent with timestamp fields</td>
+</tr>
+<tr>
+<td>frequency</td>
+<td>string</td>
+<td>tag values</td>
+</tr>
+<tr>
+<td>long_account</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>short_account</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>long_short_account</td>
+<td>float</td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>tag values</td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td>integer</td>
+<td>data timestamp</td>
+</tr>
+</tbody></table>
+<h3 id='data-sanity-3'>Data Sanity</h3>
+<p>No downtime.</p>
+<h3 id='api-endpoint-2'>API Endpoint</h3>
+<p><code>GET https://fapi.binance.com/futures/data/globalLongShortAccountRatio</code></p>
+<h3 id='api-query-parameters-3'>API Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>yes</td>
+<td></td>
+</tr>
+<tr>
+<td>period</td>
+<td>number</td>
+<td>yes</td>
+<td>&quot;5m&quot;,&quot;15m&quot;,&quot;30m&quot;,&quot;1h&quot;,&quot;2h&quot;,&quot;4h&quot;,&quot;6h&quot;,&quot;12h&quot;,&quot;1d&quot;</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>long</td>
+<td>no</td>
+<td>Default 100  max 1000</td>
+</tr>
+<tr>
+<td>startTime</td>
+<td>integer</td>
+<td>no</td>
+<td></td>
+</tr>
+<tr>
+<td>endTime</td>
+<td>integer</td>
+<td>no</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<ol>
+<li>If there is no limit of startime and endtime, it will return the value brfore the current time by default.</li>
+<li>Only the data of the latest 30 days is available.</li>
+</ol>
+<h3 id='api-return-schema-3'>API Return Schema</h3>
+<p>No information</p>
+<h2 id='binance-long-short-ratio-account'>Binance Long Short Ratio Account</h2><h2 id='binance-long-short-ratio-position'>Binance Long Short Ratio Position</h2><h2 id='binance-future-stats-open-interest'>Binance Future Stats Open Interest</h2><h2 id='binance-taker-buy-sell-ratio'>Binance Taker Buy Sell Ratio</h2><h2 id='binance-liquidation-trade'>Binance Liquidation Trade</h2><h2 id='binance-open-interest'>Binance Open Interest</h2><h2 id='binance-orderbook'>Binance Orderbook</h2><h2 id='binance-trade'>Binance Trade</h2><h1 id='bigone'>BigOne</h1>
 <p><a href="https://big.one/">BigOne exchange</a> is a cryptocurrency exchange with <a href="https://open.big.one/docs/api.html">api documents</a> </p>
 <h2 id='bigone-trade'>BigOne Trade</h2><h2 id='bigone-orderbook'>BigOne Orderbook</h2><h3 id='open-interest'>Open Interest</h3><h3 id='coinflex'>Coinflex</h3><h3 id='cosmos'>Cosmos</h3><h3 id='hnscan'>HNScan</h3><h3 id='namebase'>Namebase</h3><h3 id='nervos'>Nervos</h3><h3 id='tether'>Tether</h3><h3 id='tezos'>Tezos</h3><h3 id='bitfinex'>Bitfinex</h3><h3 id='bitmex'>Bitmex</h3><h3 id='bigone-orderbook-2'>Bigone Orderbook</h3><h3 id='bybit'>Bybit</h3><h3 id='coinbase'>Coinbase</h3><h3 id='coinex'>Coinex</h3><h3 id='compound'>Compound</h3><h3 id='deribit'>Deribit</h3><h3 id='dydx'>Dydx</h3><h3 id='ftx'>FTX</h3><h3 id='gateio'>Gateio</h3><h3 id='huobidm'>HuobiDM</h3><h3 id='mxc'>MXC</h3><h3 id='okex'>OKEX</h3><h3 id='poloniex'>Poloniex</h3><h3 id='wazirx'>Wazirx</h3><h3 id='cme-group'>CME Group</h3><h3 id='commodity-futures-trading-commission'>Commodity Futures Trading Commission</h3><h3 id='investing-com'>Investing.com</h3><h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
 
