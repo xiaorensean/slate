@@ -160,7 +160,7 @@ select * from binance_borrow_rates_clean where symbol = 'ADA'
 ```json
 [
     {
-        "time": "2020-04-16 20:39:55.416015"",
+        "time": "2020-04-16 20:39:55.416015",
         "borrowLimit": 5000000",
         "dailyInterestRate": 0.0016,
         "symbol": "ADA",
@@ -286,7 +286,7 @@ select * from binance_future_stats_long_short_ratio'
 ```json
 [
     { 
-         "time":"1583139600000""
+         "time":"1583139600000",
          "symbol":"BTCUSDT",  // long/short account num ratio of all traders
           "long_short_ratio":0.1960,  //long account num ratio of all traders
           "long_account": "0.6622",   // short account num ratio of all traders
@@ -366,7 +366,7 @@ select * from binance_future_stats_long_short_ratio_account'
 ```json
 [
     { 
-         "time":"1583139600000""
+         "time":"1583139600000",
          "symbol":"BTCUSDT",  // long/short account num ratio of all traders
          "long_short_ratio":0.1960,  //long account num ratio of all traders
          "long_account": "0.6622",   // short account num ratio of all traders
@@ -443,7 +443,7 @@ select * from binance_future_stats_long_short_ratio_position'
 ```json
 [
     { 
-         "time":"1583139600000""
+         "time":"1583139600000",
          "symbol":"BTCUSDT",  // long/short account num ratio of all traders
          "long_short_ratio":0.1960,  //long account num ratio of all traders
          "long_account": "0.6622",   // short account num ratio of all traders
@@ -519,7 +519,7 @@ select * from binance_future_stats_open_interest'
 ```json
 [
     { 
-         "time":"1583127900000"
+         "time":"1583127900000",
          "symbol":"BTCUSDT",
          "open_interets":"20403.63700000",  // total open inerest 
          "notional_value_open_interest": "150570784.07809979",   // total open interet value
@@ -528,7 +528,7 @@ select * from binance_future_stats_open_interest'
      },
 
      {
-         "time":"1583128200000"
+         "time":"1583128200000",
          "symbol":"BTCUSDT",
          "open_interest":"20401.36700000",
          "notional_value_open_interest":"149940752.14464448",
@@ -556,7 +556,7 @@ fieldName | fieldType | description
 --------- | --------- | ---------- |
 time | string | default database timestamp
 frequency | string | tag values 
-notional_value_open_interesy | float | 
+notional_value_open_interest | float | 
 open_interest | float | 
 symbol | string | tag values 
 timestamp | integer | data timestamp 
@@ -594,7 +594,7 @@ select * from binance_future_stats_taker_buy_sell_ratio'
 ```json
 [
     { 
-          "time":"1585614900000"
+          "time":"1585614900000",
           "long_short_ratio":"1.5586",
           "long_account": "387.3300", 
           "short_account":"248.5030", 
@@ -603,7 +603,7 @@ select * from binance_future_stats_taker_buy_sell_ratio'
      },
 
      {
-          "time":"1583139900000"
+          "time":"1583139900000",
           "long_short_ratio":"1.3104",
           "long_account": "343.9290", 
           "short_account":"248.5030",                     
@@ -700,7 +700,6 @@ price | float |
 side | string | 
 status | string |
 timeInForce | string | 
-timeInForce | string | 
 
 ### Data Sanity
 No downtime.
@@ -737,7 +736,7 @@ select * from binance_open_interest_clean
 [
 
    {
-    "time": "1576866488447948032" 
+    "time": "1576866488447948032", 
     "openInterest": "10659.509", // Coin denominated OI
     "symbol": "BTCUSDT"
    }
@@ -814,6 +813,7 @@ Binance orderbook has a frequency of 30 seconds and data time range is from 2019
 
 ### Tag Vlaues 
 **Futures Symbols**: ADAUSDT, ATOMUSDT, BATUSDT, BCHUSDT, BNBUSDT, BTCUSDT, DASHUSDT, EOSUSDT, ETCUSDT, ETHUSDT, IOSTUSDT, IOTAUSDT, LINKUSDT, LTCUSDT,  NEOUSDT, ONTUSDT, QTUMUSDT, TRXUSDT, VETUSDT, XLMUSDT, XMRUSDT, XRPUSDT, XTZUSDT, ZECUSDT. 
+
 **Spot Symbols**: BCHBTC, BCHUSDT, BNBBTC, BNBETH, BNBUSDT, BTCUSDT, DGDBTC, DGDETH, ETHUSDT, KNCBTC, KNCETH, RENBNB, RENBTC, RENUSDT, SOLBNB, SOLBTC, SOLBUSD 
 
 
@@ -883,6 +883,7 @@ Binance trade has a frequency of 2 minutess and data time range is from 2019-12-
 
 ### Tag Vlaues 
 **Futures Symbols**: ADAUSDT, ATOMUSDT, BATUSDT, BCHUSDT, BNBUSDT, BTCUSDT, DASHUSDT, EOSUSDT, ETCUSDT, ETHUSDT, IOSTUSDT, IOTAUSDT, LINKUSDT, LTCUSDT,  NEOUSDT, ONTUSDT, QTUMUSDT, TRXUSDT, VETUSDT, XLMUSDT, XMRUSDT, XRPUSDT, XTZUSDT, ZECUSDT. 
+
 **Spot Symbols**: BCHBTC, BCHUSDT, BNBBTC, BNBETH, BNBUSDT, BTCUSDT, DGDBTC, DGDETH, ETHUSDT, KNCBTC, KNCETH, RENBNB, RENBTC, RENUSDT, SOLBNB, SOLBTC, SOLBUSD 
 
 
