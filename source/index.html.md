@@ -368,20 +368,20 @@ select * from binance_future_stats_long_short_ratio_account'
     { 
          "time":"1583139600000""
          "symbol":"BTCUSDT",  // long/short account num ratio of all traders
-          "long_short_ratio":0.1960,  //long account num ratio of all traders
-          "long_account": "0.6622",   // short account num ratio of all traders
-          "short_account":"0.3378", 
-          "timestamp":"1583139600000"
+         "long_short_ratio":0.1960,  //long account num ratio of all traders
+         "long_account": "0.6622",   // short account num ratio of all traders
+         "short_account":"0.3378", 
+         "timestamp":"1583139600000"
 
      },
 
      {
          "time":"1583139900000"
          "symbol":"BTCUSDT",
-          "long_short_ratio":"1.9559",
-          "long_account": "0.6617", 
-          "short_account":"0.3382",                  
-          "timestamp":"1583139900000"
+         "long_short_ratio":"1.9559",
+         "long_account": "0.6617", 
+         "short_account":"0.3382",                  
+         "timestamp":"1583139900000"
 
         },   
 
@@ -445,20 +445,20 @@ select * from binance_future_stats_long_short_ratio_position'
     { 
          "time":"1583139600000""
          "symbol":"BTCUSDT",  // long/short account num ratio of all traders
-          "long_short_ratio":0.1960,  //long account num ratio of all traders
-          "long_account": "0.6622",   // short account num ratio of all traders
-          "short_account":"0.3378", 
-          "timestamp":"1583139600000"
+         "long_short_ratio":0.1960,  //long account num ratio of all traders
+         "long_account": "0.6622",   // short account num ratio of all traders
+         "short_account":"0.3378", 
+         "timestamp":"1583139600000"
 
      },
 
      {
          "time":"1583139900000"
          "symbol":"BTCUSDT",
-          "long_short_ratio":"1.9559",
-          "long_account": "0.6617", 
-          "short_account":"0.3382",                  
-          "timestamp":"1583139900000"
+         "long_short_ratio":"1.9559",
+         "long_account": "0.6617", 
+         "short_account":"0.3382",                  
+         "timestamp":"1583139900000"
 
         },   
 
@@ -521,9 +521,9 @@ select * from binance_future_stats_open_interest'
     { 
          "time":"1583127900000"
          "symbol":"BTCUSDT",
-          "open_interets":"20403.63700000",  // total open inerest 
-          "notional_value_open_interest": "150570784.07809979",   // total open interet value
-          "timestamp":"1583127900000"
+         "open_interets":"20403.63700000",  // total open inerest 
+         "notional_value_open_interest": "150570784.07809979",   // total open interet value
+         "timestamp":"1583127900000"
 
      },
 
@@ -658,11 +658,263 @@ endTime | integer | no |
 
 ## Binance Liquidation Trade
 
+```sql
+-- fetch one ticker
+select * from binance_liquidation_trades where symbol = 'ADAUSDT'
+```
+
+> response
+
+```json
+[
+
+    {
+          "symbol": "BTCUSDT",                // SYMBOL
+          "price": "7918.33",                 // ORDER_PRICE
+          "origQty": "0.014",                 // ORDER_AMOUNT
+          "executedQty": "0.014",             // FILLED_AMOUNT
+          "avragePrice": "7918.33",           // AVG_PRICE
+          "status": "FILLED",                 // STATUS
+          "timeInForce": "IOC",               // TIME_IN_FORCE
+          "type": "LIMIT",
+          "side": "SELL",                     // DIRECTION
+         "time": 1568014460893 
+    },
+]
+```
+
+### Description
+Binance liquidation trade has a frequency of 1 hour and data time range is from 2020-02-16 16:48:09 till now. Collectors are continously runing in two hosts.
+
+### Tag Vlaues 
+Ticker tags are ADAUSDT, ATOMUSDT, BATUSDT, BCHUSDT, BNBUSDT, BTCUSDT, DASHUSDT, EOSUSDT, ETCUSDT, ETHUSDT, IOSTUSDT, IOTAUSDT, LINKUSDT, LTCUSDT,  NEOUSDT, ONTUSDT, QTUMUSDT, TRXUSDT, VETUSDT, XLMUSDT, XMRUSDT, XRPUSDT, XTZUSDT, ZECUSDT. 
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | data timestamp
+averagePrice | float | 
+executedQty | float |
+origQty | float | 
+price | float |
+side | string | 
+status | string |
+timeInForce | string | 
+timeInForce | string | 
+
+### Data Sanity
+No downtime.
+
+### API Reference
+
+`GET https://fapi.binance.com/fapi/v1/allForceOrders`
+
+### API Query Parameters
+Name | Type | Mandatory | Description
+---- | ---- | ---------- | -------- |
+symbol | string | yes | 
+limit | long | no | Default 100  max 1000
+startTime | integer | no | 
+endTime | integer | no | 
+
+1. If the symbol is not sent, liquidation orders for all symbols will be returned.
+
+### API Return Schema
+See code comments.
+
+
+
 ## Binance Open Interest
+
+```sql
+-- fetch one ticker
+select * from binance_open_interest_clean
+```
+
+> response
+
+```json
+[
+
+   {
+    "time": "1576866488447948032" 
+    "openInterest": "10659.509", // Coin denominated OI
+    "symbol": "BTCUSDT"
+   }
+
+
+]
+```
+
+### Description
+Binance open interest has a frequency of 1 minute and data time range is from 2019-12-20 18:28:09 till now. Collectors are continously runing in two hosts.
+
+### Tag Vlaues 
+No tag values. Symbols are ADAUSDT, ATOMUSDT, BATUSDT, BCHUSDT, BNBUSDT, BTCUSDT, DASHUSDT, EOSUSDT, ETCUSDT, ETHUSDT, IOSTUSDT, IOTAUSDT, LINKUSDT, LTCUSDT,  NEOUSDT, ONTUSDT, QTUMUSDT, TRXUSDT, VETUSDT, XLMUSDT, XMRUSDT, XRPUSDT, XTZUSDT, ZECUSDT. 
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | data timestamp
+open_interest | float | 
+symbol | string |
+
+
+### Data Sanity
+No downtime.
+
+### API Reference
+
+`GET https://fapi.binance.com/fapi/v1/openInterest`
+
+### API Query Parameters
+Name | Type | Mandatory | Description
+---- | ---- | ---------- | -------- |
+symbol | string | yes | 
+
+
+### API Return Schema
+See code comments.
+
+
 
 ## Binance Orderbook
 
+```sql
+-- fetch futures 
+select * from binance_orderbook_futures_clean
+
+-- fetch spot
+select * from binance_orderbook_spot_clean
+
+
+```
+
+> response
+
+```json
+[
+
+ {
+   "time": "2019-12-30T2019 8:29:05.271",
+   "current_snapshot":1577737657121,
+   "lastUpdateID": 2206697117,
+   "price":7261.1,
+   "qty": 4.784,
+   "symbol": "BTCUSDT",
+   "type": "ask"
+   
+ }
+
+]
+```
+
+### Description
+Binance orderbook has a frequency of 30 seconds and data time range is from 2019-12-20 18:28:09 till now. Collectors are continously runing in two hosts.
+
+### Tag Vlaues 
+**Futures Symbols**: ADAUSDT, ATOMUSDT, BATUSDT, BCHUSDT, BNBUSDT, BTCUSDT, DASHUSDT, EOSUSDT, ETCUSDT, ETHUSDT, IOSTUSDT, IOTAUSDT, LINKUSDT, LTCUSDT,  NEOUSDT, ONTUSDT, QTUMUSDT, TRXUSDT, VETUSDT, XLMUSDT, XMRUSDT, XRPUSDT, XTZUSDT, ZECUSDT. 
+**Spot Symbols**: BCHBTC, BCHUSDT, BNBBTC, BNBETH, BNBUSDT, BTCUSDT, DGDBTC, DGDETH, ETHUSDT, KNCBTC, KNCETH, RENBNB, RENBTC, RENUSDT, SOLBNB, SOLBTC, SOLBUSD 
+
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | default database timestamp
+current_snapshot | integer | data timestamp
+lastUpdateID | integer | 
+price | float | 
+qty | float |
+type | string |
+symbol | string | tag values
+
+### Data Sanity
+No downtime.
+
+### API Reference
+
+`GET https://fapi.binance.com/fapi/v1/depth`
+
+### API Query Parameters
+Name | Type | Mandatory | Description
+---- | ---- | ---------- | -------- |
+symbol | string | yes | 
+limit | int | no | Default 100; max 1000. Valid limits:[5, 10, 20, 50, 100, 500, 1000]
+
+### API Return Schema
+See code comments.
+
+
+
 ## Binance Trade
+
+```sql
+-- fetch futures 
+select * from binance_trade_futures
+
+-- fetch spot
+select * from binance_trade_spot
+
+
+```
+
+> response
+
+```json
+[
+
+ {
+   "time": "2019-12-30T2019 8:29:05.271",
+   "id":0,
+   "isBuyerMaker": true,
+   "price":4261.48,
+   "qty": 0.1,
+   "quoteQty":426.148,
+   "symbol": "BTCUSDT",
+   "trade_timestamp": "1502942428322"
+   
+ }
+
+]
+```
+
+### Description
+Binance trade has a frequency of 2 minutess and data time range is from 2019-12-20 18:28:09 till now. Collectors are continously runing in two hosts.
+
+### Tag Vlaues 
+**Futures Symbols**: ADAUSDT, ATOMUSDT, BATUSDT, BCHUSDT, BNBUSDT, BTCUSDT, DASHUSDT, EOSUSDT, ETCUSDT, ETHUSDT, IOSTUSDT, IOTAUSDT, LINKUSDT, LTCUSDT,  NEOUSDT, ONTUSDT, QTUMUSDT, TRXUSDT, VETUSDT, XLMUSDT, XMRUSDT, XRPUSDT, XTZUSDT, ZECUSDT. 
+**Spot Symbols**: BCHBTC, BCHUSDT, BNBBTC, BNBETH, BNBUSDT, BTCUSDT, DGDBTC, DGDETH, ETHUSDT, KNCBTC, KNCETH, RENBNB, RENBTC, RENUSDT, SOLBNB, SOLBTC, SOLBUSD 
+
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | default database timestamp
+trade_timestamp | integer | data timestamp
+id | integer | 
+price | float | 
+qty | float |
+quoteQty | float |
+isBuyerMaker | string |
+symbol | string | tag values
+
+### Data Sanity
+No downtime.
+
+### API Reference
+
+`GET https://fapi.binance.com/fapi/v1/depth`
+
+### API Query Parameters
+Name | Type | Mandatory | Description
+---- | ---- | ---------- | -------- |
+symbol | string | yes | 
+limit | int | no | Default 100; max 1000. Valid limits:[5, 10, 20, 50, 100, 500, 1000]
+
+### API Return Schema
+See code comments.
+
+
 
 # BigOne
 [BigOne exchange](https://big.one/) is a cryptocurrency exchange with [api documents](https://open.big.one/docs/api.html) 
