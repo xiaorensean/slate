@@ -450,13 +450,13 @@ Need credentials to log in.
 </tr>
 <tr>
 <td><a href="#binance-liquidation-trade">binance_liquidation_trades</a></td>
-<td>8 hours</td>
+<td>1 hour</td>
 <td>Liquidation Trades Data</td>
 <td>Running</td>
 </tr>
 <tr>
 <td><a href="#binance-open-interest">binance_open_interest_clean</a></td>
-<td>8 hours</td>
+<td>1 minute</td>
 <td>Open Interest</td>
 <td>Running</td>
 </tr>
@@ -474,13 +474,13 @@ Need credentials to log in.
 </tr>
 <tr>
 <td><a href="#binance-trade">binance_trade_futures</a></td>
-<td>RealTime</td>
+<td>2 minutes</td>
 <td>Trades Data</td>
 <td>Running</td>
 </tr>
 <tr>
 <td><a href="#binance-trade">binance_trade_spot</a></td>
-<td>RealTime</td>
+<td>2 minutes</td>
 <td>Trades Data</td>
 <td>Running</td>
 </tr>
@@ -2259,7 +2259,7 @@ ADAUSDT, ATOMUSDT, BATUSDT, BCHUSDT, BNBUSDT, BTCUSDT, DASHUSDT, EOSUSDT, ETCUSD
    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-03-11T16:47:38Z"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">1.0</span><span class="p">,</span><span class="w">
    </span><span class="s2">"price"</span><span class="p">:</span><span class="mf">4.5</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="err">BID</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BID"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HNS-USDT"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-03-11T16:47:38Z"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"tradeID"</span><span class="p">:</span><span class="w"> </span><span class="mi">123456</span><span class="p">,</span><span class="w">
@@ -2398,7 +2398,7 @@ ADAUSDT, ATOMUSDT, BATUSDT, BCHUSDT, BNBUSDT, BTCUSDT, DASHUSDT, EOSUSDT, ETCUSD
    </span><span class="s2">"size"</span><span class="p">:</span><span class="w"> </span><span class="mf">798.3</span><span class="p">,</span><span class="w">
    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HNS-USDT"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"snapshot"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-03-11T16:47:38Z"</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="err">ask</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ask"</span><span class="p">,</span><span class="w">
  </span><span class="p">}</span><span class="w">
 
 </span><span class="p">]</span><span class="w">
@@ -2467,7 +2467,7 @@ ADAUSDT, ATOMUSDT, BATUSDT, BCHUSDT, BNBUSDT, BTCUSDT, DASHUSDT, EOSUSDT, ETCUSD
 <td>BTC-USDT</td>
 </tr>
 </tbody></table>
-<h3 id='api-return-schema-9'>API Return Schema</h3>
+<h3 id='api-return-schema-9'>API Return Schema</h3><h3 id='pricelevel'>PriceLevel</h3>
 <table><thead>
 <tr>
 <th>Attribute Name</th>
@@ -2495,7 +2495,7 @@ ADAUSDT, ATOMUSDT, BATUSDT, BCHUSDT, BNBUSDT, BTCUSDT, DASHUSDT, EOSUSDT, ETCUSD
 <td>10</td>
 </tr>
 </tbody></table>
-
+<h3 id='ordercount'>OrderCount</h3>
 <table><thead>
 <tr>
 <th>Attribute Name</th>
