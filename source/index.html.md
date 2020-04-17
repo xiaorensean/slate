@@ -43,7 +43,7 @@ TableName | Frequency | DataType | CurrentStatus
 [binance_future_stats_long_short_ratio_account](#binance-long-short-ratio-account) | Varies | Futures Data | Running
 [binance_future_stats_long_short_ratio_position](#binance-long-short-ratio-position) | Varies | Futures Data | Running
 [binance_future_stats_open_interest](#binance-future-stats-open-interest) | Varies | Futures Data | Running
-[binance_future_stats_taker_buy_sell_ratio](#binance-taker-buy-sell-ratio) | Varies | Futures Data | Running
+[binance_future_stats_taker_buy_sell_volume](#binance-taker-buy-sell-ratio) | Varies | Futures Data | Running
 [binance_liquidation_trades](#binance-liquidation-trade) | 1 hour | Liquidation Trades Data | Running
 [binance_open_interest_clean](#binance-open-interest) | 1 minute | Open Interest | Running
 [binance_orderbook_futures_clean](#binance-orderbook) | 30 seconds | Orderbook Data | Running
@@ -52,6 +52,7 @@ TableName | Frequency | DataType | CurrentStatus
 [binance_trade_spot](#binance-trade) | 2 minutes | Trades Data | Running
 bitfinex_funding_orderbook | 30 seconds | Funding Orderbook | Running
 bitfinex_funding_trade | RealTime | Funding Trades | Running
+bitfinex_leaderboard | Varies | Leaderboard | Running
 bitmex_full_orderbook | RealTime | Orderbook | Running
 bitmex_funding | 8 hours | Funding | Running
 bitmex_funding_rates | 8 hours | Funding | Running
@@ -62,9 +63,9 @@ bitmex_leaderboard_ROE | 1 hour | Leaderboard | Running
 bitmex_liquidation | RealTime | Liquidation | Running
 bitmex_settlement | 1 week | Settlement | NoLongerUpated
 bitmex_trade | RealTime | Trade Data | Running
-bybit_funding_rate | 8 hours | Funding Rates | Running 
-bybit_tickers | 1 minute | Ticker | Running
-bybit_trades | RealTime | Trade Data | Running
+[bybit_funding_rate](#bybit-funding-rate) | 8 hours | Funding Rates | Running 
+[bybit_tickers](#bybit-tickers) | 1 minute | Ticker | Running
+[bybit_trades](#bybit-trades) | RealTime | Trade Data | Running
 cftc_futures_report | 1 week | Commodity Futures Report | Running
 cme_futures_index | 1 hour | CME BTC Futures | Running
 coinbase_custody | 1 hour | Custody Data | Running
@@ -85,6 +86,7 @@ dydx_borrow_rates | 1 minute | Borrow Rates | Running
 exchange_open_interest | 1 minute | Open Interest | Running
 FTX_funding_rates | 8 hours | Funding Rates | Running
 FTX_future_stats | 1 minute | Market Summary | Running
+FTX_leaderboard | 1 hour | Leaderboard | Running
 FTX_option_request | RealTime | Request Data | Running
 FTX_orderbook | 30 seconds | Orderbook | Running
 FTX_trades | RealTime | Trades | Running
@@ -206,7 +208,7 @@ No Information.
 > database request
 
 ```sql
-select * from binance_funding_rates_clean'
+select * from binance_funding_rates_clean 
 ```
 
 > response:
@@ -271,7 +273,7 @@ No information
 > database request
 
 ```sql
-select * from binance_future_stats_long_short_ratio'
+select * from binance_future_stats_long_short_ratio where symbol = 'BTCUSDT'
 ```
 
 > response:
@@ -319,7 +321,7 @@ time | string | default database timestamp
 frequency | string | tag values 
 long_account | string | 
 short_account | string | 
-long_short_account | float | 
+long_short_ratio | float | 
 symbol | string | tag values 
 timestamp | integer | data timestamp 
 
@@ -351,7 +353,7 @@ No information
 > database request
 
 ```sql
-select * from binance_future_stats_long_short_ratio_account'
+select * from binance_future_stats_long_short_ratio_account where symbol = 'BTCUSDT'
 ```
 
 > response:
@@ -399,7 +401,7 @@ time | string | default database timestamp
 frequency | string | tag values 
 long_account | string | 
 short_account | string | 
-long_short_account | float | 
+long_short_ratio | float | 
 symbol | string | tag values 
 timestamp | integer | data timestamp 
 
@@ -428,7 +430,7 @@ endTime | integer | no |
 > database request
 
 ```sql
-select * from binance_future_stats_long_short_ratio_position'
+select * from binance_future_stats_long_short_ratio_position where symbol = 'BTCUSDT'
 ```
 
 > response:
@@ -504,7 +506,7 @@ endTime | integer | no |
 > database request
 
 ```sql
-select * from binance_future_stats_open_interest'
+select * from binance_future_stats_open_interest where symbol = 'BTCUSDT'
 ```
 
 > response:
@@ -579,7 +581,7 @@ endTime | integer | no |
 > database request
 
 ```sql
-select * from binance_future_stats_taker_buy_sell_ratio'
+select * from binance_future_stats_taker_buy_sell_volume where symbol = 'BTCUSDT'
 ```
 
 > response:
@@ -589,18 +591,20 @@ select * from binance_future_stats_taker_buy_sell_ratio'
     { 
           "time":"1585614900000",
           "long_short_ratio":"1.5586",
-          "long_account": "387.3300", 
-          "short_account":"248.5030", 
-          "timestamp":"1585614900000"
+          "long_volume": "387.3300", 
+          "short_volume":"248.5030", 
+          "timestamp":"1585614900000",
+          "symbol": "BTCUSDT"
 
      },
 
      {
           "time":"1583139900000",
           "long_short_ratio":"1.3104",
-          "long_account": "343.9290", 
-          "short_account":"248.5030",                     
-          "timestamp":"1583139900000"
+          "long_volume": "343.9290", 
+          "short_volume":"248.5030",                     
+          "timestamp":"1583139900000",
+          "symbol":"BTCUSDT"
 
         },   
 
@@ -609,7 +613,7 @@ select * from binance_future_stats_taker_buy_sell_ratio'
 
 
 ### Description
-[Binance taker buy sell ratio](https://www.binance.com/en/futures/funding-history/4) is trading data in the Binance futures. Binance taker buy sell  ratio data has a variety of frequency, which includes 5 minutes, 15 minutes, 30 minutes, 1 hour, 2 hour, 4 hour, 6 hour, 12 hour, and 1 day. Data time range is from 2019-12-10 00:00:00 till now. Collectors are continously runing in two hosts. 
+[Binance taker buy sell volume](https://www.binance.com/en/futures/funding-history/4) is trading data in the Binance futures. Binance taker buy sell  ratio data has a variety of frequency, which includes 5 minutes, 15 minutes, 30 minutes, 1 hour, 2 hour, 4 hour, 6 hour, 12 hour, and 1 day. Data time range is from 2019-12-10 00:00:00 till now. Collectors are continously runing in two hosts. 
 
 ### Tag Vlaues 
 **Frequency**:
@@ -623,9 +627,9 @@ fieldName | fieldType | description
 --------- | --------- | ---------- |
 time | string | default database timestamp
 frequency | string | tag values 
-long_account | float | 
-short_account | float | 
-long_short_account | float | 
+long_volume | float | 
+short_volume | float | 
+long_short_ratio | float | 
 symbol | string | tag values 
 timestamp | integer | data timestamp 
 
@@ -653,7 +657,7 @@ endTime | integer | no |
 
 ```sql
 -- fetch one ticker
-select * from binance_liquidation_trades where symbol = 'ADAUSDT'
+select * from binance_liquidation_trades where symbol = 'BTCUSDT'
 ```
 
 > response
@@ -774,10 +778,10 @@ See code comments.
 
 ```sql
 -- fetch futures 
-select * from binance_orderbook_futures_clean
+select * from binance_orderbook_futures_clean where symbol = 'BTCUSDT'
 
 -- fetch spot
-select * from binance_orderbook_spot_clean
+select * from binance_orderbook_spot_clean where symbol = 'BTCUSDT'
 
 
 ```
@@ -843,10 +847,10 @@ See code comments.
 
 ```sql
 -- fetch futures 
-select * from binance_trade_futures
+select * from binance_trade_futures where symbol = 'BTCUSDT'
 
 -- fetch spot
-select * from binance_trade_spot
+select * from binance_trade_spot where symbol = 'BTCUSDT'
 ```
 
 > response
@@ -919,7 +923,7 @@ See code comments.
 
 ```sql
 -- fetch trades
-select * from bigone_trades
+select * from bigone_trades where symbol = "HNS-USDT"
 
 ```
 
@@ -986,7 +990,7 @@ created_at | string | order created datetime|
 
 ```sql
 -- fetch trades
-select * from bigone_orderbook
+select * from bigone_orderbook where symbol = 'HNS-USDT'
 
 ```
 
@@ -1056,6 +1060,75 @@ asks | PriceaLevel array | asks
 
 
 # Bybit
+[Bybit](https://www.bybit.com/) is a cryptocurrency exchange that only has BTCUSD, ETHUSD, EOSUSD, XRPUSD, and BTCUSDT with inverse perpetual and USDT perpetual [api](https://bybit-exchange.github.io/docs/inverse/#t-introduction).
+
+## Bybit Trades 
+
+```sql
+-- fetch trades
+select * from bybit_trades where symbol = 'BTCUSDT'
+
+```
+
+> response
+
+```json
+[
+
+ {
+   "time": "2020-01-23T16:47:38Z",
+   "current_snapshot":"2020-01-23T16:47:38Z",
+   "id":32665362,
+   "price": "8324",
+   "qty": 3000,
+   "symbol": "BTCUSD",
+   "side": "Sell",
+ }
+
+]
+```
+
+### Description
+Bybit trades has a frequency of 60 seconds and data time range is from 2020-01-23 17:28:19 till now. Collectors are continously runing in two hosts.
+
+### Tag Vlaues 
+**Symbol**: BTCUSD, BTCUSDT, EOSUSD, ETHUSD, XRPUSD
+
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | default database timestamp
+current_snapshot | string | data timestamp
+id | integer | 
+price | string | 
+qty | integer |
+side | string | ask/bid
+symbol | string | tag values
+
+### Data Sanity
+Inverse perpetual collection starts from 2020-01-23 and USDT perpetual starts from 2020-04-17. 
+
+### API Reference
+**Inverse Perpetual**
+`GET "https://api.bybit.com/v2/public/trading-records`
+
+**USDT Perpetual** 
+`GET "https://api.bybit.com/v2/public/public/linear/recent-trading-records`
+
+### API Query Parameters
+parameter | Type | Required | Description | 
+-------------- | ---- | ---------- | -------- | 
+symbol | string | True | Contract Type |
+from | int | False | From ID. Default: return latest data
+limit | int | False |  default 500; max 1000
+
+### API Return Schema
+No information.
+
+## Bybit Funding Rate
+
+## Bybit Tickers
 
 
 # Coinbase
