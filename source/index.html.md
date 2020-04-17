@@ -203,7 +203,7 @@ No downtime.
 ### API Query Parameters
 No parameters.
 
-### API Query Schema
+### API Return Schema
 No Information.
 
 
@@ -268,10 +268,90 @@ limit | integer | no | Default 100  max 1000
 2. If the number of data between `startTime` and `endTime` is larger than `limit`, return as `startTime` + `limit`.
 3. In ascending order.
 
-### API Query Schema
+### API Return Schema
 No information
 
+
+
 ## Binance Long Short Ratio
+
+> database request
+
+```sql
+select * from binance_future_stats_long_short_ratio'
+```
+
+> response:
+
+```json
+[
+    { 
+         "time":"1583139600000""
+         "symbol":"BTCUSDT",  // long/short account num ratio of all traders
+          "long_short_ratio":0.1960,  //long account num ratio of all traders
+          "long_account": "0.6622",   // short account num ratio of all traders
+          "short_account":"0.3378", 
+          "timestamp":"1583139600000"
+
+     },
+
+     {
+         "time":"1583139900000"
+         "symbol":"BTCUSDT",
+          "long_short_ratio":"1.9559",
+          "long_account": "0.6617", 
+          "short_account":"0.3382",                  
+          "timestamp":"1583139900000"
+
+        },   
+
+]
+```
+
+
+### Description
+[Binance long short ratio](https://www.binance.com/en/futures/funding-history/4) is trading data in the Binance futures. Binance long short ratio data has a variety of frequency, which includes 5 minutes, 15 minutes, 30 minutes, 1 hour, 2 hour, 4 hour, 6 hour, 12 hour, and 1 day. Data time range is from 2019-12-10 00:00:00 till now. Collectors are continously runing in two hosts. 
+
+### Tag Vlaues 
+* Frequency
+5 minutes, 15 minutes, 30 minutes, 1 hour, 2 hour, 4 hour, 6 hour, 12 hour, and 1 day
+
+* Symbol
+ADAUSDT, ATOMUSDT, BATUSDT, BCHUSDT, BNBUSDT, BTCUSDT, DASHUSDT, EOSUSDT, ETCUSDT, ETHUSDT, IOSUSDT, IOATUSDT, LINKUSDT, LTCUSDT, NEOUSDT,ONTUSDT,QTUMUSDT, TRXUSDT, VETUSDT, XLMUSDT, XMRUSDT, XRPUSDT, XTZUSDT, ZECUSDT
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | consistent with timestamp fields
+frequency | string | tag values 
+long_account | string | 
+short_account | string | 
+long_short_account | float | 
+symbol | string | tag values 
+timestamp | integer | data timestamp 
+
+### Data Sanity
+No downtime.
+
+### API Endpoint
+`GET https://fapi.binance.com/futures/data/globalLongShortAccountRatio`
+
+### API Query Parameters
+Name | Type | Mandatory | Description
+---- | ---- | ---------- | -------- |
+symbol | string | yes | 
+period | number | yes | "5m","15m","30m","1h","2h","4h","6h","12h","1d"
+limit | long | no | Default 100  max 1000
+startTime | integer | no | 
+endTime | integer | no | 
+
+1. If there is no limit of startime and endtime, it will return the value brfore the current time by default.
+2. Only the data of the latest 30 days is available.
+
+### API Return Schema
+No information
+
+
 
 ## Binance Long Short Ratio Account
 
