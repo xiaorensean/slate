@@ -251,7 +251,7 @@
                     <a href="#binance-future-stats-open-interest" class="toc-h2 toc-link" data-title="Binance Future Stats Open Interest">Binance Future Stats Open Interest</a>
                   </li>
                   <li>
-                    <a href="#binance-taker-buy-sell-ratio" class="toc-h2 toc-link" data-title="Binance Taker Buy Sell Ratio">Binance Taker Buy Sell Ratio</a>
+                    <a href="#binance-taker-buy-sell-volume" class="toc-h2 toc-link" data-title="Binance Taker Buy Sell Volume">Binance Taker Buy Sell Volume</a>
                   </li>
                   <li>
                     <a href="#binance-liquidation-trade" class="toc-h2 toc-link" data-title="Binance Liquidation Trade">Binance Liquidation Trade</a>
@@ -393,7 +393,7 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the <strong>VQR Data Catalogue</strong>! The document gives you descriptions on database we are using, all available data feeds we are collecting, and all available api that we are tracking.</p>
+<p>Welcome to the <strong>Data Catalogue</strong>! The document gives you descriptions on database we are using, all available data feeds we are collecting, and all available api that we are tracking.</p>
 
 <p>Database is <a href="https://docs.influxdata.com/influxdb/v1.8/">InfluxDB</a>,whihc is a time-series database. Few terminologies to explain, tags in the influxdb is the unqie index and it is very useful to sort tickers via taging. Measurement is another word for table in the influxdb. Time is the defalut column in the table, which means the time that data wrote into database. Currently, we have two influxbd servers, one is primary server and another one is backup server.</p>
 
@@ -465,7 +465,7 @@ Need credentials to log in.
 <td>Running</td>
 </tr>
 <tr>
-<td><a href="#binance-taker-buy-sell-ratio">binance_future_stats_taker_buy_sell_volume</a></td>
+<td><a href="#binance-taker-buy-sell-volume">binance_future_stats_taker_buy_sell_volume</a></td>
 <td>Varies</td>
 <td>Futures Data</td>
 <td>Running</td>
@@ -507,19 +507,19 @@ Need credentials to log in.
 <td>Running</td>
 </tr>
 <tr>
-<td>bitfinex_funding_orderbook</td>
+<td><a href="#bitfinex-funding-orderbook">bitfinex_funding_orderbook</a></td>
 <td>30 seconds</td>
 <td>Funding Orderbook</td>
 <td>Running</td>
 </tr>
 <tr>
-<td>bitfinex_funding_trade</td>
+<td><a href="#bitfinex-funding-trade">bitfinex_funding_trade</a></td>
 <td>RealTime</td>
 <td>Funding Trades</td>
 <td>Running</td>
 </tr>
 <tr>
-<td>bitfinex_leaderboard</td>
+<td><a href="#bitfinex-leaderboard">bitfinex_leaderboard</a></td>
 <td>Varies</td>
 <td>Leaderboard</td>
 <td>Running</td>
@@ -1152,7 +1152,7 @@ Need credentials to log in.
     </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='description-2'>Description</h3>
-<p>Binance funding rate has a frequency of 8 hours and data time range is from 2020-01-27 18:07:37 till now. Collectors are continously runing in two hosts. </p>
+<p><a href="https://binance-docs.github.io/apidocs/futures/en/#get-funding-rate-history-market_data">Binance funding rate</a> has a frequency of 8 hours and data time range is from 2020-01-27 18:07:37 till now. Collectors are continously runing in two hosts. </p>
 <h3 id='data-schema-2'>Data Schema</h3>
 <table><thead>
 <tr>
@@ -1754,7 +1754,7 @@ ADAUSDT, ATOMUSDT, BATUSDT, BCHUSDT, BNBUSDT, BTCUSDT, DASHUSDT, EOSUSDT, ETCUSD
 <li>If there is no limit of startime and endtime, it will return the value brfore the current time by default.</li>
 <li>Only the data of the latest 30 days is available.</li>
 </ol>
-<h2 id='binance-taker-buy-sell-ratio'>Binance Taker Buy Sell Ratio</h2>
+<h2 id='binance-taker-buy-sell-volume'>Binance Taker Buy Sell Volume</h2>
 <blockquote>
 <p>database request</p>
 </blockquote>
@@ -1786,7 +1786,7 @@ ADAUSDT, ATOMUSDT, BATUSDT, BCHUSDT, BNBUSDT, BTCUSDT, DASHUSDT, EOSUSDT, ETCUSD
 
 </span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='description-7'>Description</h3>
-<p><a href="https://www.binance.com/en/futures/funding-history/4">Binance taker buy sell volume</a> is trading data in the Binance futures. Binance taker buy sell  ratio data has a variety of frequency, which includes 5 minutes, 15 minutes, 30 minutes, 1 hour, 2 hour, 4 hour, 6 hour, 12 hour, and 1 day. Data time range is from 2019-12-10 00:00:00 till now. Collectors are continously runing in two hosts. </p>
+<p><a href="https://binance-docs.github.io/apidocs/futures/en/#taker-buy-sell-volume-market_data">Binance taker buy sell volume</a> is trading data in the Binance futures. Binance taker buy sell  ratio data has a variety of frequency, which includes 5 minutes, 15 minutes, 30 minutes, 1 hour, 2 hour, 4 hour, 6 hour, 12 hour, and 1 day. Data time range is from 2019-12-10 00:00:00 till now. Collectors are continously runing in two hosts. </p>
 <h3 id='data-schema-7'>Data Schema</h3>
 <table><thead>
 <tr>
@@ -1908,7 +1908,7 @@ ADAUSDT, ATOMUSDT, BATUSDT, BCHUSDT, BNBUSDT, BTCUSDT, DASHUSDT, EOSUSDT, ETCUSD
     </span><span class="p">},</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='description-8'>Description</h3>
-<p>Binance liquidation trade has a frequency of 1 hour and data time range is from 2020-02-16 16:48:09 till now. Collectors are continously runing in two hosts.</p>
+<p><a href="https://binance-docs.github.io/apidocs/futures/en/#get-all-liquidation-orders">Binance liquidation trade</a> has a frequency of 1 hour and data time range is from 2020-02-16 16:48:09 till now. Collectors are continously runing in two hosts.</p>
 <h3 id='data-schema-8'>Data Schema</h3>
 <table><thead>
 <tr>
@@ -2026,7 +2026,7 @@ ADAUSDT, ATOMUSDT, BATUSDT, BCHUSDT, BNBUSDT, BTCUSDT, DASHUSDT, EOSUSDT, ETCUSD
 
 </span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='description-9'>Description</h3>
-<p>Binance open interest has a frequency of 1 minute and data time range is from 2019-12-20 18:28:09 till now. Collectors are continously runing in two hosts.</p>
+<p><a href="https://binance-docs.github.io/apidocs/futures/en/#open-interest">Binance open interest</a> has a frequency of 1 minute and data time range is from 2019-12-20 18:28:09 till now. Collectors are continously runing in two hosts.</p>
 <h3 id='data-schema-9'>Data Schema</h3>
 <table><thead>
 <tr>
@@ -2101,7 +2101,7 @@ ADAUSDT, ATOMUSDT, BATUSDT, BCHUSDT, BNBUSDT, BTCUSDT, DASHUSDT, EOSUSDT, ETCUSD
 
 </span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='description-10'>Description</h3>
-<p>Binance orderbook has a frequency of 30 seconds and data time range is from 2019-12-20 18:28:09 till now. Collectors are continously runing in two hosts.</p>
+<p><a href="https://binance-docs.github.io/apidocs/futures/en/#order-book">Binance orderbook</a> has a frequency of 30 seconds and data time range is from 2019-12-20 18:28:09 till now. Collectors are continously runing in two hosts.</p>
 <h3 id='data-schema-10'>Data Schema</h3>
 <table><thead>
 <tr>
@@ -2203,7 +2203,7 @@ ADAUSDT, ATOMUSDT, BATUSDT, BCHUSDT, BNBUSDT, BTCUSDT, DASHUSDT, EOSUSDT, ETCUSD
 
 </span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='description-11'>Description</h3>
-<p>Binance trade has a frequency of 2 minutes and data time range is from 2019-12-20 18:28:09 till now. Collectors are continously runing in two hosts.</p>
+<p><a href="https://binance-docs.github.io/apidocs/futures/en/#recent-trades-list">Binance trade</a> has a frequency of 2 minutes and data time range is from 2019-12-20 18:28:09 till now. Collectors are continously runing in two hosts.</p>
 <h3 id='data-schema-11'>Data Schema</h3>
 <table><thead>
 <tr>
@@ -2264,7 +2264,7 @@ There will be duplicates in the trades data since the api returns maximum of 100
 <p><strong>Others</strong>
 Trade data may have some gaps in the past but api can fetch all historical, so we will fill gap soon.</p>
 <h3 id='api-reference-5'>API Reference</h3>
-<p><code>GET https://fapi.binance.com/fapi/v1/depth</code></p>
+<p><code>GET https://fapi.binance.com/fapi/v1/trade</code></p>
 <h3 id='api-query-parameters-11'>API Query Parameters</h3>
 <table><thead>
 <tr>
@@ -2390,13 +2390,44 @@ Trade data may have some gaps in the past but api can fetch all historical, so w
 </tr>
 </tbody></table>
 <h3 id='api-return-schema-8'>API Return Schema</h3>
-<p>Fields  |Type   |Description
-PRICE   |float  |Price level (Trading only)
-RATE    |float  |Rate level (Funding only)
-PERIOD| float   |Period level (Funding only)
-COUNT   |int    |Number of orders at that price level
-±AMOUNT|   float   |Total amount available at that price level.
-ORDER_ID|   int |Order ID</p>
+<table><thead>
+<tr>
+<th>Fields</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>PRICE</td>
+<td>float</td>
+<td>Price level (Trading only)</td>
+</tr>
+<tr>
+<td>RATE</td>
+<td>float</td>
+<td>Rate level (Funding only)</td>
+</tr>
+<tr>
+<td>PERIOD</td>
+<td>float</td>
+<td>Period level (Funding only)</td>
+</tr>
+<tr>
+<td>COUNT</td>
+<td>int</td>
+<td>Number of orders at that price level</td>
+</tr>
+<tr>
+<td>±AMOUNT</td>
+<td>float</td>
+<td>Total amount available at that price level.</td>
+</tr>
+<tr>
+<td>ORDER_ID</td>
+<td>int</td>
+<td>Order ID</td>
+</tr>
+</tbody></table>
 <h2 id='bitfinex-funding-trade'>Bitfinex Funding Trade</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch funding orderbook  </span>
 <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">bitfinex_funding_trade</span> <span class="k">where</span> <span class="n">SYMBOL</span> <span class="o">=</span> <span class="s1">'fUSD'</span>
 </code></pre>
@@ -2506,6 +2537,7 @@ ORDER_ID|   int |Order ID</p>
 </tbody></table>
 <h3 id='api-return-schema-9'>API Return Schema</h3>
 <p>Fields | Type   |Description
+-------｜----｜----------｜
 ID  |int    |ID of the trade
 MTS |int    |millisecond time stamp
 ±AMOUNT    |float  |How much was bought (positive) or sold (negative).
@@ -2613,6 +2645,7 @@ PERIOD  |int    |Amount of time the funding transaction was for (funding tickers
 </tbody></table>
 <h3 id='api-return-schema-10'>API Return Schema</h3>
 <p>Fields  | Type  | Description
+-------｜------- ｜--------- ｜
 MTS | int   | millisecond timestamp
 USERNAME    | string    |Username
 RANKING | int   | Place on leaderboard
