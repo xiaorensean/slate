@@ -14,7 +14,7 @@ search: true
 
 # Introduction
 
-Welcome to the **VQR Data Catalogue**! The document gives you descriptions on database we are using, all available data feeds we are collecting, and all available api that we are tracking.
+Welcome to the **Data Catalogue**! The document gives you descriptions on database we are using, all available data feeds we are collecting, and all available api that we are tracking.
 
 Database is [InfluxDB](https://docs.influxdata.com/influxdb/v1.8/),whihc is a time-series database. Few terminologies to explain, tags in the influxdb is the unqie index and it is very useful to sort tickers via taging. Measurement is another word for table in the influxdb. Time is the defalut column in the table, which means the time that data wrote into database. Currently, we have two influxbd servers, one is primary server and another one is backup server.
 
@@ -43,16 +43,16 @@ TableName | Frequency | DataType | CurrentStatus
 [binance_future_stats_long_short_ratio_account](#binance-long-short-ratio-account) | Varies | Futures Data | Running
 [binance_future_stats_long_short_ratio_position](#binance-long-short-ratio-position) | Varies | Futures Data | Running
 [binance_future_stats_open_interest](#binance-future-stats-open-interest) | Varies | Futures Data | Running
-[binance_future_stats_taker_buy_sell_volume](#binance-taker-buy-sell-ratio) | Varies | Futures Data | Running
+[binance_future_stats_taker_buy_sell_volume](#binance-taker-buy-sell-volume) | Varies | Futures Data | Running
 [binance_liquidation_trades](#binance-liquidation-trade) | 1 hour | Liquidation Trades Data | Running
 [binance_open_interest_clean](#binance-open-interest) | 1 minute | Open Interest | Running
 [binance_orderbook_futures_clean](#binance-orderbook) | 30 seconds | Orderbook Data | Running
 [binance_orderbook_spot_clean](#binance-orderbook) | 30 seconds | Orderbook Data | Running
 [binance_trade_futures](#binance-trade) | 2 minutes | Trades Data | Running
 [binance_trade_spot](#binance-trade) | 2 minutes | Trades Data | Running
-bitfinex_funding_orderbook | 30 seconds | Funding Orderbook | Running
-bitfinex_funding_trade | RealTime | Funding Trades | Running
-bitfinex_leaderboard | Varies | Leaderboard | Running
+[bitfinex_funding_orderbook](#bitfinex-funding-orderbook) | 30 seconds | Funding Orderbook | Running
+[bitfinex_funding_trade](#bitfinex-funding-trade) | RealTime | Funding Trades | Running
+[bitfinex_leaderboard](#bitfinex-leaderboard) | Varies | Leaderboard | Running
 bitmex_full_orderbook | RealTime | Orderbook | Running
 bitmex_funding | 8 hours | Funding | Running
 bitmex_funding_rates | 8 hours | Funding | Running
@@ -232,7 +232,7 @@ select * from binance_funding_rates_clean
 
 
 ### Description
-Binance funding rate has a frequency of 8 hours and data time range is from 2020-01-27 18:07:37 till now. Collectors are continously runing in two hosts. 
+[Binance funding rate](https://binance-docs.github.io/apidocs/futures/en/#get-funding-rate-history-market_data) has a frequency of 8 hours and data time range is from 2020-01-27 18:07:37 till now. Collectors are continously runing in two hosts. 
 
 ### Data Schema
 fieldName | fieldType | description
@@ -576,7 +576,7 @@ endTime | integer | no |
 
 
 
-## Binance Taker Buy Sell Ratio
+## Binance Taker Buy Sell Volume
 
 > database request
 
@@ -612,7 +612,7 @@ select * from binance_future_stats_taker_buy_sell_volume where symbol = 'BTCUSDT
 ```
 
 ### Description
-[Binance taker buy sell volume](https://www.binance.com/en/futures/funding-history/4) is trading data in the Binance futures. Binance taker buy sell  ratio data has a variety of frequency, which includes 5 minutes, 15 minutes, 30 minutes, 1 hour, 2 hour, 4 hour, 6 hour, 12 hour, and 1 day. Data time range is from 2019-12-10 00:00:00 till now. Collectors are continously runing in two hosts. 
+[Binance taker buy sell volume](https://binance-docs.github.io/apidocs/futures/en/#taker-buy-sell-volume-market_data) is trading data in the Binance futures. Binance taker buy sell  ratio data has a variety of frequency, which includes 5 minutes, 15 minutes, 30 minutes, 1 hour, 2 hour, 4 hour, 6 hour, 12 hour, and 1 day. Data time range is from 2019-12-10 00:00:00 till now. Collectors are continously runing in two hosts. 
 
 ### Data Schema
 fieldName | fieldType | description
@@ -680,7 +680,7 @@ select * from binance_liquidation_trades where symbol = 'BTCUSDT'
 ```
 
 ### Description
-Binance liquidation trade has a frequency of 1 hour and data time range is from 2020-02-16 16:48:09 till now. Collectors are continously runing in two hosts.
+[Binance liquidation trade](https://binance-docs.github.io/apidocs/futures/en/#get-all-liquidation-orders) has a frequency of 1 hour and data time range is from 2020-02-16 16:48:09 till now. Collectors are continously runing in two hosts.
 
 ### Data Schema
 fieldName | fieldType | description
@@ -743,7 +743,7 @@ select * from binance_open_interest_clean
 ```
 
 ### Description
-Binance open interest has a frequency of 1 minute and data time range is from 2019-12-20 18:28:09 till now. Collectors are continously runing in two hosts.
+[Binance open interest](https://binance-docs.github.io/apidocs/futures/en/#open-interest) has a frequency of 1 minute and data time range is from 2019-12-20 18:28:09 till now. Collectors are continously runing in two hosts.
 
 ### Data Schema
 fieldName | fieldType | description
@@ -805,7 +805,7 @@ select * from binance_orderbook_spot_clean where symbol = 'BTCUSDT'
 ```
 
 ### Description
-Binance orderbook has a frequency of 30 seconds and data time range is from 2019-12-20 18:28:09 till now. Collectors are continously runing in two hosts.
+[Binance orderbook](https://binance-docs.github.io/apidocs/futures/en/#order-book) has a frequency of 30 seconds and data time range is from 2019-12-20 18:28:09 till now. Collectors are continously runing in two hosts.
 
 ### Data Schema
 fieldName | fieldType | description
@@ -872,7 +872,7 @@ select * from binance_trade_spot where symbol = 'BTCUSDT'
 ```
 
 ### Description
-Binance trade has a frequency of 2 minutes and data time range is from 2019-12-20 18:28:09 till now. Collectors are continously runing in two hosts.
+[Binance trade](https://binance-docs.github.io/apidocs/futures/en/#recent-trades-list) has a frequency of 2 minutes and data time range is from 2019-12-20 18:28:09 till now. Collectors are continously runing in two hosts.
 
 ### Data Schema
 fieldName | fieldType | description
@@ -900,7 +900,7 @@ Trade data may have some gaps in the past but api can fetch all historical, so w
 
 ### API Reference
 
-`GET https://fapi.binance.com/fapi/v1/depth`
+`GET https://fapi.binance.com/fapi/v1/trade`
 
 ### API Query Parameters
 Name | Type | Mandatory | Description
@@ -973,6 +973,7 @@ Precision | string | yes | Level of price aggregation | P0, P1, P2, P3, P4, R0
 
 ### API Return Schema
 Fields	|Type	|Description
+--------| ----| ----------|
 PRICE	|float	|Price level (Trading only)
 RATE	|float	|Rate level (Funding only)
 PERIOD|	float	|Period level (Funding only)
@@ -1041,6 +1042,7 @@ sort | string | yes | If = 1 it sorts results returned with old > new
 
 ### API Return Schema
 Fields | Type	|Description
+-------｜----｜----------｜
 ID	|int	|ID of the trade
 MTS	|int	|millisecond time stamp
 ±AMOUNT	|float	|How much was bought (positive) or sold (negative).
@@ -1111,6 +1113,7 @@ Key | Available Time Frames | Available Symbols
 
 ### API Return Schema
 Fields	| Type	| Description
+-------｜------- ｜--------- ｜
 MTS	| int	| millisecond timestamp
 USERNAME	| string	|Username
 RANKING	| int	| Place on leaderboard
