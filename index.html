@@ -2616,7 +2616,7 @@ ADAUSDT, ATOMUSDT, BATUSDT, BCHUSDT, BNBUSDT, BTCUSDT, DASHUSDT, EOSUSDT, ETCUSD
 <tr>
 <td>side</td>
 <td>string</td>
-<td>ask/bid</td>
+<td>Sell/Buy</td>
 </tr>
 <tr>
 <td>symbol</td>
@@ -2628,10 +2628,10 @@ ADAUSDT, ATOMUSDT, BATUSDT, BCHUSDT, BNBUSDT, BTCUSDT, DASHUSDT, EOSUSDT, ETCUSD
 <p>Inverse perpetual collection starts from 2020-01-23 and USDT perpetual starts from 2020-04-17. </p>
 <h3 id='api-reference-8'>API Reference</h3>
 <p><strong>Inverse Perpetual</strong>
-<code>GET &quot;https://api.bybit.com/v2/public/trading-records</code></p>
+<code>GET https://api.bybit.com/v2/public/trading-records</code></p>
 
 <p><strong>USDT Perpetual</strong> 
-<code>GET &quot;https://api.bybit.com/v2/public/public/linear/recent-trading-records</code></p>
+<code>GET https://api.bybit.com/v2/public/public/linear/recent-trading-records</code></p>
 <h3 id='api-query-parameters-14'>API Query Parameters</h3>
 <table><thead>
 <tr>
@@ -2662,7 +2662,266 @@ ADAUSDT, ATOMUSDT, BATUSDT, BCHUSDT, BNBUSDT, BTCUSDT, DASHUSDT, EOSUSDT, ETCUSD
 </tbody></table>
 <h3 id='api-return-schema-10'>API Return Schema</h3>
 <p>No information.</p>
-<h2 id='bybit-funding-rate'>Bybit Funding Rate</h2><h2 id='bybit-tickers'>Bybit Tickers</h2><h1 id='coinbase'>Coinbase</h1><h1 id='coinex'>Coinex</h1><h1 id='compound'>Compound</h1><h1 id='deribit'>Deribit</h1><h1 id='dydx'>Dydx</h1><h1 id='ftx'>FTX</h1><h1 id='gateio'>Gateio</h1><h1 id='huobidm'>HuobiDM</h1><h1 id='mxc'>MXC</h1><h1 id='okex'>OKEX</h1><h1 id='poloniex'>Poloniex</h1><h1 id='wazirx'>Wazirx</h1><h1 id='coinflex'>Coinflex</h1><h1 id='cosmos'>Cosmos</h1><h1 id='hnscan'>HNScan</h1><h1 id='namebase'>Namebase</h1><h1 id='nervos'>Nervos</h1><h1 id='tether'>Tether</h1><h1 id='tezos'>Tezos</h1><h1 id='aggregate-exchange-open-interest'>Aggregate Exchange Open Interest</h1><h1 id='futures-market-data'>Futures Market Data</h1><h2 id='cme-group'>CME Group</h2><h2 id='commodity-futures-trading-commission'>Commodity Futures Trading Commission</h2><h2 id='investing-com'>Investing.com</h2>
+<h2 id='bybit-funding-rate'>Bybit Funding Rate</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch funding rate</span>
+<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">bybit_funding_rate</span>
+
+</code></pre>
+<blockquote>
+<p>response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+
+ </span><span class="p">{</span><span class="w">
+   </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-01-23T16:47:38Z"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">32665362</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0001"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSD"</span><span class="w">
+ </span><span class="p">}</span><span class="w">
+
+</span><span class="p">]</span><span class="w">
+</span></code></pre><h3 id='description-15'>Description</h3>
+<p>Bybit funding rate has a frequency of 8 hours and data time range is from 2018-11-24 16:00:00 till now. Collectors are continously runing in two hosts.</p>
+<h3 id='tag-vlaues-15'>Tag Vlaues</h3>
+<p>No tag values. symbols are BTCUSD, ETHUSD, EOSUSD, XRPUSD</p>
+<h3 id='data-schema-15'>Data Schema</h3>
+<table><thead>
+<tr>
+<th>fieldName</th>
+<th>fieldType</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>time</td>
+<td>string</td>
+<td>default database timestamp</td>
+</tr>
+<tr>
+<td>id</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>value</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='data-sanity-15'>Data Sanity</h3>
+<p>No downtime.</p>
+<h3 id='api-reference-9'>API Reference</h3>
+<p><code>GET https://api2.bybit.com/funding-rate/list</code></p>
+<h3 id='api-query-parameters-15'>API Query Parameters</h3>
+<p>No information.</p>
+<h3 id='api-return-schema-11'>API Return Schema</h3>
+<p>No information.</p>
+<h2 id='bybit-tickers'>Bybit Tickers</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch tickers</span>
+<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">bybit_tickers</span>
+
+</code></pre>
+<blockquote>
+<p>response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-01-23T16:47:38Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSD"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"bid_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7230"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"ask_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7230.5"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"last_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7230.00"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"last_tick_direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ZeroMinusTick"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"prev_price_24h"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7163.00"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"price_24h_pcnt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.009353"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"high_price_24h"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7267.50"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"low_price_24h"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7067.00"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"prev_price_1h"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7209.50"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"price_1h_pcnt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.002843"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"mark_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7230.31"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"index_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7230.14"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"open_interest"</span><span class="p">:</span><span class="w"> </span><span class="mi">117860186</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"open_value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16157.26"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"total_turnover"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3412874.21"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"turnover_24h"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10864.63"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"total_volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">28291403954</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"volume_24h"</span><span class="p">:</span><span class="w"> </span><span class="mi">78053288</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"funding_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0001"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"predicted_funding_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0001"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"next_funding_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-12-28T00:00:00Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"countdown_hour"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre><h3 id='description-16'>Description</h3>
+<p>Bybit funding rate has a frequency of 8 hours and data time range is from 2019-12-11 20:03:05 till now. Collectors are continously runing in two hosts.</p>
+<h3 id='tag-vlaues-16'>Tag Vlaues</h3>
+<p>No tag values. symbols are BTCUSD, ETHUSD, EOSUSD, XRPUSD</p>
+<h3 id='data-schema-16'>Data Schema</h3>
+<table><thead>
+<tr>
+<th>fieldName</th>
+<th>fieldType</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>time</td>
+<td>string</td>
+<td>default database timestamp</td>
+</tr>
+<tr>
+<td>ask_price</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>bid_price</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>countdown_hour</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>current_snapshot</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>funding_rate</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>high_price_24h</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>index_price</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>last_price</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>last_tick_direction</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>low_price_24h</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>mark_price</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>next_funding_time</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>open_interest</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>open_value</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>predicted_funding_rate</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>prev_price_1h</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>prev_price_24h</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>price_1h_pcnt</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>price_24h_pcnt</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>total_turnover</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>total_volume</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>turnover_24h</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>volume_24h</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='data-sanity-16'>Data Sanity</h3>
+<p>No downtime.</p>
+<h3 id='api-reference-10'>API Reference</h3>
+<p><code>GET https://api2.bybit.com/v2/public/tickers</code></p>
+<h3 id='api-query-parameters-16'>API Query Parameters</h3>
+<table><thead>
+<tr>
+<th>parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>True</td>
+<td>Contract Type</td>
+</tr>
+</tbody></table>
+<h3 id='api-return-schema-12'>API Return Schema</h3>
+<p>No information.</p>
+<h1 id='coinbase'>Coinbase</h1><h1 id='coinex'>Coinex</h1><h1 id='compound'>Compound</h1><h1 id='deribit'>Deribit</h1><h1 id='dydx'>Dydx</h1><h1 id='ftx'>FTX</h1><h1 id='gateio'>Gateio</h1><h1 id='huobidm'>HuobiDM</h1><h1 id='mxc'>MXC</h1><h1 id='okex'>OKEX</h1><h1 id='poloniex'>Poloniex</h1><h1 id='wazirx'>Wazirx</h1><h1 id='coinflex'>Coinflex</h1><h1 id='cosmos'>Cosmos</h1><h1 id='hnscan'>HNScan</h1><h1 id='namebase'>Namebase</h1><h1 id='nervos'>Nervos</h1><h1 id='tether'>Tether</h1><h1 id='tezos'>Tezos</h1><h1 id='aggregate-exchange-open-interest'>Aggregate Exchange Open Interest</h1><h1 id='futures-market-data'>Futures Market Data</h1><h2 id='cme-group'>CME Group</h2><h2 id='commodity-futures-trading-commission'>Commodity Futures Trading Commission</h2><h2 id='investing-com'>Investing.com</h2>
       </div>
       <div class="dark-box">
           <div class="lang-selector">
