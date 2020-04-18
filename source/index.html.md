@@ -1043,12 +1043,12 @@ sort | string | yes | If = 1 it sorts results returned with old > new
 ### API Return Schema
 Fields | Type	|Description
 -------｜----｜----------｜
-ID	|int	|ID of the trade
-MTS	|int	|millisecond time stamp
-±AMOUNT	|float	|How much was bought (positive) or sold (negative).
-PRICE	|float	|Price at which the trade was executed (trading tickers only)
-RATE	|float	|Rate at which funding transaction occurred (funding tickers only)
-PERIOD	|int	|Amount of time the funding transaction was for (funding tickers only)
+ID	| int	| ID of the trade
+MTS	| int	| millisecond time stamp
+±AMOUNT	| float	| How much was bought (positive) or sold (negative).
+PRICE	| float	| Price at which the trade was executed (trading tickers only)
+RATE	| float	| Rate at which funding transaction occurred (funding tickers only)
+PERIOD	|int	| Amount of time the funding transaction was for (funding tickers only)
 
 
 ## Bitfinex Leaderboard
@@ -1115,10 +1115,10 @@ Key | Available Time Frames | Available Symbols
 Fields	| Type	| Description
 -------｜------- ｜--------- ｜
 MTS	| int	| millisecond timestamp
-USERNAME	| string	|Username
+USERNAME	| string	| Username
 RANKING	| int	| Place on leaderboard
 VALUE	| float	| Value of volume, unrealized profit, or realized profit
-TWITTER_HANDLE	| string	|Shows the user's Twitter handle (if available)
+TWITTER_HANDLE | string	| Shows the user's Twitter handle (if available)
 
 
 
