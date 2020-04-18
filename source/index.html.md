@@ -1143,15 +1143,13 @@ select * from bitmex_full_orderbook where symbol = 'XRPZ19'
    "size":100,
    "symbol": "XRPZ19",
    "side": "Sell",
-   
-   
  }
 
 ]
 ```
 
 ### Description
-[Bitmex full orderbook](https://leaderboard.bitfinex.com/) has a variety of frequencies, including 3 hours, 1 week, 1 month. And data time range is from 2020-04-01 00:00:00 till now. Collectors are continously runing in two hosts.
+[Bitmex full orderbook](https://www.bitmex.com/api/explorer/#!/OrderBook/OrderBook_getL2) has a frequency of 30 seconds for XBT symbols and has a frequency of 1 minute for other symbols. And data time range is from 2020-04-01 00:00:00 till now. Collectors are continously runing in two hosts.
 
 ### Data Schema
 fieldName | fieldType | description
@@ -1164,35 +1162,23 @@ symbol | string | tag values
 price | float | tag values
 side | string | "Buy/Sell"
 
-
 ### Tag Vlaues 
-**Symbols (time:ticker)**: 3h:tGLOBAL:USD, 3h:tBTCUSD, 3h:tBTCF0:USTF0, 3h:tBTCUST, 3h:tBTCEUR, 3h:tLEOUSD, 3h:tETHUSD, 3h:tETHF0:USTF0, 3h:tETHUST, 3h:tEOSUSD, 3h:tLTCUSD, 3h:tETCUSD, 1w:tGLOBAL:USD, 1w:tGLOBAL:CHZ, 1M:tGLOBAL:USD
-
-**type**: unrealized_profit_period_delta, unrealized_profit_inception, realized_profit, volume
+**Symbols**: ADAH20, ADAM20, ADAZ19, BCHH20, BCHM20, BCHZ19, EOSH20, EOSM20, EOSZ19, ETHH20, ETHM20, ETHUSD, ETHZ19. LTCH20, LTCM20, LTCZ19, TRXH20, TRXM20, TRXZ19, XBT7D_D95, XBT7D_U105, XBTH20, XBTM20, XBTU20, XBTUSD, XBTZ19, XRPH20, XRPM20, XRPU20, XRPZ19
 
 ### Data Sanity
 No downtime.
 
 ### API Reference
-
 `GET https://www.bitmex.com/api/v1/orderBook/L2?symbol={Symbol}&depth={Depth}`
 
 ### API Query Parameters
-Key | Available Time Frames | Available Symbols 
----- | ------------------ | ------------------
-"plu_diff" - (Unrealised Profit (Period Delta)) | "1w", "1M" | tGLOBAL:USD
-"plu" - (Unrealised Profit (Inception)) |  "3h" - for specific pairs "1w", "1M" - for tGLOBAL:USD | Trading Pairs (e.g. tBTCUSD, tETHUSD tGLOBAL:USD
-"plr" - (Realized Profit) | "1w", "1M" | tGLOBAL:USD
-"vol" - (Volume) | "3h", "1w", "1M" | Trading Pairs (e.g. tBTCUSD, tETHUSD) tGLOBAL:USD
+Name | Type | Description
+-----| ----- | --------- |
+symbol | string | Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.
+depth | double | Orderbook depth per side. Send 0 for full depth.
 
 ### API Return Schema
-Fields	|Type	|Description
---------| ----| ----------|
-MTS	|int	|millisecond timestamp
-USERNAME	|string	|Username
-RANKING	|int	|Place on leaderboard
-VALUE	|float	|Value of volume, unrealized profit, or realized profit
-TWITTER_HANDLE	|string	|Shows the user's Twitter handle (if available)
+No Information.
 
 
 ## Bitmex Funding 
@@ -1207,15 +1193,11 @@ select * from bitmex_funding
 [
 
  {
-   "time": "2019-11-21 17:40:53.056972",
-   "snapshot_time":"2019-11-21 17:40:53.188963"
-   "id":34699996624,
-   "price": 0.00003376,
-   "size":100,
-   "symbol": "XRPZ19",
-   "side": "Sell",
-   
-   
+   "time": "2016-11-04 04:00:00",
+   "fundingInterval":"2000-01-01T08:00:00.000Z"
+   "fundingRate":-0.0016619999999999998,
+   "fundingRateDaily": -0.004985999999999999,
+   "symbol": "ETHXBT"
  }
 
 ]
@@ -1232,6 +1214,7 @@ snapshot_time | float | data timestamp
 fundingInterval  |string |
 fundingRate      |float |
 fundingRateDaily |float |
+symbol | string |
 
 ### Tag Vlaues 
 **Symbols (time:ticker)**: 3h:tGLOBAL:USD, 3h:tBTCUSD, 3h:tBTCF0:USTF0, 3h:tBTCUST, 3h:tBTCEUR, 3h:tLEOUSD, 3h:tETHUSD, 3h:tETHF0:USTF0, 3h:tETHUST, 3h:tEOSUSD, 3h:tLTCUSD, 3h:tETCUSD, 1w:tGLOBAL:USD, 1w:tGLOBAL:CHZ, 1M:tGLOBAL:USD
