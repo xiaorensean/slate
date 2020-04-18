@@ -1103,7 +1103,7 @@ current_snapshot | string | data timestamp
 id | integer | 
 price | string | 
 qty | integer |
-side | string | ask/bid
+side | string | Sell/Buy
 symbol | string | tag values
 
 ### Data Sanity
@@ -1111,10 +1111,10 @@ Inverse perpetual collection starts from 2020-01-23 and USDT perpetual starts fr
 
 ### API Reference
 **Inverse Perpetual**
-`GET "https://api.bybit.com/v2/public/trading-records`
+`GET https://api.bybit.com/v2/public/trading-records`
 
 **USDT Perpetual** 
-`GET "https://api.bybit.com/v2/public/public/linear/recent-trading-records`
+`GET https://api.bybit.com/v2/public/public/linear/recent-trading-records`
 
 ### API Query Parameters
 parameter | Type | Required | Description | 
@@ -1126,9 +1126,153 @@ limit | int | False |  default 500; max 1000
 ### API Return Schema
 No information.
 
+
 ## Bybit Funding Rate
 
+```sql
+-- fetch funding rate
+select * from bybit_funding_rate
+
+```
+
+> response
+
+```json
+[
+
+ {
+   "time": "2020-01-23T16:47:38Z",
+   "id":32665362,
+   "value": "0.0001",
+   "symbol": "BTCUSD"
+ }
+
+]
+```
+
+### Description
+Bybit funding rate has a frequency of 8 hours and data time range is from 2018-11-24 16:00:00 till now. Collectors are continously runing in two hosts.
+
+### Tag Vlaues 
+No tag values. symbols are BTCUSD, ETHUSD, EOSUSD, XRPUSD
+
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | default database timestamp
+id | integer | 
+value | string | 
+symbol | string |
+
+### Data Sanity
+No downtime.
+
+### API Reference
+
+`GET https://api2.bybit.com/funding-rate/list`
+
+### API Query Parameters
+No information.
+
+### API Return Schema
+No information.
+
+
 ## Bybit Tickers
+
+```sql
+-- fetch tickers
+select * from bybit_tickers
+
+```
+
+> response
+
+```json
+[
+
+        {
+            "time": "2020-01-23T16:47:38Z",
+            "symbol": "BTCUSD",
+            "bid_price": "7230",
+            "ask_price": "7230.5",
+            "last_price": "7230.00",
+            "last_tick_direction": "ZeroMinusTick",
+            "prev_price_24h": "7163.00",
+            "price_24h_pcnt": "0.009353",
+            "high_price_24h": "7267.50",
+            "low_price_24h": "7067.00",
+            "prev_price_1h": "7209.50",
+            "price_1h_pcnt": "0.002843",
+            "mark_price": "7230.31",
+            "index_price": "7230.14",
+            "open_interest": 117860186,
+            "open_value": "16157.26",
+            "total_turnover": "3412874.21",
+            "turnover_24h": "10864.63",
+            "total_volume": 28291403954,
+            "volume_24h": 78053288,
+            "funding_rate": "0.0001",
+            "predicted_funding_rate": "0.0001",
+            "next_funding_time": "2019-12-28T00:00:00Z",
+            "countdown_hour": 2
+          }
+]
+```
+
+### Description
+Bybit funding rate has a frequency of 8 hours and data time range is from 2019-12-11 20:03:05 till now. Collectors are continously runing in two hosts.
+### Tag Vlaues 
+No tag values. symbols are BTCUSD, ETHUSD, EOSUSD, XRPUSD
+
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | default database timestamp
+ask_price              |string|
+bid_price              |string|
+countdown_hour         |integer|
+current_snapshot       |string|
+funding_rate           |string|
+high_price_24h         |string|
+index_price            |string|
+last_price             |string|
+last_tick_direction    |string|
+low_price_24h          |string|
+mark_price             |string|
+next_funding_time      |string|
+open_interest          |integer|
+open_value             |string|
+predicted_funding_rate |string|
+prev_price_1h          |string|
+prev_price_24h         |string|
+price_1h_pcnt          |string|
+price_24h_pcnt         |string|
+symbol                 |string|
+total_turnover         |string|
+total_volume           |integer|
+turnover_24h           |string|
+volume_24h             |integer|
+symbol | string |
+
+### Data Sanity
+No downtime.
+
+### API Reference
+
+`GET https://api2.bybit.com/v2/public/tickers`
+
+### API Query Parameters
+parameter | Type | Required | Description | 
+-------------- | ---- | ---------- | -------- | 
+symbol | string | True | Contract Type |
+
+
+### API Return Schema
+No information.
+
 
 
 # Coinbase
