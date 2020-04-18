@@ -1041,18 +1041,16 @@ end | string | yes | Millisecond end time
 sort | string | yes | If = 1 it sorts results returned with old > new
 
 ### API Return Schema
-Fields | Type	|Description
--------｜----｜----------｜
-ID	| int	| ID of the trade
-MTS	| int	| millisecond time stamp
-±AMOUNT	| float	| How much was bought (positive) or sold (negative).
-PRICE	| float	| Price at which the trade was executed (trading tickers only)
-RATE	| float	| Rate at which funding transaction occurred (funding tickers only)
-PERIOD	|int	| Amount of time the funding transaction was for (funding tickers only)
-
+Fields	|Type	|Description
+--------| ----| ----------|
+ID	|int	|ID of the trade
+MTS	|int	|millisecond time stamp
+±AMOUNT	|float	|How much was bought (positive) or sold (negative).
+PRICE	|float	|Price at which the trade was executed (trading tickers only)
+RATE	|float	|Rate at which funding transaction occurred (funding tickers only)
+PERIOD	|int	|Amount of time the funding transaction was for (funding tickers only)
 
 ## Bitfinex Leaderboard
-
 ```sql
 -- fetch leaderboard by symbol and type
 select * from bitfinex_leaderboard where symbol = `1w:tGlobal:USD` and type = "unrealized_profit_period_delta"
@@ -1079,7 +1077,7 @@ select * from bitfinex_leaderboard where symbol = `1w:tGlobal:USD` and type = "u
 ```
 
 ### Description
-[Bitfinex leaderboard](https://docs.bitfinex.com/reference#rest-public-rankings) has a frequency of 1 minute and data time range is from 2020-04-01 00:00:00 till now. Collectors are continously runing in two hosts.
+[Bitfinex leaderboard](https://leaderboard.bitfinex.com/) has a frequency of 1 minute and data time range is from 2020-04-01 00:00:00 till now. Collectors are continously runing in two hosts.
 
 ### Data Schema
 fieldName | fieldType | description
@@ -1112,13 +1110,13 @@ Key | Available Time Frames | Available Symbols
 "vol" - (Volume) | "3h", "1w", "1M" | Trading Pairs (e.g. tBTCUSD, tETHUSD) tGLOBAL:USD
 
 ### API Return Schema
-Fields	| Type	| Description
--------｜------- ｜--------- ｜
-MTS	| int	| millisecond timestamp
-USERNAME	| string	| Username
-RANKING	| int	| Place on leaderboard
-VALUE	| float	| Value of volume, unrealized profit, or realized profit
-TWITTER_HANDLE | string	| Shows the user's Twitter handle (if available)
+Fields	|Type	|Description
+--------| ----| ----------|
+MTS	|int	|millisecond timestamp
+USERNAME	|string	|Username
+RANKING	|int	|Place on leaderboard
+VALUE	|float	|Value of volume, unrealized profit, or realized profit
+TWITTER_HANDLE	|string	|Shows the user's Twitter handle (if available)
 
 
 
