@@ -2754,13 +2754,11 @@ Trade data may have some gaps in the past but api can fetch all historical, so w
    </span><span class="s2">"size"</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span><span class="w">
    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XRPZ19"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sell"</span><span class="p">,</span><span class="w">
-
-
  </span><span class="p">}</span><span class="w">
 
 </span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='description-15'>Description</h3>
-<p><a href="https://leaderboard.bitfinex.com/">Bitmex full orderbook</a> has a variety of frequencies, including 3 hours, 1 week, 1 month. And data time range is from 2020-04-01 00:00:00 till now. Collectors are continously runing in two hosts.</p>
+<p><a href="https://www.bitmex.com/api/explorer/#!/OrderBook/OrderBook_getL2">Bitmex full orderbook</a> has a frequency of 30 seconds for XBT symbols and has a frequency of 1 minute for other symbols. And data time range is from 2020-04-01 00:00:00 till now. Collectors are continously runing in two hosts.</p>
 <h3 id='data-schema-15'>Data Schema</h3>
 <table><thead>
 <tr>
@@ -2806,9 +2804,7 @@ Trade data may have some gaps in the past but api can fetch all historical, so w
 </tr>
 </tbody></table>
 <h3 id='tag-vlaues-13'>Tag Vlaues</h3>
-<p><strong>Symbols (time:ticker)</strong>: 3h:tGLOBAL:USD, 3h:tBTCUSD, 3h:tBTCF0:USTF0, 3h:tBTCUST, 3h:tBTCEUR, 3h:tLEOUSD, 3h:tETHUSD, 3h:tETHF0:USTF0, 3h:tETHUST, 3h:tEOSUSD, 3h:tLTCUSD, 3h:tETCUSD, 1w:tGLOBAL:USD, 1w:tGLOBAL:CHZ, 1M:tGLOBAL:USD</p>
-
-<p><strong>type</strong>: unrealized_profit_period_delta, unrealized_profit_inception, realized_profit, volume</p>
+<p><strong>Symbols</strong>: ADAH20, ADAM20, ADAZ19, BCHH20, BCHM20, BCHZ19, EOSH20, EOSM20, EOSZ19, ETHH20, ETHM20, ETHUSD, ETHZ19. LTCH20, LTCM20, LTCZ19, TRXH20, TRXM20, TRXZ19, XBT7D_D95, XBT7D_U105, XBTH20, XBTM20, XBTU20, XBTUSD, XBTZ19, XRPH20, XRPM20, XRPU20, XRPZ19</p>
 <h3 id='data-sanity-15'>Data Sanity</h3>
 <p>No downtime.</p>
 <h3 id='api-reference-9'>API Reference</h3>
@@ -2816,66 +2812,24 @@ Trade data may have some gaps in the past but api can fetch all historical, so w
 <h3 id='api-query-parameters-15'>API Query Parameters</h3>
 <table><thead>
 <tr>
-<th>Key</th>
-<th>Available Time Frames</th>
-<th>Available Symbols</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>&quot;plu_diff&quot; - (Unrealised Profit (Period Delta))</td>
-<td>&quot;1w&quot;, &quot;1M&quot;</td>
-<td>tGLOBAL:USD</td>
-</tr>
-<tr>
-<td>&quot;plu&quot; - (Unrealised Profit (Inception))</td>
-<td>&quot;3h&quot; - for specific pairs &quot;1w&quot;, &quot;1M&quot; - for tGLOBAL:USD</td>
-<td>Trading Pairs (e.g. tBTCUSD, tETHUSD tGLOBAL:USD</td>
-</tr>
-<tr>
-<td>&quot;plr&quot; - (Realized Profit)</td>
-<td>&quot;1w&quot;, &quot;1M&quot;</td>
-<td>tGLOBAL:USD</td>
-</tr>
-<tr>
-<td>&quot;vol&quot; - (Volume)</td>
-<td>&quot;3h&quot;, &quot;1w&quot;, &quot;1M&quot;</td>
-<td>Trading Pairs (e.g. tBTCUSD, tETHUSD) tGLOBAL:USD</td>
-</tr>
-</tbody></table>
-<h3 id='api-return-schema-11'>API Return Schema</h3>
-<table><thead>
-<tr>
-<th>Fields</th>
+<th>Name</th>
 <th>Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>MTS</td>
-<td>int</td>
-<td>millisecond timestamp</td>
-</tr>
-<tr>
-<td>USERNAME</td>
+<td>symbol</td>
 <td>string</td>
-<td>Username</td>
+<td>Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.</td>
 </tr>
 <tr>
-<td>RANKING</td>
-<td>int</td>
-<td>Place on leaderboard</td>
-</tr>
-<tr>
-<td>VALUE</td>
-<td>float</td>
-<td>Value of volume, unrealized profit, or realized profit</td>
-</tr>
-<tr>
-<td>TWITTER_HANDLE</td>
-<td>string</td>
-<td>Shows the user&#39;s Twitter handle (if available)</td>
+<td>depth</td>
+<td>double</td>
+<td>Orderbook depth per side. Send 0 for full depth.</td>
 </tr>
 </tbody></table>
+<h3 id='api-return-schema-11'>API Return Schema</h3>
+<p>No Information.</p>
 <h2 id='bitmex-funding'>Bitmex Funding</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch data</span>
 <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">bitmex_funding</span>
 </code></pre>
@@ -2885,15 +2839,11 @@ Trade data may have some gaps in the past but api can fetch all historical, so w
 <pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
 
  </span><span class="p">{</span><span class="w">
-   </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-11-21 17:40:53.056972"</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"snapshot_time"</span><span class="p">:</span><span class="s2">"2019-11-21 17:40:53.188963"</span><span class="w">
-   </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">34699996624</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.00003376</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"size"</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XRPZ19"</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sell"</span><span class="p">,</span><span class="w">
-
-
+   </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-04 04:00:00"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"fundingInterval"</span><span class="p">:</span><span class="s2">"2000-01-01T08:00:00.000Z"</span><span class="w">
+   </span><span class="s2">"fundingRate"</span><span class="p">:</span><span class="mf">-0.0016619999999999998</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"fundingRateDaily"</span><span class="p">:</span><span class="w"> </span><span class="mf">-0.004985999999999999</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETHXBT"</span><span class="w">
  </span><span class="p">}</span><span class="w">
 
 </span><span class="p">]</span><span class="w">
@@ -2930,6 +2880,11 @@ Trade data may have some gaps in the past but api can fetch all historical, so w
 <tr>
 <td>fundingRateDaily</td>
 <td>float</td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
 <td></td>
 </tr>
 </tbody></table>
