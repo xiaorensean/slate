@@ -2538,12 +2538,12 @@ Trade data may have some gaps in the past but api can fetch all historical, so w
 <h3 id='api-return-schema-9'>API Return Schema</h3>
 <p>Fields | Type   |Description
 -------｜----｜----------｜
-ID  |int    |ID of the trade
-MTS |int    |millisecond time stamp
-±AMOUNT    |float  |How much was bought (positive) or sold (negative).
-PRICE   |float  |Price at which the trade was executed (trading tickers only)
-RATE    |float  |Rate at which funding transaction occurred (funding tickers only)
-PERIOD  |int    |Amount of time the funding transaction was for (funding tickers only)</p>
+ID  | int   | ID of the trade
+MTS | int   | millisecond time stamp
+±AMOUNT    | float | How much was bought (positive) or sold (negative).
+PRICE   | float | Price at which the trade was executed (trading tickers only)
+RATE    | float | Rate at which funding transaction occurred (funding tickers only)
+PERIOD  |int    | Amount of time the funding transaction was for (funding tickers only)</p>
 <h2 id='bitfinex-leaderboard'>Bitfinex Leaderboard</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch leaderboard by symbol and type</span>
 <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">bitfinex_leaderboard</span> <span class="k">where</span> <span class="n">symbol</span> <span class="o">=</span> <span class="nv">`1w:tGlobal:USD`</span> <span class="k">and</span> <span class="k">type</span> <span class="o">=</span> <span class="nv">"unrealized_profit_period_delta"</span>
 </code></pre>
@@ -2647,10 +2647,10 @@ PERIOD  |int    |Amount of time the funding transaction was for (funding tickers
 <p>Fields  | Type  | Description
 -------｜------- ｜--------- ｜
 MTS | int   | millisecond timestamp
-USERNAME    | string    |Username
+USERNAME    | string    | Username
 RANKING | int   | Place on leaderboard
 VALUE   | float | Value of volume, unrealized profit, or realized profit
-TWITTER_HANDLE  | string    |Shows the user&#39;s Twitter handle (if available)</p>
+TWITTER_HANDLE | string | Shows the user&#39;s Twitter handle (if available)</p>
 <h1 id='bitmex'>Bitmex</h1><h1 id='bigone'>BigOne</h1>
 <p><a href="https://big.one/">BigOne exchange</a> is a cryptocurrency exchange with <a href="https://open.big.one/docs/api.html">api documents</a> </p>
 <h2 id='bigone-trade'>BigOne Trade</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch trades</span>
