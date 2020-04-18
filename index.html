@@ -2536,14 +2536,44 @@ Trade data may have some gaps in the past but api can fetch all historical, so w
 </tr>
 </tbody></table>
 <h3 id='api-return-schema-9'>API Return Schema</h3>
-<p>Fields | Type   |Description
--------｜----｜----------｜
-ID  | int   | ID of the trade
-MTS | int   | millisecond time stamp
-±AMOUNT    | float | How much was bought (positive) or sold (negative).
-PRICE   | float | Price at which the trade was executed (trading tickers only)
-RATE    | float | Rate at which funding transaction occurred (funding tickers only)
-PERIOD  |int    | Amount of time the funding transaction was for (funding tickers only)</p>
+<table><thead>
+<tr>
+<th>Fields</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>int</td>
+<td>ID of the trade</td>
+</tr>
+<tr>
+<td>MTS</td>
+<td>int</td>
+<td>millisecond time stamp</td>
+</tr>
+<tr>
+<td>±AMOUNT</td>
+<td>float</td>
+<td>How much was bought (positive) or sold (negative).</td>
+</tr>
+<tr>
+<td>PRICE</td>
+<td>float</td>
+<td>Price at which the trade was executed (trading tickers only)</td>
+</tr>
+<tr>
+<td>RATE</td>
+<td>float</td>
+<td>Rate at which funding transaction occurred (funding tickers only)</td>
+</tr>
+<tr>
+<td>PERIOD</td>
+<td>int</td>
+<td>Amount of time the funding transaction was for (funding tickers only)</td>
+</tr>
+</tbody></table>
 <h2 id='bitfinex-leaderboard'>Bitfinex Leaderboard</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch leaderboard by symbol and type</span>
 <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">bitfinex_leaderboard</span> <span class="k">where</span> <span class="n">symbol</span> <span class="o">=</span> <span class="nv">`1w:tGlobal:USD`</span> <span class="k">and</span> <span class="k">type</span> <span class="o">=</span> <span class="nv">"unrealized_profit_period_delta"</span>
 </code></pre>
@@ -2566,7 +2596,7 @@ PERIOD  |int    | Amount of time the funding transaction was for (funding ticker
 
 </span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='description-14'>Description</h3>
-<p><a href="https://docs.bitfinex.com/reference#rest-public-rankings">Bitfinex leaderboard</a> has a frequency of 1 minute and data time range is from 2020-04-01 00:00:00 till now. Collectors are continously runing in two hosts.</p>
+<p><a href="https://leaderboard.bitfinex.com/">Bitfinex leaderboard</a> has a frequency of 1 minute and data time range is from 2020-04-01 00:00:00 till now. Collectors are continously runing in two hosts.</p>
 <h3 id='data-schema-14'>Data Schema</h3>
 <table><thead>
 <tr>
@@ -2644,13 +2674,39 @@ PERIOD  |int    | Amount of time the funding transaction was for (funding ticker
 </tr>
 </tbody></table>
 <h3 id='api-return-schema-10'>API Return Schema</h3>
-<p>Fields  | Type  | Description
--------｜------- ｜--------- ｜
-MTS | int   | millisecond timestamp
-USERNAME    | string    | Username
-RANKING | int   | Place on leaderboard
-VALUE   | float | Value of volume, unrealized profit, or realized profit
-TWITTER_HANDLE | string | Shows the user&#39;s Twitter handle (if available)</p>
+<table><thead>
+<tr>
+<th>Fields</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>MTS</td>
+<td>int</td>
+<td>millisecond timestamp</td>
+</tr>
+<tr>
+<td>USERNAME</td>
+<td>string</td>
+<td>Username</td>
+</tr>
+<tr>
+<td>RANKING</td>
+<td>int</td>
+<td>Place on leaderboard</td>
+</tr>
+<tr>
+<td>VALUE</td>
+<td>float</td>
+<td>Value of volume, unrealized profit, or realized profit</td>
+</tr>
+<tr>
+<td>TWITTER_HANDLE</td>
+<td>string</td>
+<td>Shows the user&#39;s Twitter handle (if available)</td>
+</tr>
+</tbody></table>
 <h1 id='bitmex'>Bitmex</h1><h1 id='bigone'>BigOne</h1>
 <p><a href="https://big.one/">BigOne exchange</a> is a cryptocurrency exchange with <a href="https://open.big.one/docs/api.html">api documents</a> </p>
 <h2 id='bigone-trade'>BigOne Trade</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch trades</span>
