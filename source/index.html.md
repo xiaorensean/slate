@@ -1163,7 +1163,7 @@ price | float | tag values
 side | string | "Buy/Sell"
 
 ### Tag Vlaues 
-**Symbols**: ADAH20, ADAM20, ADAZ19, BCHH20, BCHM20, BCHZ19, EOSH20, EOSM20, EOSZ19, ETHH20, ETHM20, ETHUSD, ETHZ19. LTCH20, LTCM20, LTCZ19, TRXH20, TRXM20, TRXZ19, XBT7D_D95, XBT7D_U105, XBTH20, XBTM20, XBTU20, XBTUSD, XBTZ19, XRPH20, XRPM20, XRPU20, XRPZ19
+**Symbols**: ADAH20, ADAM20, ADAZ19, BCHH20, BCHM20, BCHZ19, EOSH20, EOSM20, EOSZ19, ETHH20, ETHM20, ETHUSD, ETHZ19. LTCH20, LTCM20, LTCZ19, TRXH20, TRXM20, TRXZ19, XBT7D_D95, XBT7D_U105, XBTH20, XBTM20, XBTU20, XBTUSD, XBTZ19, XRPH20, XRPM20, XRPUSD, XRPZ19
 
 ### Data Sanity
 No downtime.
@@ -1184,8 +1184,8 @@ No Information.
 ## Bitmex Funding 
 ```sql
 -- fetch data
-select * from bitmex_funding
-```
+select * from bitmex_funding where symbol = 'ETHXBT'
+``` 
 
 > response
 
@@ -1204,51 +1204,41 @@ select * from bitmex_funding
 ```
 
 ### Description
-[Bitmex funding](https://leaderboard.bitfinex.com/) has a variety of frequencies, including 3 hours, 1 week, 1 month. And data time range is from 2020-04-01 00:00:00 till now. Collectors are continously runing in two hosts.
+[Bitmex funding](https://www.bitmex.com/app/wsAPI) is connected through webscoket so it is real-time update. And data time range is from 2016-11-04 04:00:00 till now. Collectors are continously runing in two hosts.
 
 ### Data Schema
 fieldName | fieldType | description
 --------- | --------- | ---------- |
 time | string | default database timestamp
-snapshot_time | float | data timestamp
 fundingInterval  |string |
 fundingRate      |float |
 fundingRateDaily |float |
 symbol | string |
 
 ### Tag Vlaues 
-**Symbols (time:ticker)**: 3h:tGLOBAL:USD, 3h:tBTCUSD, 3h:tBTCF0:USTF0, 3h:tBTCUST, 3h:tBTCEUR, 3h:tLEOUSD, 3h:tETHUSD, 3h:tETHF0:USTF0, 3h:tETHUST, 3h:tEOSUSD, 3h:tLTCUSD, 3h:tETCUSD, 1w:tGLOBAL:USD, 1w:tGLOBAL:CHZ, 1M:tGLOBAL:USD
-
-**type**: unrealized_profit_period_delta, unrealized_profit_inception, realized_profit, volume
+**Symbols (time:ticker)**: XBTUSD, ETHUSD, ETHXBT, FCTXBT, LSKXBT, LTCXBT, XRPUSD
 
 ### Data Sanity
 No downtime.
 
 ### API Reference
 
-`GET https://www.bitmex.com/api/v1/orderBook/L2?symbol={Symbol}&depth={Depth}`
+`Websocket wss://www.bitmex.com/realtime?subscribe=funding`
 
 ### API Query Parameters
-Key | Available Time Frames | Available Symbols 
----- | ------------------ | ------------------
-"plu_diff" - (Unrealised Profit (Period Delta)) | "1w", "1M" | tGLOBAL:USD
-"plu" - (Unrealised Profit (Inception)) |  "3h" - for specific pairs "1w", "1M" - for tGLOBAL:USD | Trading Pairs (e.g. tBTCUSD, tETHUSD tGLOBAL:USD
-"plr" - (Realized Profit) | "1w", "1M" | tGLOBAL:USD
-"vol" - (Volume) | "3h", "1w", "1M" | Trading Pairs (e.g. tBTCUSD, tETHUSD) tGLOBAL:USD
+Name | Type | Description
+-----| ----- | --------- |
+symbol | string | Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.
+
 
 ### API Return Schema
-Fields	|Type	|Description
---------| ----| ----------|
-MTS	|int	|millisecond timestamp
-USERNAME	|string	|Username
-RANKING	|int	|Place on leaderboard
-VALUE	|float	|Value of volume, unrealized profit, or realized profit
-TWITTER_HANDLE	|string	|Shows the user's Twitter handle (if available)
+No information.
+
 
 ## Bitmex Funding Rate
 ```sql
 -- fetch data
-select * from bitmex_funding_rate
+select * from bitmex_funding_rates where symbol = 'XBTUSD'
 ```
 
 > response
@@ -1257,69 +1247,56 @@ select * from bitmex_funding_rate
 [
 
  {
-   "time": "2019-11-21 17:40:53.056972",
-   "snapshot_time":"2019-11-21 17:40:53.188963"
-   "id":34699996624,
-   "price": 0.00003376,
-   "size":100,
-   "symbol": "XRPZ19",
-   "side": "Sell",
-   
-   
+   "time": "2016-11-04 04:00:00",
+   "fundingInterval":"2000-01-01T08:00:00.000Z"
+   "fundingRate":0.00016619999999999998,
+   "fundingRateDaily": 0.0004985999999999999,
+   "indicativeFundingRate": None,
+   "timestamp": None,
+   "symbol": "XBTUSD"
  }
 
 ]
 ```
 
 ### Description
-[Bitmex funding rate](https://leaderboard.bitfinex.com/) has a variety of frequencies, including 3 hours, 1 week, 1 month. And data time range is from 2020-04-01 00:00:00 till now. Collectors are continously runing in two hosts.
+[Bitmex funding rate](https://www.bitmex.com/app/fundingHistory) has a frequency of 8 hours. And data time range is from 2016-05-04 12:00:00 till now. Collectors are continously runing in two hosts.
 
 ### Data Schema
 fieldName | fieldType | description
 --------- | --------- | ---------- |
 time | string | default database timestamp
-snapshot_time | float | data timestamp
 fundingInterval       |string|
 fundingRate           |float|
 fundingRateDaily      |float|
 indicativeFundingRate |float|
 timestamp             |string|
+symbol | string | tag values
 
 
 ### Tag Vlaues 
-**Symbols (time:ticker)**: 3h:tGLOBAL:USD, 3h:tBTCUSD, 3h:tBTCF0:USTF0, 3h:tBTCUST, 3h:tBTCEUR, 3h:tLEOUSD, 3h:tETHUSD, 3h:tETHF0:USTF0, 3h:tETHUST, 3h:tEOSUSD, 3h:tLTCUSD, 3h:tETCUSD, 1w:tGLOBAL:USD, 1w:tGLOBAL:CHZ, 1M:tGLOBAL:USD
+**Symbols (time:ticker)**: XBTUSD, ETHUSD, ETHXBT, FCTXBT, LSKXBT, LTCXBT, XRPUSD
 
-**type**: unrealized_profit_period_delta, unrealized_profit_inception, realized_profit, volume
 
 ### Data Sanity
 No downtime.
 
 ### API Reference
-
-`GET https://www.bitmex.com/api/v1/orderBook/L2?symbol={Symbol}&depth={Depth}`
+`GET https://www.bitmex.com/api/v1/funding?reverse=True`
 
 ### API Query Parameters
-Key | Available Time Frames | Available Symbols 
----- | ------------------ | ------------------
-"plu_diff" - (Unrealised Profit (Period Delta)) | "1w", "1M" | tGLOBAL:USD
-"plu" - (Unrealised Profit (Inception)) |  "3h" - for specific pairs "1w", "1M" - for tGLOBAL:USD | Trading Pairs (e.g. tBTCUSD, tETHUSD tGLOBAL:USD
-"plr" - (Realized Profit) | "1w", "1M" | tGLOBAL:USD
-"vol" - (Volume) | "3h", "1w", "1M" | Trading Pairs (e.g. tBTCUSD, tETHUSD) tGLOBAL:USD
+Name | Type | Description
+-----| ----- | --------- |
+symbol | string | Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.
 
 ### API Return Schema
-Fields	|Type	|Description
---------| ----| ----------|
-MTS	|int	|millisecond timestamp
-USERNAME	|string	|Username
-RANKING	|int	|Place on leaderboard
-VALUE	|float	|Value of volume, unrealized profit, or realized profit
-TWITTER_HANDLE	|string	|Shows the user's Twitter handle (if available)
+No information.
 
 
 ## Bitmex Instrument
 ```sql
 -- fetch data
-select * from bitmex_instrument
+select * from bitmex_instrument where symbol = 'XRPUSD'
 ```
 
 > response
@@ -1328,28 +1305,119 @@ select * from bitmex_instrument
 [
 
  {
-   "time": "2019-11-21 17:40:53.056972",
-   "snapshot_time":"2019-11-21 17:40:53.188963"
-   "id":34699996624,
-   "price": 0.00003376,
-   "size":100,
-   "symbol": "XRPZ19",
-   "side": "Sell",
-   
-   
- }
-
+    "symbol": "XRPUSD",
+    "rootSymbol": "string",
+    "state": "string",
+    "typ": "string",
+    "listing": "2020-04-18T20:55:42.795Z",
+    "front": "2020-04-18T20:55:42.795Z",
+    "expiry": "2020-04-18T20:55:42.795Z",
+    "settle": "2020-04-18T20:55:42.795Z",
+    "relistInterval": "2020-04-18T20:55:42.795Z",
+    "inverseLeg": "string",
+    "sellLeg": "string",
+    "buyLeg": "string",
+    "optionStrikePcnt": 0,
+    "optionStrikeRound": 0,
+    "optionStrikePrice": 0,
+    "optionMultiplier": 0,
+    "positionCurrency": "string",
+    "underlying": "string",
+    "quoteCurrency": "string",
+    "underlyingSymbol": "string",
+    "reference": "string",
+    "referenceSymbol": "string",
+    "calcInterval": "2020-04-18T20:55:42.795Z",
+    "publishInterval": "2020-04-18T20:55:42.795Z",
+    "publishTime": "2020-04-18T20:55:42.795Z",
+    "maxOrderQty": 0,
+    "maxPrice": 0,
+    "lotSize": 0,
+    "tickSize": 0,
+    "multiplier": 0,
+    "settlCurrency": "string",
+    "underlyingToPositionMultiplier": 0,
+    "underlyingToSettleMultiplier": 0,
+    "quoteToSettleMultiplier": 0,
+    "isQuanto": true,
+    "isInverse": true,
+    "initMargin": 0,
+    "maintMargin": 0,
+    "riskLimit": 0,
+    "riskStep": 0,
+    "limit": 0,
+    "capped": true,
+    "taxed": true,
+    "deleverage": true,
+    "makerFee": 0,
+    "takerFee": 0,
+    "settlementFee": 0,
+    "insuranceFee": 0,
+    "fundingBaseSymbol": "string",
+    "fundingQuoteSymbol": "string",
+    "fundingPremiumSymbol": "string",
+    "fundingTimestamp": "2020-04-18T20:55:42.795Z",
+    "fundingInterval": "2020-04-18T20:55:42.795Z",
+    "fundingRate": 0,
+    "indicativeFundingRate": 0,
+    "rebalanceTimestamp": "2020-04-18T20:55:42.795Z",
+    "rebalanceInterval": "2020-04-18T20:55:42.795Z",
+    "openingTimestamp": "2020-04-18T20:55:42.795Z",
+    "closingTimestamp": "2020-04-18T20:55:42.795Z",
+    "sessionInterval": "2020-04-18T20:55:42.795Z",
+    "prevClosePrice": 0,
+    "limitDownPrice": 0,
+    "limitUpPrice": 0,
+    "bankruptLimitDownPrice": 0,
+    "bankruptLimitUpPrice": 0,
+    "prevTotalVolume": 0,
+    "totalVolume": 0,
+    "volume": 0,
+    "volume24h": 0,
+    "prevTotalTurnover": 0,
+    "totalTurnover": 0,
+    "turnover": 0,
+    "turnover24h": 0,
+    "homeNotional24h": 0,
+    "foreignNotional24h": 0,
+    "prevPrice24h": 0,
+    "vwap": 0,
+    "highPrice": 0,
+    "lowPrice": 0,
+    "lastPrice": 0,
+    "lastPriceProtected": 0,
+    "lastTickDirection": "string",
+    "lastChangePcnt": 0,
+    "bidPrice": 0,
+    "midPrice": 0,
+    "askPrice": 0,
+    "impactBidPrice": 0,
+    "impactMidPrice": 0,
+    "impactAskPrice": 0,
+    "hasLiquidity": true,
+    "openInterest": 0,
+    "openValue": 0,
+    "fairMethod": "string",
+    "fairBasisRate": 0,
+    "fairBasis": 0,
+    "fairPrice": 0,
+    "markMethod": "string",
+    "markPrice": 0,
+    "indicativeTaxRate": 0,
+    "indicativeSettlePrice": 0,
+    "optionUnderlyingPrice": 0,
+    "settledPrice": 0,
+    "timestamp": "2020-04-18T20:55:42.796Z"
 ]
 ```
 
 ### Description
-[Bitmex full orderbook](https://leaderboard.bitfinex.com/) has a variety of frequencies, including 3 hours, 1 week, 1 month. And data time range is from 2020-04-01 00:00:00 till now. Collectors are continously runing in two hosts.
+[Bitmex instrument](https://www.bitmex.com/app/wsAPI) is connected through webscoket so it is real-time update. And data time range is from 2019-07-11 04:00:00 till now. Collectors are continously runing in two hosts.
 
 ### Data Schema
 fieldName | fieldType | description
 --------- | --------- | ---------- |
 time | string | default database timestamp
-snapshot_time | float | data timestamp
 askPrice                       |float|
 bidPrice                       |float|
 calcInterval                   |string|
@@ -1444,44 +1512,32 @@ underlyingToSettleMultiplier   |float|
 volume                         |float|
 volume24h                      |float|
 vwap                           |float|
+symbol | string | tag values
 
 
 
 ### Tag Vlaues 
-**Symbols (time:ticker)**: 3h:tGLOBAL:USD, 3h:tBTCUSD, 3h:tBTCF0:USTF0, 3h:tBTCUST, 3h:tBTCEUR, 3h:tLEOUSD, 3h:tETHUSD, 3h:tETHF0:USTF0, 3h:tETHUST, 3h:tEOSUSD, 3h:tLTCUSD, 3h:tETCUSD, 1w:tGLOBAL:USD, 1w:tGLOBAL:CHZ, 1M:tGLOBAL:USD
-
-**type**: unrealized_profit_period_delta, unrealized_profit_inception, realized_profit, volume
+**Symbols (time:ticker)**: .BADAXBT, .BADAXBT30M, .BADAXBT_NEXT, .BBCHXBT, .BBCHXBT30M, .BBCHXBT_NEXT, .BEOSXBT, .BEOSXBT30M, .BEOSXBT_NEXT, .BETH, .BETH30M, .BETHXBT, .BETHXBT_NEXT, .BETHXBT30M, .BETHXBT_NEXT, .BLTCXBT, .BLTCXBT30M, .BLTCXBT_NEXT, .BTRXXBT, .BTRXXBT30M, .BTRXXBT_NEXT, .BVOL, .BVOL24H, .BVOL7D,  .BXBT, .BXBT_NEXT,.BXBT30M, .BXBTJPY, .BXBTJPY30M, .BXRP, .BXRPXBT, .BXRP30M, .BXRP_NEXT, .BXRPXBT30M, .BXRPXBT_NEXT, .ETHBON, .ETHBON2H, .ETHBON8H,  .ETHUSDPI,  .ETHUSDPI2H, .ETHUSDPI8H, .EVOL7D, .TRXXBT, .TRXXBT30M, .USDBON, .USDBON2H, .USDBON8H, .XBT, .XBTBON, .XBTBON2H, .XBTBON8H, .XBTJPY, .XBTJPY30M, .XBTUSDPI, .XBTUSDPI2H, .XBTUSDPI8H, .XRPBON, .XRPBON2H, .XRPBON8H, .XRPUSDPI, .XRPUSDPI2H, .XRPUSDPI8H, ADAH20, ADAM20, ADAU19, ADAZ19, BCHH20, BCHM20, BCHZ19, BCHU20, EOSH20, EOSM20, EOSU19, EOSZ19, ETHH20, ETHM20, ETHUSD, ETHU19, ETHZ19. LTCH20, LTCM20, LTCZ19, LTCU19, TRXH20, TRXM20, TRXZ19,TRXU19,  XBT7D_D95, XBT7D_U105, XBTH20, XBTM20, XBTU20, XBTUSD, XBTZ19, XBTU19, XRPH20, XRPM20, XRPU19, XRPUSD, XRPZ19
 
 ### Data Sanity
 No downtime.
 
 ### API Reference
-
-`GET https://www.bitmex.com/api/v1/orderBook/L2?symbol={Symbol}&depth={Depth}`
+`Websocket wss://www.bitmex.com/realtime?subscribe=instrument`
 
 ### API Query Parameters
-Key | Available Time Frames | Available Symbols 
----- | ------------------ | ------------------
-"plu_diff" - (Unrealised Profit (Period Delta)) | "1w", "1M" | tGLOBAL:USD
-"plu" - (Unrealised Profit (Inception)) |  "3h" - for specific pairs "1w", "1M" - for tGLOBAL:USD | Trading Pairs (e.g. tBTCUSD, tETHUSD tGLOBAL:USD
-"plr" - (Realized Profit) | "1w", "1M" | tGLOBAL:USD
-"vol" - (Volume) | "3h", "1w", "1M" | Trading Pairs (e.g. tBTCUSD, tETHUSD) tGLOBAL:USD
+Name | Type | Description
+-----| ----- | --------- |
+symbol | string | Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.
 
 ### API Return Schema
-Fields	|Type	|Description
---------| ----| ----------|
-MTS	|int	|millisecond timestamp
-USERNAME	|string	|Username
-RANKING	|int	|Place on leaderboard
-VALUE	|float	|Value of volume, unrealized profit, or realized profit
-TWITTER_HANDLE	|string	|Shows the user's Twitter handle (if available)
-
+No information.
 
 
 ## Bitmex Insurance
 ```sql
--- fetch leaderboard by symbol and type
-select * from bitmex_full_orderbook where symbol = 'XRPZ19'
+-- fetch data
+select * from bitmex_insurance
 ```
 
 > response
@@ -1489,68 +1545,48 @@ select * from bitmex_full_orderbook where symbol = 'XRPZ19'
 ```json
 [
 
- {
-   "time": "2019-11-21 17:40:53.056972",
-   "snapshot_time":"2019-11-21 17:40:53.188963"
-   "id":34699996624,
-   "price": 0.00003376,
-   "size":100,
-   "symbol": "XRPZ19",
-   "side": "Sell",
-   
-   
- }
+  {
+    "currency": "string",
+    "timestamp": "2020-04-18T20:55:42.859Z",
+    "walletBalance": 0
+  }
 
 ]
 ```
 
 ### Description
-[Bitmex full orderbook](https://leaderboard.bitfinex.com/) has a variety of frequencies, including 3 hours, 1 week, 1 month. And data time range is from 2020-04-01 00:00:00 till now. Collectors are continously runing in two hosts.
+[Bitmex insurance](https://www.bitmex.com/app/wsAPI) is connected through webscoket so it is real-time update. And data time range is from 2019-07-11 12:00:00 till now. Collectors are continously runing in two hosts.
 
 ### Data Schema
 fieldName | fieldType | description
 --------- | --------- | ---------- |
 time | string | default database timestamp
-snapshot_time | float | data timestamp
 currency      |string|
 walletBalance |integer|
 
-
-
-### Tag Vlaues 
-**Symbols (time:ticker)**: 3h:tGLOBAL:USD, 3h:tBTCUSD, 3h:tBTCF0:USTF0, 3h:tBTCUST, 3h:tBTCEUR, 3h:tLEOUSD, 3h:tETHUSD, 3h:tETHF0:USTF0, 3h:tETHUST, 3h:tEOSUSD, 3h:tLTCUSD, 3h:tETCUSD, 1w:tGLOBAL:USD, 1w:tGLOBAL:CHZ, 1M:tGLOBAL:USD
-
-**type**: unrealized_profit_period_delta, unrealized_profit_inception, realized_profit, volume
+### Currency 
+The ticker is only XBt. 
 
 ### Data Sanity
 No downtime.
 
 ### API Reference
-
-`GET https://www.bitmex.com/api/v1/orderBook/L2?symbol={Symbol}&depth={Depth}`
+`Websocket wss://www.bitmex.com/realtime?subscribe=insurance`
 
 ### API Query Parameters
-Key | Available Time Frames | Available Symbols 
----- | ------------------ | ------------------
-"plu_diff" - (Unrealised Profit (Period Delta)) | "1w", "1M" | tGLOBAL:USD
-"plu" - (Unrealised Profit (Inception)) |  "3h" - for specific pairs "1w", "1M" - for tGLOBAL:USD | Trading Pairs (e.g. tBTCUSD, tETHUSD tGLOBAL:USD
-"plr" - (Realized Profit) | "1w", "1M" | tGLOBAL:USD
-"vol" - (Volume) | "3h", "1w", "1M" | Trading Pairs (e.g. tBTCUSD, tETHUSD) tGLOBAL:USD
+No information.
 
 ### API Return Schema
-Fields	|Type	|Description
---------| ----| ----------|
-MTS	|int	|millisecond timestamp
-USERNAME	|string	|Username
-RANKING	|int	|Place on leaderboard
-VALUE	|float	|Value of volume, unrealized profit, or realized profit
-TWITTER_HANDLE	|string	|Shows the user's Twitter handle (if available)
+No information.
+
 
 ## Bitmex Leaderboard
-
 ```sql
--- fetch leaderboard by symbol and type
-select * from bitmex_full_orderbook where symbol = 'XRPZ19'
+-- fetch leaderboard ROE
+select * from bitmex_leaderboard_ROE 
+
+-- fetch leaderbard notional
+select * from bitmex_leaderboard_notional
 ```
 
 > response
@@ -1559,14 +1595,12 @@ select * from bitmex_full_orderbook where symbol = 'XRPZ19'
 [
 
  {
-   "time": "2019-11-21 17:40:53.056972",
-   "snapshot_time":"2019-11-21 17:40:53.188963"
-   "id":34699996624,
-   "price": 0.00003376,
-   "size":100,
-   "symbol": "XRPZ19",
-   "side": "Sell",
-   
+   "time": "2019-08-28 21:26:51.23435482",
+   "CREATION_TIME":"2019-08-28 21:26:51.333642",
+   "Rank":1,
+   "isRealName": "false",
+   "name":"Splash-Alpine-Twister",
+   "profit": 5003.43,
    
  }
 
@@ -1574,7 +1608,7 @@ select * from bitmex_full_orderbook where symbol = 'XRPZ19'
 ```
 
 ### Description
-[Bitmex full orderbook](https://leaderboard.bitfinex.com/) has a variety of frequencies, including 3 hours, 1 week, 1 month. And data time range is from 2020-04-01 00:00:00 till now. Collectors are continously runing in two hosts.
+[Bitmex leaderboard](https://leaderboard.bitfinex.com/) has a variety of frequencies, including 3 hours, 1 week, 1 month. And data time range is from 2020-04-01 00:00:00 till now. Collectors are continously runing in two hosts.
 
 ### Data Schema
 fieldName | fieldType | description
@@ -1587,40 +1621,26 @@ name          |string |
 profit        |float |
 
 
-### Tag Vlaues 
-**Symbols (time:ticker)**: 3h:tGLOBAL:USD, 3h:tBTCUSD, 3h:tBTCF0:USTF0, 3h:tBTCUST, 3h:tBTCEUR, 3h:tLEOUSD, 3h:tETHUSD, 3h:tETHF0:USTF0, 3h:tETHUST, 3h:tEOSUSD, 3h:tLTCUSD, 3h:tETCUSD, 1w:tGLOBAL:USD, 1w:tGLOBAL:CHZ, 1M:tGLOBAL:USD
-
-**type**: unrealized_profit_period_delta, unrealized_profit_inception, realized_profit, volume
-
 ### Data Sanity
 No downtime.
 
 ### API Reference
 
-`GET https://www.bitmex.com/api/v1/orderBook/L2?symbol={Symbol}&depth={Depth}`
+`GET https://www.bitmex.com/api/v1/leaderboard?method={ROE/notional}`
 
 ### API Query Parameters
-Key | Available Time Frames | Available Symbols 
----- | ------------------ | ------------------
-"plu_diff" - (Unrealised Profit (Period Delta)) | "1w", "1M" | tGLOBAL:USD
-"plu" - (Unrealised Profit (Inception)) |  "3h" - for specific pairs "1w", "1M" - for tGLOBAL:USD | Trading Pairs (e.g. tBTCUSD, tETHUSD tGLOBAL:USD
-"plr" - (Realized Profit) | "1w", "1M" | tGLOBAL:USD
-"vol" - (Volume) | "3h", "1w", "1M" | Trading Pairs (e.g. tBTCUSD, tETHUSD) tGLOBAL:USD
-
+Name | Type | Description
+-----| ----- | --------- |
+method | string | ROE or notional
+ 
 ### API Return Schema
-Fields	|Type	|Description
---------| ----| ----------|
-MTS	|int	|millisecond timestamp
-USERNAME	|string	|Username
-RANKING	|int	|Place on leaderboard
-VALUE	|float	|Value of volume, unrealized profit, or realized profit
-TWITTER_HANDLE	|string	|Shows the user's Twitter handle (if available)
+No information.
 
 
 ## Bitmex Liquidation
 ```sql
--- fetch leaderboard by symbol and type
-select * from bitmex_full_orderbook where symbol = 'XRPZ19'
+-- fetch data
+select * from bitmex_liquidation where symbol = 'EOSU19'
 ```
 
 > response
@@ -1629,14 +1649,13 @@ select * from bitmex_full_orderbook where symbol = 'XRPZ19'
 [
 
  {
-   "time": "2019-11-21 17:40:53.056972",
-   "snapshot_time":"2019-11-21 17:40:53.188963"
-   "id":34699996624,
-   "price": 0.00003376,
-   "size":100,
-   "symbol": "XRPZ19",
-   "side": "Sell",
-   
+   "time": "2019-07-11 16:10:58.158",
+   "leaveQty":50,
+   "orderID":"319014a0-4495-b06c-da64-7dee1f49945e",
+   "price":0.0004061,
+   "symbol": "EOSU19",
+   "side": "Buy",
+   ""
    
  }
 
@@ -1644,52 +1663,44 @@ select * from bitmex_full_orderbook where symbol = 'XRPZ19'
 ```
 
 ### Description
-[Bitmex full orderbook](https://leaderboard.bitfinex.com/) has a variety of frequencies, including 3 hours, 1 week, 1 month. And data time range is from 2020-04-01 00:00:00 till now. Collectors are continously runing in two hosts.
+[Bitmex liquidation](https://www.bitmex.com/app/wsAPI) is connected through webscoket so it is real-time update. And data time range is from 2019-07-11 16:10:58.158 till now. Collectors are continously runing in two hosts.
 
 ### Data Schema
 fieldName | fieldType | description
 --------- | --------- | ---------- |
 time | string | default database timestamp
-snapshot_time | float | data timestamp
 leavesQty |float|
 orderID   |string|
 price     |float|
+symbol | string | tag values
+side | string | tag values
 
 
 ### Tag Vlaues 
-**Symbols (time:ticker)**: 3h:tGLOBAL:USD, 3h:tBTCUSD, 3h:tBTCF0:USTF0, 3h:tBTCUST, 3h:tBTCEUR, 3h:tLEOUSD, 3h:tETHUSD, 3h:tETHF0:USTF0, 3h:tETHUST, 3h:tEOSUSD, 3h:tLTCUSD, 3h:tETCUSD, 1w:tGLOBAL:USD, 1w:tGLOBAL:CHZ, 1M:tGLOBAL:USD
+**Symbols**: ADAH20, ADAM20, ADAU19, ADAZ19, BCHH20, BCHM20, BCHZ19, BCHU20, EOSH20, EOSM20, EOSU19, EOSZ19, ETHH20, ETHM20, ETHUSD, ETHU19, ETHZ19. LTCH20, LTCM20, LTCZ19, LTCU19, TRXH20, TRXM20, TRXZ19,TRXU19,  XBT7D_D95, XBT7D_U105, XBTH20, XBTM20, XBTU20, XBTUSD, XBTZ19, XBTU19, XRPH20, XRPM20, XRPU19, XRPUSD, XRPZ19
 
-**type**: unrealized_profit_period_delta, unrealized_profit_inception, realized_profit, volume
+**side**: Buy, sell
 
 ### Data Sanity
 No downtime.
 
 ### API Reference
 
-`GET https://www.bitmex.com/api/v1/orderBook/L2?symbol={Symbol}&depth={Depth}`
+`Websocket wss://www.bitmex.com/realtime?subscribe=liquidation`
 
 ### API Query Parameters
-Key | Available Time Frames | Available Symbols 
----- | ------------------ | ------------------
-"plu_diff" - (Unrealised Profit (Period Delta)) | "1w", "1M" | tGLOBAL:USD
-"plu" - (Unrealised Profit (Inception)) |  "3h" - for specific pairs "1w", "1M" - for tGLOBAL:USD | Trading Pairs (e.g. tBTCUSD, tETHUSD tGLOBAL:USD
-"plr" - (Realized Profit) | "1w", "1M" | tGLOBAL:USD
-"vol" - (Volume) | "3h", "1w", "1M" | Trading Pairs (e.g. tBTCUSD, tETHUSD) tGLOBAL:USD
+Name | Type | Description
+-----| ----- | --------- |
+symbol | string | Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.
 
 ### API Return Schema
-Fields	|Type	|Description
---------| ----| ----------|
-MTS	|int	|millisecond timestamp
-USERNAME	|string	|Username
-RANKING	|int	|Place on leaderboard
-VALUE	|float	|Value of volume, unrealized profit, or realized profit
-TWITTER_HANDLE	|string	|Shows the user's Twitter handle (if available)
+No information.
 
 
 ## Bitmex Settlement
 ```sql
 -- fetch data
-select * from bitmex_settlement
+select * from bitmex_settlement where symbol = 'XBTK15'
 ```
 
 > response
@@ -1698,28 +1709,27 @@ select * from bitmex_settlement
 [
 
  {
-   "time": "2019-11-21 17:40:53.056972",
-   "snapshot_time":"2019-11-21 17:40:53.188963"
-   "id":34699996624,
-   "price": 0.00003376,
-   "size":100,
+   "time": "2015-05-29 12:00:00",
+   "bankrupt": None,
+   "optionStrikePrice": None,
+   "optionUnderlyingPrice": None,
+   "settledPrice":236.04,
+   "settlementType": "Settlement"
    "symbol": "XRPZ19",
-   "side": "Sell",
-   
-   
+   "taxBase": None,
+   "taxRate": None
  }
 
 ]
 ```
 
 ### Description
-[Bitmex settlement](https://leaderboard.bitfinex.com/) has a variety of frequencies, including 3 hours, 1 week, 1 month. And data time range is from 2020-04-01 00:00:00 till now. Collectors are continously runing in two hosts.
+[Bitmex settlement](https://www.bitmex.com/app/wsAPI) is connected through webscoket so it is real-time update And data time range is from 2015-05-29 12:00:00 till now. Collectors are continously runing in two hosts.
 
 ### Data Schema
 fieldName | fieldType | description
 --------- | --------- | ---------- |
 time | string | default database timestamp
-snapshot_time | float | data timestamp
 bankrupt              |float|
 optionStrikePrice     |float|
 optionUnderlyingPrice |float|
@@ -1727,43 +1737,33 @@ settledPrice          |float|
 settlementType        |string|
 taxBase               |float|
 taxRate               |float|
-
+symbol | string | tag values
 
 
 ### Tag Vlaues 
-**Symbols (time:ticker)**: 3h:tGLOBAL:USD, 3h:tBTCUSD, 3h:tBTCF0:USTF0, 3h:tBTCUST, 3h:tBTCEUR, 3h:tLEOUSD, 3h:tETHUSD, 3h:tETHF0:USTF0, 3h:tETHUST, 3h:tEOSUSD, 3h:tLTCUSD, 3h:tETCUSD, 1w:tGLOBAL:USD, 1w:tGLOBAL:CHZ, 1M:tGLOBAL:USD
-
-**type**: unrealized_profit_period_delta, unrealized_profit_inception, realized_profit, volume
+**Symbols**: A50G16, A50H16, A50J16, A50K16, A50M16, A50N16, A50Q16, ADAF18, ADAH18, ADAH19, ADAH20, ADAM18, ADAM19, ADAU18, ADAM18, ADAZ18, ADAZ19, BCHF18, BCHH18, BCHH19, BCHH20, BCHM18, BCHM19, BCHU18, BCHU19, BCHX17, BCHZ17, BCHZ18, BCHZ19, BFXQ16, BFXU16, BFXV16, BVOL24H, BVOL7D, B_BLOCKSZ17, B_SEGWITZ17, COIN_BH17, DAOETH, DASH7D, DASHH18, DASHJ17, DASHM17, DASHU17, DASHZ17, EOSH19, EOSH20, EOSM18, EOSM19, EOSN17, EOSU18, EOSU19, EOSZ18, EOSZ19, ETC24H, ETC7D, ETH7D, ETHH18, ETHH19, ETHH20, ETHJ17, ETHM17, ETHM18, ETHM19, ETHU17, ETHI19, ETHXBT, ETHZ17, ETHZ18, ETHZ19, FxT7D, FXCM17, FCTXBT, GNOM17, LSKXBT, LTC7D, LTCH18, LTCH19, LTCH20, LTCM18, LTCM19, LTCM20, LTCU18, LTCU19, LTCU20, LTCXBT, LTCZ18, LTCZ19, LTCZ20, NEOG18, NEOH18, QTUMU17, REP7D, SNTN17, TRXH19, TRXH20, TRXM19, TRXU18, TRXU19, TRXZ18, TRXZ19, WINZ16, XBCM17, XBCH17, XBCZ16, XBJ24H, XBJ7D, XBJM17, XBJU17, XBJZ16, XBJZ17, XBT24H, XBT48H, XBT7D, XBT7D_D90, XBT7D_D95, XBT7D_U105, XBT7D_U110, XBTH16, XBTH17, XBTH18, XBTH19, XBTH20, XBTK15, XBTM15, XBTM16, XBTM17, XBTM18, XBTM19, XBTN15, XBTQ15, XBTU15, XBTU16, XBTU17, XBTU18, XBTU19, XBTUSD, XBTV15, XBTZ15, XBTZ16, XBTZ17, XBTZ18, XBTZ19, XBU24H, XBU7D, XBUK15, XBUM15, XBUN15, XBUQ15, XBUU15, XBUZ15, XLMF18, XLMH18, XLT7D, XMR7D, XMRH18, XMRM17, XMRU17, XMRZ17, XRP7D, XRPH18, XRPH19, XRPH20, XRPM17, XRPM18, XRPM19, XRPU17, XRPU18, XRPU19, XRPZ17, XRPZ18, XRPZ19, XTZZ17, ZECH17, ZECH18, ZECM17, ZECU17, ZECZ16, ZECZ17  
 
 ### Data Sanity
 No downtime.
 
 ### API Reference
 
-`GET https://www.bitmex.com/api/v1/orderBook/L2?symbol={Symbol}&depth={Depth}`
+`Websocket wss://www.bitmex.com/realtime?subscribe=settlement`
 
 ### API Query Parameters
-Key | Available Time Frames | Available Symbols 
----- | ------------------ | ------------------
-"plu_diff" - (Unrealised Profit (Period Delta)) | "1w", "1M" | tGLOBAL:USD
-"plu" - (Unrealised Profit (Inception)) |  "3h" - for specific pairs "1w", "1M" - for tGLOBAL:USD | Trading Pairs (e.g. tBTCUSD, tETHUSD tGLOBAL:USD
-"plr" - (Realized Profit) | "1w", "1M" | tGLOBAL:USD
-"vol" - (Volume) | "3h", "1w", "1M" | Trading Pairs (e.g. tBTCUSD, tETHUSD) tGLOBAL:USD
+Name | Type | Description
+-----| ----- | --------- |
+symbol | string | Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.
 
 ### API Return Schema
-Fields	|Type	|Description
---------| ----| ----------|
-MTS	|int	|millisecond timestamp
-USERNAME	|string	|Username
-RANKING	|int	|Place on leaderboard
-VALUE	|float	|Value of volume, unrealized profit, or realized profit
-TWITTER_HANDLE	|string	|Shows the user's Twitter handle (if available)
+No information.
+
 
 ## Bitmex Trade
  
 ```sql
 -- fetch data
-select * from bitmex_trade
+select * from bitmex_trade where symbol = 'XBT7D_D95'
 ```
 
 > response
@@ -1772,28 +1772,28 @@ select * from bitmex_trade
 [
 
  {
-   "time": "2019-11-21 17:40:53.056972",
-   "snapshot_time":"2019-11-21 17:40:53.188963"
-   "id":34699996624,
-   "price": 0.00003376,
-   "size":100,
-   "symbol": "XRPZ19",
-   "side": "Sell",
-   
-   
+   "time": "2019-07-11 14:59:42.056972",
+   "foreignNotional":0.23265,
+   "grossValue":235000000,
+   "homeNotional": 23.5,
+   "official_timestamp": None,
+   "price": 0.00099,
+   "symbol": "XBT7D_D95",
+   "side": "Buy",
+   "tickDirection": "PlusTick",
+   "trdMatchID": "adffc000-d563-b5db-c9b6-a9ed3b304006"
  }
 
 ]
 ```
 
 ### Description
-[Bitmex trade](https://leaderboard.bitfinex.com/) has a variety of frequencies, including 3 hours, 1 week, 1 month. And data time range is from 2020-04-01 00:00:00 till now. Collectors are continously runing in two hosts.
+[Bitmex trade](https://www.bitmex.com/app/wsAPI) is connected through webscoket so it is real-time update. And data time range is from 2019-07-11 14:59:42.056972 till now. Collectors are continously runing in two hosts.
 
 ### Data Schema
 fieldName | fieldType | description
 --------- | --------- | ---------- |
 time | string | default database timestamp
-snapshot_time | float | data timestamp
 foreignNotional    |float|
 grossValue         |float|
 homeNotional       |float|
@@ -1802,38 +1802,28 @@ price              |float|
 size               |float|
 tickDirection      |string|
 trdMatchID         |string|
-
+symbol | string | tag values
+side | string | tag values
 
 
 ### Tag Vlaues 
-**Symbols (time:ticker)**: 3h:tGLOBAL:USD, 3h:tBTCUSD, 3h:tBTCF0:USTF0, 3h:tBTCUST, 3h:tBTCEUR, 3h:tLEOUSD, 3h:tETHUSD, 3h:tETHF0:USTF0, 3h:tETHUST, 3h:tEOSUSD, 3h:tLTCUSD, 3h:tETCUSD, 1w:tGLOBAL:USD, 1w:tGLOBAL:CHZ, 1M:tGLOBAL:USD
+**Symbols**: ADAH20, ADAM20, ADAU19, ADAZ19, BCHH20, BCHM20, BCHZ19, BCHU20, EOSH20, EOSM20, EOSU19, EOSZ19, ETHH20, ETHM20, ETHUSD, ETHU19, ETHZ19. LTCH20, LTCM20, LTCZ19, LTCU19, TRXH20, TRXM20, TRXZ19,TRXU19,  XBT7D_D95, XBT7D_U105, XBTH20, XBTM20, XBTU20, XBTUSD, XBTZ19, XBTU19, XRPH20, XRPM20, XRPU19, XRPUSD, XRPZ19
 
-**type**: unrealized_profit_period_delta, unrealized_profit_inception, realized_profit, volume
+**side**: Buy, sell
 
 ### Data Sanity
 No downtime.
 
 ### API Reference
-
-`GET https://www.bitmex.com/api/v1/orderBook/L2?symbol={Symbol}&depth={Depth}`
+`Websocket wss://www.bitmex.com/realtime?subscribe=trade`
 
 ### API Query Parameters
-Key | Available Time Frames | Available Symbols 
----- | ------------------ | ------------------
-"plu_diff" - (Unrealised Profit (Period Delta)) | "1w", "1M" | tGLOBAL:USD
-"plu" - (Unrealised Profit (Inception)) |  "3h" - for specific pairs "1w", "1M" - for tGLOBAL:USD | Trading Pairs (e.g. tBTCUSD, tETHUSD tGLOBAL:USD
-"plr" - (Realized Profit) | "1w", "1M" | tGLOBAL:USD
-"vol" - (Volume) | "3h", "1w", "1M" | Trading Pairs (e.g. tBTCUSD, tETHUSD) tGLOBAL:USD
+Name | Type | Description
+-----| ----- | --------- |
+symbol | string | Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.
 
 ### API Return Schema
-Fields	|Type	|Description
---------| ----| ----------|
-MTS	|int	|millisecond timestamp
-USERNAME	|string	|Username
-RANKING	|int	|Place on leaderboard
-VALUE	|float	|Value of volume, unrealized profit, or realized profit
-TWITTER_HANDLE	|string	|Shows the user's Twitter handle (if available)
- 
+No information
  
  
 # BigOne
