@@ -4,10 +4,6 @@ title: VQR Data Catalogue
 language_tabs: # must be one of https://git.io/vQNgJ
   - sql
 
-  
-includes:
-  - errors
-  
 search: true
 ---
 
@@ -2036,7 +2032,6 @@ No information.
 
 
 ## Bybit Funding Rate
-
 ```sql
 -- fetch funding rate
 select * from bybit_funding_rate
@@ -2204,7 +2199,82 @@ No information.
 
 # Poloniex
 
-# Wazirx
+# WazirX
+[WazirX](https://wazirx.com/) is a cryptocurrency exchange in India. The [api](https://github.com/WazirX/wazirx-api) is listed.
+
+## WazirX Tickers 
+```sql
+-- fetch data
+select * from wazirx_tickers
+```
+
+> response
+
+```json
+[
+
+ {
+   "time": "2020-04-02 17:50:00",
+   "buy":527000,
+   "high": 529536,
+   "last": 527156,
+   "low": 490000,
+   "open": 494950,
+   "sell":528000,
+   "symbol": "BTC/INR",
+   "type": "SPOT",
+   "volume": 69.6269
+ }
+
+]
+```
+
+### Description
+WazirX tickres has a frequency of 1 hour and data time range is from 2020-04-02 17:50:00 till now. Collectors are continously runing in two hosts.
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | default database timestamp
+buy      |float|
+high     |float|
+last     |float|
+low      |float|
+open     |float|
+sell     |float|
+type     |string|
+volume   |float|
+symbol | string | tag values
+
+### Tag Values
+Symbols are BTC/INR, XRP/INR, ETH/INR, USDT/INR, WRX/INR, MATIC/INR, LTC/INR, XRP/BTC, TRX/BTC, ETH/BTC, NCASH/BTC, ZIL/BTC, BAT/BTC, LTC/BTC, QKC/BTC, NPXS/BTC, DASH/BTC, FUN/BTC, GNT/BTC, IOST/BTC, NULS/BTC, OMG/BTC, POE/BTC, REQ/BTC, SNT/BTC, STORM/BTC, SUB/BTC, THETA/BTC, ZRX/BTC, EOS/BTC, ICX/BTC, HOT/BTC, POLY/BTC, PAX/BTC, USDC/BTC, XLM/BTC, BTT/BTC, FET/BTC, CELR/BTC, MATIC/BTC, ADA/BTC, RVN/BTC, XMR/BTC, ATOM/BTC, BNB/BTC, WRX/BTC, BTC/USDT, TRX/USDT, XRP/USDT, EOS/USDT, ETH/USDT, ICX/USDT, LTC/USDT, TUSD/USDT, NPXS/USDT, HOT/USDT, BANCA/USDT, BAT/USDT, DASH/USDT, NCASH/USDT, QKC/USDT, ZIL/USDT, ZRX/USDT, BCHABC/USDT, BCHSV/USDT, PAX/USDT, USDC/USDT, OMG/USDT, POLY/USDT, DENT/USDT, IOST/USDT, STORM/USDT, FUN/USDT, POE/USDT, GNT/USDT, SNT/USDT, THETA/USDT, REQ/USDT, SUB/USDT, CS/USDT, OCN/USDT, ZCO/USDT, STQ/USDT, XLM/USDT, XTZ/USDT, BTT/USDT, FET/USDT, TFUEL/USDT, CELR/USDT, MATIC/USDT, ADA/USDT, RVN/USDT, XMR/USDT, ATOM/USDT, ALGO/USDT, LINK/USDT, QTUM/USDT, ETC/USDT, IOTA/USDT, ZEC/USDT, WAVES/USDT, FTM/USDT, ENJ/USDT, LSK/USDT, STEEM/USDT, XVG/USDT, LOOM/USD, MANA/USDT, REP/USDT, FUEL/USDT, BLZ/USDT, XZC/USDT, NANO/USDT, SC/USDT, BTG/USDT, XEM/USDT, BTS/USDT, ARDR/USDT, STRAT/USDT, NAS/USDT, WIN/USDT, BNB/USDT, CHZ/USDT, WRX/USDT, KAVA/USDT, ANKR/USDT.
+
+### Data Sanity
+No downtime.
+
+### API Reference
+`GET https://api.wazirx.com/api/v2/tickers`
+
+### API Query Parameters
+Not required.
+
+### API Return Schema
+Fields	|Type	|Description
+--------| ----| ----------|
+base_unit | string |ticker code of base market
+quote_unit| string | ticker code of quote asset
+low | string | 24 hrs lowest price of base asset
+high | string | 24 hrs highest price of base asset
+last | string | Last traded price in current market
+open | string | Market Open price 24hrs ago
+volume | string | Last 24hrs traded volume
+sell | string | Top ask order price
+buy | string | Top bid order price
+name | string | Display text of market
+at | string  | Timestamp when ticker information is fetched
+
+
+
 
 # Coinflex
 
@@ -2293,6 +2363,7 @@ select * from cftc_futures_report
 ### Data Schema
 fieldName | fieldType | description
 --------- | --------- | ---------- |
+time | string | default database time
 As_of_Date_In_Form_YYMMDD       |integer|
 CFTC_Commodity_Code             |integer|
 CFTC_Market_Code                |string|
