@@ -4,11 +4,10 @@ title: VQR Data Catalogue
 language_tabs: # must be one of https://git.io/vQNgJ
   - sql
 
-
-toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
-
+  
+includes:
+  - errors
+  
 search: true
 ---
 
@@ -18,8 +17,10 @@ Welcome to the **Data Catalogue**! The document gives you descriptions on databa
 
 Database is [InfluxDB](https://docs.influxdata.com/influxdb/v1.8/),whihc is a time-series database. Few terminologies to explain, tags in the influxdb is the unqie index and it is very useful to sort tickers via taging. Measurement is another word for table in the influxdb. Time is the defalut column in the table, which means the time that data wrote into database. Currently, we have two influxbd servers, one is primary server and another one is backup server.
 
-Host Server: 
-`Host-1 (Primary): 99-79-47-186 &&&& Host-2 (Backup): 15-223-68-239`
+**Host Server 1**: 
+`Host-1 (Primary): 99-79-47-186`
+**Host Server 2**:
+`Host-2 (Backup): 15-223-68-239`
 
 <aside class="notice">
 Need credentials to log in.
@@ -66,8 +67,8 @@ TableName | Frequency | DataType | CurrentStatus
 [bybit_funding_rate](#bybit-funding-rate) | 8 hours | Funding Rates | Running 
 [bybit_tickers](#bybit-tickers) | 1 minute | Ticker | Running
 [bybit_trades](#bybit-trades) | 1 minute | Trade Data | Running
-cftc_futures_report | 1 week | Commodity Futures Report | Running
-cme_futures_index | 1 hour | CME BTC Futures | Running
+[cftc_futures_report](#commodity-futures-trading-commission) | 1 week | Commodity Futures Report | Running
+[cme_futures_index](#cme-group) | 1 hour | CME BTC Futures | Running
 coinbase_custody | 1 hour | Custody Data | Running
 coinbase_orderbook | 30 seconds | Orderbook | Running
 coinbase_trades | 1 minutes | Trades Data | Running
@@ -138,7 +139,7 @@ poloniex_funding_orderbook | 1 minute | Orderbook | Running
 poloniex_leaderboard | 1 hour | Leaderboard | Running
 poloniex_orderbook | 1 minute | Orderbook | Running
 poloniex_trades | 1 minute | Trade | Running
-sp500_futures | 1 second | Trade | Running
+[sp500_futures](#investing) | 1 second | Trade | Running
 tether_richlist | 1 hour | Leaderboard | Running
 tezos_leaderboard | 1 hour | Leaderboard | Running
 wazirx_tickers | 1 hour | Ticker | Running
@@ -1715,7 +1716,7 @@ select * from bitmex_settlement where symbol = 'XBTK15'
    "optionUnderlyingPrice": None,
    "settledPrice":236.04,
    "settlementType": "Settlement"
-   "symbol": "XRPZ19",
+   "symbol": "XBTKZ15",
    "taxBase": None,
    "taxRate": None
  }
@@ -2220,14 +2221,271 @@ No information.
 # Tezos
 
 
-# Aggregate Exchange Open Interest
+# Aggregate Exchange
+##  Open Interest
 
 
 # Futures Market Data
 ## CME Group 
+```sql
+-- fetch tickers
+select * from cme_futures_index
+```
+
+### Description
+[CME futures index](https://www.cmegroup.com/trading/equity-index/us-index/bitcoin_quotes_globex.html) has a frequency of 1 minute and data time range is from 2020-04-15 18:35:17 till now. Collectors are continously runing in two hosts.
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | default database timestamp
+change           |string|
+close            |string|
+code             |string|
+exchangeCode     |string|
+expirationDate   |string|
+expirationMonth  |string|
+high             |string|
+highLimit        |string|
+hoghLowLimits    |string|
+last             |string|
+low              |string|
+lowLimit         |string|
+open             |string|
+percentageChange |string|
+priorSettle      |string|
+productCode      |string|
+productId        |integer|
+productName      |string|
+updated          |string|
+volume           |string|
+symbol | string | tag values
+
+### Tag Values
+**Symbol**: BTCJ0, BTCK0, BTCM0, BTCN0, BTCQ0, BTCU0, BTCV0, BTCZ0, BTCZ1
+
+### Data Sanity
+No downtime.
+
+### API Reference
+
+`GET https://www.cmegroup.com/CmeWS/mvc/Quotes/Future/8478/G?quoteCodes=null`
+
+### API Query Parameters
+Not required.
+
+
+### API Return Schema
+No information.
+
+
 
 ## Commodity Futures Trading Commission
+```sql
+-- fetch tickers
+select * from cftc_futures_report
 
-## Investing.com
+```
 
+### Description
+[CFTC futures report](https://www.cftc.gov/MarketReports/CommitmentsofTraders/index.htm) has a frequency of 1 week and data time range is from 1986-01-15 00:00:00 till now. Collectors are continously runing in two hosts.
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+As_of_Date_In_Form_YYMMDD       |integer|
+CFTC_Commodity_Code             |integer|
+CFTC_Market_Code                |string|
+CFTC_Region_Code                |integer|
+Change_in_Comm_Long_All         |float|
+Change_in_Comm_Short_All        |float|
+Change_in_NonComm_Long_All      |float|
+Change_in_NonComm_Short_All     |float|
+Change_in_NonComm_Spead_All     |float|
+Change_in_NonRept_Long_All      |float|
+Change_in_NonRept_Short_All     |float|
+Change_in_Open_Interest_All     |float|
+Change_in_Tot_Rept_Long_All     |float|
+Change_in_Tot_Rept_Short_All    |float|
+Comm_Positions_Long_All         |integer|
+Comm_Positions_Long_Old         |integer|
+Comm_Positions_Long_Other       |integer|
+Comm_Positions_Short_All        |integer|
+Comm_Positions_Short_Old        |integer|
+Comm_Positions_Short_Other      |integer|
+Conc_Gross_LE_4_TDR_Long_All    |float|
+Conc_Gross_LE_4_TDR_Long_Old    |float|
+Conc_Gross_LE_4_TDR_Long_Other  |float|
+Conc_Gross_LE_4_TDR_Short_All   |float
+Conc_Gross_LE_4_TDR_Short_Old   |float|
+Conc_Gross_LE_4_TDR_Short_Other |float|
+Conc_Gross_LE_8_TDR_Long_All    |float|
+Conc_Gross_LE_8_TDR_Long_Old    |float|
+Conc_Gross_LE_8_TDR_Long_Other  |float|
+Conc_Gross_LE_8_TDR_Short_All   |float|
+Conc_Gross_LE_8_TDR_Short_Old   |float|
+Conc_Gross_LE_8_TDR_Short_Other |float|
+Conc_Net_LE_4_TDR_Long_All      |float|
+Conc_Net_LE_4_TDR_Long_Old      |float|
+Conc_Net_LE_4_TDR_Long_Other    |float|
+Conc_Net_LE_4_TDR_Short_All     |float|
+Conc_Net_LE_4_TDR_Short_Old     |float|
+Conc_Net_LE_4_TDR_Short_Other   |float|
+Conc_Net_LE_8_TDR_Long_All      |float|
+Conc_Net_LE_8_TDR_Long_Old      |float|
+Conc_Net_LE_8_TDR_Long_Other    |float|
+Conc_Net_LE_8_TDR_Short_All     |float|
+Conc_Net_LE_8_TDR_Short_Old     |float|
+Conc_Net_LE_8_TDR_Short_Other   |float|
+Contract_Units                  |string|
+Market_and_Exchange_Names       |string|
+NonComm_Positions_Long_All      |integer|
+NonComm_Positions_Long_Old      |integer|
+NonComm_Positions_Long_Other    |integer|
+NonComm_Positions_Short_All     |integer|
+NonComm_Positions_Short_Old     |integer|
+NonComm_Positions_Short_Other   |integer|
+NonComm_Positions_Spread_Old    |integer|
+NonComm_Positions_Spread_Other  |integer|
+NonComm_Postions_Spread_All     |integer|
+NonRept_Positions_Long_All      |integer|
+NonRept_Positions_Long_Old      |integer|
+NonRept_Positions_Long_Other    |integer|
+NonRept_Positions_Short_All     |integer|
+NonRept_Positions_Short_Old     |integer|
+NonRept_Positions_Short_Other   |integer|
+Open_Interest_All               |integer|
+Open_Interest_Old               |integer|
+Open_Interest_Other             |integer|
+Pct_of_OI_Comm_Long_All         |float|
+Pct_of_OI_Comm_Long_Old         |float|
+Pct_of_OI_Comm_Long_Other       |float|
+Pct_of_OI_Comm_Short_All        |float|
+Pct_of_OI_Comm_Short_Old        |float|
+Pct_of_OI_Comm_Short_Other      |float|
+Pct_of_OI_NonComm_Long_All      |float|
+Pct_of_OI_NonComm_Long_Old      |float|
+Pct_of_OI_NonComm_Long_Other    |float|
+Pct_of_OI_NonComm_Short_All     |float|
+Pct_of_OI_NonComm_Short_Old     |float|
+Pct_of_OI_NonComm_Short_Other   |float|
+Pct_of_OI_NonComm_Spread_All    |float|
+Pct_of_OI_NonComm_Spread_Old    |float|
+Pct_of_OI_NonComm_Spread_Other  |float|
+Pct_of_OI_NonRept_Long_All      |float|
+Pct_of_OI_NonRept_Long_Old      |float|
+Pct_of_OI_NonRept_Long_Other    |float|
+Pct_of_OI_NonRept_Short_All     |float|
+Pct_of_OI_NonRept_Short_Old     |float|
+Pct_of_OI_NonRept_Short_Other   |float|
+Pct_of_OI_Tot_Rept_Long_All     |float|
+Pct_of_OI_Tot_Rept_Long_Old     |float|
+Pct_of_OI_Tot_Rept_Long_Other   |float|
+Pct_of_OI_Tot_Rept_Short_All    |float|
+Pct_of_OI_Tot_Rept_Short_Old    |float|
+Pct_of_OI_Tot_Rept_Short_Other  |float|
+Pct_of_Open_Interest_All        |integer|
+Pct_of_Open_Interest_Old        |integer|
+Pct_of_Open_Interest_Other      |integer|
+Tot_Rept_Positions_Long_All     |integer|
+Tot_Rept_Positions_Long_Old     |integer|
+Tot_Rept_Positions_Long_Other   |integer|
+Tot_Rept_Positions_Short_All    |integer|
+Tot_Rept_Positions_Short_Old    |integer|
+Tot_Rept_Positions_Short_Other  |integer|
+Traders_Comm_Long_All           |integer|
+Traders_Comm_Long_Old           |integer|
+Traders_Comm_Long_Other         |integer|
+Traders_Comm_Short_All          |integer|
+Traders_Comm_Short_Old          |integer|
+Traders_Comm_Short_Other        |integer|
+Traders_NonComm_Long_All        |integer|
+Traders_NonComm_Long_Old        |integer|
+Traders_NonComm_Long_Other      |integer|
+Traders_NonComm_Short_All       |integer|
+Traders_NonComm_Short_Old       |integer|
+Traders_NonComm_Short_Other     |integer|
+Traders_NonComm_Spead_Old       |integer|
+Traders_NonComm_Spread_All      |integer|
+Traders_NonComm_Spread_Other    |integer|
+Traders_Tot_All                 |integer|
+Traders_Tot_Old                 |integer|
+Traders_Tot_Other               |integer|
+Traders_Tot_Rept_Long_All       |integer|
+Traders_Tot_Rept_Long_Old       |integer|
+Traders_Tot_Rept_Long_Other     |integer|
+Traders_Tot_Rept_Short_All      |integer|
+Traders_Tot_Rept_Short_Old      |integer|
+Traders_Tot_Rept_Short_Other    |integer|
+CFTC_Contract_Market_Code | string | tag Values
+
+
+###  Tag values
+**CFTC_Contract_Market_Code**:
+001601, 001602, 00160F, 001611, 001612, 001621, 001623, 001624, 001626, 001627, 001631, 002601, 002602, 002603, 002631, 004601, 004603, 005601, 005602, 005603, 005631, 006261, 006265, 006268, 00626F, 00626U, 006391, 006392, 006393, 00639H, 00639U, 00639V, 00639W, 00639X, 00639Y, 00639Z, 0063A1, 0063A2, 0063A3, 0063A4, 0063AA, 0063AB, 0063AD, 0063AM, 0063AN, 0063AQ, 0063AR, 0063AS, 0063B1, 0063BD, 0063BF, 0063BY, 0063CA, 0063CC, 0063CD, 0063CH, 0063CJ, 0063CL, 0063D9, 0063DB, 0063DJ, 0063DK, 0063DL, 0063DN, 0063DP, 006GEC, 007601, 007631, 014601, 020601, 020604, 020631, 021397, 02141B, 02141C, 02141R, 02141V, 02165A, 02165B, 02165C, 02165E, 02165G, 02165H, 02165I, 02165J, 02165K, 02165L, 02165R, 02165T, 021A17, 
+021A18, 021A19, 021A28, 021A29, 021A35, 021A56, 022651, 02265J, 02265T, 02265U, 02265V, 022A05, 022A09, 022A13, 022A18, 022A22, 022A24, 022A26, 022A60, 022A62, 022A66, 023391, 023392, 023393, 023394, 023395, 023396, 023397, 023398, 023399, 02339E, 02339Q, 02339U, 02339W, 02339Y, 0233A2, 0233A3, 0233A5, 0233A6, 0233A8, 0233AG, 0233AH, 0233AM, 0233AN, 0233AQ, 0233AT, 0233AW, 0233AY, 0233B1, 0233B7, 0233BA, 0233BB, 0233BC, 0233BD, 0233BH, 0233BL, 0233BM, 0233BQ, 0233BW, 0233BY, 0233C1, 0233C9, 0233CG, 0233CH, 0233CS, 0233CU, 0233CV, 0233CW, 0233CY, 0233CZ, 0233D4, 0233DR, 0233DT, 0233DW, 0233E5, 0233EB, 0233ED, 023611, 023651, 023653, 023655, 02365A, 02365B, 02365C, 02365D, 02365E, 02365F, 02365G, 02365J, 02365K, 02365L, 02365M, 02365N, 02365O, 02365P, 02365S, 02365T, 023A09, 023A10, 023A12, 023A13, 023A26, 023A37, 023A39, 023A55, 023A56, 023A85, 023P01, 023P02, 023P03, 024651, 024652, 024653, 024656, 024658, 025601, 025608, 025651, 025652, 026603, 029641, 029642, 03265A, 03265B, 03265C, 03265J, 032741, 033661, 035650, 035651, 035652, 035653, 035654, 035655, 035656, 035657, 035658, 03565B, 03565C, 037642, 039601, 039781, 040701, 041741, 042601, 042661, 043602, 043607, 044601, 044661, 045601, 045741, 045L2T, 047741, 048741, 049601, 049741, 050641, 050642, 052641, 052644, 052645, 052732, 052733, 052734, 054641, 054642, 056641, 056642, 057642, 058641, 058643, 060611, 061641, 06260E, 063642, 063731, 064363, 064391, 064392, 064394, 064395, 064396, 06439A, 06439B, 06439C, 06439E, 06439F, 06439K, 06439L, 06439N, 06439R, 0643A5, 0643A7, 0643A8, 0643AF, 0643AP, 0643AT, 0643AU, 0643AZ, 0643B1, 0643B3, 0643B9, 0643BA, 0643BC, 0643BE, 0643BF, 0643BG, 0643BM, 0643BR, 0643BS, 0643BT, 0643BW, 0643BX, 0643BY, 0643BZ, 0643C3, 0643C4, 0643C7, 0643C8, 0643CB, 0643CC, 0643CJ, 0643CK, 0643CL, 0643CM, 0643CN, 0643CR, 0643CU, 0643CV, 0643CZ, 0643D1, 0643D4, 0643D5, 0643D7, 0643D8, 0643DB, 0643DC, 0643DF, 0643DK, 0643DL, 0643DM, 0643EA, 0643F1, 0643F2, 0643F3, 0643IB, 0643ID, 064651, 064652, 064653, 064654, 064655, 064657, 064658, 06465A, 06465B, 06465C, 06465H, 06465I, 06465K, 06465M, 06465N, 06465O, 06465P, 06465S, 06465T, 064A01, 064A02, 064A34, 064A35, 064A38, 064A39, 064A42, 064A48, 064A49, 064A50, 064A51, 064A52, 064A53, 064A54, 064A55, 064A56, 064A57, 064A58, 064A59, 064A60, 064A61, 064A62, 064A63, 064A64, 064A65, 064A66, 064A67, 064A68, 064A69, 064A71, 064A78, 064A79, 064A80, 064A82, 064A84, 064A85, 064A87, 064A88, 064AAA, 064AAB, 064BFI, 064BFJ, 064C52, 064C74, 064C75, 064C76, 064C77, 064C78, 064C79, 064C86, 064C87, 064C88, 064CXO, 064CXP, 064DEU, 064DEW, 064DLW,
+064DLX, 064DPQ, 064DPR, 064EAS, 064EJI, 064EJJ, 064ERM, 064ERN, 064EUY, 064EUZ, 064EVG, 064EVH, 064EWU, 064EXE, 064EXF, 064FHK, 064FHL, 064FJY, 064FKA, 064FKB, 064FKC, 064FKD, 064FKE, 064FKF, 064FZA, 064FZB, 064GAA, 064HZR, 064IAN, 066411, 066413, 066416, 06641A, 06641D, 06641F, 06641G, 06641H, 066651, 066652, 066653, 066654, 066655, 066657, 06665A, 06665B, 06665G, 06665O, 06665P, 06665Q, 06665R, 06665S, 06665T, 06665W, 06665Z, 066A19, 067411, 06741Q, 06741R, 06741G, 06741R, 06742R, 06742T, 06742U, 067651, 067653, 067655, 06765A, 06765G, 06765I, 06765J, 06765L, 06765M, 06765N, 06765O, 06765T, 0676A5, 067A49, 067A71, 067A75, 067DUI, 073732, 075651, 076651, 080732, 080734, 083731, 084602, 084605, 084691, 085691,
+085692, 088604, 088606, 088691, 089741, 090741, 091741, 092741, 092772, 094741, 094742, 094743, 094771, 095741, 096742, 097741, 097772, 097811, 098661, 098662, 099661, 099741, 102741, 105741, 111415, 111651, 111652, 111655, 11165J, 11165K, 11165L, 111A11, 111A31, 111A34, 111A41, 111A47, 112661, 112741, 116661, 1170E1, 120602, 120741, 121601, 122741, 12460+, 124601, 124603, 124606, 132741, 1330E1, 133741, 134741, 134742, 135731, 136611, 136612, 137611, 13874+, 138741, 138747, 138748, 138749, 13874A, 13874C, 13874E, 13874F, 13874G, 13874H, 13874J, 13874N, 13874I, 13874V, 148771, 148776, 148777, 151602, 1601, 1611, 16164H, 1621, 1624, 16264C, 16264H, 1631, 191651, 191691, 191693, 161694, 192651, 194741, 195651, 196661,
+196741, 197741, 20601, 20631, 209601, 20974+, 209741, 209742, 210741, 218771, 221602, 223771, 22651, 232661, 232741, 23651, 238621, 239741, 239742, 239744, 239771, 239772, 239773, 239777, 23977A, 23977C, 240741, 240743, 244041, 244042, 244741, 244742, 246601, 246602, 2446605, 246606, 247601, 247602, 249601, 251601, 252601, 252691, 253601, 255691, 256741, 2601, 260741, 261P05, 261P07, 261P08, 261P09, 26265A, 26265D, 2631, 263601, 26603, 266741, 267741, 270741, 271741, 272741, 294661, 299661, 299741, 30653, 32741, 332661, 33661, 33663, 338741, 33874A, 343601, 344601, 355691, 390741, 392261, 394741, 39601, 399661, 399741, 40701, 41741, 42601, 42661, 432661, 43602, 43874A, 44601, 44661, 44662, 45601, 4601, 492661, 494661, 499661, 52731, 531601, 532601, 54631, 54641, 5601, 5631, 56641, 57642, 58641, 594661, 597741, 597742, 599661, 60611, 61641, 62601, 63731, 66651, 66752, 67651, 67652, 694661, 70642, 71604, 73732, 75671, 76691, 794661, 799661, 80732, 80733, 80734, 80735, 83731, 84602, 84691, 85691, 85692, 86465A, 86465C, 86465D, 86465K, 86565A, 86565C, 86565D, 86565G, 86565N, 86665A, 86665B, 86665E, 86665G, 86765A, 86665C, 869652, 869654, 88604, 88691, 88741, 90741, 91741, 91811, 92741, 92811, 94741, 94742, 93743, 94771, 94811, 96741, 96742, 967652, 967654, 96765A, 97741, 98661, 98662, 99661, 99741, ZB9105.
+
+### Data Sanity
+Data is fetched through all [historical data](https://www.cftc.gov/MarketReports/CommitmentsofTraders/HistoricalCompressed/index.htm) in the website.
+
+
+## Investing
+```sql
+-- fetch funding rate
+select * from sp500_futures
+```
+> response
+
+```json
+[
+
+ {
+   "time": "2020-01-23T16:47:38Z",
+   "CLose":915.25,
+   "High": 934.25,
+   "Low": 916.75,
+   "Open": 933.75,
+   "Volume": 11387
+ }
+
+]
+```
+
+### Description
+[S&P 500 futures index](https://www.investing.com/indices/us-spx-500-futures-historical-data) has a frequency of 1 second and data time range is from 1990-02-15 00:00:00 till now. Collectors are continously runing in two hosts.
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | default database timestamp
+Date | string | data timestamp
+Close    |float|
+High     |float|
+Low      |float|
+Open     |float|
+Volume   |float|
+
+### Data Sanity
+No downtime.
+
+### API Reference
+`GET https://www.investing.com/instruments/HistoricalDataAjax`
+
+### API Query Parameters
+**Parameters**
+```
+         {"curr_id":8839,
+          "smllD":500066,
+          "st_date":start_date,
+          "end_date":end_date,
+          "interval_sec":"Daily",
+          "sort_col":"date",
+          "sort_ord":"DESC"}
+```
+
+### API Return Schema
+No information.
 
