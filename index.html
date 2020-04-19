@@ -2804,7 +2804,7 @@ Trade data may have some gaps in the past but api can fetch all historical, so w
 </tr>
 </tbody></table>
 <h3 id='tag-vlaues-13'>Tag Vlaues</h3>
-<p><strong>Symbols</strong>: ADAH20, ADAM20, ADAZ19, BCHH20, BCHM20, BCHZ19, EOSH20, EOSM20, EOSZ19, ETHH20, ETHM20, ETHUSD, ETHZ19. LTCH20, LTCM20, LTCZ19, TRXH20, TRXM20, TRXZ19, XBT7D_D95, XBT7D_U105, XBTH20, XBTM20, XBTU20, XBTUSD, XBTZ19, XRPH20, XRPM20, XRPU20, XRPZ19</p>
+<p><strong>Symbols</strong>: ADAH20, ADAM20, ADAZ19, BCHH20, BCHM20, BCHZ19, EOSH20, EOSM20, EOSZ19, ETHH20, ETHM20, ETHUSD, ETHZ19. LTCH20, LTCM20, LTCZ19, TRXH20, TRXM20, TRXZ19, XBT7D_D95, XBT7D_U105, XBTH20, XBTM20, XBTU20, XBTUSD, XBTZ19, XRPH20, XRPM20, XRPUSD, XRPZ19</p>
 <h3 id='data-sanity-15'>Data Sanity</h3>
 <p>No downtime.</p>
 <h3 id='api-reference-9'>API Reference</h3>
@@ -2831,7 +2831,7 @@ Trade data may have some gaps in the past but api can fetch all historical, so w
 <h3 id='api-return-schema-11'>API Return Schema</h3>
 <p>No Information.</p>
 <h2 id='bitmex-funding'>Bitmex Funding</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch data</span>
-<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">bitmex_funding</span>
+<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">bitmex_funding</span> <span class="k">where</span> <span class="n">symbol</span> <span class="o">=</span> <span class="s1">'ETHXBT'</span>
 </code></pre>
 <blockquote>
 <p>response</p>
@@ -2848,7 +2848,7 @@ Trade data may have some gaps in the past but api can fetch all historical, so w
 
 </span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='description-16'>Description</h3>
-<p><a href="https://leaderboard.bitfinex.com/">Bitmex funding</a> has a variety of frequencies, including 3 hours, 1 week, 1 month. And data time range is from 2020-04-01 00:00:00 till now. Collectors are continously runing in two hosts.</p>
+<p><a href="https://www.bitmex.com/app/wsAPI">Bitmex funding</a> is connected through webscoket so it is real-time update. And data time range is from 2016-11-04 04:00:00 till now. Collectors are continously runing in two hosts.</p>
 <h3 id='data-schema-16'>Data Schema</h3>
 <table><thead>
 <tr>
@@ -2861,11 +2861,6 @@ Trade data may have some gaps in the past but api can fetch all historical, so w
 <td>time</td>
 <td>string</td>
 <td>default database timestamp</td>
-</tr>
-<tr>
-<td>snapshot_time</td>
-<td>float</td>
-<td>data timestamp</td>
 </tr>
 <tr>
 <td>fundingInterval</td>
@@ -2889,78 +2884,29 @@ Trade data may have some gaps in the past but api can fetch all historical, so w
 </tr>
 </tbody></table>
 <h3 id='tag-vlaues-14'>Tag Vlaues</h3>
-<p><strong>Symbols (time:ticker)</strong>: 3h:tGLOBAL:USD, 3h:tBTCUSD, 3h:tBTCF0:USTF0, 3h:tBTCUST, 3h:tBTCEUR, 3h:tLEOUSD, 3h:tETHUSD, 3h:tETHF0:USTF0, 3h:tETHUST, 3h:tEOSUSD, 3h:tLTCUSD, 3h:tETCUSD, 1w:tGLOBAL:USD, 1w:tGLOBAL:CHZ, 1M:tGLOBAL:USD</p>
-
-<p><strong>type</strong>: unrealized_profit_period_delta, unrealized_profit_inception, realized_profit, volume</p>
+<p><strong>Symbols (time:ticker)</strong>: XBTUSD, ETHUSD, ETHXBT, FCTXBT, LSKXBT, LTCXBT, XRPUSD</p>
 <h3 id='data-sanity-16'>Data Sanity</h3>
 <p>No downtime.</p>
 <h3 id='api-reference-10'>API Reference</h3>
-<p><code>GET https://www.bitmex.com/api/v1/orderBook/L2?symbol={Symbol}&amp;depth={Depth}</code></p>
+<p><code>Websocket wss://www.bitmex.com/realtime?subscribe=funding</code></p>
 <h3 id='api-query-parameters-16'>API Query Parameters</h3>
 <table><thead>
 <tr>
-<th>Key</th>
-<th>Available Time Frames</th>
-<th>Available Symbols</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>&quot;plu_diff&quot; - (Unrealised Profit (Period Delta))</td>
-<td>&quot;1w&quot;, &quot;1M&quot;</td>
-<td>tGLOBAL:USD</td>
-</tr>
-<tr>
-<td>&quot;plu&quot; - (Unrealised Profit (Inception))</td>
-<td>&quot;3h&quot; - for specific pairs &quot;1w&quot;, &quot;1M&quot; - for tGLOBAL:USD</td>
-<td>Trading Pairs (e.g. tBTCUSD, tETHUSD tGLOBAL:USD</td>
-</tr>
-<tr>
-<td>&quot;plr&quot; - (Realized Profit)</td>
-<td>&quot;1w&quot;, &quot;1M&quot;</td>
-<td>tGLOBAL:USD</td>
-</tr>
-<tr>
-<td>&quot;vol&quot; - (Volume)</td>
-<td>&quot;3h&quot;, &quot;1w&quot;, &quot;1M&quot;</td>
-<td>Trading Pairs (e.g. tBTCUSD, tETHUSD) tGLOBAL:USD</td>
-</tr>
-</tbody></table>
-<h3 id='api-return-schema-12'>API Return Schema</h3>
-<table><thead>
-<tr>
-<th>Fields</th>
+<th>Name</th>
 <th>Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>MTS</td>
-<td>int</td>
-<td>millisecond timestamp</td>
-</tr>
-<tr>
-<td>USERNAME</td>
+<td>symbol</td>
 <td>string</td>
-<td>Username</td>
-</tr>
-<tr>
-<td>RANKING</td>
-<td>int</td>
-<td>Place on leaderboard</td>
-</tr>
-<tr>
-<td>VALUE</td>
-<td>float</td>
-<td>Value of volume, unrealized profit, or realized profit</td>
-</tr>
-<tr>
-<td>TWITTER_HANDLE</td>
-<td>string</td>
-<td>Shows the user&#39;s Twitter handle (if available)</td>
+<td>Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.</td>
 </tr>
 </tbody></table>
+<h3 id='api-return-schema-12'>API Return Schema</h3>
+<p>No information.</p>
 <h2 id='bitmex-funding-rate'>Bitmex Funding Rate</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch data</span>
-<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">bitmex_funding_rate</span>
+<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">bitmex_funding_rates</span> <span class="k">where</span> <span class="n">symbol</span> <span class="o">=</span> <span class="s1">'XBTUSD'</span>
 </code></pre>
 <blockquote>
 <p>response</p>
@@ -2968,20 +2914,18 @@ Trade data may have some gaps in the past but api can fetch all historical, so w
 <pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
 
  </span><span class="p">{</span><span class="w">
-   </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-11-21 17:40:53.056972"</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"snapshot_time"</span><span class="p">:</span><span class="s2">"2019-11-21 17:40:53.188963"</span><span class="w">
-   </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">34699996624</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.00003376</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"size"</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XRPZ19"</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sell"</span><span class="p">,</span><span class="w">
-
-
+   </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-04 04:00:00"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"fundingInterval"</span><span class="p">:</span><span class="s2">"2000-01-01T08:00:00.000Z"</span><span class="w">
+   </span><span class="s2">"fundingRate"</span><span class="p">:</span><span class="mf">0.00016619999999999998</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"fundingRateDaily"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0004985999999999999</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"indicativeFundingRate"</span><span class="p">:</span><span class="w"> </span><span class="err">None</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="err">None</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XBTUSD"</span><span class="w">
  </span><span class="p">}</span><span class="w">
 
 </span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='description-17'>Description</h3>
-<p><a href="https://leaderboard.bitfinex.com/">Bitmex funding rate</a> has a variety of frequencies, including 3 hours, 1 week, 1 month. And data time range is from 2020-04-01 00:00:00 till now. Collectors are continously runing in two hosts.</p>
+<p><a href="https://www.bitmex.com/app/fundingHistory">Bitmex funding rate</a> has a frequency of 8 hours. And data time range is from 2016-05-04 12:00:00 till now. Collectors are continously runing in two hosts.</p>
 <h3 id='data-schema-17'>Data Schema</h3>
 <table><thead>
 <tr>
@@ -2994,11 +2938,6 @@ Trade data may have some gaps in the past but api can fetch all historical, so w
 <td>time</td>
 <td>string</td>
 <td>default database timestamp</td>
-</tr>
-<tr>
-<td>snapshot_time</td>
-<td>float</td>
-<td>data timestamp</td>
 </tr>
 <tr>
 <td>fundingInterval</td>
@@ -3025,80 +2964,36 @@ Trade data may have some gaps in the past but api can fetch all historical, so w
 <td>string</td>
 <td></td>
 </tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>tag values</td>
+</tr>
 </tbody></table>
 <h3 id='tag-vlaues-15'>Tag Vlaues</h3>
-<p><strong>Symbols (time:ticker)</strong>: 3h:tGLOBAL:USD, 3h:tBTCUSD, 3h:tBTCF0:USTF0, 3h:tBTCUST, 3h:tBTCEUR, 3h:tLEOUSD, 3h:tETHUSD, 3h:tETHF0:USTF0, 3h:tETHUST, 3h:tEOSUSD, 3h:tLTCUSD, 3h:tETCUSD, 1w:tGLOBAL:USD, 1w:tGLOBAL:CHZ, 1M:tGLOBAL:USD</p>
-
-<p><strong>type</strong>: unrealized_profit_period_delta, unrealized_profit_inception, realized_profit, volume</p>
+<p><strong>Symbols (time:ticker)</strong>: XBTUSD, ETHUSD, ETHXBT, FCTXBT, LSKXBT, LTCXBT, XRPUSD</p>
 <h3 id='data-sanity-17'>Data Sanity</h3>
 <p>No downtime.</p>
 <h3 id='api-reference-11'>API Reference</h3>
-<p><code>GET https://www.bitmex.com/api/v1/orderBook/L2?symbol={Symbol}&amp;depth={Depth}</code></p>
+<p><code>GET https://www.bitmex.com/api/v1/funding?reverse=True</code></p>
 <h3 id='api-query-parameters-17'>API Query Parameters</h3>
 <table><thead>
 <tr>
-<th>Key</th>
-<th>Available Time Frames</th>
-<th>Available Symbols</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>&quot;plu_diff&quot; - (Unrealised Profit (Period Delta))</td>
-<td>&quot;1w&quot;, &quot;1M&quot;</td>
-<td>tGLOBAL:USD</td>
-</tr>
-<tr>
-<td>&quot;plu&quot; - (Unrealised Profit (Inception))</td>
-<td>&quot;3h&quot; - for specific pairs &quot;1w&quot;, &quot;1M&quot; - for tGLOBAL:USD</td>
-<td>Trading Pairs (e.g. tBTCUSD, tETHUSD tGLOBAL:USD</td>
-</tr>
-<tr>
-<td>&quot;plr&quot; - (Realized Profit)</td>
-<td>&quot;1w&quot;, &quot;1M&quot;</td>
-<td>tGLOBAL:USD</td>
-</tr>
-<tr>
-<td>&quot;vol&quot; - (Volume)</td>
-<td>&quot;3h&quot;, &quot;1w&quot;, &quot;1M&quot;</td>
-<td>Trading Pairs (e.g. tBTCUSD, tETHUSD) tGLOBAL:USD</td>
-</tr>
-</tbody></table>
-<h3 id='api-return-schema-13'>API Return Schema</h3>
-<table><thead>
-<tr>
-<th>Fields</th>
+<th>Name</th>
 <th>Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>MTS</td>
-<td>int</td>
-<td>millisecond timestamp</td>
-</tr>
-<tr>
-<td>USERNAME</td>
+<td>symbol</td>
 <td>string</td>
-<td>Username</td>
-</tr>
-<tr>
-<td>RANKING</td>
-<td>int</td>
-<td>Place on leaderboard</td>
-</tr>
-<tr>
-<td>VALUE</td>
-<td>float</td>
-<td>Value of volume, unrealized profit, or realized profit</td>
-</tr>
-<tr>
-<td>TWITTER_HANDLE</td>
-<td>string</td>
-<td>Shows the user&#39;s Twitter handle (if available)</td>
+<td>Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.</td>
 </tr>
 </tbody></table>
+<h3 id='api-return-schema-13'>API Return Schema</h3>
+<p>No information.</p>
 <h2 id='bitmex-instrument'>Bitmex Instrument</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch data</span>
-<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">bitmex_instrument</span>
+<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">bitmex_instrument</span> <span class="k">where</span> <span class="n">symbol</span> <span class="o">=</span> <span class="s1">'XRPUSD'</span>
 </code></pre>
 <blockquote>
 <p>response</p>
@@ -3106,20 +3001,112 @@ Trade data may have some gaps in the past but api can fetch all historical, so w
 <pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
 
  </span><span class="p">{</span><span class="w">
-   </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-11-21 17:40:53.056972"</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"snapshot_time"</span><span class="p">:</span><span class="s2">"2019-11-21 17:40:53.188963"</span><span class="w">
-   </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">34699996624</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.00003376</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"size"</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XRPZ19"</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sell"</span><span class="p">,</span><span class="w">
-
-
- </span><span class="p">}</span><span class="w">
-
+    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XRPUSD"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"rootSymbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"typ"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"listing"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-04-18T20:55:42.795Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"front"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-04-18T20:55:42.795Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"expiry"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-04-18T20:55:42.795Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"settle"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-04-18T20:55:42.795Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"relistInterval"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-04-18T20:55:42.795Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"inverseLeg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sellLeg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"buyLeg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"optionStrikePcnt"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"optionStrikeRound"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"optionStrikePrice"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"optionMultiplier"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"positionCurrency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"underlying"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"quoteCurrency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"underlyingSymbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"referenceSymbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"calcInterval"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-04-18T20:55:42.795Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"publishInterval"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-04-18T20:55:42.795Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"publishTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-04-18T20:55:42.795Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"maxOrderQty"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"maxPrice"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lotSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tickSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"multiplier"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"settlCurrency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"underlyingToPositionMultiplier"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"underlyingToSettleMultiplier"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"quoteToSettleMultiplier"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isQuanto"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isInverse"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"initMargin"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"maintMargin"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"riskLimit"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"riskStep"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"capped"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"taxed"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"deleverage"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"makerFee"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"takerFee"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"settlementFee"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"insuranceFee"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fundingBaseSymbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fundingQuoteSymbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fundingPremiumSymbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fundingTimestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-04-18T20:55:42.795Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fundingInterval"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-04-18T20:55:42.795Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fundingRate"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"indicativeFundingRate"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"rebalanceTimestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-04-18T20:55:42.795Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"rebalanceInterval"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-04-18T20:55:42.795Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"openingTimestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-04-18T20:55:42.795Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"closingTimestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-04-18T20:55:42.795Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sessionInterval"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-04-18T20:55:42.795Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"prevClosePrice"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"limitDownPrice"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"limitUpPrice"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bankruptLimitDownPrice"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bankruptLimitUpPrice"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"prevTotalVolume"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"totalVolume"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"volume24h"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"prevTotalTurnover"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"totalTurnover"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"turnover"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"turnover24h"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"homeNotional24h"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"foreignNotional24h"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"prevPrice24h"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"vwap"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"highPrice"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lowPrice"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lastPrice"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lastPriceProtected"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lastTickDirection"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lastChangePcnt"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bidPrice"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"midPrice"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"askPrice"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"impactBidPrice"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"impactMidPrice"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"impactAskPrice"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"hasLiquidity"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"openInterest"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"openValue"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fairMethod"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fairBasisRate"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fairBasis"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fairPrice"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"markMethod"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"markPrice"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"indicativeTaxRate"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"indicativeSettlePrice"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"optionUnderlyingPrice"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"settledPrice"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-04-18T20:55:42.796Z"</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='description-18'>Description</h3>
-<p><a href="https://leaderboard.bitfinex.com/">Bitmex full orderbook</a> has a variety of frequencies, including 3 hours, 1 week, 1 month. And data time range is from 2020-04-01 00:00:00 till now. Collectors are continously runing in two hosts.</p>
+<p><a href="https://www.bitmex.com/app/wsAPI">Bitmex instrument</a> is connected through webscoket so it is real-time update. And data time range is from 2019-07-11 04:00:00 till now. Collectors are continously runing in two hosts.</p>
 <h3 id='data-schema-18'>Data Schema</h3>
 <table><thead>
 <tr>
@@ -3132,11 +3119,6 @@ Trade data may have some gaps in the past but api can fetch all historical, so w
 <td>time</td>
 <td>string</td>
 <td>default database timestamp</td>
-</tr>
-<tr>
-<td>snapshot_time</td>
-<td>float</td>
-<td>data timestamp</td>
 </tr>
 <tr>
 <td>askPrice</td>
@@ -3608,101 +3590,51 @@ Trade data may have some gaps in the past but api can fetch all historical, so w
 <td>float</td>
 <td></td>
 </tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>tag values</td>
+</tr>
 </tbody></table>
 <h3 id='tag-vlaues-16'>Tag Vlaues</h3>
-<p><strong>Symbols (time:ticker)</strong>: 3h:tGLOBAL:USD, 3h:tBTCUSD, 3h:tBTCF0:USTF0, 3h:tBTCUST, 3h:tBTCEUR, 3h:tLEOUSD, 3h:tETHUSD, 3h:tETHF0:USTF0, 3h:tETHUST, 3h:tEOSUSD, 3h:tLTCUSD, 3h:tETCUSD, 1w:tGLOBAL:USD, 1w:tGLOBAL:CHZ, 1M:tGLOBAL:USD</p>
-
-<p><strong>type</strong>: unrealized_profit_period_delta, unrealized_profit_inception, realized_profit, volume</p>
+<p><strong>Symbols (time:ticker)</strong>: .BADAXBT, .BADAXBT30M, .BADAXBT_NEXT, .BBCHXBT, .BBCHXBT30M, .BBCHXBT_NEXT, .BEOSXBT, .BEOSXBT30M, .BEOSXBT_NEXT, .BETH, .BETH30M, .BETHXBT, .BETHXBT_NEXT, .BETHXBT30M, .BETHXBT_NEXT, .BLTCXBT, .BLTCXBT30M, .BLTCXBT_NEXT, .BTRXXBT, .BTRXXBT30M, .BTRXXBT_NEXT, .BVOL, .BVOL24H, .BVOL7D,  .BXBT, .BXBT_NEXT,.BXBT30M, .BXBTJPY, .BXBTJPY30M, .BXRP, .BXRPXBT, .BXRP30M, .BXRP_NEXT, .BXRPXBT30M, .BXRPXBT_NEXT, .ETHBON, .ETHBON2H, .ETHBON8H,  .ETHUSDPI,  .ETHUSDPI2H, .ETHUSDPI8H, .EVOL7D, .TRXXBT, .TRXXBT30M, .USDBON, .USDBON2H, .USDBON8H, .XBT, .XBTBON, .XBTBON2H, .XBTBON8H, .XBTJPY, .XBTJPY30M, .XBTUSDPI, .XBTUSDPI2H, .XBTUSDPI8H, .XRPBON, .XRPBON2H, .XRPBON8H, .XRPUSDPI, .XRPUSDPI2H, .XRPUSDPI8H, ADAH20, ADAM20, ADAU19, ADAZ19, BCHH20, BCHM20, BCHZ19, BCHU20, EOSH20, EOSM20, EOSU19, EOSZ19, ETHH20, ETHM20, ETHUSD, ETHU19, ETHZ19. LTCH20, LTCM20, LTCZ19, LTCU19, TRXH20, TRXM20, TRXZ19,TRXU19,  XBT7D_D95, XBT7D_U105, XBTH20, XBTM20, XBTU20, XBTUSD, XBTZ19, XBTU19, XRPH20, XRPM20, XRPU19, XRPUSD, XRPZ19</p>
 <h3 id='data-sanity-18'>Data Sanity</h3>
 <p>No downtime.</p>
 <h3 id='api-reference-12'>API Reference</h3>
-<p><code>GET https://www.bitmex.com/api/v1/orderBook/L2?symbol={Symbol}&amp;depth={Depth}</code></p>
+<p><code>Websocket wss://www.bitmex.com/realtime?subscribe=instrument</code></p>
 <h3 id='api-query-parameters-18'>API Query Parameters</h3>
 <table><thead>
 <tr>
-<th>Key</th>
-<th>Available Time Frames</th>
-<th>Available Symbols</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>&quot;plu_diff&quot; - (Unrealised Profit (Period Delta))</td>
-<td>&quot;1w&quot;, &quot;1M&quot;</td>
-<td>tGLOBAL:USD</td>
-</tr>
-<tr>
-<td>&quot;plu&quot; - (Unrealised Profit (Inception))</td>
-<td>&quot;3h&quot; - for specific pairs &quot;1w&quot;, &quot;1M&quot; - for tGLOBAL:USD</td>
-<td>Trading Pairs (e.g. tBTCUSD, tETHUSD tGLOBAL:USD</td>
-</tr>
-<tr>
-<td>&quot;plr&quot; - (Realized Profit)</td>
-<td>&quot;1w&quot;, &quot;1M&quot;</td>
-<td>tGLOBAL:USD</td>
-</tr>
-<tr>
-<td>&quot;vol&quot; - (Volume)</td>
-<td>&quot;3h&quot;, &quot;1w&quot;, &quot;1M&quot;</td>
-<td>Trading Pairs (e.g. tBTCUSD, tETHUSD) tGLOBAL:USD</td>
-</tr>
-</tbody></table>
-<h3 id='api-return-schema-14'>API Return Schema</h3>
-<table><thead>
-<tr>
-<th>Fields</th>
+<th>Name</th>
 <th>Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>MTS</td>
-<td>int</td>
-<td>millisecond timestamp</td>
-</tr>
-<tr>
-<td>USERNAME</td>
+<td>symbol</td>
 <td>string</td>
-<td>Username</td>
-</tr>
-<tr>
-<td>RANKING</td>
-<td>int</td>
-<td>Place on leaderboard</td>
-</tr>
-<tr>
-<td>VALUE</td>
-<td>float</td>
-<td>Value of volume, unrealized profit, or realized profit</td>
-</tr>
-<tr>
-<td>TWITTER_HANDLE</td>
-<td>string</td>
-<td>Shows the user&#39;s Twitter handle (if available)</td>
+<td>Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.</td>
 </tr>
 </tbody></table>
-<h2 id='bitmex-insurance'>Bitmex Insurance</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch leaderboard by symbol and type</span>
-<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">bitmex_full_orderbook</span> <span class="k">where</span> <span class="n">symbol</span> <span class="o">=</span> <span class="s1">'XRPZ19'</span>
+<h3 id='api-return-schema-14'>API Return Schema</h3>
+<p>No information.</p>
+<h2 id='bitmex-insurance'>Bitmex Insurance</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch data</span>
+<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">bitmex_insurance</span>
 </code></pre>
 <blockquote>
 <p>response</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
 
- </span><span class="p">{</span><span class="w">
-   </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-11-21 17:40:53.056972"</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"snapshot_time"</span><span class="p">:</span><span class="s2">"2019-11-21 17:40:53.188963"</span><span class="w">
-   </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">34699996624</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.00003376</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"size"</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XRPZ19"</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sell"</span><span class="p">,</span><span class="w">
-
-
- </span><span class="p">}</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-04-18T20:55:42.859Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"walletBalance"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 
 </span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='description-19'>Description</h3>
-<p><a href="https://leaderboard.bitfinex.com/">Bitmex full orderbook</a> has a variety of frequencies, including 3 hours, 1 week, 1 month. And data time range is from 2020-04-01 00:00:00 till now. Collectors are continously runing in two hosts.</p>
+<p><a href="https://www.bitmex.com/app/wsAPI">Bitmex insurance</a> is connected through webscoket so it is real-time update. And data time range is from 2019-07-11 12:00:00 till now. Collectors are continously runing in two hosts.</p>
 <h3 id='data-schema-19'>Data Schema</h3>
 <table><thead>
 <tr>
@@ -3717,11 +3649,6 @@ Trade data may have some gaps in the past but api can fetch all historical, so w
 <td>default database timestamp</td>
 </tr>
 <tr>
-<td>snapshot_time</td>
-<td>float</td>
-<td>data timestamp</td>
-</tr>
-<tr>
 <td>currency</td>
 <td>string</td>
 <td></td>
@@ -3732,79 +3659,21 @@ Trade data may have some gaps in the past but api can fetch all historical, so w
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='tag-vlaues-17'>Tag Vlaues</h3>
-<p><strong>Symbols (time:ticker)</strong>: 3h:tGLOBAL:USD, 3h:tBTCUSD, 3h:tBTCF0:USTF0, 3h:tBTCUST, 3h:tBTCEUR, 3h:tLEOUSD, 3h:tETHUSD, 3h:tETHF0:USTF0, 3h:tETHUST, 3h:tEOSUSD, 3h:tLTCUSD, 3h:tETCUSD, 1w:tGLOBAL:USD, 1w:tGLOBAL:CHZ, 1M:tGLOBAL:USD</p>
-
-<p><strong>type</strong>: unrealized_profit_period_delta, unrealized_profit_inception, realized_profit, volume</p>
+<h3 id='currency'>Currency</h3>
+<p>The ticker is only XBt. </p>
 <h3 id='data-sanity-19'>Data Sanity</h3>
 <p>No downtime.</p>
 <h3 id='api-reference-13'>API Reference</h3>
-<p><code>GET https://www.bitmex.com/api/v1/orderBook/L2?symbol={Symbol}&amp;depth={Depth}</code></p>
+<p><code>Websocket wss://www.bitmex.com/realtime?subscribe=insurance</code></p>
 <h3 id='api-query-parameters-19'>API Query Parameters</h3>
-<table><thead>
-<tr>
-<th>Key</th>
-<th>Available Time Frames</th>
-<th>Available Symbols</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>&quot;plu_diff&quot; - (Unrealised Profit (Period Delta))</td>
-<td>&quot;1w&quot;, &quot;1M&quot;</td>
-<td>tGLOBAL:USD</td>
-</tr>
-<tr>
-<td>&quot;plu&quot; - (Unrealised Profit (Inception))</td>
-<td>&quot;3h&quot; - for specific pairs &quot;1w&quot;, &quot;1M&quot; - for tGLOBAL:USD</td>
-<td>Trading Pairs (e.g. tBTCUSD, tETHUSD tGLOBAL:USD</td>
-</tr>
-<tr>
-<td>&quot;plr&quot; - (Realized Profit)</td>
-<td>&quot;1w&quot;, &quot;1M&quot;</td>
-<td>tGLOBAL:USD</td>
-</tr>
-<tr>
-<td>&quot;vol&quot; - (Volume)</td>
-<td>&quot;3h&quot;, &quot;1w&quot;, &quot;1M&quot;</td>
-<td>Trading Pairs (e.g. tBTCUSD, tETHUSD) tGLOBAL:USD</td>
-</tr>
-</tbody></table>
+<p>No information.</p>
 <h3 id='api-return-schema-15'>API Return Schema</h3>
-<table><thead>
-<tr>
-<th>Fields</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>MTS</td>
-<td>int</td>
-<td>millisecond timestamp</td>
-</tr>
-<tr>
-<td>USERNAME</td>
-<td>string</td>
-<td>Username</td>
-</tr>
-<tr>
-<td>RANKING</td>
-<td>int</td>
-<td>Place on leaderboard</td>
-</tr>
-<tr>
-<td>VALUE</td>
-<td>float</td>
-<td>Value of volume, unrealized profit, or realized profit</td>
-</tr>
-<tr>
-<td>TWITTER_HANDLE</td>
-<td>string</td>
-<td>Shows the user&#39;s Twitter handle (if available)</td>
-</tr>
-</tbody></table>
-<h2 id='bitmex-leaderboard'>Bitmex Leaderboard</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch leaderboard by symbol and type</span>
-<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">bitmex_full_orderbook</span> <span class="k">where</span> <span class="n">symbol</span> <span class="o">=</span> <span class="s1">'XRPZ19'</span>
+<p>No information.</p>
+<h2 id='bitmex-leaderboard'>Bitmex Leaderboard</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch leaderboard ROE</span>
+<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">bitmex_leaderboard_ROE</span> 
+
+<span class="c1">-- fetch leaderbard notional</span>
+<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">bitmex_leaderboard_notional</span>
 </code></pre>
 <blockquote>
 <p>response</p>
@@ -3812,20 +3681,18 @@ Trade data may have some gaps in the past but api can fetch all historical, so w
 <pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
 
  </span><span class="p">{</span><span class="w">
-   </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-11-21 17:40:53.056972"</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"snapshot_time"</span><span class="p">:</span><span class="s2">"2019-11-21 17:40:53.188963"</span><span class="w">
-   </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">34699996624</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.00003376</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"size"</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XRPZ19"</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sell"</span><span class="p">,</span><span class="w">
-
+   </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-08-28 21:26:51.23435482"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"CREATION_TIME"</span><span class="p">:</span><span class="s2">"2019-08-28 21:26:51.333642"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"Rank"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"isRealName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"Splash-Alpine-Twister"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"profit"</span><span class="p">:</span><span class="w"> </span><span class="mf">5003.43</span><span class="p">,</span><span class="w">
 
  </span><span class="p">}</span><span class="w">
 
 </span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='description-20'>Description</h3>
-<p><a href="https://leaderboard.bitfinex.com/">Bitmex full orderbook</a> has a variety of frequencies, including 3 hours, 1 week, 1 month. And data time range is from 2020-04-01 00:00:00 till now. Collectors are continously runing in two hosts.</p>
+<p><a href="https://leaderboard.bitfinex.com/">Bitmex leaderboard</a> has a variety of frequencies, including 3 hours, 1 week, 1 month. And data time range is from 2020-04-01 00:00:00 till now. Collectors are continously runing in two hosts.</p>
 <h3 id='data-schema-20'>Data Schema</h3>
 <table><thead>
 <tr>
@@ -3865,79 +3732,28 @@ Trade data may have some gaps in the past but api can fetch all historical, so w
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='tag-vlaues-18'>Tag Vlaues</h3>
-<p><strong>Symbols (time:ticker)</strong>: 3h:tGLOBAL:USD, 3h:tBTCUSD, 3h:tBTCF0:USTF0, 3h:tBTCUST, 3h:tBTCEUR, 3h:tLEOUSD, 3h:tETHUSD, 3h:tETHF0:USTF0, 3h:tETHUST, 3h:tEOSUSD, 3h:tLTCUSD, 3h:tETCUSD, 1w:tGLOBAL:USD, 1w:tGLOBAL:CHZ, 1M:tGLOBAL:USD</p>
-
-<p><strong>type</strong>: unrealized_profit_period_delta, unrealized_profit_inception, realized_profit, volume</p>
 <h3 id='data-sanity-20'>Data Sanity</h3>
 <p>No downtime.</p>
 <h3 id='api-reference-14'>API Reference</h3>
-<p><code>GET https://www.bitmex.com/api/v1/orderBook/L2?symbol={Symbol}&amp;depth={Depth}</code></p>
+<p><code>GET https://www.bitmex.com/api/v1/leaderboard?method={ROE/notional}</code></p>
 <h3 id='api-query-parameters-20'>API Query Parameters</h3>
 <table><thead>
 <tr>
-<th>Key</th>
-<th>Available Time Frames</th>
-<th>Available Symbols</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>&quot;plu_diff&quot; - (Unrealised Profit (Period Delta))</td>
-<td>&quot;1w&quot;, &quot;1M&quot;</td>
-<td>tGLOBAL:USD</td>
-</tr>
-<tr>
-<td>&quot;plu&quot; - (Unrealised Profit (Inception))</td>
-<td>&quot;3h&quot; - for specific pairs &quot;1w&quot;, &quot;1M&quot; - for tGLOBAL:USD</td>
-<td>Trading Pairs (e.g. tBTCUSD, tETHUSD tGLOBAL:USD</td>
-</tr>
-<tr>
-<td>&quot;plr&quot; - (Realized Profit)</td>
-<td>&quot;1w&quot;, &quot;1M&quot;</td>
-<td>tGLOBAL:USD</td>
-</tr>
-<tr>
-<td>&quot;vol&quot; - (Volume)</td>
-<td>&quot;3h&quot;, &quot;1w&quot;, &quot;1M&quot;</td>
-<td>Trading Pairs (e.g. tBTCUSD, tETHUSD) tGLOBAL:USD</td>
-</tr>
-</tbody></table>
-<h3 id='api-return-schema-16'>API Return Schema</h3>
-<table><thead>
-<tr>
-<th>Fields</th>
+<th>Name</th>
 <th>Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>MTS</td>
-<td>int</td>
-<td>millisecond timestamp</td>
-</tr>
-<tr>
-<td>USERNAME</td>
+<td>method</td>
 <td>string</td>
-<td>Username</td>
-</tr>
-<tr>
-<td>RANKING</td>
-<td>int</td>
-<td>Place on leaderboard</td>
-</tr>
-<tr>
-<td>VALUE</td>
-<td>float</td>
-<td>Value of volume, unrealized profit, or realized profit</td>
-</tr>
-<tr>
-<td>TWITTER_HANDLE</td>
-<td>string</td>
-<td>Shows the user&#39;s Twitter handle (if available)</td>
+<td>ROE or notional</td>
 </tr>
 </tbody></table>
-<h2 id='bitmex-liquidation'>Bitmex Liquidation</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch leaderboard by symbol and type</span>
-<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">bitmex_full_orderbook</span> <span class="k">where</span> <span class="n">symbol</span> <span class="o">=</span> <span class="s1">'XRPZ19'</span>
+<h3 id='api-return-schema-16'>API Return Schema</h3>
+<p>No information.</p>
+<h2 id='bitmex-liquidation'>Bitmex Liquidation</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch data</span>
+<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">bitmex_liquidation</span> <span class="k">where</span> <span class="n">symbol</span> <span class="o">=</span> <span class="s1">'EOSU19'</span>
 </code></pre>
 <blockquote>
 <p>response</p>
@@ -3945,20 +3761,19 @@ Trade data may have some gaps in the past but api can fetch all historical, so w
 <pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
 
  </span><span class="p">{</span><span class="w">
-   </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-11-21 17:40:53.056972"</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"snapshot_time"</span><span class="p">:</span><span class="s2">"2019-11-21 17:40:53.188963"</span><span class="w">
-   </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">34699996624</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.00003376</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"size"</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XRPZ19"</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sell"</span><span class="p">,</span><span class="w">
-
+   </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-07-11 16:10:58.158"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"leaveQty"</span><span class="p">:</span><span class="mi">50</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"orderID"</span><span class="p">:</span><span class="s2">"319014a0-4495-b06c-da64-7dee1f49945e"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"price"</span><span class="p">:</span><span class="mf">0.0004061</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EOSU19"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Buy"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">""</span><span class="w">
 
  </span><span class="p">}</span><span class="w">
 
 </span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='description-21'>Description</h3>
-<p><a href="https://leaderboard.bitfinex.com/">Bitmex full orderbook</a> has a variety of frequencies, including 3 hours, 1 week, 1 month. And data time range is from 2020-04-01 00:00:00 till now. Collectors are continously runing in two hosts.</p>
+<p><a href="https://www.bitmex.com/app/wsAPI">Bitmex liquidation</a> is connected through webscoket so it is real-time update. And data time range is from 2019-07-11 16:10:58.158 till now. Collectors are continously runing in two hosts.</p>
 <h3 id='data-schema-21'>Data Schema</h3>
 <table><thead>
 <tr>
@@ -3971,11 +3786,6 @@ Trade data may have some gaps in the past but api can fetch all historical, so w
 <td>time</td>
 <td>string</td>
 <td>default database timestamp</td>
-</tr>
-<tr>
-<td>snapshot_time</td>
-<td>float</td>
-<td>data timestamp</td>
 </tr>
 <tr>
 <td>leavesQty</td>
@@ -3992,80 +3802,43 @@ Trade data may have some gaps in the past but api can fetch all historical, so w
 <td>float</td>
 <td></td>
 </tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>tag values</td>
+</tr>
+<tr>
+<td>side</td>
+<td>string</td>
+<td>tag values</td>
+</tr>
 </tbody></table>
-<h3 id='tag-vlaues-19'>Tag Vlaues</h3>
-<p><strong>Symbols (time:ticker)</strong>: 3h:tGLOBAL:USD, 3h:tBTCUSD, 3h:tBTCF0:USTF0, 3h:tBTCUST, 3h:tBTCEUR, 3h:tLEOUSD, 3h:tETHUSD, 3h:tETHF0:USTF0, 3h:tETHUST, 3h:tEOSUSD, 3h:tLTCUSD, 3h:tETCUSD, 1w:tGLOBAL:USD, 1w:tGLOBAL:CHZ, 1M:tGLOBAL:USD</p>
+<h3 id='tag-vlaues-17'>Tag Vlaues</h3>
+<p><strong>Symbols</strong>: ADAH20, ADAM20, ADAU19, ADAZ19, BCHH20, BCHM20, BCHZ19, BCHU20, EOSH20, EOSM20, EOSU19, EOSZ19, ETHH20, ETHM20, ETHUSD, ETHU19, ETHZ19. LTCH20, LTCM20, LTCZ19, LTCU19, TRXH20, TRXM20, TRXZ19,TRXU19,  XBT7D_D95, XBT7D_U105, XBTH20, XBTM20, XBTU20, XBTUSD, XBTZ19, XBTU19, XRPH20, XRPM20, XRPU19, XRPUSD, XRPZ19</p>
 
-<p><strong>type</strong>: unrealized_profit_period_delta, unrealized_profit_inception, realized_profit, volume</p>
+<p><strong>side</strong>: Buy, sell</p>
 <h3 id='data-sanity-21'>Data Sanity</h3>
 <p>No downtime.</p>
 <h3 id='api-reference-15'>API Reference</h3>
-<p><code>GET https://www.bitmex.com/api/v1/orderBook/L2?symbol={Symbol}&amp;depth={Depth}</code></p>
+<p><code>Websocket wss://www.bitmex.com/realtime?subscribe=liquidation</code></p>
 <h3 id='api-query-parameters-21'>API Query Parameters</h3>
 <table><thead>
 <tr>
-<th>Key</th>
-<th>Available Time Frames</th>
-<th>Available Symbols</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>&quot;plu_diff&quot; - (Unrealised Profit (Period Delta))</td>
-<td>&quot;1w&quot;, &quot;1M&quot;</td>
-<td>tGLOBAL:USD</td>
-</tr>
-<tr>
-<td>&quot;plu&quot; - (Unrealised Profit (Inception))</td>
-<td>&quot;3h&quot; - for specific pairs &quot;1w&quot;, &quot;1M&quot; - for tGLOBAL:USD</td>
-<td>Trading Pairs (e.g. tBTCUSD, tETHUSD tGLOBAL:USD</td>
-</tr>
-<tr>
-<td>&quot;plr&quot; - (Realized Profit)</td>
-<td>&quot;1w&quot;, &quot;1M&quot;</td>
-<td>tGLOBAL:USD</td>
-</tr>
-<tr>
-<td>&quot;vol&quot; - (Volume)</td>
-<td>&quot;3h&quot;, &quot;1w&quot;, &quot;1M&quot;</td>
-<td>Trading Pairs (e.g. tBTCUSD, tETHUSD) tGLOBAL:USD</td>
-</tr>
-</tbody></table>
-<h3 id='api-return-schema-17'>API Return Schema</h3>
-<table><thead>
-<tr>
-<th>Fields</th>
+<th>Name</th>
 <th>Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>MTS</td>
-<td>int</td>
-<td>millisecond timestamp</td>
-</tr>
-<tr>
-<td>USERNAME</td>
+<td>symbol</td>
 <td>string</td>
-<td>Username</td>
-</tr>
-<tr>
-<td>RANKING</td>
-<td>int</td>
-<td>Place on leaderboard</td>
-</tr>
-<tr>
-<td>VALUE</td>
-<td>float</td>
-<td>Value of volume, unrealized profit, or realized profit</td>
-</tr>
-<tr>
-<td>TWITTER_HANDLE</td>
-<td>string</td>
-<td>Shows the user&#39;s Twitter handle (if available)</td>
+<td>Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.</td>
 </tr>
 </tbody></table>
+<h3 id='api-return-schema-17'>API Return Schema</h3>
+<p>No information.</p>
 <h2 id='bitmex-settlement'>Bitmex Settlement</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch data</span>
-<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">bitmex_settlement</span>
+<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">bitmex_settlement</span> <span class="k">where</span> <span class="n">symbol</span> <span class="o">=</span> <span class="s1">'XBTK15'</span>
 </code></pre>
 <blockquote>
 <p>response</p>
@@ -4073,20 +3846,20 @@ Trade data may have some gaps in the past but api can fetch all historical, so w
 <pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
 
  </span><span class="p">{</span><span class="w">
-   </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-11-21 17:40:53.056972"</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"snapshot_time"</span><span class="p">:</span><span class="s2">"2019-11-21 17:40:53.188963"</span><span class="w">
-   </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">34699996624</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.00003376</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"size"</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-05-29 12:00:00"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"bankrupt"</span><span class="p">:</span><span class="w"> </span><span class="err">None</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"optionStrikePrice"</span><span class="p">:</span><span class="w"> </span><span class="err">None</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"optionUnderlyingPrice"</span><span class="p">:</span><span class="w"> </span><span class="err">None</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"settledPrice"</span><span class="p">:</span><span class="mf">236.04</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"settlementType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Settlement"</span><span class="w">
    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XRPZ19"</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sell"</span><span class="p">,</span><span class="w">
-
-
+   </span><span class="s2">"taxBase"</span><span class="p">:</span><span class="w"> </span><span class="err">None</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"taxRate"</span><span class="p">:</span><span class="w"> </span><span class="err">None</span><span class="w">
  </span><span class="p">}</span><span class="w">
 
 </span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='description-22'>Description</h3>
-<p><a href="https://leaderboard.bitfinex.com/">Bitmex settlement</a> has a variety of frequencies, including 3 hours, 1 week, 1 month. And data time range is from 2020-04-01 00:00:00 till now. Collectors are continously runing in two hosts.</p>
+<p><a href="https://www.bitmex.com/app/wsAPI">Bitmex settlement</a> is connected through webscoket so it is real-time update And data time range is from 2015-05-29 12:00:00 till now. Collectors are continously runing in two hosts.</p>
 <h3 id='data-schema-22'>Data Schema</h3>
 <table><thead>
 <tr>
@@ -4099,11 +3872,6 @@ Trade data may have some gaps in the past but api can fetch all historical, so w
 <td>time</td>
 <td>string</td>
 <td>default database timestamp</td>
-</tr>
-<tr>
-<td>snapshot_time</td>
-<td>float</td>
-<td>data timestamp</td>
 </tr>
 <tr>
 <td>bankrupt</td>
@@ -4140,80 +3908,36 @@ Trade data may have some gaps in the past but api can fetch all historical, so w
 <td>float</td>
 <td></td>
 </tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>tag values</td>
+</tr>
 </tbody></table>
-<h3 id='tag-vlaues-20'>Tag Vlaues</h3>
-<p><strong>Symbols (time:ticker)</strong>: 3h:tGLOBAL:USD, 3h:tBTCUSD, 3h:tBTCF0:USTF0, 3h:tBTCUST, 3h:tBTCEUR, 3h:tLEOUSD, 3h:tETHUSD, 3h:tETHF0:USTF0, 3h:tETHUST, 3h:tEOSUSD, 3h:tLTCUSD, 3h:tETCUSD, 1w:tGLOBAL:USD, 1w:tGLOBAL:CHZ, 1M:tGLOBAL:USD</p>
-
-<p><strong>type</strong>: unrealized_profit_period_delta, unrealized_profit_inception, realized_profit, volume</p>
+<h3 id='tag-vlaues-18'>Tag Vlaues</h3>
+<p><strong>Symbols</strong>: A50G16, A50H16, A50J16, A50K16, A50M16, A50N16, A50Q16, ADAF18, ADAH18, ADAH19, ADAH20, ADAM18, ADAM19, ADAU18, ADAM18, ADAZ18, ADAZ19, BCHF18, BCHH18, BCHH19, BCHH20, BCHM18, BCHM19, BCHU18, BCHU19, BCHX17, BCHZ17, BCHZ18, BCHZ19, BFXQ16, BFXU16, BFXV16, BVOL24H, BVOL7D, B_BLOCKSZ17, B_SEGWITZ17, COIN_BH17, DAOETH, DASH7D, DASHH18, DASHJ17, DASHM17, DASHU17, DASHZ17, EOSH19, EOSH20, EOSM18, EOSM19, EOSN17, EOSU18, EOSU19, EOSZ18, EOSZ19, ETC24H, ETC7D, ETH7D, ETHH18, ETHH19, ETHH20, ETHJ17, ETHM17, ETHM18, ETHM19, ETHU17, ETHI19, ETHXBT, ETHZ17, ETHZ18, ETHZ19, FxT7D, FXCM17, FCTXBT, GNOM17, LSKXBT, LTC7D, LTCH18, LTCH19, LTCH20, LTCM18, LTCM19, LTCM20, LTCU18, LTCU19, LTCU20, LTCXBT, LTCZ18, LTCZ19, LTCZ20, NEOG18, NEOH18, QTUMU17, REP7D, SNTN17, TRXH19, TRXH20, TRXM19, TRXU18, TRXU19, TRXZ18, TRXZ19, WINZ16, XBCM17, XBCH17, XBCZ16, XBJ24H, XBJ7D, XBJM17, XBJU17, XBJZ16, XBJZ17, XBT24H, XBT48H, XBT7D, XBT7D_D90, XBT7D_D95, XBT7D_U105, XBT7D_U110, XBTH16, XBTH17, XBTH18, XBTH19, XBTH20, XBTK15, XBTM15, XBTM16, XBTM17, XBTM18, XBTM19, XBTN15, XBTQ15, XBTU15, XBTU16, XBTU17, XBTU18, XBTU19, XBTUSD, XBTV15, XBTZ15, XBTZ16, XBTZ17, XBTZ18, XBTZ19, XBU24H, XBU7D, XBUK15, XBUM15, XBUN15, XBUQ15, XBUU15, XBUZ15, XLMF18, XLMH18, XLT7D, XMR7D, XMRH18, XMRM17, XMRU17, XMRZ17, XRP7D, XRPH18, XRPH19, XRPH20, XRPM17, XRPM18, XRPM19, XRPU17, XRPU18, XRPU19, XRPZ17, XRPZ18, XRPZ19, XTZZ17, ZECH17, ZECH18, ZECM17, ZECU17, ZECZ16, ZECZ17  </p>
 <h3 id='data-sanity-22'>Data Sanity</h3>
 <p>No downtime.</p>
 <h3 id='api-reference-16'>API Reference</h3>
-<p><code>GET https://www.bitmex.com/api/v1/orderBook/L2?symbol={Symbol}&amp;depth={Depth}</code></p>
+<p><code>Websocket wss://www.bitmex.com/realtime?subscribe=settlement</code></p>
 <h3 id='api-query-parameters-22'>API Query Parameters</h3>
 <table><thead>
 <tr>
-<th>Key</th>
-<th>Available Time Frames</th>
-<th>Available Symbols</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>&quot;plu_diff&quot; - (Unrealised Profit (Period Delta))</td>
-<td>&quot;1w&quot;, &quot;1M&quot;</td>
-<td>tGLOBAL:USD</td>
-</tr>
-<tr>
-<td>&quot;plu&quot; - (Unrealised Profit (Inception))</td>
-<td>&quot;3h&quot; - for specific pairs &quot;1w&quot;, &quot;1M&quot; - for tGLOBAL:USD</td>
-<td>Trading Pairs (e.g. tBTCUSD, tETHUSD tGLOBAL:USD</td>
-</tr>
-<tr>
-<td>&quot;plr&quot; - (Realized Profit)</td>
-<td>&quot;1w&quot;, &quot;1M&quot;</td>
-<td>tGLOBAL:USD</td>
-</tr>
-<tr>
-<td>&quot;vol&quot; - (Volume)</td>
-<td>&quot;3h&quot;, &quot;1w&quot;, &quot;1M&quot;</td>
-<td>Trading Pairs (e.g. tBTCUSD, tETHUSD) tGLOBAL:USD</td>
-</tr>
-</tbody></table>
-<h3 id='api-return-schema-18'>API Return Schema</h3>
-<table><thead>
-<tr>
-<th>Fields</th>
+<th>Name</th>
 <th>Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>MTS</td>
-<td>int</td>
-<td>millisecond timestamp</td>
-</tr>
-<tr>
-<td>USERNAME</td>
+<td>symbol</td>
 <td>string</td>
-<td>Username</td>
-</tr>
-<tr>
-<td>RANKING</td>
-<td>int</td>
-<td>Place on leaderboard</td>
-</tr>
-<tr>
-<td>VALUE</td>
-<td>float</td>
-<td>Value of volume, unrealized profit, or realized profit</td>
-</tr>
-<tr>
-<td>TWITTER_HANDLE</td>
-<td>string</td>
-<td>Shows the user&#39;s Twitter handle (if available)</td>
+<td>Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.</td>
 </tr>
 </tbody></table>
+<h3 id='api-return-schema-18'>API Return Schema</h3>
+<p>No information.</p>
 <h2 id='bitmex-trade'>Bitmex Trade</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch data</span>
-<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">bitmex_trade</span>
+<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">bitmex_trade</span> <span class="k">where</span> <span class="n">symbol</span> <span class="o">=</span> <span class="s1">'XBT7D_D95'</span>
 </code></pre>
 <blockquote>
 <p>response</p>
@@ -4221,20 +3945,21 @@ Trade data may have some gaps in the past but api can fetch all historical, so w
 <pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
 
  </span><span class="p">{</span><span class="w">
-   </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-11-21 17:40:53.056972"</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"snapshot_time"</span><span class="p">:</span><span class="s2">"2019-11-21 17:40:53.188963"</span><span class="w">
-   </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">34699996624</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.00003376</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"size"</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XRPZ19"</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sell"</span><span class="p">,</span><span class="w">
-
-
+   </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-07-11 14:59:42.056972"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"foreignNotional"</span><span class="p">:</span><span class="mf">0.23265</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"grossValue"</span><span class="p">:</span><span class="mi">235000000</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"homeNotional"</span><span class="p">:</span><span class="w"> </span><span class="mf">23.5</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"official_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="err">None</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.00099</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XBT7D_D95"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Buy"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"tickDirection"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PlusTick"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"trdMatchID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"adffc000-d563-b5db-c9b6-a9ed3b304006"</span><span class="w">
  </span><span class="p">}</span><span class="w">
 
 </span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='description-23'>Description</h3>
-<p><a href="https://leaderboard.bitfinex.com/">Bitmex trade</a> has a variety of frequencies, including 3 hours, 1 week, 1 month. And data time range is from 2020-04-01 00:00:00 till now. Collectors are continously runing in two hosts.</p>
+<p><a href="https://www.bitmex.com/app/wsAPI">Bitmex trade</a> is connected through webscoket so it is real-time update. And data time range is from 2019-07-11 14:59:42.056972 till now. Collectors are continously runing in two hosts.</p>
 <h3 id='data-schema-23'>Data Schema</h3>
 <table><thead>
 <tr>
@@ -4247,11 +3972,6 @@ Trade data may have some gaps in the past but api can fetch all historical, so w
 <td>time</td>
 <td>string</td>
 <td>default database timestamp</td>
-</tr>
-<tr>
-<td>snapshot_time</td>
-<td>float</td>
-<td>data timestamp</td>
 </tr>
 <tr>
 <td>foreignNotional</td>
@@ -4293,78 +4013,41 @@ Trade data may have some gaps in the past but api can fetch all historical, so w
 <td>string</td>
 <td></td>
 </tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>tag values</td>
+</tr>
+<tr>
+<td>side</td>
+<td>string</td>
+<td>tag values</td>
+</tr>
 </tbody></table>
-<h3 id='tag-vlaues-21'>Tag Vlaues</h3>
-<p><strong>Symbols (time:ticker)</strong>: 3h:tGLOBAL:USD, 3h:tBTCUSD, 3h:tBTCF0:USTF0, 3h:tBTCUST, 3h:tBTCEUR, 3h:tLEOUSD, 3h:tETHUSD, 3h:tETHF0:USTF0, 3h:tETHUST, 3h:tEOSUSD, 3h:tLTCUSD, 3h:tETCUSD, 1w:tGLOBAL:USD, 1w:tGLOBAL:CHZ, 1M:tGLOBAL:USD</p>
+<h3 id='tag-vlaues-19'>Tag Vlaues</h3>
+<p><strong>Symbols</strong>: ADAH20, ADAM20, ADAU19, ADAZ19, BCHH20, BCHM20, BCHZ19, BCHU20, EOSH20, EOSM20, EOSU19, EOSZ19, ETHH20, ETHM20, ETHUSD, ETHU19, ETHZ19. LTCH20, LTCM20, LTCZ19, LTCU19, TRXH20, TRXM20, TRXZ19,TRXU19,  XBT7D_D95, XBT7D_U105, XBTH20, XBTM20, XBTU20, XBTUSD, XBTZ19, XBTU19, XRPH20, XRPM20, XRPU19, XRPUSD, XRPZ19</p>
 
-<p><strong>type</strong>: unrealized_profit_period_delta, unrealized_profit_inception, realized_profit, volume</p>
+<p><strong>side</strong>: Buy, sell</p>
 <h3 id='data-sanity-23'>Data Sanity</h3>
 <p>No downtime.</p>
 <h3 id='api-reference-17'>API Reference</h3>
-<p><code>GET https://www.bitmex.com/api/v1/orderBook/L2?symbol={Symbol}&amp;depth={Depth}</code></p>
+<p><code>Websocket wss://www.bitmex.com/realtime?subscribe=trade</code></p>
 <h3 id='api-query-parameters-23'>API Query Parameters</h3>
 <table><thead>
 <tr>
-<th>Key</th>
-<th>Available Time Frames</th>
-<th>Available Symbols</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>&quot;plu_diff&quot; - (Unrealised Profit (Period Delta))</td>
-<td>&quot;1w&quot;, &quot;1M&quot;</td>
-<td>tGLOBAL:USD</td>
-</tr>
-<tr>
-<td>&quot;plu&quot; - (Unrealised Profit (Inception))</td>
-<td>&quot;3h&quot; - for specific pairs &quot;1w&quot;, &quot;1M&quot; - for tGLOBAL:USD</td>
-<td>Trading Pairs (e.g. tBTCUSD, tETHUSD tGLOBAL:USD</td>
-</tr>
-<tr>
-<td>&quot;plr&quot; - (Realized Profit)</td>
-<td>&quot;1w&quot;, &quot;1M&quot;</td>
-<td>tGLOBAL:USD</td>
-</tr>
-<tr>
-<td>&quot;vol&quot; - (Volume)</td>
-<td>&quot;3h&quot;, &quot;1w&quot;, &quot;1M&quot;</td>
-<td>Trading Pairs (e.g. tBTCUSD, tETHUSD) tGLOBAL:USD</td>
-</tr>
-</tbody></table>
-<h3 id='api-return-schema-19'>API Return Schema</h3>
-<table><thead>
-<tr>
-<th>Fields</th>
+<th>Name</th>
 <th>Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>MTS</td>
-<td>int</td>
-<td>millisecond timestamp</td>
-</tr>
-<tr>
-<td>USERNAME</td>
+<td>symbol</td>
 <td>string</td>
-<td>Username</td>
-</tr>
-<tr>
-<td>RANKING</td>
-<td>int</td>
-<td>Place on leaderboard</td>
-</tr>
-<tr>
-<td>VALUE</td>
-<td>float</td>
-<td>Value of volume, unrealized profit, or realized profit</td>
-</tr>
-<tr>
-<td>TWITTER_HANDLE</td>
-<td>string</td>
-<td>Shows the user&#39;s Twitter handle (if available)</td>
+<td>Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.</td>
 </tr>
 </tbody></table>
+<h3 id='api-return-schema-19'>API Return Schema</h3>
+<p>No information</p>
 <h1 id='bigone'>BigOne</h1>
 <p><a href="https://big.one/">BigOne exchange</a> is a cryptocurrency exchange with <a href="https://open.big.one/docs/api.html">api documents</a> </p>
 <h2 id='bigone-trade'>BigOne Trade</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch trades</span>
@@ -4433,7 +4116,7 @@ Trade data may have some gaps in the past but api can fetch all historical, so w
 <td>tag values</td>
 </tr>
 </tbody></table>
-<h3 id='tag-vlaues-22'>Tag Vlaues</h3>
+<h3 id='tag-vlaues-20'>Tag Vlaues</h3>
 <p><strong>Symbol</strong>: HNS-BTC, HNS-USDT</p>
 <h3 id='data-sanity-24'>Data Sanity</h3>
 <p>No downtime.</p>
@@ -4564,7 +4247,7 @@ Trade data may have some gaps in the past but api can fetch all historical, so w
 <td>tag values</td>
 </tr>
 </tbody></table>
-<h3 id='tag-vlaues-23'>Tag Vlaues</h3>
+<h3 id='tag-vlaues-21'>Tag Vlaues</h3>
 <p><strong>Symbol</strong>: HNS-BTC, HNS-USDT</p>
 <h3 id='data-sanity-25'>Data Sanity</h3>
 <p>No downtime.</p>
@@ -4718,7 +4401,7 @@ Trade data may have some gaps in the past but api can fetch all historical, so w
 <td>tag values</td>
 </tr>
 </tbody></table>
-<h3 id='tag-vlaues-24'>Tag Vlaues</h3>
+<h3 id='tag-vlaues-22'>Tag Vlaues</h3>
 <p><strong>Symbol</strong>: BTCUSD, BTCUSDT, EOSUSD, ETHUSD, XRPUSD</p>
 <h3 id='data-sanity-26'>Data Sanity</h3>
 <p>Inverse perpetual collection starts from 2020-01-23 and USDT perpetual starts from 2020-04-17. </p>
