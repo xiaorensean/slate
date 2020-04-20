@@ -70,8 +70,8 @@ TableName | Frequency | DataType | CurrentStatus
 [coinbase_trades](#coinbase-trades) | 5 minutes | Trades Data | Running
 [coinex_orderbook](#coinex-orderbook) | 30 seconds | Orderbook | Running
 [coinex_trades](#coinex-trades) | 30 seconds | Trade Data | Running
-coinflex_burn_fees | 1 hour | Burn Fees | Running
-compound_borrow_rates | 1 minute | Borrow Rates | Running
+[coinflex_burn_fees](#coinflex-burn-fees) | 1 day | Burn Fees | NoLongerUpdating
+[compound_borrow_rates](#compound-borrow-rates) | 1 minute | Borrow Rates | Running
 cosmos_validator_ranking | 1 hour | Validator Ranking | Running
 cosmos_validator_status | 1 hour | Validator Status | Running
 deribit_fundingRate | 8 hours | Funding Rate | Running
@@ -137,7 +137,7 @@ poloniex_orderbook | 1 minute | Orderbook | Running
 poloniex_trades | 1 minute | Trade | Running
 [sp500_futures](#investing) | 1 second | Trade | Running
 tether_richlist | 1 hour | Leaderboard | Running
-tezos_leaderboard | 1 hour | Leaderboard | Running
+[tezos_leaderboard](#tezos-leaderboard) | 1 hour | Leaderboard | Running
 [wazirx_tickers](wazirx-tickers) | 1 hour | Ticker | Running
 
 
@@ -2397,14 +2397,14 @@ No downtime.
 
 ### API Query Parameters
 Name | Type | Required | Description
------| --------| ----------|
+-----| --------| ----------|----------|
 market	|String	|Yes	| Get all market
 merge	|String	|Yes	|'0', '0.1', '0.01', '0.001', '0.0001', '0.00001', '0.000001', '0.0000001', '0.00000001
 limit	|Interger	|No(Default20)	|Return amount，range: 5/10/20/50
 
 ### API Return Schema
 Name | Type | Description
----- | ---- | ----------
+---- | ---- | ----------|
 last	|String|	Last price
 time	|Long|	Updated time of Depth
 asks	|Array|	Seller depth
@@ -2447,7 +2447,7 @@ timestamp | string | data timestamp
 tradeID | int |
 price | float |
 amount | float | 
-type | string | ask/bid
+type | string | buy/sell
 symbol | string | tag values
 
 ### Tag Values
@@ -2461,7 +2461,7 @@ No downtime.
 
 ### API Query Parameters
 Name | Type | Required | Description
------| --------| ----------|
+-----| --------| ----------| --------- |
 market	|String|	Yes	| Get makret list
 last_id	|Integer|	No	|Transaction history id, send 0 to draw from the latest record.
 limit	|Integer | No(default 100)|	Less than or equal to 1000
@@ -2478,7 +2478,141 @@ type	|String|	buy/sell
 
 
 
+# Coinflex
+[Coinflex](https://coinflex.com/) is a crypto exchange that focues on futures trading. Check their [api](https://github.com/coinflex-exchange/API). 
+
+## Coinflex Burn Fees
+```sql
+-- fetch data
+select * from coinflex_burn_fees limit 1 
+```
+> response
+
+```json
+[
+        {
+            "time": "2019-12-30 20:29:11.657",
+            "FLEX Acquisition Last 24 Hours": 39933.4489,
+            "Revenue above burn threshold": 6528.39,
+            "USDT to spend buying FLEX in current session": 1305.68,
+            "Yesterday's Total Revenue": 27528.39,
+          }
+]
+```
+
+### Description
+[Coinflex burn fees](https://coinflex.com/flexcoin/) has a frequency of 1 day and data time range is from 2019-12-30 20:29:11.657 to 2020-02-17 21:39:25. Collectors are continously runing in two hosts.
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | default database timestamp
+FLEX Acquisition Last 24 Hours | float |
+Revenue above burn threshold | float | 
+USDT to spend buying FLEX in current session | float | 
+Yesterday's Total Revenue | float |
+
+### Data Sanity
+No downtime.
+
+### Webscrapy
+The data is collected thourgh webscrapying and the website has changed its format since 2020-02-17 so it is no longer available.
+
+
+
 # Compound
+[Compound](https://compound.finance/) is a cryptocurrency exchange. Check their [api](https://compound.finance/docs/api). 
+
+## Compound borrow rates
+```sql
+-- fetch data
+select * from compound_borrow_rates limit 1 
+```
+> response
+
+```json
+[
+ "cToken": [{
+   "borrow_rate": {"value": "0.051453109785093843"},
+   "cash": {"value": "514.078443"},
+   "collateral_factor": {"value": "0.80000000000000000"},
+   "exchange_rate": {"value": "0.020024242770802729"},
+   "interest_rate_model_address": "0x1a43bfd39b15dcf444e17ab408c4b5be32deb7f5",
+   "name": "Compound USD Coin",
+   "number_of_borrowers": 3,
+   "number_of_suppliers": 34,
+   "reserves": {"value": "0"},
+   "supply_rate": {"value": "0.013237112532748109"},
+   "symbol": "cUSDC",
+   "token_address": "0x5b281a6dda0b271e91ae35de655ad301c976edb1",
+   "total_borrows": {"value": "178.064546"},
+   "total_supply": {"value": "34565.25157651"},
+   "underlying_address": "0x4dbcdf9b62e891a7cec5a2568c3f4faf9e8abe2b",
+   "underlying_name": "USD Coin",
+   "underlying_price": {"value": "0.0041368287055953530000000000"},
+   "underlying_symbol":"USDC"
+  }],
+ "error": null,
+ "request": {
+   "addresses": ["0x5b281a6dda0b271e91ae35de655ad301c976edb1"],
+   "block_number": 4515576,
+   "block_timestamp": 0
+  }
+}
+]
+```
+
+### Description
+[Compound borrow rates](https://compound.finance/docs/api#CTokenService) has a frequency of 1 minute and data time range is from 2019-12-13 21:52:44.471000 till now. Collectors are continously runing in two hosts.
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | default database timestamp
+borrow_rate                 |string|
+cash                        |string|
+collateral_factor           |string|
+exchange_rate               |string|
+interest_rate_model_address |string|
+name                        |string|
+number_of_borrowers         |integer|
+number_of_suppliers         |integer|
+reserves                    |string|
+supply_rate                 |string|
+symbol                      |string|
+token_address               |string|
+total_borrows               |string|
+total_supply                |string|
+underlying_address          |string|
+underlying_name             |string|
+underlying_price            |string|
+underlying_symbol           |string|
+
+
+### Data Sanity
+No downtime.
+
+### API Reference
+`GET https://api.compound.finance/api/v2/ctoken?meta=true`
+
+### API Query Parameters
+Type | Key | Description 
+---- | --- | -----------
+bytes	| addresses|	List of token addresses to filter on, e.g.: ["0x...", ,"0x..."] 
+uint32	| block_number |	Only one of block_number or block timestamp should be provided.
+uint32	| block_timestamp	| Only one of block_number or block timestamp should be provided. 
+bool	| meta | 	Pass true to get metadata for the token addresses specified.
+string	| network	|The ethereum network to use for the request
+
+### API Return Schema
+Type | Key | Description
+---- | --- | ----------
+Error	| error |	
+CTokenRequest	| request | The request parameters are echoed in the response.
+CToken	| cToken |	The list of cToken matching the requested filter.
+CTokenMeta	| meta	|  Metadata for all CTokens specified
+
+
 
 # Deribit
 
@@ -2572,8 +2706,6 @@ at | string  | Timestamp when ticker information is fetched
 
 
 
-# Coinflex
-
 # Cosmos
 
 # HNScan
@@ -2585,6 +2717,54 @@ at | string  | Timestamp when ticker information is fetched
 # Tether
 
 # Tezos
+[Tezos](https://stake.fish/en/tezos/) is a blockchain. 
+
+## Tezos Leaderboard
+```sql
+-- fetch data
+select * from tezos_leaderboard limit 1 
+```
+> response
+
+```json
+[
+        {
+            "time": "2020-02-04 05:46:48.567547",
+            "current_timestamp": 2020-02-04 05:46:48.467547"
+            "delegators": 65,
+            "fees": 25.00% ,
+            "rank": 1,
+            "staked_amount": 46615903,
+            "staked_amount_percentage": 0.07200000000000001,
+            "validator_address": "tz1irJKkXS2DBWkU1NnmFQx1c1L7pbGg4yhk"",
+            "validator_name": "Coinbase Custody"
+          }
+]
+```
+
+### Description
+[Tezos leaderboard](https://tezos.fish/leaderboard) has a frequency of 1 hour and data time range is from 2020-02-04 05:46:48.467547 till now. Collectors are continously runing in two hosts.
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | default database timestamp
+current_timestamp        string
+delegators               string
+fees                     string
+rank                     integer
+staked_amount            float
+staked_amount_percentage float
+validator_address        string
+validator_name           string
+
+### Data Sanity
+No downtime.
+
+### Webscrapy
+The data is collected thourgh webscrapying and the website 
+
+
 
 
 # Aggregate Exchange
