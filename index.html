@@ -4793,7 +4793,7 @@ Trade data may have some gaps in the past but api can fetch all historical, so w
 <h3 id='api-return-schema-25'>API Return Schema</h3>
 <p>No information.</p>
 <h2 id='coinbase-orderbook'>Coinbase Orderbook</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch tickers</span>
-<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">coinbase_custody</span> <span class="k">limit</span> <span class="mi">1</span> 
+<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">coinbase_orderbook</span> <span class="k">limit</span> <span class="mi">1</span> 
 </code></pre>
 <blockquote>
 <p>response</p>
@@ -4868,22 +4868,28 @@ Trade data may have some gaps in the past but api can fetch all historical, so w
 <h3 id='api-reference-24'>API Reference</h3>
 <p><code>GET https://api.pro.coinbase.com/products/{product-id}/book?level={level_num}</code></p>
 <h3 id='api-query-parameters-30'>API Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>product-id</td>
+<td>Yes</td>
+<td>tickers</td>
+</tr>
+<tr>
+<td>level</td>
+<td>i</td>
+<td>1: Only the best bid and ask; 2: Top 50 bids and asks (aggregated): 3: Full order book (non aggregated)</td>
+</tr>
+</tbody></table>
+
 <p><strong>DETAILS</strong>:
 By default, only the inside (i.e. best) bid and ask are returned. This is equivalent to a book depth of 1 level. If you would like to see a larger order book, specify the level query parameter.
 If a level is not aggregated, then all of the orders at each price will be returned. Aggregated levels return only one size for each active price (as if there was only a single order for that size at the level).</p>
-
-<p><strong>Parameters</strong>:
-Name | Default | Description
------| --------| ----------|
-product-id | Yes | tickers
-level | i | Select response detail. Valid levels are documented below</p>
-
-<p><strong>Levels</strong>:
-Level | Description 
------ | ---------- |
-1 | Only the best bid and ask
-2 | Top 50 bids and asks (aggregated)
-3 | Full order book (non aggregated)</p>
 <h3 id='api-return-schema-26'>API Return Schema</h3>
 <p>No information.</p>
 <h2 id='coinbase-trades'>Coinbase Trades</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch tickers</span>
@@ -4962,13 +4968,22 @@ Level | Description
 <h3 id='api-reference-25'>API Reference</h3>
 <p><code>GET https://api.pro.coinbase.com/products/&lt;product-id&gt;/trades</code></p>
 <h3 id='api-query-parameters-31'>API Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>product-id</td>
+<td>Yes</td>
+<td>tickers</td>
+</tr>
+</tbody></table>
+
 <p><strong>SIDE</strong>:
 The trade side indicates the maker order side. The maker order is the order that was open on the order book. buy side indicates a down-tick because the maker was a buy order and their order was removed. Conversely, sell side indicates an up-tick.</p>
-
-<p><strong>Parameters</strong>:
-Name | Required | Description
------| --------| ----------|
-product-id | Yes | tickers</p>
 <h3 id='api-return-schema-27'>API Return Schema</h3>
 <p>No information.</p>
 <h1 id='coinex'>Coinex</h1><h1 id='compound'>Compound</h1><h1 id='deribit'>Deribit</h1><h1 id='dydx'>Dydx</h1><h1 id='ftx'>FTX</h1><h1 id='gateio'>Gateio</h1><h1 id='huobidm'>HuobiDM</h1><h1 id='mxc'>MXC</h1><h1 id='okex'>OKEX</h1><h1 id='poloniex'>Poloniex</h1><h1 id='wazirx'>WazirX</h1>
