@@ -2233,7 +2233,7 @@ No information.
 ## Coinbase Orderbook
 ```sql
 -- fetch tickers
-select * from coinbase_custody limit 1 
+select * from coinbase_orderbook limit 1 
 ```
 > response
 
@@ -2277,22 +2277,14 @@ No downtime.
 `GET https://api.pro.coinbase.com/products/{product-id}/book?level={level_num}`
 
 ### API Query Parameters
-**DETAILS**:
-By default, only the inside (i.e. best) bid and ask are returned. This is equivalent to a book depth of 1 level. If you would like to see a larger order book, specify the level query parameter.
-If a level is not aggregated, then all of the orders at each price will be returned. Aggregated levels return only one size for each active price (as if there was only a single order for that size at the level).
-
-**Parameters**:
 Name | Default | Description
 -----| --------| ----------|
 product-id | Yes | tickers
-level | i | Select response detail. Valid levels are documented below
+level | i | 1: Only the best bid and ask; 2: Top 50 bids and asks (aggregated): 3: Full order book (non aggregated)
 
-**Levels**:
-Level | Description 
------ | ---------- |
-1 | Only the best bid and ask
-2 | Top 50 bids and asks (aggregated)
-3 | Full order book (non aggregated)
+**DETAILS**:
+By default, only the inside (i.e. best) bid and ask are returned. This is equivalent to a book depth of 1 level. If you would like to see a larger order book, specify the level query parameter.
+If a level is not aggregated, then all of the orders at each price will be returned. Aggregated levels return only one size for each active price (as if there was only a single order for that size at the level).
 
 ### API Return Schema
 No information.
@@ -2346,14 +2338,12 @@ No downtime.
 `GET https://api.pro.coinbase.com/products/<product-id>/trades`
 
 ### API Query Parameters
-**SIDE**:
-The trade side indicates the maker order side. The maker order is the order that was open on the order book. buy side indicates a down-tick because the maker was a buy order and their order was removed. Conversely, sell side indicates an up-tick.
-
-**Parameters**:
 Name | Required | Description
 -----| --------| ----------|
 product-id | Yes | tickers
 
+**SIDE**:
+The trade side indicates the maker order side. The maker order is the order that was open on the order book. buy side indicates a down-tick because the maker was a buy order and their order was removed. Conversely, sell side indicates an up-tick.
 
 ### API Return Schema
 No information.
