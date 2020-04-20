@@ -68,8 +68,8 @@ TableName | Frequency | DataType | CurrentStatus
 [coinbase_custody](#coinbase-custody) | 1 hour | Custody Data | Running
 [coinbase_orderbook](#coinbase-orderbook) | 30 seconds | Orderbook | Running
 [coinbase_trades](#coinbase-trades) | 5 minutes | Trades Data | Running
-coinex_orderbook | 30 seconds | Orderbook | Running
-coinex_trades | 1 minute | Trade Data | Running
+[coinex_orderbook](#coinex-orderbook) | 30 seconds | Orderbook | Running
+[coinex_trades](#coinex-trades) | 30 seconds | Trade Data | Running
 coinflex_burn_fees | 1 hour | Burn Fees | Running
 compound_borrow_rates | 1 minute | Borrow Rates | Running
 cosmos_validator_ranking | 1 hour | Validator Ranking | Running
@@ -2182,7 +2182,7 @@ No information.
 
 ## Coinbase Custody
 ```sql
--- fetch tickers
+-- fetch data
 select * from coinbase_custody limit 1 
 ```
 > response
@@ -2232,7 +2232,7 @@ No information.
 
 ## Coinbase Orderbook
 ```sql
--- fetch tickers
+-- fetch data
 select * from coinbase_orderbook limit 1 
 ```
 > response
@@ -2293,7 +2293,7 @@ No information.
 
 ## Coinbase Trades
 ```sql
--- fetch tickers
+-- fetch data
 select * from coinbase_trades limit 1 
 ```
 > response
@@ -2351,6 +2351,132 @@ No information.
 
 
 # Coinex
+[Coinex](https://www.coinex.com/) is a crypto exchange. Check their [api](https://github.com/coinexcom/coinex_exchange_api/wiki).
+
+## Coinex Orderbook
+```sql
+-- fetch data
+select * from coinex_orderbook limit 1 
+```
+> response
+
+```json
+[
+        {
+            "time": "2020-03-13 19:51:16.957000",
+            "snapshot": "2020-03-13 19:51:16.957000",
+            "price": 0.1565,
+            "size": 35.631,
+            "symbol": "hnsusdt",
+            "type": "ask"
+          }
+]
+```
+
+### Description
+[Coinex orderbook](https://github.com/coinexcom/coinex_exchange_api/wiki/022depth) has a frequency of 30 seconds and data time range is from 2020-03-13 19:51:16.957000 till now. Collectors are continously runing in two hosts.
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | default database timestamp
+snapshot | string | data timestamp
+price | float |
+size | float | 
+type | string | ask/bid
+symbol | string | tag values
+
+### Tag Values
+**symbol**: hnsbtc, hnsusdt
+
+### Data Sanity
+No downtime.
+
+### API Reference
+`GET https://api.coinex.com/v1/market/depth?market={}&limit=50&merge=0"`
+
+### API Query Parameters
+Name | Type | Required | Description
+-----| --------| ----------|
+market	|String	|Yes	| Get all market
+merge	|String	|Yes	|'0', '0.1', '0.01', '0.001', '0.0001', '0.00001', '0.000001', '0.0000001', '0.00000001
+limit	|Interger	|No(Default20)	|Return amount，range: 5/10/20/50
+
+### API Return Schema
+Name | Type | Description
+---- | ---- | ----------
+last	|String|	Last price
+time	|Long|	Updated time of Depth
+asks	|Array|	Seller depth
+asks[0][0]	|String|	Order price
+asks[0][1]	|String|	Order amount
+bids	|Array|	Buyer depth
+bids[0][0]	|String|	Order price
+bids[0][1]	|String|	Order amount
+
+
+## Coinex Trades 
+```sql
+-- fetch data
+select * from coinex_trades limit 1 
+```
+> response
+
+```json
+[
+        {
+            "time": "2020-03-13 19:24:12.957000",
+            "timestamp": 1584127452333,
+            "tradeID": 1205232182,
+            "price": 0.000026426,
+            "amount": 16.7853,
+            "symbol": "hnsbtc",
+            "type": "sell"
+          }
+]
+```
+
+### Description
+[Coinex trades](https://github.com/coinexcom/coinex_exchange_api/wiki/023deals) has a frequency of 30 seconds and data time range is from 2020-03-13 19:24:16.957000 till now. Collectors are continously runing in two hosts.
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | default database timestamp
+timestamp | string | data timestamp
+tradeID | int |
+price | float |
+amount | float | 
+type | string | ask/bid
+symbol | string | tag values
+
+### Tag Values
+**symbol**: hnsbtc, hnsusdt
+
+### Data Sanity
+No downtime.
+
+### API Reference
+`GET https://api.coinex.com/v1/market/deals?market={}"`
+
+### API Query Parameters
+Name | Type | Required | Description
+-----| --------| ----------|
+market	|String|	Yes	| Get makret list
+last_id	|Integer|	No	|Transaction history id, send 0 to draw from the latest record.
+limit	|Integer | No(default 100)|	Less than or equal to 1000
+
+### API Return Schema
+Name | Type | Description
+---- | ---- | ----------
+id	|Integer|	Transaction No
+date	|Integer|	Transaction time
+date_ms	|Integer|	Transaction time(ms)
+amount	|String|	Transaction amount
+price	|String|	Transaction price
+type	|String|	buy/sell
+
+
 
 # Compound
 
