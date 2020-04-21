@@ -2691,6 +2691,7 @@ data	| object	|
   ›  interest	|number	|Current interest
   ›  timestamp	|integer	|The timestamp (milliseconds since the Unix epoch)
 
+
 ## Deribit Option Ticker
 ```sql
 -- fetch ticker 
@@ -2731,7 +2732,7 @@ select * from deribit_optionsTicker
 ```
 
 ### Description
-[Deribit ticker/ Deribit optionTicker](https://docs.deribit.com/?python#ticker-instrument_name-interval) is connected thourgh websocket and data time range for ticker is from 2019-07-11T15:59:41.176999936Z till now. Collectors are continously runing in two hosts.
+[Deribit option ticker](https://docs.deribit.com/?python#ticker-instrument_name-interval) is connected thourgh websocket and data time range for ticker is from 2019-07-11T15:59:41.176999936Z till now. Collectors are continously runing in two hosts.
 
 ### Data Schema
 fieldName | fieldType | description
@@ -2801,8 +2802,8 @@ interval	|true	|string	|100ms; raw	|Frequency of notifications. Events will be a
 Fields	|Type | Description
 --------| ----| ----------|
 data	| object	|
-  ›  ask_iv	|number|	(Only for option) implied volatility for best ask
-  ›  best_ask_amount	|number|	It represents the requested order size of all best asks
+›  ask_iv	|number|	(Only for option) implied volatility for best ask
+›  best_ask_amount	|number|	It represents the requested order size of all best asks
   ›  best_ask_price	|number|	The current best ask price, null if there aren't any asks
   ›  best_bid_amount	|number|	It represents the requested order size of all best bids
   ›  best_bid_price	|number|	The current best bid price, null if there aren't any bids
@@ -2835,6 +2836,11 @@ data	| object	|
   ›  timestamp	|integer|	The timestamp (milliseconds since the Unix epoch)
   ›  underlying_index	|number|	Name of the underlying future, or index_price (options only)
   ›  underlying_price	|number|	Underlying price for implied volatility calculations (options only)
+
+
+
+
+
 
 
 ## Deribit Ticker
@@ -2877,7 +2883,7 @@ select * from deribit_ticker
 ```
 
 ### Description
-[Deribit ticker/ Deribit optionTicker](https://docs.deribit.com/?python#ticker-instrument_name-interval) is connected thourgh websocket and data time range for ticker is from 2019-07-11T15:59:41.176999936Z till now. Collectors are continously runing in two hosts.
+[Deribit ticker](https://docs.deribit.com/?python#ticker-instrument_name-interval) is connected thourgh websocket and data time range for ticker is from 2019-07-11T15:59:41.176999936Z till now. Collectors are continously runing in two hosts.
 
 ### Data Schema
 fieldName | fieldType | description
