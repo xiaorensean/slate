@@ -3,6 +3,9 @@ title: VQR Data Catalogue
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - sql
+  
+toc_footers:
+  <a href='https://github.com/virdevop/Market-Data-Host-1'>Check out scripts</a>
 
 search: true
 ---
@@ -111,8 +114,8 @@ huobidm_trades | RealTime | Trade | Running
 [namebase_domain](#namebase-domain) | 9 hours | Domain Data | Running
 [namebase_orderbook](#namebase-orderbook) |30 seconds | Orderbook | Running 
 [namebase_trade](#namebase-trade) | RealTime | Trade | Running
-nervos_block | 1 minute | BLockChain | Running
-nervos_hashrate | 1 minute | Hash Rate | Running
+[nervos_block](#nervos-block) | 10 minutes | BLockChain | Running
+[nervos_hashrate](#nervos-hashrate) | 10 minutes | Hash Rate | Running
 okex_fundingRate | 8 hours | Funding Rate | Running
 okex_future_stats_contractBasis | Varies | Futures Data | Running
 okex_future_stats_FutureTakerBuySell | Varies | Futures Data | Running
@@ -131,10 +134,10 @@ okex_SwapOpenInterest | RealTime | Open Interest | Running
 okex_ticker | RealTime | Ticker | Running
 okex_ticker_swap | RealTime | Ticker | Running
 okex_ticker_v1 | RealTime | Ticker | Running
-poloniex_funding_orderbook | 1 minute | Orderbook | Running
-poloniex_leaderboard | 1 hour | Leaderboard | Running
-poloniex_orderbook | 1 minute | Orderbook | Running
-poloniex_trades | 1 minute | Trade | Running
+[poloniex_funding_orderbook](#poloniex-funding-orderbook) | 1 minute | Orderbook | Running
+[poloniex_leaderboard](#poloniex-leaderboard) | 1 hour | Leaderboard | Running
+[poloniex_orderbook](#poloniex-orderbook) | 30 seconds | Orderbook | Running
+[poloniex_trades](#poloniex-trades) | 10 minutes | Trade | Running
 [sp500_futures](#investing) | 1 second | Trade | Running
 [tether_richlist](#tether-richlist) | 1 hour | Leaderboard | Running
 [tezos_leaderboard](#tezos-leaderboard) | 1 hour | Leaderboard | Running
@@ -2945,10 +2948,237 @@ Quantity	|float|	Book amount
 
 
 # Poloniex
+[Poloniex](https://poloniex.com/) is a cryptocurrency exchange. Check their [api](https://docs.poloniex.com/#introduction).
+
+## Poloniex Funding Orderbook
+```sql
+-- fetch data
+select * from poloniex_funding_orderbook limit 1 
+```
+> response
+
+```json
+[
+    {
+       'time': '2019-10-18T20:41:17.431642305Z', 
+       'amount': '4.34079922', 
+       'rangeMax': 2, 
+       'rangeMin': 2, 
+       'rate': '0.00025000', 
+       'symbol': 'ATOM', 
+       'timestamp': None, 
+       'type': 'offers'
+   }
+]
+```
+
+### Description
+[Poloniex funding orderbook](https://docs.poloniex.com/#returnloanorders) has a frequency of 1 minute and data time range is from 2019-10-18 20:41:17.431642305 till now. Collectors are continously runing in two hosts.
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | default database timestamp
+amount    |string|
+rangeMax  |integer|
+rangeMin  |integer|
+rate      |string|
+timestamp |string|
+type      |string|
+symbol | string | tag values
+
+### Tag Values
+**symbol**: 
+ATOM, BCHABC, BCHSV, BTC, DASH, DOGE, EOS, ETC, ETH, LTC, STR, TRX, USDC, USDT, XMR, XRP
+
+### Data Sanity
+No downtime.
+
+### API Reference
+`GET https://poloniex.com/public?command=returnOrderBook&currencyPair={}&depth=100`
+
+### API Query Parameters
+Name | Type | Required | Description
+-----| --------| ----------| --------- |
+symbol	|String|	Yes	| Symbol name
+depth | string | Yes | Market depth
+
+### API Return Schema
+Name | Type | Description
+---- | ---- | ----------
+rate	| string |The interest rate in percentage per day charged for this loan.
+amount	| string |The total number of units available at this rate and within this range.
+rangeMin	| integer  |The lowest duration in days offered by the loans within this group.
+rangeMax	|  integer |The highest duration in days offered by the loans within this group.
+
+
+## Poloniex Leaderboard
+```sql
+-- fetch data
+select * from poloniex_leaderboard limit 1 
+```
+> response
+
+```json
+[
+        {
+            'time': '2020-01-22T18:44:07.917126986Z', 
+            'account': '10****83', 
+            'current_snapshot': '2020-01-22T18:00:00.000Z', 
+            'net_deposit': '7000001.00000000', 
+            'rank': '1', 
+            'rank_change': 0
+          }
+]
+```
+
+### Description
+[Poloniex leaderboard](https://coinflex.com/flexcoin/) has a frequency of 1 hour and data time range is from 2020-01-22T18:44:07.917126986Z to 2020-02-17 21:39:25. Collectors are continously runing in two hosts.
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | default database timestamp
+account          string
+current_snapshot string
+net_deposit      string
+rank             string
+rank_change      integer
+
+### Data Sanity
+No downtime.
+
+### Webscrapy
+The data is collected thourgh webscrapying.
 
 
 
+## Poloniex Trades
+```sql
+-- fetch data
+select * from poloniex_trades limit 1 
+```
+> response
 
+```json
+[
+    {
+       'time': '2020-04-03T04:14:20.052070509Z', 
+       'amount': 2.40343333, 
+       'date': '2020-04-03 03:02:23', 
+       'globalTradeID': 457133708, 
+       'orderNumber': 12065214, 
+       'price': 0.6609214, 
+       'symbol': 'USDT_SNX', 
+       'total': 1.58848052, 
+       'tradeID': 1752, 
+       'type': 'buy'
+   }
+]
+```
+
+### Description
+[Poloniex trade](https://docs.poloniex.com/#returntradehistory-public) has a frequency of 10 minutes and data time range is from 2019-10-18 20:41:17.431642305 till now. Collectors are continously runing in two hosts.
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | default database timestamp
+amount        float
+date          string
+globalTradeID integer
+orderNumber   integer
+price         float
+total         float
+tradeID       integer
+type          string
+symbol | string | tag values
+
+### Tag Values
+**symbol**: 
+BTC_SNX, TRX_SNX, USDT_SNX
+
+### Data Sanity
+No downtime.
+
+### API Reference
+`GET https://poloniex.com/public?command=returnTradeHistory&currencyPair={}&start={}&end={}`
+
+### API Query Parameters
+Name | Type | Required | Description
+-----| --------| ----------| --------- |
+symbol	|String|	Yes	| Symbol name
+startTime | string | No | Start timestamp
+endTime | string | No | End timestamp
+
+### API Return Schema
+Name | Type | Description
+---- | ---- | ----------
+globalTradeID	| int | The globally unique ID associated with this trade.
+tradeID	| int  |The ID unique only to this currency pair associated with this trade.
+date	| string  |The UTC date and time of the trade execution.
+type	| string  | Designates this trade as a buy or a sell from the side of the taker.
+rate	|  float |The price in base currency for this asset.
+amount	|  float |The number of units transacted in this trade.
+total	| float | The total price in base units for this trade.
+
+
+## Poloniex Orderbook
+```sql
+-- fetch data
+select * from poloniex_orderbook limit 1 
+```
+> response
+
+```json
+[
+    {
+       'time': '2020-04-03T01:40:20.696600872Z', 
+       'amount': 99.31426668, 
+       'price': 0.64999999, 
+       'symbol': 'USDT_SNX', 
+       'timestamp': '2020-04-03 01:40:20.648743', '
+       'type': 'asks'
+   }
+]
+```
+
+### Description
+[Poloniex orderbook](https://docs.poloniex.com/#returntradehistory-public) has a frequency of 30 seconds and data time range is from 2020-04-03T01:40:20.696600872Z till now. Collectors are continously runing in two hosts.
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | default database timestamp
+amount    float
+price     float
+timestamp string
+type      string
+symbol | string | tag values
+
+### Tag Values
+**symbol**: 
+BTC_SNX, TRX_SNX, USDT_SNX
+
+### Data Sanity
+No downtime.
+
+### API Reference
+`GET https://poloniex.com/public?command=returnOrderBook&currencyPair={}&depth=100`
+
+### API Query Parameters
+Name | Type | Required | Description
+-----| --------| ----------| --------- |
+currencyPair|string|Yes|A pair like BTC_ETH or all
+depth |int|No|Default depth is 50. Max depth is 100.
+
+### API Return Schema
+Name | Type | Description
+---- | ---- | ----------
+asks|float|	An array of price aggregated offers in the book ordered from low to high price.
+bids|float| An array of price aggregated bids in the book ordered from high to low price.
+isFrozen|boolean|	Indicates if trading the market is currently disabled or not.
+seq	|int|An always-incrementing sequence number for this market.
 
 
 
@@ -3370,7 +3600,7 @@ timestamp	|LONG	|YES
 
 ### API Return Schema
 **Response**:
-```sql
+```json
 [
   {
     "tradeId": 28457,
@@ -3436,7 +3666,7 @@ limit	|INT|	NO	|Default 100; max 1000. Valid limits:[5, 50, 100, 500, 1000]
 
 ### API Return Schema
 **Response**:
-```sql
+```json
 {
   "lastEventId": 6828,         // The last event id this includes
   "bids": [
@@ -3451,9 +3681,109 @@ limit	|INT|	NO	|Default 100; max 1000. Valid limits:[5, 50, 100, 500, 1000]
 
 
 # Nervos
+[Nervos](https://www.nervos.org/) is a blockchain.
+
+## Nervos Block 
+```sql
+-- fetch data
+select * from nervos_block limit 1
+```
+> response
+
+```json
+[
+
+      {     
+            'time': '2019-11-21T17:39:36.469853695Z', 
+            'alerts': False, 
+            'chain': 'ckb', 
+            'difficulty': 1598481419305342, 
+            'epoch': 1357906557534226, 
+            'id': '1574357944', 
+            'is_initial_block_download': False, 
+            'median_time': 1574357743225, 
+            'type': 'statistic'
+      }
+]
+```
+
+### Description
+[Nervos block](https://explorer.nervos.org/) has a frequency of 10 minutes and data time range is from 2019-11-21 17:39:36.469853695 till now. Collectors are continously runing in two hosts.
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | default database timestamp
+alerts                    |boolean|
+chain                     |string|
+difficulty                |integer|
+epoch                     |integer|
+id                        |string|
+is_initial_block_download |boolean|
+median_time               |integer|
+type                      |string|
 
 
+### Data Sanity
+No downtime.
 
+### API Reference
+`GET https://api.explorer.nervos.org/api/v1/statistics/blockchain_info`
+
+### API Query Parameters
+Not required.
+
+### API Return Schema
+No inforamtion.
+
+
+## Nervos Hashrate
+```sql
+-- fetch data
+select * from nervos_hashrate limit 1
+```
+> response
+
+```json
+[
+
+      {     
+            'time': '2019-11-21T17:48:09.097825773Z', 
+            'current_epoch_average_block_time': None, 
+            'current_epoch_difficulty': 1598481419305342, 
+            'hash_rate': '135299530429.022742604569512264281101267', 
+            'id': '1574358452', 
+            'tip_block_time': 29863, 
+            'type': 'index_statistic'
+      }
+]
+```
+
+### Description
+[Nervos block](https://explorer.nervos.org/) has a frequency of 10 minutes and data time range is from 2019-11-21 17:39:36.469853695 till now. Collectors are continously runing in two hosts.
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | default database timestamp
+current_epoch_average_block_time string
+current_epoch_difficulty         integer
+hash_rate                        string
+id                               string
+tip_block_time                   integer
+type       
+
+### Data Sanity
+No downtime.
+
+### API Reference
+`GET https://api.explorer.nervos.org/api/v1/statistics/`
+
+### API Query Parameters
+Not required.
+
+### API Return Schema
+No inforamtion.
 
 
 
