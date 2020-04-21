@@ -85,13 +85,13 @@ TableName | Frequency | DataType | CurrentStatus
 [deribit_trades](#deribit-trades) | RealTime | Trade Data | Running
 [dydx_borrow_rates](#dydx-borrow-rates) | 1 minute | Borrow Rates | Running
 [exchange_open_interest](#open-interest) | 1 minute | Open Interest | Running
-FTX_funding_rates | 8 hours | Funding Rates | Running
-FTX_future_stats | 1 minute | Market Summary | Running
-FTX_leaderboard | 1 hour | Leaderboard | Running
-FTX_option_request | RealTime | Request Data | Running
-FTX_orderbook | 30 seconds | Orderbook | Running
-FTX_trades | RealTime | Trades | Running
-FTX_trades_option | RealTime | Trades | Running
+[FTX_funding_rates](#ftx-funding-rates) | 1 minute | Funding Rates | Running
+[FTX_future_stats](#ftx-future-stats) | 1 minute | Market Summary | Running
+[FTX_leaderboard](#ftx-leaderbaord) | 1 hour | Leaderboard | Running
+[FTX_option_request](#ftx-option-request) | 1 second | Request Data | Running
+[FTX_orderbook](#ftx-orderbook) | 30 seconds | Orderbook | Running
+[FTX_trades](#ftx-trades) | 10 minutes | Trades | Running
+[FTX_trades_option](#ftx-trades-option) | 1 second | Trades | Running
 [gateio_orderbook](#gateio-orderbook) | 30 seconds | Orderbook | Running
 [gateio_trades_data](#gateio-trades) | RealTime | Trades | Running
 [hashpool_coins](#hashpool-coins) | 1 hour | Summary | Running
@@ -199,7 +199,7 @@ No downtime.
 ### API Query Parameters
 No parameters.
 
-### API Return Schema
+### API Response Schema
 No Information.
 
 
@@ -264,7 +264,7 @@ limit | integer | no | Default 100  max 1000
 2. If the number of data between `startTime` and `endTime` is larger than `limit`, return as `startTime` + `limit`.
 3. In ascending order.
 
-### API Return Schema
+### API Response Schema
 No information
 
 
@@ -344,7 +344,7 @@ endTime | integer | no |
 1. If there is no limit of startime and endtime, it will return the value brfore the current time by default.
 2. Only the data of the latest 30 days is available.
 
-### API Return Schema
+### API Response Schema
 No information
 
 
@@ -716,7 +716,7 @@ endTime | integer | no |
 
 1. If the symbol is not sent, liquidation orders for all symbols will be returned.
 
-### API Return Schema
+### API Response Schema
 See code comments.
 
 
@@ -769,7 +769,7 @@ Name | Type | Mandatory | Description
 symbol | string | yes | 
 
 
-### API Return Schema
+### API Response Schema
 See code comments.
 
 
@@ -837,7 +837,7 @@ Name | Type | Mandatory | Description
 symbol | string | yes | 
 limit | int | no | Default 100; max 1000. Valid limits:[5, 10, 20, 50, 100, 500, 1000]
 
-### API Return Schema
+### API Response Schema
 See code comments.
 
 
@@ -909,7 +909,7 @@ Name | Type | Mandatory | Description
 symbol | string | yes | 
 limit | int | no | Default 100; max 1000. Valid limits:[5, 10, 20, 50, 100, 500, 1000]
 
-### API Return Schema
+### API Response Schema
 See code comments.
 
 
@@ -972,7 +972,7 @@ Name | Type | Mandatory | Description | Example
 Symbol | string | yes | The symbol you want information about | tBTCUSD, tETHUSD, fUSD, fBTC
 Precision | string | yes | Level of price aggregation | P0, P1, P2, P3, P4, R0
 
-### API Return Schema
+### API Response Schema
 Fields	|Type	|Description
 --------| ----| ----------|
 PRICE	|float	|Price level (Trading only)
@@ -1041,7 +1041,7 @@ start | string | yes | Millisecond start time
 end | string | yes | Millisecond end time
 sort | string | yes | If = 1 it sorts results returned with old > new
 
-### API Return Schema
+### API Response Schema
 Fields	|Type	|Description
 --------| ----| ----------|
 ID	|int	|ID of the trade
@@ -1110,7 +1110,7 @@ Key | Available Time Frames | Available Symbols
 "plr" - (Realized Profit) | "1w", "1M" | tGLOBAL:USD
 "vol" - (Volume) | "3h", "1w", "1M" | Trading Pairs (e.g. tBTCUSD, tETHUSD) tGLOBAL:USD
 
-### API Return Schema
+### API Response Schema
 Fields	|Type	|Description
 --------| ----| ----------|
 MTS	|int	|millisecond timestamp
@@ -1178,7 +1178,7 @@ Name | Type | Description
 symbol | string | Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.
 depth | double | Orderbook depth per side. Send 0 for full depth.
 
-### API Return Schema
+### API Response Schema
 No Information.
 
 
@@ -1232,7 +1232,7 @@ Name | Type | Description
 symbol | string | Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.
 
 
-### API Return Schema
+### API Response Schema
 No information.
 
 
@@ -1290,7 +1290,7 @@ Name | Type | Description
 -----| ----- | --------- |
 symbol | string | Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.
 
-### API Return Schema
+### API Response Schema
 No information.
 
 
@@ -1531,7 +1531,7 @@ Name | Type | Description
 -----| ----- | --------- |
 symbol | string | Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.
 
-### API Return Schema
+### API Response Schema
 No information.
 
 
@@ -1577,7 +1577,7 @@ No downtime.
 ### API Query Parameters
 No information.
 
-### API Return Schema
+### API Response Schema
 No information.
 
 
@@ -1634,7 +1634,7 @@ Name | Type | Description
 -----| ----- | --------- |
 method | string | ROE or notional
  
-### API Return Schema
+### API Response Schema
 No information.
 
 
@@ -1694,7 +1694,7 @@ Name | Type | Description
 -----| ----- | --------- |
 symbol | string | Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.
 
-### API Return Schema
+### API Response Schema
 No information.
 
 
@@ -1756,7 +1756,7 @@ Name | Type | Description
 -----| ----- | --------- |
 symbol | string | Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.
 
-### API Return Schema
+### API Response Schema
 No information.
 
 
@@ -1823,7 +1823,7 @@ Name | Type | Description
 -----| ----- | --------- |
 symbol | string | Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.
 
-### API Return Schema
+### API Response Schema
 No information
  
  
@@ -1885,7 +1885,7 @@ Attribute Name | Type | Require | Description | Excample|
 -------------- | ---- | ---------- | -------- |---------|
 asset_pair_name | string | True | name of asset pair | BTC-USDT
 
-### API Return Schema
+### API Response Schema
 Attribute Name | Type | Description | Excample
 -------------- | ---- | ---------- | -------- |
 id | number | id of trade| 
@@ -1950,7 +1950,7 @@ Attribute Name | Type | Require | Description | Excample
 -------------- | ---- | ---------- | -------- | ------- |
 asset_pair_name | string | True |name of asset pair | BTC-USDT
 
-### API Return Schema
+### API Response Schema
 ### PriceLevel
 Attribute Name | Type | Description | Excample
 -------------- | ---- | ---------- | -------- |
@@ -2031,7 +2031,7 @@ symbol | string | True | Contract Type |
 from | int | False | From ID. Default: return latest data
 limit | int | False |  default 500; max 1000
 
-### API Return Schema
+### API Response Schema
 No information.
 
 
@@ -2081,7 +2081,7 @@ No downtime.
 ### API Query Parameters
 No information.
 
-### API Return Schema
+### API Response Schema
 No information.
 
 
@@ -2176,7 +2176,7 @@ parameter | Type | Required | Description |
 symbol | string | True | Contract Type |
 
 
-### API Return Schema
+### API Response Schema
 No information.
 
 
@@ -2230,7 +2230,7 @@ No downtime.
 ### API Query Parameters
 Not required.
 
-### API Return Schema
+### API Response Schema
 No information.
 
 
@@ -2290,7 +2290,7 @@ level | i | 1: Only the best bid and ask; 2: Top 50 bids and asks (aggregated): 
 By default, only the inside (i.e. best) bid and ask are returned. This is equivalent to a book depth of 1 level. If you would like to see a larger order book, specify the level query parameter.
 If a level is not aggregated, then all of the orders at each price will be returned. Aggregated levels return only one size for each active price (as if there was only a single order for that size at the level).
 
-### API Return Schema
+### API Response Schema
 No information.
 
 
@@ -2349,7 +2349,7 @@ product-id | Yes | tickers
 **SIDE**:
 The trade side indicates the maker order side. The maker order is the order that was open on the order book. buy side indicates a down-tick because the maker was a buy order and their order was removed. Conversely, sell side indicates an up-tick.
 
-### API Return Schema
+### API Response Schema
 No information.
 
 
@@ -2406,7 +2406,7 @@ market	|String	|Yes	| Get all market
 merge	|String	|Yes	|'0', '0.1', '0.01', '0.001', '0.0001', '0.00001', '0.000001', '0.0000001', '0.00000001
 limit	|Interger	|No(Default20)	|Return amount，range: 5/10/20/50
 
-### API Return Schema
+### API Response Schema
 Name | Type | Description
 ---- | ---- | ----------|
 last	|String|	Last price
@@ -2470,7 +2470,7 @@ market	|String|	Yes	| Get makret list
 last_id	|Integer|	No	|Transaction history id, send 0 to draw from the latest record.
 limit	|Integer | No(default 100)|	Less than or equal to 1000
 
-### API Return Schema
+### API Response Schema
 Name | Type | Description
 ---- | ---- | ----------
 id	|Integer|	Transaction No
@@ -2608,7 +2608,7 @@ uint32	| block_timestamp	| Only one of block_number or block timestamp should be
 bool	| meta | 	Pass true to get metadata for the token addresses specified.
 string	| network	|The ethereum network to use for the request
 
-### API Return Schema
+### API Response Schema
 Type | Key | Description
 ---- | --- | ----------
 Error	| error |	
@@ -2683,7 +2683,7 @@ Parameters | Required | Type| Enum | Description
 instrument_name	|true	|string		|Instrument name
 interval	|true	|string	|100ms; raw|	Frequency of notifications. Events will be aggregated over this interval. The value raw means no aggregation will be applied
 
-### API Return Schema
+### API Response Schema
 Name | Type | Description 
 ---- | ---- | -----------
 data	| object	|
@@ -2735,7 +2735,7 @@ select * from deribit_ticker
 ```
 
 ### Description
-[Deribit option ticker](https://docs.deribit.com/?python#ticker-instrument_name-interval) is connected thourgh websocket and data time range for ticker is from 2019-07-11T15:59:41.176999936Z till now. Collectors are continously runing in two hosts.
+[Deribit option ticker and ticker](https://docs.deribit.com/?python#ticker-instrument_name-interval) is connected thourgh websocket and data time range for ticker is from 2019-07-11T15:59:41.176999936Z till now. Collectors are continously runing in two hosts.
 
 ### Data Schema
 fieldName | fieldType | description
@@ -2797,7 +2797,7 @@ No downtime.
 }
 ```
 
-### API Return Schema
+### API Response Schema
 Check [api doc](https://docs.deribit.com/#public-ticker) 
 
 
@@ -2856,11 +2856,11 @@ Name | Type | Mandatory | Description |
 instrument	|string|REQUIRED |The instrument name for which to retrieve the order book, see getinstruments to obtain instrument names.
 depth	|integer|	Not Required	|The number of entries to return for bids and asks
 
-### API Return Schema
+### API Response Schema
 Fields	|Type	| Example | Description
 --------| ----| ----------| ---------
-bids	|list|	"[800(quantity/int),10322.5(price/float), 800(cm/int)"|	The list of all bids, best bid first. See below for entry details
-asks	|list| [800(quantity/int),10322.5(price/float), 800(cm/int)	|	The list of all asks, best ask first. See below for entry details
+bids	|list|	[800(quantity/int),10322.5(price/float), 800(cm/int)] |	The list of all bids, best bid first. See below for entry details
+asks	|list| [800(quantity/int),10322.5(price/float), 800(cm/int)] 	|	The list of all asks, best ask first. See below for entry details
 state	|string |"open"|	The state of the order book. Possible values include "open" and "closed".
 
 
@@ -2938,7 +2938,7 @@ No downtime.
 }
 ```
 
-### API Return Schema
+### API Response Schema
 Fields	|Type | Description
 --------| ----| ----------|
 amount|number|Trade amount.For perpetual and futures in USD units, for options it is amount of corresponding cryptocurrency contracts
@@ -3037,12 +3037,429 @@ No downtime.
 ### API Query Parameters
 Not required.
 
-### API Return Schema
+### API Response Schema
 No information.
 
 
 
 # FTX
+[FTX](https://ftx.com/) is a cryptocurrency exchange. Check their [api](https://docs.ftx.com/#overview).
+
+## FTX Funding Rate
+```sql
+-- fetch data
+select * from FTX_funding_rates limit 1 
+```
+> response
+
+```json
+[
+    {
+          'time': '2019-09-03T15:00:00Z', 
+          'rate': -4.9e-05, 
+          'symbol': 'BNB-PERP'
+   }
+]
+```
+
+### Description
+[FTX funding rates](https://docs.ftx.com/#get-funding-rates) has a frequency of 1 minute and data time range is from 2019-09-03 15:00:00 till now. Collectors are continously runing in two hosts.
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | default database timestamp
+rate |  float | 
+symbol | string | tag values
+
+### Tag Values
+**symbol**: 
+'ADA-PERP', 'ALGO-PERP', 'ALT-PERP', 'ATOM-PERP', 'BCH-PERP', 'BNB-PERP', 'BSV-PERP', 'BTC-PERP', 'BTMX-PERP', 'DOGE-PERP', 'DRGN-PERP', 'EOS-PERP', 'ETC-PERP', 'ETH-PERP', 'EXCH-PERP', 'HT-PERP', 'LEO-PERP', 'LINK-PERP', 'LTC-PERP', 'MATIC-PERP', 'MID-PERP', 'OKB-PERP', 'PAXG-PERP', 'PRIV-PERP', 'SHIT-PERP', 'TOMO-PERP', 'TRX-PERP', 'TRYB-PERP', 'USDT-PERP', 'XAUT-PERP', 'XRP-PERP', 'XTZ-PERP
+
+### Data Sanity
+No downtime.
+
+### API Reference
+`GET https://ftx.com/api/funding_rates`
+
+### API Query Parameters
+Name | Type | Value | Description
+-----| --------| ----------| --------- |
+start_time	|number|	1559881511|	optional
+end_time	|number|	1559881711|	optional
+future	|string|	BTC-PERP	|optional
+
+### API Response Schema
+Name | Type | Value | Description
+---- | ---- | ----- | -----------
+future	|string	| BTC-PERP |	
+rate	|number	|0.0025	|
+time	|string	|2019-06-02T08:00:00+00:00	|
+
+
+## FTX Futures Statistics
+```sql
+-- fetch data
+select * from FTX_future_stats limit 1 
+```
+> response
+
+```json
+[
+    {
+          'time': '2019-09-04T17:01:01.333594927Z', 
+          'expirationPrice': None, 
+          'nextFundingRate': -0.000166, 
+          'nextFundingTime': '2019-09-04T18:00:00+00:00', 
+          'openInterest': 3662445, 
+          'predictedExpirationPrice': None, 
+          'strikePrice': None, 
+          'symbol': 'ALGO-PERP', 
+          'volume': 2239354
+   }
+]
+```
+
+### Description
+[FTX future stats](https://docs.ftx.com/#get-future-stats) has a frequency of 1 nimute and data time range is from 2019-09-04 17:01:01.333594927 till now. Collectors are continously runing in two hosts.
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | default database timestamp
+expirationPrice          |float|
+nextFundingRate          |float|
+nextFundingTime          |string|
+openInterest             |float|
+predictedExpirationPrice |float|
+strikePrice              |float|
+volume                   |float|
+symbol | string | tag values
+
+### Tag Values
+**symbol**: 
+'ADA-0327', 'ADA-0626', 'ADA-1227', 'ADA-PERP', 'ALGO-0327', 'ALGO-0626', 'ALGO-0927', 'ALGO-1227', 'ALGO-PERP', 'ALT-0327', 'ALT-0626', 'ALT-0927', 'ALT-1227', 'ALT-PERP', 'ATOM-0327', 'ATOM-0626', 'ATOM-1227', 'ATOM-PERP', 'BCH-0327', 'BCH-0626', 'BCH-0927', 'BCH-1227', 'BCH-PERP', 'BERNIE', 'BIDEN', 'BLOOMBERG', 'BNB-0327', 'BNB-0626', 'BNB-0927', 'BNB-1227', 'BNB-PERP', 'BSV-0327', 'BSV-0626', 'BSV-0927', 'BSV-1227', 'BSV-PERP', 'BTC-0327', 'BTC-0626', 'BTC-0925', 'BTC-0927', 'BTC-1227', 'BTC-MOVE-0101', 'BTC-MOVE-0102', 'BTC-MOVE-0103', 'BTC-MOVE-0104', 'BTC-MOVE-0105', 'BTC-MOVE-0106', 'BTC-MOVE-0107', 'BTC-MOVE-0108', 'BTC-MOVE-0109', 'BTC-MOVE-0110', 'BTC-MOVE-0111', 'BTC-MOVE-0112', 'BTC-MOVE-0113', 'BTC-MOVE-0114', 'BTC-MOVE-0115', 'BTC-MOVE-0116', 'BTC-MOVE-0117', 'BTC-MOVE-0118', 'BTC-MOVE-0119', 'BTC-MOVE-0120', 'BTC-MOVE-0121', 'BTC-MOVE-0122', 'BTC-MOVE-0123', 'BTC-MOVE-0124', 'BTC-MOVE-0125', 'BTC-MOVE-0126', 'BTC-MOVE-0127', 'BTC-MOVE-0128', 'BTC-MOVE-0129', 'BTC-MOVE-0130', 'BTC-MOVE-0131', 'BTC-MOVE-0201', 'BTC-MOVE-0202', 'BTC-MOVE-0203', 'BTC-MOVE-0204', 'BTC-MOVE-0205', 'BTC-MOVE-0206', 'BTC-MOVE-0207', 'BTC-MOVE-0208', 'BTC-MOVE-0209', 'BTC-MOVE-0210', 'BTC-MOVE-0211', 'BTC-MOVE-0212', 'BTC-MOVE-0213', 'BTC-MOVE-0214', 'BTC-MOVE-0215', 'BTC-MOVE-0216', 'BTC-MOVE-0217', 'BTC-MOVE-0218', 'BTC-MOVE-0219', 'BTC-MOVE-0220', 'BTC-MOVE-0221', 'BTC-MOVE-0222', 'BTC-MOVE-0223', 'BTC-MOVE-0224', 'BTC-MOVE-0225', 'BTC-MOVE-0226', 'BTC-MOVE-0227', 'BTC-MOVE-0228', 'BTC-MOVE-0229', 'BTC-MOVE-0301', 'BTC-MOVE-0302', 'BTC-MOVE-0303', 'BTC-MOVE-0304', 'BTC-MOVE-0305', 'BTC-MOVE-0306', 'BTC-MOVE-0307', 'BTC-MOVE-0308', 'BTC-MOVE-0309', 'BTC-MOVE-0310', 'BTC-MOVE-0311', 'BTC-MOVE-0312', 'BTC-MOVE-0313', 'BTC-MOVE-0314', 'BTC-MOVE-0315', 'BTC-MOVE-0316', 'BTC-MOVE-0317', 'BTC-MOVE-0318', 'BTC-MOVE-0319', 'BTC-MOVE-0320', 'BTC-MOVE-0321', 'BTC-MOVE-0322', 'BTC-MOVE-0323', 'BTC-MOVE-0324', 'BTC-MOVE-0325', 'BTC-MOVE-0326', 'BTC-MOVE-0327', 'BTC-MOVE-0328', 'BTC-MOVE-0329', 'BTC-MOVE-0330', 'BTC-MOVE-0331', 'BTC-MOVE-0401', 'BTC-MOVE-0402', 'BTC-MOVE-0403', 'BTC-MOVE-0404', 'BTC-MOVE-0405', 'BTC-MOVE-0406', 'BTC-MOVE-0407', 'BTC-MOVE-0408', 'BTC-MOVE-0409', 'BTC-MOVE-0410', 'BTC-MOVE-0411', 'BTC-MOVE-0412', 'BTC-MOVE-0413', 'BTC-MOVE-0414', 'BTC-MOVE-0415', 'BTC-MOVE-0416', 'BTC-MOVE-0417', 'BTC-MOVE-0418', 'BTC-MOVE-0419', 'BTC-MOVE-0420', 'BTC-MOVE-0421', 'BTC-MOVE-0422', 'BTC-MOVE-0925', 'BTC-MOVE-0926', 'BTC-MOVE-0927', 'BTC-MOVE-0928', 'BTC-MOVE-0929', 'BTC-MOVE-0930', 'BTC-MOVE-1001', 'BTC-MOVE-1002', 'BTC-MOVE-1003', 'BTC-MOVE-1004', 'BTC-MOVE-1005', 'BTC-MOVE-1006', 'BTC-MOVE-1007', 'BTC-MOVE-1008', 'BTC-MOVE-1009', 'BTC-MOVE-1010', 'BTC-MOVE-1011', 'BTC-MOVE-1012', 'BTC-MOVE-1013', 'BTC-MOVE-1014', 'BTC-MOVE-1015', 'BTC-MOVE-1016', 'BTC-MOVE-1017', 'BTC-MOVE-1018', 'BTC-MOVE-1019', 'BTC-MOVE-1020', 'BTC-MOVE-1121', 'BTC-MOVE-1122', 'BTC-MOVE-1123', 'BTC-MOVE-1124', 'BTC-MOVE-1125', 'BTC-MOVE-1126', 'BTC-MOVE-1127', 'BTC-MOVE-1128', 'BTC-MOVE-1129', 'BTC-MOVE-1130', 'BTC-MOVE-1201', 'BTC-MOVE-1202', 'BTC-MOVE-1203', 'BTC-MOVE-1204', 'BTC-MOVE-1205', 'BTC-MOVE-1206', 'BTC-MOVE-1207', 'BTC-MOVE-1208', 'BTC-MOVE-1209', 'BTC-MOVE-1210', 'BTC-MOVE-1211', 'BTC-MOVE-1212', 'BTC-MOVE-1213', 'BTC-MOVE-1214', 'BTC-MOVE-1215', 'BTC-MOVE-1216', 'BTC-MOVE-1217', 'BTC-MOVE-1218', 'BTC-MOVE-1219', 'BTC-MOVE-1220', 'BTC-MOVE-1221', 'BTC-MOVE-1222', 'BTC-MOVE-1223', 'BTC-MOVE-1224', 'BTC-MOVE-1225', 'BTC-MOVE-1226', 'BTC-MOVE-1227', 'BTC-MOVE-1228', 'BTC-MOVE-1229', 'BTC-MOVE-1230', 'BTC-MOVE-1231', 'BTC-MOVE-2019Q4', 'BTC-MOVE-2020Q1', 'BTC-MOVE-2020Q2', 'BTC-MOVE-2020Q3', 'BTC-MOVE-2020Q4', 'BTC-MOVE-WK-0103', 'BTC-MOVE-WK-0110', 'BTC-MOVE-WK-0117', 'BTC-MOVE-WK-0124', 'BTC-MOVE-WK-0131', 'BTC-MOVE-WK-0207', 'BTC-MOVE-WK-0214', 'BTC-MOVE-WK-0221', 'BTC-MOVE-WK-0228', 'BTC-MOVE-WK-0306', 'BTC-MOVE-WK-0313', 'BTC-MOVE-WK-0320', 'BTC-MOVE-WK-0327', 'BTC-MOVE-WK-0403', 'BTC-MOVE-WK-0410', 'BTC-MOVE-WK-0417', 'BTC-MOVE-WK-0424', 'BTC-MOVE-WK-0501', 'BTC-MOVE-WK-0508', 'BTC-MOVE-WK-0515', 'BTC-MOVE-WK-1122', 'BTC-MOVE-WK-1129', 'BTC-MOVE-WK-1206', 'BTC-MOVE-WK-1213', 'BTC-MOVE-WK-1220', 'BTC-MOVE-WK-1227', 'BTC-PERP', 'BTMX-0327', 'BTMX-0626', 'BTMX-1227', 'BTMX-PERP', 'DOGE-0327', 'DOGE-0626', 'DOGE-1227', 'DOGE-PERP', 'DRGN-0327', 'DRGN-0626', 'DRGN-1227', 'DRGN-PERP', 'EOS-0327', 'EOS-0626', 'EOS-0927', 'EOS-1227', 'EOS-PERP', 'ETC-0327', 'ETC-0626', 'ETC-0927', 'ETC-1227', 'ETC-PERP', 'ETH-0327', 'ETH-0626', 'ETH-0927', 'ETH-1227', 'ETH-PERP', 'EXCH-0327', 'EXCH-0626', 'EXCH-0927', 'EXCH-1227', 'EXCH-PERP', 'HT-0327', 'HT-0626', 'HT-0927', 'HT-1227', 'HT-PERP', 'LEO-0327', 'LEO-0626', 'LEO-0927', 'LEO-1227', 'LEO-PERP', 'LINK-0327', 'LINK-0626', 'LINK-1227', 'LINK-PERP', 'LTC-0327', 'LTC-0626', 'LTC-0927', 'LTC-1227', 'LTC-PERP', 'MATIC-0327', 'MATIC-0626', 'MATIC-1227', 'MATIC-PERP', 'MID-0327', 'MID-0626', 'MID-0927', 'MID-1227', 'MID-PERP', 'OKB-0327', 'OKB-0626', 'OKB-0927', 'OKB-1227', 'OKB-PERP', 'PAXG-0327', 'PAXG-0626', 'PAXG-PERP', 'PETE', 'PRIV-0327', 'PRIV-0626', 'PRIV-PERP', 'SHIT-0327', 'SHIT-0626', 'SHIT-0927', 'SHIT-1227', 'SHIT-PERP', 'TOMO-0327', 'TOMO-0626', 'TOMO-1227', 'TOMO-PERP', 'TRUMP', 'TRX-0327', 'TRX-0626', 'TRX-0927', 'TRX-1227', 'TRX-PERP', 'TRYB-0327', 'TRYB-0626', 'TRYB-1227', 'TRYB-PERP', 'USDT-0327', 'USDT-0626', 'USDT-0927', 'USDT-1227', 'USDT-PERP', 'WARREN', 'XAUT-0327', 'XAUT-0626', 'XAUT-PERP', 'XRP-0327', 'XRP-0626', 'XRP-0927', 'XRP-1227', 'XRP-PERP', 'XTZ-0327', 'XTZ-0626', 'XTZ-1227', 'XTZ-PERP'
+
+### Data Sanity
+No downtime.
+
+### API Reference
+`GET https://ftx.com/api/futures/{future_name}/stats`
+
+### API Query Parameters
+Name | Type | Value | Description
+-----| --------| ----------| --------- |
+future_name | string | LINK-1227| Futures name 
+
+### API Response Schema
+Name | Type | Value | Description
+-----| --------| ----------| --------- |
+volume	|number	|1000.23	|quantity traded in the last 24 hours
+nextFundingRate	|number	|0.00025	|upcoming funding rate (only applicable for perpetual contracts)
+nextFundingTime	|string|	2019-03-29T03:00:00+00:00	|upcoming funding time (only applicable for perpetual contracts)
+expirationPrice	|number|	3992.1|	price to which the future expired (only applicable if the future has expired)
+predictedExpirationPrice|	number|	3993.0	|only applicable if the future has not expired
+openInterest|	number	|21124.583	|number of open contracts in this future
+strikePrice	|number	|8182.35009484|	price of the underlying at the beginning of the expiration day (only applicable for MOVE contracts)
+
+
+## FTX Leaderboard
+```sql
+-- fetch data
+select * from FTX_leaderboard limit 1 
+```
+> response
+
+```json
+[
+    {
+          'time': '2020-04-17T18:03:11.308176903Z', 
+          'current_timestamp': '2020-04-17 18:03:11.301949', 
+          'isRealName': 'False', 
+          'name': 'odin@folkvang.io', 
+          'rank': 1, 
+          'type': 'volume'
+   }
+]
+```
+
+### Description
+[FTX leaderboard](https://ftx.com/leaderboard) has a frequency of 1 hour and data time range is from 2020-04-17 18:03:11.308176903 till now. Collectors are continously runing in two hosts.
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | default database timestamp
+current_timestamp |string|
+isRealName        |string|
+name              |string|
+rank              |integer|
+type  |string | tag values
+
+### Tag Values
+**Type**: 
+maker_volume, volume, pnl
+
+### Data Sanity
+No downtime.
+
+### API Reference
+`GET https://ftx.com/api/leaderboard`
+
+### API Query Parameters
+Name | Type | Value | Description
+-----| --------| ----------| --------- |
+type	|string|	volume|	
+
+### API Response Schema
+No information. 
+
+
+
+
+## FTX Option Request
+```sql
+-- fetch data
+select * from FTX_option_request limit 1 
+```
+> response
+
+```json
+[
+    {
+          'time': '2020-02-05T06:28:37.37463808Z', 
+          'id': 5536365, 
+          'option_exipry': '2020-02-06T03:00:00+00:00', 
+          'option_type': 'call', 
+          'requestExpiry': '2020-02-06T03:00:00+00:00', 
+          'side': 'buy', 
+          'size': 5, 
+          'status': 'open', 
+          'strike_price': 9200, 
+          'underlying': 'BTC'
+   }
+]
+```
+
+### Description
+[FTX option request](https://docs.ftx.com/#list-quote-requests) has a frequency of 1 second and data time range is from 2020-02-05 06:28:37.37463808 till now. Collectors are continously runing in two hosts.
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | default database timestamp
+id            integer
+option_exipry string
+option_type   string
+requestExpiry string
+side          string
+size          float
+status        string
+strike_price  float
+underlying    string
+
+
+### Data Sanity
+No downtime.
+
+### API Reference
+`GET https://ftx.com/api/options/requests`
+
+### API Query Parameters
+Not required.
+
+### API Response Schema
+Name | Type | Value | Description
+---- | ---- | ----- | -----------
+id	|number	|512|	
+option	|dict		|option object; see below
+size	|number	|1.2	
+side	|string	|buy	
+time	|string	|2020-01-07T22:35:54.626023+00:00	|when the request was placed
+status	|string	|open	 |
+requestExpiry	|string	|2020-01-08T22:35:54.626023+00:00	|when the request expires
+limitPrice	|number	|10.2	|optional; omitted when the request has no limit price or it is hidden
+option -> underlying	|string	|BTC |	
+option -> type|	string|	call|	"call" or "put"
+option -> strike|	number|	7800 |	
+option -> expiry|	string|	2020-01-08T03:00:00+00:00 |
+
+
+
+## FTX Orderbook 
+```sql
+-- fetch data
+select * from FTX_orderbook limit 1 
+```
+> response
+
+```json
+[
+    {
+          'time': '2020-01-09T19:29:15.768404927Z', 
+          'price': 121.25, 
+          'size': 0.9787, 
+          'snapshot': '2020-01-09 19:27:33.196682', 
+          'symbol': 'BTC-MOVE-0109', 
+          'type': 'ask'
+   }
+]
+```
+
+### Description
+[FTX orderbook](https://docs.ftx.com/#get-orderbook) has a frequency of 30 second and data time range is from 2020-01-09 19:29:15.768404927 till now. Collectors are continously runing in two hosts.
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | default database timestamp
+price    |float|
+size     |float|
+snapshot |string|
+type     |string|
+symbol | string | tag values
+
+### Tag Values
+**symbol**: 
+'ADA-0327', 'ADA-0626', 'ADA-PERP', 'ALGO-0327', 'ALGO-0626', 'ALGO-PERP', 'ALT-0327', 'ALT-0626', 'ALT-PERP', 'ATOM-0327', 'ATOM-0626', 'ATOM-PERP', 'BCH-0327', 'BCH-0626', 'BCH-PERP', 'BERNIE', 'BIDEN', 'BLOOMBERG', 'BNB-0327', 'BNB-0626', 'BNB-PERP', 'BSV-0327', 'BSV-0626', 'BSV-PERP', 'BTC-0327', 'BTC-0626', 'BTC-0925', 'BTC-MOVE-0109', 'BTC-MOVE-0110', 'BTC-MOVE-0111', 'BTC-MOVE-0112', 'BTC-MOVE-0113', 'BTC-MOVE-0114', 'BTC-MOVE-0115', 'BTC-MOVE-0116', 'BTC-MOVE-0117', 'BTC-MOVE-0118', 'BTC-MOVE-0119', 'BTC-MOVE-0120', 'BTC-MOVE-0121', 'BTC-MOVE-0122', 'BTC-MOVE-0123', 'BTC-MOVE-0124', 'BTC-MOVE-0125', 'BTC-MOVE-0126', 'BTC-MOVE-0127', 'BTC-MOVE-0128', 'BTC-MOVE-0129', 'BTC-MOVE-0130', 'BTC-MOVE-0131', 'BTC-MOVE-0201', 'BTC-MOVE-0202', 'BTC-MOVE-0203', 'BTC-MOVE-0204', 'BTC-MOVE-0205', 'BTC-MOVE-0206', 'BTC-MOVE-0207', 'BTC-MOVE-0208', 'BTC-MOVE-0209', 'BTC-MOVE-0210', 'BTC-MOVE-0211', 'BTC-MOVE-0212', 'BTC-MOVE-0213', 'BTC-MOVE-0214', 'BTC-MOVE-0215', 'BTC-MOVE-0216', 'BTC-MOVE-0217', 'BTC-MOVE-0218', 'BTC-MOVE-0219', 'BTC-MOVE-0220', 'BTC-MOVE-0221', 'BTC-MOVE-0222', 'BTC-MOVE-0223', 'BTC-MOVE-0224', 'BTC-MOVE-0225', 'BTC-MOVE-0226', 'BTC-MOVE-0227', 'BTC-MOVE-0228', 'BTC-MOVE-0229', 'BTC-MOVE-0301', 'BTC-MOVE-0302', 'BTC-MOVE-0303', 'BTC-MOVE-0304', 'BTC-MOVE-0305', 'BTC-MOVE-0306', 'BTC-MOVE-0307', 'BTC-MOVE-0308', 'BTC-MOVE-0309', 'BTC-MOVE-0310', 'BTC-MOVE-0311', 'BTC-MOVE-0312', 'BTC-MOVE-0313', 'BTC-MOVE-0314', 'BTC-MOVE-0315', 'BTC-MOVE-0316', 'BTC-MOVE-0317', 'BTC-MOVE-0318', 'BTC-MOVE-0319', 'BTC-MOVE-0320', 'BTC-MOVE-0321', 'BTC-MOVE-0322', 'BTC-MOVE-0323', 'BTC-MOVE-0324', 'BTC-MOVE-0325', 'BTC-MOVE-0326', 'BTC-MOVE-0327', 'BTC-MOVE-0328', 'BTC-MOVE-0329', 'BTC-MOVE-0330', 'BTC-MOVE-0331', 'BTC-MOVE-0401', 'BTC-MOVE-0402', 'BTC-MOVE-0403', 'BTC-MOVE-0404', 'BTC-MOVE-0405', 'BTC-MOVE-0406', 'BTC-MOVE-0407', 'BTC-MOVE-0408', 'BTC-MOVE-0409', 'BTC-MOVE-0410', 'BTC-MOVE-0411', 'BTC-MOVE-0412', 'BTC-MOVE-0413', 'BTC-MOVE-0414', 'BTC-MOVE-0415', 'BTC-MOVE-0416', 'BTC-MOVE-0417', 'BTC-MOVE-0418', 'BTC-MOVE-0419', 'BTC-MOVE-0420', 'BTC-MOVE-0421', 'BTC-MOVE-0422', 'BTC-MOVE-2020Q1', 'BTC-MOVE-2020Q2', 'BTC-MOVE-2020Q3', 'BTC-MOVE-2020Q4', 'BTC-MOVE-WK-0110', 'BTC-MOVE-WK-0117', 'BTC-MOVE-WK-0124', 'BTC-MOVE-WK-0131', 'BTC-MOVE-WK-0207', 'BTC-MOVE-WK-0214', 'BTC-MOVE-WK-0221', 'BTC-MOVE-WK-0228', 'BTC-MOVE-WK-0306', 'BTC-MOVE-WK-0313', 'BTC-MOVE-WK-0320', 'BTC-MOVE-WK-0327', 'BTC-MOVE-WK-0403', 'BTC-MOVE-WK-0410', 'BTC-MOVE-WK-0417', 'BTC-MOVE-WK-0424', 'BTC-MOVE-WK-0501', 'BTC-MOVE-WK-0508', 'BTC-MOVE-WK-0515', 'BTC-PERP', 'BTMX-0327', 'BTMX-0626', 'BTMX-PERP', 'DOGE-0327', 'DOGE-0626', 'DOGE-PERP', 'DRGN-0327', 'DRGN-0626', 'DRGN-PERP', 'EOS-0327', 'EOS-0626', 'EOS-PERP', 'ETC-0327', 'ETC-0626', 'ETC-PERP', 'ETH-0327', 'ETH-0626', 'ETH-PERP', 'EXCH-0327', 'EXCH-0626', 'EXCH-PERP', 'HT-0327', 'HT-0626', 'HT-PERP', 'LEO-0327', 'LEO-0626', 'LEO-PERP', 'LINK-0327', 'LINK-0626', 'LINK-PERP', 'LTC-0327', 'LTC-0626', 'LTC-PERP', 'MATIC-0327', 'MATIC-0626', 'MATIC-PERP', 'MID-0327', 'MID-0626', 'MID-PERP', 'OKB-0327', 'OKB-0626', 'OKB-PERP', 'PAXG-0327', 'PAXG-0626', 'PAXG-PERP', 'PETE', 'PRIV-0327', 'PRIV-0626', 'PRIV-PERP', 'SHIT-0327', 'SHIT-0626', 'SHIT-PERP', 'TOMO-0327', 'TOMO-0626', 'TOMO-PERP', 'TRUMP', 'TRX-0327', 'TRX-0626', 'TRX-PERP', 'TRYB-0327', 'TRYB-0626', 'TRYB-PERP', 'USDT-0327', 'USDT-0626', 'USDT-PERP', 'WARREN', 'XAUT-0327', 'XAUT-0626', 'XAUT-PERP', 'XRP-0327', 'XRP-0626', 'XRP-PERP', 'XTZ-0327', 'XTZ-0626', 'XTZ-PERP'
+
+### Data Sanity
+No downtime.
+
+### API Reference
+`GET https://ftx.com/api/markets/{market_name}/orderbook?depth={depth}`
+
+### API Query Parameters
+Name | Type | Value | Description
+-----| --------| ----------| --------- |
+market_name	|string|	BTC-0628	|Required. Name of the market.
+depth	|number|	35	|max 100, default 20
+
+### API Response Schema
+Name | Type | Value | Description
+---- | ---- | ----- | -----------
+asks|	array	|[4114.25, 6.263]	|Array with price and size
+bids|	array	|[4112, 49.29]	|Array with price and size
+
+
+
+## FTX Trades 
+```sql
+-- fetch data
+select * from FTX_trades limit 1 
+```
+> response
+
+```json
+[
+    {
+          'time': '2019-03-05T12:26:49.486594048Z', 
+          'id': 4, 
+          'liquidation': False, 
+          'price': 127.77, 
+          'side': 'sell', 
+          'size': 0.04, 
+          'symbol': 'ETH-PERP', 
+          'trade_time': None
+   }
+]
+```
+
+### Description
+[FTX trade](https://docs.ftx.com/#get-trades) has a frequency of 10 minutes and data time range is from 2019-03-05 12:26:49.486594048 till now. Collectors are continously runing in two hosts.
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | default database timestamp
+id          |integer|
+liquidation |boolean|
+price       |float|
+side        |string|
+size        |float|
+trade_time  |string|
+symbol | string | tag values
+
+### Tag Values
+**symbol**: 
+'ADA-0327', 'ADA-0626', 'ADA-1227', 'ADA-PERP', 'ADABEAR/USD', 'ADABULL/USD', 'ADADOOM/USD', 'ADAHEDGE/USD', 'ADAMOON/USD', 'ALGO-0327', 'ALGO-0626', 'ALGO-0927', 'ALGO-1227', 'ALGO-PERP', 'ALGOBEAR/USD', 'ALGOBULL/USD', 'ALGODOOM/USD', 'ALGOHALF/USD', 'ALGOHALF/USDT', 'ALGOHEDGE/USD', 'ALT-0327', 'ALT-0626', 'ALT-0927', 'ALT-1227', 'ALT-PERP', 'ALTBEAR/USD', 'ALTBULL/USD', 'ALTDOOM/USD', 'ALTHEDGE/USD', 'ALTMOON/USD', 'ATOM-0327', 'ATOM-0626', 'ATOM-1227', 'ATOM-PERP', 'ATOMBEAR/USD', 'ATOMBULL/USD', 'ATOMDOOM/USD', 'ATOMHEDGE/USD', 'ATOMMOON/USD', 'BCH-0327', 'BCH-0626', 'BCH-0927', 'BCH-1227', 'BCH-PERP', 'BCH/USD', 'BCH/USDT', 'BCHBEAR/USD', 'BCHBEAR/USDT', 'BCHBULL/USD', 'BCHBULL/USDT', 'BCHDOOM/USD', 'BCHHEDGE/USD', 'BCHMOON/USD', 'BEAR/USD', 'BEAR/USDT', 'BEARSHIT/USD', 'BERNIE', 'BIDEN', 'BLOOMBERG', 'BNB-0327', 'BNB-0626', 'BNB-0927', 'BNB-1227', 'BNB-PERP', 'BNB/USD', 'BNB/USDT', 'BNBBEAR/USD', 'BNBBEAR/USDT', 'BNBBULL/USD', 'BNBBULL/USDT', 'BNBDOOM/USD', 'BNBHEDGE/USD', 'BNBMOON/USD', 'BSV-0327', 'BSV-0626', 'BSV-0927', 'BSV-1227', 'BSV-PERP', 'BSVBEAR/USD', 'BSVBEAR/USDT', 'BSVBULL/USD', 'BSVBULL/USDT', 'BSVDOOM/USD', 'BSVHEDGE/USD', 'BSVMOON/USD', 'BTC-0327', 'BTC-0626', 'BTC-0925', 'BTC-0927', 'BTC-1227', 'BTC-MOVE-0101', 'BTC-MOVE-0102', 'BTC-MOVE-0103', 'BTC-MOVE-0104', 'BTC-MOVE-0105', 'BTC-MOVE-0106', 'BTC-MOVE-0107', 'BTC-MOVE-0108', 'BTC-MOVE-0109', 'BTC-MOVE-0110', 'BTC-MOVE-0111', 'BTC-MOVE-0112', 'BTC-MOVE-0113', 'BTC-MOVE-0114', 'BTC-MOVE-0115', 'BTC-MOVE-0116', 'BTC-MOVE-0117', 'BTC-MOVE-0118', 'BTC-MOVE-0119', 'BTC-MOVE-0120', 'BTC-MOVE-0121', 'BTC-MOVE-0122', 'BTC-MOVE-0123', 'BTC-MOVE-0124', 'BTC-MOVE-0125', 'BTC-MOVE-0126', 'BTC-MOVE-0127', 'BTC-MOVE-0128', 'BTC-MOVE-0129', 'BTC-MOVE-0130', 'BTC-MOVE-0131', 'BTC-MOVE-0201', 'BTC-MOVE-0202', 'BTC-MOVE-0203', 'BTC-MOVE-0204', 'BTC-MOVE-0205', 'BTC-MOVE-0206', 'BTC-MOVE-0207', 'BTC-MOVE-0208', 'BTC-MOVE-0209', 'BTC-MOVE-0210', 'BTC-MOVE-0211', 'BTC-MOVE-0212', 'BTC-MOVE-0213', 'BTC-MOVE-0214', 'BTC-MOVE-0215', 'BTC-MOVE-0216', 'BTC-MOVE-0217', 'BTC-MOVE-0218', 'BTC-MOVE-0219', 'BTC-MOVE-0220', 'BTC-MOVE-0221', 'BTC-MOVE-0222', 'BTC-MOVE-0223', 'BTC-MOVE-0224', 'BTC-MOVE-0225', 'BTC-MOVE-0226', 'BTC-MOVE-0227', 'BTC-MOVE-0228', 'BTC-MOVE-0229', 'BTC-MOVE-0301', 'BTC-MOVE-0302', 'BTC-MOVE-0303', 'BTC-MOVE-0304', 'BTC-MOVE-0305', 'BTC-MOVE-0306', 'BTC-MOVE-0307', 'BTC-MOVE-0308', 'BTC-MOVE-0309', 'BTC-MOVE-0310', 'BTC-MOVE-0311', 'BTC-MOVE-0312', 'BTC-MOVE-0313', 'BTC-MOVE-0314', 'BTC-MOVE-0315', 'BTC-MOVE-0316', 'BTC-MOVE-0317', 'BTC-MOVE-0318', 'BTC-MOVE-0319', 'BTC-MOVE-0320', 'BTC-MOVE-0321', 'BTC-MOVE-0322', 'BTC-MOVE-0323', 'BTC-MOVE-0324', 'BTC-MOVE-0325', 'BTC-MOVE-0326', 'BTC-MOVE-0327', 'BTC-MOVE-0328', 'BTC-MOVE-0329', 'BTC-MOVE-0330', 'BTC-MOVE-0331', 'BTC-MOVE-0401', 'BTC-MOVE-0402', 'BTC-MOVE-0403', 'BTC-MOVE-0404', 'BTC-MOVE-0405', 'BTC-MOVE-0406', 'BTC-MOVE-0407', 'BTC-MOVE-0408', 'BTC-MOVE-0409', 'BTC-MOVE-0410', 'BTC-MOVE-0411', 'BTC-MOVE-0415', 'BTC-MOVE-0416', 'BTC-MOVE-0417', 'BTC-MOVE-0418', 'BTC-MOVE-0420', 'BTC-MOVE-0421', 'BTC-MOVE-0422', 'BTC-MOVE-0925', 'BTC-MOVE-0926', 'BTC-MOVE-0927', 'BTC-MOVE-0928', 'BTC-MOVE-0929', 'BTC-MOVE-0930', 'BTC-MOVE-1001', 'BTC-MOVE-1002', 'BTC-MOVE-1003', 'BTC-MOVE-1004', 'BTC-MOVE-1005', 'BTC-MOVE-1006', 'BTC-MOVE-1007', 'BTC-MOVE-1008', 'BTC-MOVE-1009', 'BTC-MOVE-1010', 'BTC-MOVE-1011', 'BTC-MOVE-1012', 'BTC-MOVE-1013', 'BTC-MOVE-1014', 'BTC-MOVE-1015', 'BTC-MOVE-1016', 'BTC-MOVE-1017', 'BTC-MOVE-1018', 'BTC-MOVE-1019', 'BTC-MOVE-1020', 'BTC-MOVE-1121', 'BTC-MOVE-1122', 'BTC-MOVE-1123', 'BTC-MOVE-1124', 'BTC-MOVE-1125', 'BTC-MOVE-1126', 'BTC-MOVE-1127', 'BTC-MOVE-1128', 'BTC-MOVE-1129', 'BTC-MOVE-1130', 'BTC-MOVE-1201', 'BTC-MOVE-1202', 'BTC-MOVE-1203', 'BTC-MOVE-1204', 'BTC-MOVE-1205', 'BTC-MOVE-1206', 'BTC-MOVE-1207', 'BTC-MOVE-1208', 'BTC-MOVE-1209', 'BTC-MOVE-1210', 'BTC-MOVE-1211', 'BTC-MOVE-1212', 'BTC-MOVE-1213', 'BTC-MOVE-1214', 'BTC-MOVE-1215', 'BTC-MOVE-1216', 'BTC-MOVE-1217', 'BTC-MOVE-1218', 'BTC-MOVE-1219', 'BTC-MOVE-1220', 'BTC-MOVE-1221', 'BTC-MOVE-1222', 'BTC-MOVE-1223', 'BTC-MOVE-1224', 'BTC-MOVE-1225', 'BTC-MOVE-1226', 'BTC-MOVE-1227', 'BTC-MOVE-1228', 'BTC-MOVE-1229', 'BTC-MOVE-1230', 'BTC-MOVE-1231', 'BTC-MOVE-2019Q4', 'BTC-MOVE-2020Q1', 'BTC-MOVE-2020Q2', 'BTC-MOVE-2020Q3', 'BTC-MOVE-2020Q4', 'BTC-MOVE-WK-0103', 'BTC-MOVE-WK-0110', 'BTC-MOVE-WK-0117', 'BTC-MOVE-WK-0124', 'BTC-MOVE-WK-0131', 'BTC-MOVE-WK-0207', 'BTC-MOVE-WK-0214', 'BTC-MOVE-WK-0221', 'BTC-MOVE-WK-0228', 'BTC-MOVE-WK-0306', 'BTC-MOVE-WK-0313', 'BTC-MOVE-WK-0320', 'BTC-MOVE-WK-0327', 'BTC-MOVE-WK-0403', 'BTC-MOVE-WK-0410', 'BTC-MOVE-WK-0417', 'BTC-MOVE-WK-0424', 'BTC-MOVE-WK-0501', 'BTC-MOVE-WK-0508', 'BTC-MOVE-WK-0515', 'BTC-MOVE-WK-1122', 'BTC-MOVE-WK-1129', 'BTC-MOVE-WK-1206', 'BTC-MOVE-WK-1213', 'BTC-MOVE-WK-1220', 'BTC-MOVE-WK-1227', 'BTC-PERP', 'BTC/USD', 'BTC/USDT', 'BTMX-0327', 'BTMX-0626', 'BTMX-1227', 'BTMX-PERP', 'BTMX/USD', 'BTMXBEAR/USD', 'BTMXBEAR/USDT', 'BTMXBULL/USD', 'BTMXBULL/USDT', 'BTMXDOOM/USD', 'BTMXHALF/USD', 'BTMXHEDGE/USD', 'BTMXMOON/USD', 'BULL/USD', 'BULL/USDT', 'BULLSHIT/USD', 'DOGE-0327', 'DOGE-0626', 'DOGE-1227', 'DOGE-PERP', 'DOGEBEAR/USD', 'DOGEBULL/USD', 'DOGEDOOM/USD', 'DOGEMOON/USD', 'DOOM/USD', 'DOOMSHIT/USD', 'DRGN-0327', 'DRGN-0626', 'DRGN-1227', 'DRGN-PERP', 'DRGNBEAR/USD', 'DRGNBULL/USD', 'DRGNDOOM/USD', 'DRGNHEDGE/USD', 'DRGNMOON/USD', 'EOS-0327', 'EOS-0626', 'EOS-0927', 'EOS-1227', 'EOS-PERP', 'EOSBEAR/USD', 'EOSBEAR/USDT', 'EOSBULL/USD', 'EOSBULL/USDT', 'EOSDOOM/USD', 'EOSHEDGE/USD', 'EOSMOON/USD', 'ETC-0327', 'ETC-0626', 'ETC-0927', 'ETC-1227', 'ETC-PERP', 'ETCBEAR/USD', 'ETCBULL/USD', 'ETCDOOM/USD', 'ETCHEDGE/USD', 'ETCMOON/USD', 'ETH-0327', 'ETH-0626', 'ETH-0927', 'ETH-1227', 'ETH-PERP', 'ETH/USD', 'ETH/USDT', 'ETHBEAR/USD', 'ETHBEAR/USDT', 'ETHBULL/USD', 'ETHBULL/USDT', 'ETHDOOM/USD', 'ETHHEDGE/USD', 'ETHMOON/USD', 'EXCH-0327', 'EXCH-0626', 'EXCH-0927', 'EXCH-1227', 'EXCH-PERP', 'EXCHBEAR/USD', 'EXCHBULL/USD', 'EXCHDOOM/USD', 'EXCHHEDGE/USD', 'EXCHMOON/USD', 'FTT/BTC', 'FTT/USD', 'FTT/USDT', 'HALF/USD', 'HEDGE/USD', 'HEDGESHIT/USD', 'HT-0327', 'HT-0626', 'HT-0927', 'HT-1227', 'HT-PERP', 'HTBEAR/USD', 'HTBULL/USD', 'HTDOOM/USD', 'HTHEDGE/USD', 'HTMOON/USD', 'LEO-0327', 'LEO-0626', 'LEO-0927', 'LEO-1227', 'LEO-PERP', 'LEOBEAR/USD', 'LEOBULL/USD', 'LEODOOM/USD', 'LEOHEDGE/USD', 'LEOMOON/USD', 'LINK-0327', 'LINK-0626', 'LINK-1227', 'LINK-PERP', 'LINKBEAR/USD', 'LINKBEAR/USDT', 'LINKBULL/USD', 'LINKBULL/USDT', 'LINKDOOM/USD', 'LINKHALF/USD', 'LINKHEDGE/USD', 'LINKMOON/USD', 'LTC-0327', 'LTC-0626', 'LTC-0927', 'LTC-1227', 'LTC-PERP', 'LTC/USD', 'LTC/USDT', 'LTCBEAR/USD', 'LTCBEAR/USDT', 'LTCBULL/USD', 'LTCBULL/USDT', 'LTCDOOM/USD', 'LTCHEDGE/USD', 'LTCMOON/USD', 'MATIC-0327', 'MATIC-0626', 'MATIC-1227', 'MATIC-PERP', 'MATICBEAR/USD', 'MATICBULL/USD', 'MATICDOOM/USD', 'MATICHEDGE/USD', 'MATICMOON/USD', 'MID-0327', 'MID-0626', 'MID-0927', 'MID-1227', 'MID-PERP', 'MIDBEAR/USD', 'MIDBULL/USD', 'MIDDOOM/USD', 'MIDHEDGE/USD', 'MIDMOON/USD', 'MOON/USD', 'MOONSHIT/USD', 'OKB-0327', 'OKB-0626', 'OKB-0927', 'OKB-1227', 'OKB-PERP', 'OKBBEAR/USD', 'OKBBULL/USD', 'OKBDOOM/USD', 'OKBHEDGE/USD', 'OKBMOON/USD', 'PAXG-0327', 'PAXG-0626', 'PAXG-PERP', 'PAXG/USD', 'PAXG/USDT', 'PAXGBEAR/USD', 'PAXGBULL/USD', 'PAXGHEDGE/USD', 'PETE', 'PRIV-0327', 'PRIV-0626', 'PRIV-PERP', 'PRIVBEAR/USD', 'PRIVBULL/USD', 'PRIVHEDGE/USD', 'SHIT-0327', 'SHIT-0626', 'SHIT-0927', 'SHIT-1227', 'SHIT-PERP', 'TOMO-0327', 'TOMO-0626', 'TOMO-1227', 'TOMO-PERP', 'TOMOBEAR/USD', 'TOMOBULL/USD', 'TOMODOOM/USD', 'TOMOHEDGE/USD', 'TOMOMOON/USD', 'TRUMP', 'TRX-0327', 'TRX-0626', 'TRX-0927', 'TRX-1227', 'TRX-PERP', 'TRXBEAR/USD', 'TRXBULL/USD', 'TRXDOOM/USD', 'TRXHEDGE/USD', 'TRXMOON/USD', 'TRYB-0327', 'TRYB-0626', 'TRYB-1227', 'TRYB-PERP', 'TRYB/USD', 'TRYBBEAR/USD', 'TRYBBULL/USD', 'TRYBHEDGE/USD', 'USDT-0327', 'USDT-0626', 'USDT-0927', 'USDT-1227', 'USDT-PERP', 'USDT/USD', 'USDTBEAR/USD', 'USDTBULL/USD', 'USDTDOOM/USD', 'USDTHEDGE/USD', 'USDTMOON/USD', 'WARREN', 'XAUT-0327', 'XAUT-0626', 'XAUT-PERP', 'XAUT/USD', 'XAUT/USDT', 'XAUTBEAR/USD', 'XAUTBULL/USD', 'XRP-0327', 'XRP-0626', 'XRP-0927', 'XRP-1227', 'XRP-PERP', 'XRPBEAR/USD', 'XRPBEAR/USDT', 'XRPBULL/USD', 'XRPBULL/USDT', 'XRPDOOM/USD', 'XRPHEDGE/USD', 'XRPMOON/USD', 'XTZ-0327', 'XTZ-0626', 'XTZ-1227', 'XTZ-PERP', 'XTZBEAR/USD', 'XTZBEAR/USDT', 'XTZBULL/USD', 'XTZBULL/USDT', 'XTZDOOM/USD', 'XTZHEDGE/USD', 'XTZMOON/USD'
+
+### Data Sanity
+No downtime.
+
+### API Reference
+`GET https://ftx.com/api/markets/{market_name}/trades?limit={limit}&start_time={start_time}&end_time={end_time}`
+
+### API Query Parameters
+Name | Type | Value | Description
+-----| --------| ----------| --------- |
+market_name	|string	|BTC-0628	|name of the market
+limit	|number|	35|	optional, max 100, default 20
+start_time	|number|	1559881511	|optional
+end_time	|number|	1559881711 |	optional
+
+### API Response Schema
+Name | Type | Value | Description
+---- | ---- | ----- | -----------
+id	|number|	3855995|	trade id
+liquidation	|boolean	|false	|if this trade involved a liquidation order
+price	|number	|3857.75|	
+side	|string	|buy	
+size	|number	|0.111	
+time	|string	|2019-03-20T18:16:23.397991+00:00
+
+
+## FTX Trades Option
+```sql
+-- fetch data
+select * from FTX_trades_option limit 1 
+```
+> response
+
+```json
+[
+    {
+          'time': '2020-01-13T16:31:07.307401984Z', 
+          'id': 1068, 
+          'option_exipry': '2020-01-14T03:00:00+00:00', 
+          'option_type': 'put', 
+          'price': 4.4569, 
+          'size': 0.1, 
+          'strike_price': 7900, 
+          'underlying': 'BTC'
+   }
+]
+```
+
+### Description
+[FTX trade options](https://ftx.com/options) has a frequency of 1 second and data time range is from 2020-01-13 16:31:07.307401984 till now. Collectors are continously runing in two hosts.
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | default database timestamp
+id            integer
+option_exipry string
+option_type   string
+price         float
+size          float
+strike_price  float
+underlying    string
+
+### Data Sanity
+No downtime.
+
+### API Reference
+`GET https://ftx.com/api/options/trades`
+
+### API Query Parameters
+Not required.
+
+### API Response Schema
+No information.
+
+
+
 
 # Gateio
 [Gateio](https://www.gate.io/) is a crypto currency exchange. Check their [api](https://www.gate.io/api2). 
@@ -3074,10 +3491,10 @@ select * from gateio_orderbook limit 1
 fieldName | fieldType | description
 --------- | --------- | ---------- |
 time | string | default database timestamp
-price    float
-size     float
-snapshot string
-type     string
+price    |float|
+size     |float|
+snapshot |string|
+type     |string|
 symbol | string | tag values
 
 ### Tag Values
@@ -3094,7 +3511,7 @@ Name | Type | Required | Description
 -----| --------| ----------| --------- |
 market	|String|	Yes	| Get makret list
 
-### API Return Schema
+### API Response Schema
 No information.
 
 
@@ -3149,7 +3566,7 @@ Name | Type | Required | Description
 -----| --------| ----------| --------- |
 market	|String|	Yes	| Get makret list
 
-### API Return Schema
+### API Response Schema
 No information.
 
 
@@ -3205,7 +3622,7 @@ Name | Type | Required | Description
 -----| --------| ----------| --------- |
 market	|String|	Yes	| Get makret list
 
-### API Return Schema
+### API Response Schema
 Name | Type | Description
 ---- | ---- | ----------
 tradeTime	|Integer|	Transaction time
@@ -3262,7 +3679,7 @@ Name | Type | Required | Description
 market	|String|	Yes	| Get makret list
 depth | string | Yes | Market depth
 
-### API Return Schema
+### API Response Schema
 Name | Type | Description
 ---- | ---- | ----------
 Price	|float|	Book price
@@ -3331,7 +3748,7 @@ Name | Type | Required | Description
 symbol	|String|	Yes	| Symbol name
 depth | string | Yes | Market depth
 
-### API Return Schema
+### API Response Schema
 Name | Type | Description
 ---- | ---- | ----------
 rate	| string |The interest rate in percentage per day charged for this loan.
@@ -3439,7 +3856,7 @@ symbol	|String|	Yes	| Symbol name
 startTime | string | No | Start timestamp
 endTime | string | No | End timestamp
 
-### API Return Schema
+### API Response Schema
 Name | Type | Description
 ---- | ---- | ----------
 globalTradeID	| int | The globally unique ID associated with this trade.
@@ -3500,7 +3917,7 @@ Name | Type | Required | Description
 currencyPair|string|Yes|A pair like BTC_ETH or all
 depth |int|No|Default depth is 50. Max depth is 100.
 
-### API Return Schema
+### API Response Schema
 Name | Type | Description
 ---- | ---- | ----------
 asks|float|	An array of price aggregated offers in the book ordered from low to high price.
@@ -3569,7 +3986,7 @@ No downtime.
 ### API Query Parameters
 Not required.
 
-### API Return Schema
+### API Response Schema
 Fields	|Type	|Description
 --------| ----| ----------|
 base_unit | string |ticker code of base market
@@ -3667,7 +4084,7 @@ No downtime.
 ### API Query Parameters
 Not required.
 
-### API Return Schema
+### API Response Schema
 No information.
 
 
@@ -3727,7 +4144,7 @@ No downtime.
 ### API Query Parameters
 Not required.
 
-### API Return Schema
+### API Response Schema
 No information.
 
 # Hashpool
@@ -3784,7 +4201,7 @@ Name | Type | Description
 ---- | ---- |----------
 coin |  string | Coin symbol
 
-### API Return Schema
+### API Response Schema
 Name | Type | Description 
 ---- | ---- | ----------
 coin | string  |Coin symbol
@@ -3866,7 +4283,7 @@ Name | Type | Description
 ---- | ---- |----------
 page |  string | All available web pages.
 
-### API Return Schema
+### API Response Schema
 No information.
 
 
@@ -3926,7 +4343,7 @@ limit	|INT|	NO	|Default 100; max 1000.
 receiveWindow	|LONG	|NO	
 timestamp	|LONG	|YES
 
-### API Return Schema
+### API Response Schema
 **Response**:
 ```json
 [
@@ -3992,7 +4409,7 @@ Name | Type | Mandatory | Description
 symbol	|STRING|	YES	
 limit	|INT|	NO	|Default 100; max 1000. Valid limits:[5, 50, 100, 500, 1000]
 
-### API Return Schema
+### API Response Schema
 **Response**:
 ```json
 {
@@ -4061,7 +4478,7 @@ No downtime.
 ### API Query Parameters
 Not required.
 
-### API Return Schema
+### API Response Schema
 No inforamtion.
 
 
@@ -4110,7 +4527,7 @@ No downtime.
 ### API Query Parameters
 Not required.
 
-### API Return Schema
+### API Response Schema
 No inforamtion.
 
 
@@ -4280,7 +4697,7 @@ Check [Bitmex open interest api](#bitmex-instrument)
 ### API Query Parameters
 Not required.
 
-### API Return Schema
+### API Response Schema
 
 
 
@@ -4336,7 +4753,7 @@ No downtime.
 Not required.
 
 
-### API Return Schema
+### API Response Schema
 No information.
 
 
@@ -4548,6 +4965,6 @@ No downtime.
           "sort_ord":"DESC"}
 ```
 
-### API Return Schema
+### API Response Schema
 No information.
 
