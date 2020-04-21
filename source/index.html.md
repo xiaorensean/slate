@@ -2692,7 +2692,7 @@ data	| object	|
   ›  timestamp	|integer	|The timestamp (milliseconds since the Unix epoch)
 
 
-## Deribit Option Ticker
+## Deribit Ticker
 ```sql
 -- fetch option ticker 
 select * from deribit_optionsTicker
@@ -2840,7 +2840,7 @@ symbol | string | tag values
 
 ### Tag Vlaues 
 **Futures, Options and Swap Symbols**(Symbol Snapshot and symbols will increase per day due to rolling option tickers):
-'BTC-10APR20-4750-C', 'BTC-10APR20-4750-P', 'BTC-10APR20-5000-C', 'BTC-10APR20-5000-P', 'BTC-10APR20-5250-C', 'BTC-10APR20-5250-P', 'ETH-9APR20-155-C', 'ETH-9APR20-155-P', 'ETH-9APR20-160-C', 'ETH-9APR20-160-P', 'ETH-9APR20-165-C', 'ETH-9APR20-165-P', 'ETH-9APR20-170-C', 'ETH-9APR20-170-P', 'ETH-9APR20-175-C', 'ETH-9APR20-175-P', 'ETH-9APR20-180-C', 'ETH-9APR20-180-P', 'ETH-9APR20-185-C', 'ETH-9APR20-185-P', 'ETH-9APR20-190-C', 'ETH-9APR20-190-P', 'ETH-9APR20-195-C', 'ETH-9APR20-195-P', 'ETH-PERPETUAL'
+'BTC-10APR20-4750-C', 'ETH-9APR20-155-C', 'ETH-PERPETUAL'
 
 
 ### Data Sanity
@@ -2915,7 +2915,7 @@ symbol | string | tag values
 
 ### Tag Vlaues 
 **Futures, Options and Swap Symbols**(Symbol Snapshot and symbols will increase per day due to rolling option tickers):
-'BTC-10APR20-4750-C', 'BTC-10APR20-4750-P', 'BTC-10APR20-5000-C', 'BTC-10APR20-5000-P', 'BTC-10APR20-5250-C', 'BTC-10APR20-5250-P', 'ETH-9APR20-155-C', 'ETH-9APR20-155-P', 'ETH-9APR20-160-C', 'ETH-9APR20-160-P', 'ETH-9APR20-165-C', 'ETH-9APR20-165-P', 'ETH-9APR20-170-C', 'ETH-9APR20-170-P', 'ETH-9APR20-175-C', 'ETH-9APR20-175-P', 'ETH-9APR20-180-C', 'ETH-9APR20-180-P', 'ETH-9APR20-185-C', 'ETH-9APR20-185-P', 'ETH-9APR20-190-C', 'ETH-9APR20-190-P', 'ETH-9APR20-195-C', 'ETH-9APR20-195-P', 'ETH-PERPETUAL'
+'BTC-10APR20-4750-C', 'ETH-9APR20-155-C', 'ETH-PERPETUAL'
 
 ### Data Sanity
 No downtime.
@@ -2936,24 +2936,14 @@ No downtime.
     "count" : 2
   }
 }
-
 ```
-
-### API Query Parameters
-Name | Required | Type | Enum | Description
----- | -------- | ---- | ---- | -----------
-currency	|true|	string	|BTC;ETH	|The currency symbol
-kind	|false|	string|	future;option	|Instrument kind, if not provided instruments of all kinds are considered
-start_id|	false	|string	| |The ID number of the first trade to be returned
-end_id	|false	|string	| |The ID number of the last trade to be returned
-count	|false	|integer	| |Number of requested items, default - 10
-
 
 ### API Return Schema
 Fields	|Type | Description
 --------| ----| ----------|
 amount|number|Trade amount.For perpetual and futures in USD units, for options it is amount of corresponding cryptocurrency contracts
 price	|number	|Price in base currency
+
 
 
 
