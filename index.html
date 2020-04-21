@@ -406,6 +406,29 @@
           </li>
           <li>
             <a href="#ftx" class="toc-h1 toc-link" data-title="FTX">FTX</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#ftx-funding-rate" class="toc-h2 toc-link" data-title="FTX Funding Rate">FTX Funding Rate</a>
+                  </li>
+                  <li>
+                    <a href="#ftx-futures-statistics" class="toc-h2 toc-link" data-title="FTX Futures Statistics">FTX Futures Statistics</a>
+                  </li>
+                  <li>
+                    <a href="#ftx-leaderboard" class="toc-h2 toc-link" data-title="FTX Leaderboard">FTX Leaderboard</a>
+                  </li>
+                  <li>
+                    <a href="#ftx-option-request" class="toc-h2 toc-link" data-title="FTX Option Request">FTX Option Request</a>
+                  </li>
+                  <li>
+                    <a href="#ftx-orderbook" class="toc-h2 toc-link" data-title="FTX Orderbook">FTX Orderbook</a>
+                  </li>
+                  <li>
+                    <a href="#ftx-trades" class="toc-h2 toc-link" data-title="FTX Trades">FTX Trades</a>
+                  </li>
+                  <li>
+                    <a href="#ftx-trades-option" class="toc-h2 toc-link" data-title="FTX Trades Option">FTX Trades Option</a>
+                  </li>
+              </ul>
           </li>
           <li>
             <a href="#gateio" class="toc-h1 toc-link" data-title="Gateio">Gateio</a>
@@ -874,44 +897,44 @@ Need credentials to log in.
 <td>Running</td>
 </tr>
 <tr>
-<td>FTX_funding_rates</td>
-<td>8 hours</td>
+<td><a href="#ftx-funding-rates">FTX_funding_rates</a></td>
+<td>1 minute</td>
 <td>Funding Rates</td>
 <td>Running</td>
 </tr>
 <tr>
-<td>FTX_future_stats</td>
+<td><a href="#ftx-future-stats">FTX_future_stats</a></td>
 <td>1 minute</td>
 <td>Market Summary</td>
 <td>Running</td>
 </tr>
 <tr>
-<td>FTX_leaderboard</td>
+<td><a href="#ftx-leaderbaord">FTX_leaderboard</a></td>
 <td>1 hour</td>
 <td>Leaderboard</td>
 <td>Running</td>
 </tr>
 <tr>
-<td>FTX_option_request</td>
-<td>RealTime</td>
+<td><a href="#ftx-option-request">FTX_option_request</a></td>
+<td>1 second</td>
 <td>Request Data</td>
 <td>Running</td>
 </tr>
 <tr>
-<td>FTX_orderbook</td>
+<td><a href="#ftx-orderbook">FTX_orderbook</a></td>
 <td>30 seconds</td>
 <td>Orderbook</td>
 <td>Running</td>
 </tr>
 <tr>
-<td>FTX_trades</td>
-<td>RealTime</td>
+<td><a href="#ftx-trades">FTX_trades</a></td>
+<td>10 minutes</td>
 <td>Trades</td>
 <td>Running</td>
 </tr>
 <tr>
-<td>FTX_trades_option</td>
-<td>RealTime</td>
+<td><a href="#ftx-trades-option">FTX_trades_option</a></td>
+<td>1 second</td>
 <td>Trades</td>
 <td>Running</td>
 </tr>
@@ -1289,7 +1312,7 @@ Need credentials to log in.
 <p><code>GET https://www.binance.com/gateway-api/v1/public/margin/vip/spec/list-all</code></p>
 <h3 id='api-query-parameters'>API Query Parameters</h3>
 <p>No parameters.</p>
-<h3 id='api-return-schema'>API Return Schema</h3>
+<h3 id='api-response-schema'>API Response Schema</h3>
 <p>No Information.</p>
 <h2 id='binance-funding-rate'>Binance Funding Rate</h2>
 <blockquote>
@@ -1391,7 +1414,7 @@ Need credentials to log in.
 <li>If the number of data between <code>startTime</code> and <code>endTime</code> is larger than <code>limit</code>, return as <code>startTime</code> + <code>limit</code>.</li>
 <li>In ascending order.</li>
 </ol>
-<h3 id='api-return-schema-2'>API Return Schema</h3>
+<h3 id='api-response-schema-2'>API Response Schema</h3>
 <p>No information</p>
 <h2 id='binance-long-short-ratio'>Binance Long Short Ratio</h2>
 <blockquote>
@@ -1525,7 +1548,7 @@ ADAUSDT, ATOMUSDT, BATUSDT, BCHUSDT, BNBUSDT, BTCUSDT, DASHUSDT, EOSUSDT, ETCUSD
 <li>If there is no limit of startime and endtime, it will return the value brfore the current time by default.</li>
 <li>Only the data of the latest 30 days is available.</li>
 </ol>
-<h3 id='api-return-schema-3'>API Return Schema</h3>
+<h3 id='api-response-schema-3'>API Response Schema</h3>
 <p>No information</p>
 <h2 id='binance-long-short-ratio-account'>Binance Long Short Ratio Account</h2>
 <blockquote>
@@ -2170,7 +2193,7 @@ ADAUSDT, ATOMUSDT, BATUSDT, BCHUSDT, BNBUSDT, BTCUSDT, DASHUSDT, EOSUSDT, ETCUSD
 <ol>
 <li>If the symbol is not sent, liquidation orders for all symbols will be returned.</li>
 </ol>
-<h3 id='api-return-schema-4'>API Return Schema</h3>
+<h3 id='api-response-schema-4'>API Response Schema</h3>
 <p>See code comments.</p>
 <h2 id='binance-open-interest'>Binance Open Interest</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch one ticker</span>
 <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">binance_open_interest_clean</span>
@@ -2236,7 +2259,7 @@ ADAUSDT, ATOMUSDT, BATUSDT, BCHUSDT, BNBUSDT, BTCUSDT, DASHUSDT, EOSUSDT, ETCUSD
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='api-return-schema-5'>API Return Schema</h3>
+<h3 id='api-response-schema-5'>API Response Schema</h3>
 <p>See code comments.</p>
 <h2 id='binance-orderbook'>Binance Orderbook</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch futures </span>
 <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">binance_orderbook_futures_clean</span> <span class="k">where</span> <span class="n">symbol</span> <span class="o">=</span> <span class="s1">'BTCUSDT'</span>
@@ -2339,7 +2362,7 @@ ADAUSDT, ATOMUSDT, BATUSDT, BCHUSDT, BNBUSDT, BTCUSDT, DASHUSDT, EOSUSDT, ETCUSD
 <td>Default 100; max 1000. Valid limits:[5, 10, 20, 50, 100, 500, 1000]</td>
 </tr>
 </tbody></table>
-<h3 id='api-return-schema-6'>API Return Schema</h3>
+<h3 id='api-response-schema-6'>API Response Schema</h3>
 <p>See code comments.</p>
 <h2 id='binance-trade'>Binance Trade</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch futures </span>
 <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">binance_trade_futures</span> <span class="k">where</span> <span class="n">symbol</span> <span class="o">=</span> <span class="s1">'BTCUSDT'</span>
@@ -2450,7 +2473,7 @@ Trade data may have some gaps in the past but api can fetch all historical, so w
 <td>Default 100; max 1000. Valid limits:[5, 10, 20, 50, 100, 500, 1000]</td>
 </tr>
 </tbody></table>
-<h3 id='api-return-schema-7'>API Return Schema</h3>
+<h3 id='api-response-schema-7'>API Response Schema</h3>
 <p>See code comments.</p>
 <h1 id='bitfinex'>Bitfinex</h1>
 <p><a href="https://www.bitfinex.com/">Bitfinex</a> is a cryptocurrency exchange and check their <a href="https://docs.bitfinex.com/docs">api</a>. Ratelimit for Bitfinex is 30 req/min.</p>
@@ -2552,7 +2575,7 @@ Trade data may have some gaps in the past but api can fetch all historical, so w
 <td>P0, P1, P2, P3, P4, R0</td>
 </tr>
 </tbody></table>
-<h3 id='api-return-schema-8'>API Return Schema</h3>
+<h3 id='api-response-schema-8'>API Response Schema</h3>
 <table><thead>
 <tr>
 <th>Fields</th>
@@ -2698,7 +2721,7 @@ Trade data may have some gaps in the past but api can fetch all historical, so w
 <td>If = 1 it sorts results returned with old &gt; new</td>
 </tr>
 </tbody></table>
-<h3 id='api-return-schema-9'>API Return Schema</h3>
+<h3 id='api-response-schema-9'>API Response Schema</h3>
 <table><thead>
 <tr>
 <th>Fields</th>
@@ -2836,7 +2859,7 @@ Trade data may have some gaps in the past but api can fetch all historical, so w
 <td>Trading Pairs (e.g. tBTCUSD, tETHUSD) tGLOBAL:USD</td>
 </tr>
 </tbody></table>
-<h3 id='api-return-schema-10'>API Return Schema</h3>
+<h3 id='api-response-schema-10'>API Response Schema</h3>
 <table><thead>
 <tr>
 <th>Fields</th>
@@ -2962,7 +2985,7 @@ Trade data may have some gaps in the past but api can fetch all historical, so w
 <td>Orderbook depth per side. Send 0 for full depth.</td>
 </tr>
 </tbody></table>
-<h3 id='api-return-schema-11'>API Return Schema</h3>
+<h3 id='api-response-schema-11'>API Response Schema</h3>
 <p>No Information.</p>
 <h2 id='bitmex-funding'>Bitmex Funding</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch data</span>
 <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">bitmex_funding</span> <span class="k">where</span> <span class="n">symbol</span> <span class="o">=</span> <span class="s1">'ETHXBT'</span>
@@ -3037,7 +3060,7 @@ Trade data may have some gaps in the past but api can fetch all historical, so w
 <td>Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.</td>
 </tr>
 </tbody></table>
-<h3 id='api-return-schema-12'>API Return Schema</h3>
+<h3 id='api-response-schema-12'>API Response Schema</h3>
 <p>No information.</p>
 <h2 id='bitmex-funding-rate'>Bitmex Funding Rate</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch data</span>
 <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">bitmex_funding_rates</span> <span class="k">where</span> <span class="n">symbol</span> <span class="o">=</span> <span class="s1">'XBTUSD'</span>
@@ -3124,7 +3147,7 @@ Trade data may have some gaps in the past but api can fetch all historical, so w
 <td>Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.</td>
 </tr>
 </tbody></table>
-<h3 id='api-return-schema-13'>API Return Schema</h3>
+<h3 id='api-response-schema-13'>API Response Schema</h3>
 <p>No information.</p>
 <h2 id='bitmex-instrument'>Bitmex Instrument</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch data</span>
 <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">bitmex_instrument</span> <span class="k">where</span> <span class="n">symbol</span> <span class="o">=</span> <span class="s1">'XRPUSD'</span>
@@ -3750,7 +3773,7 @@ Trade data may have some gaps in the past but api can fetch all historical, so w
 <td>Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.</td>
 </tr>
 </tbody></table>
-<h3 id='api-return-schema-14'>API Return Schema</h3>
+<h3 id='api-response-schema-14'>API Response Schema</h3>
 <p>No information.</p>
 <h2 id='bitmex-insurance'>Bitmex Insurance</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch data</span>
 <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">bitmex_insurance</span>
@@ -3801,7 +3824,7 @@ Trade data may have some gaps in the past but api can fetch all historical, so w
 <p><code>Websocket wss://www.bitmex.com/realtime?subscribe=insurance</code></p>
 <h3 id='api-query-parameters-19'>API Query Parameters</h3>
 <p>No information.</p>
-<h3 id='api-return-schema-15'>API Return Schema</h3>
+<h3 id='api-response-schema-15'>API Response Schema</h3>
 <p>No information.</p>
 <h2 id='bitmex-leaderboard'>Bitmex Leaderboard</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch leaderboard ROE</span>
 <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">bitmex_leaderboard_ROE</span> 
@@ -3884,7 +3907,7 @@ Trade data may have some gaps in the past but api can fetch all historical, so w
 <td>ROE or notional</td>
 </tr>
 </tbody></table>
-<h3 id='api-return-schema-16'>API Return Schema</h3>
+<h3 id='api-response-schema-16'>API Response Schema</h3>
 <p>No information.</p>
 <h2 id='bitmex-liquidation'>Bitmex Liquidation</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch data</span>
 <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">bitmex_liquidation</span> <span class="k">where</span> <span class="n">symbol</span> <span class="o">=</span> <span class="s1">'EOSU19'</span>
@@ -3969,7 +3992,7 @@ Trade data may have some gaps in the past but api can fetch all historical, so w
 <td>Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.</td>
 </tr>
 </tbody></table>
-<h3 id='api-return-schema-17'>API Return Schema</h3>
+<h3 id='api-response-schema-17'>API Response Schema</h3>
 <p>No information.</p>
 <h2 id='bitmex-settlement'>Bitmex Settlement</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch data</span>
 <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">bitmex_settlement</span> <span class="k">where</span> <span class="n">symbol</span> <span class="o">=</span> <span class="s1">'XBTK15'</span>
@@ -4068,7 +4091,7 @@ Trade data may have some gaps in the past but api can fetch all historical, so w
 <td>Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.</td>
 </tr>
 </tbody></table>
-<h3 id='api-return-schema-18'>API Return Schema</h3>
+<h3 id='api-response-schema-18'>API Response Schema</h3>
 <p>No information.</p>
 <h2 id='bitmex-trade'>Bitmex Trade</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch data</span>
 <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">bitmex_trade</span> <span class="k">where</span> <span class="n">symbol</span> <span class="o">=</span> <span class="s1">'XBT7D_D95'</span>
@@ -4180,7 +4203,7 @@ Trade data may have some gaps in the past but api can fetch all historical, so w
 <td>Instrument symbol. Send a series (e.g. XBT) to get data for the nearest contract in that series.</td>
 </tr>
 </tbody></table>
-<h3 id='api-return-schema-19'>API Return Schema</h3>
+<h3 id='api-response-schema-19'>API Response Schema</h3>
 <p>No information</p>
 <h1 id='bigone'>BigOne</h1>
 <p><a href="https://big.one/">BigOne exchange</a> is a cryptocurrency exchange with <a href="https://open.big.one/docs/api.html">api documents</a> </p>
@@ -4274,7 +4297,7 @@ Trade data may have some gaps in the past but api can fetch all historical, so w
 <td>BTC-USDT</td>
 </tr>
 </tbody></table>
-<h3 id='api-return-schema-20'>API Return Schema</h3>
+<h3 id='api-response-schema-20'>API Response Schema</h3>
 <table><thead>
 <tr>
 <th>Attribute Name</th>
@@ -4405,7 +4428,7 @@ Trade data may have some gaps in the past but api can fetch all historical, so w
 <td>BTC-USDT</td>
 </tr>
 </tbody></table>
-<h3 id='api-return-schema-21'>API Return Schema</h3><h3 id='pricelevel'>PriceLevel</h3>
+<h3 id='api-response-schema-21'>API Response Schema</h3><h3 id='pricelevel'>PriceLevel</h3>
 <table><thead>
 <tr>
 <th>Attribute Name</th>
@@ -4573,7 +4596,7 @@ Trade data may have some gaps in the past but api can fetch all historical, so w
 <td>default 500; max 1000</td>
 </tr>
 </tbody></table>
-<h3 id='api-return-schema-22'>API Return Schema</h3>
+<h3 id='api-response-schema-22'>API Response Schema</h3>
 <p>No information.</p>
 <h2 id='bybit-funding-rate'>Bybit Funding Rate</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch funding rate</span>
 <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">bybit_funding_rate</span>
@@ -4631,7 +4654,7 @@ Trade data may have some gaps in the past but api can fetch all historical, so w
 <p><code>GET https://api2.bybit.com/funding-rate/list</code></p>
 <h3 id='api-query-parameters-27'>API Query Parameters</h3>
 <p>No information.</p>
-<h3 id='api-return-schema-23'>API Return Schema</h3>
+<h3 id='api-response-schema-23'>API Response Schema</h3>
 <p>No information.</p>
 <h2 id='bybit-tickers'>Bybit Tickers</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch tickers</span>
 <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">bybit_tickers</span>
@@ -4832,7 +4855,7 @@ Trade data may have some gaps in the past but api can fetch all historical, so w
 <td>Contract Type</td>
 </tr>
 </tbody></table>
-<h3 id='api-return-schema-24'>API Return Schema</h3>
+<h3 id='api-response-schema-24'>API Response Schema</h3>
 <p>No information.</p>
 <h1 id='coinbase'>Coinbase</h1>
 <p><a href="https://pro.coinbase.com/">Coinbase</a> is a American based exchange. Check their <a href="https://docs.pro.coinbase.com/">api</a>. </p>
@@ -4905,7 +4928,7 @@ Trade data may have some gaps in the past but api can fetch all historical, so w
 <p><code>GET https://api.custody.coinbase.com/api/marketing/currencies</code></p>
 <h3 id='api-query-parameters-29'>API Query Parameters</h3>
 <p>Not required.</p>
-<h3 id='api-return-schema-25'>API Return Schema</h3>
+<h3 id='api-response-schema-25'>API Response Schema</h3>
 <p>No information.</p>
 <h2 id='coinbase-orderbook'>Coinbase Orderbook</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch data</span>
 <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">coinbase_orderbook</span> <span class="k">limit</span> <span class="mi">1</span> 
@@ -5005,7 +5028,7 @@ Trade data may have some gaps in the past but api can fetch all historical, so w
 <p><strong>DETAILS</strong>:
 By default, only the inside (i.e. best) bid and ask are returned. This is equivalent to a book depth of 1 level. If you would like to see a larger order book, specify the level query parameter.
 If a level is not aggregated, then all of the orders at each price will be returned. Aggregated levels return only one size for each active price (as if there was only a single order for that size at the level).</p>
-<h3 id='api-return-schema-26'>API Return Schema</h3>
+<h3 id='api-response-schema-26'>API Response Schema</h3>
 <p>No information.</p>
 <h2 id='coinbase-trades'>Coinbase Trades</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch data</span>
 <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">coinbase_trades</span> <span class="k">limit</span> <span class="mi">1</span> 
@@ -5099,7 +5122,7 @@ If a level is not aggregated, then all of the orders at each price will be retur
 
 <p><strong>SIDE</strong>:
 The trade side indicates the maker order side. The maker order is the order that was open on the order book. buy side indicates a down-tick because the maker was a buy order and their order was removed. Conversely, sell side indicates an up-tick.</p>
-<h3 id='api-return-schema-27'>API Return Schema</h3>
+<h3 id='api-response-schema-27'>API Response Schema</h3>
 <p>No information.</p>
 <h1 id='coinex'>Coinex</h1>
 <p><a href="https://www.coinex.com/">Coinex</a> is a crypto exchange. Check their <a href="https://github.com/coinexcom/coinex_exchange_api/wiki">api</a>.</p>
@@ -5194,7 +5217,7 @@ The trade side indicates the maker order side. The maker order is the order that
 <td>Return amount，range: 5/10/20/50</td>
 </tr>
 </tbody></table>
-<h3 id='api-return-schema-28'>API Return Schema</h3>
+<h3 id='api-response-schema-28'>API Response Schema</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -5340,7 +5363,7 @@ The trade side indicates the maker order side. The maker order is the order that
 <td>Less than or equal to 1000</td>
 </tr>
 </tbody></table>
-<h3 id='api-return-schema-29'>API Return Schema</h3>
+<h3 id='api-response-schema-29'>API Response Schema</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -5617,7 +5640,7 @@ The trade side indicates the maker order side. The maker order is the order that
 <td>The ethereum network to use for the request</td>
 </tr>
 </tbody></table>
-<h3 id='api-return-schema-30'>API Return Schema</h3>
+<h3 id='api-response-schema-30'>API Response Schema</h3>
 <table><thead>
 <tr>
 <th>Type</th>
@@ -5736,7 +5759,7 @@ BTC-PERPETUAL, ETH-PERPETUAL</p>
 <td>Frequency of notifications. Events will be aggregated over this interval. The value raw means no aggregation will be applied</td>
 </tr>
 </tbody></table>
-<h3 id='api-return-schema-31'>API Return Schema</h3>
+<h3 id='api-response-schema-31'>API Response Schema</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -5804,7 +5827,7 @@ BTC-PERPETUAL, ETH-PERPETUAL</p>
 
 </span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='description-37'>Description</h3>
-<p><a href="https://docs.deribit.com/?python#ticker-instrument_name-interval">Deribit option ticker</a> is connected thourgh websocket and data time range for ticker is from 2019-07-11T15:59:41.176999936Z till now. Collectors are continously runing in two hosts.</p>
+<p><a href="https://docs.deribit.com/?python#ticker-instrument_name-interval">Deribit option ticker and ticker</a> is connected thourgh websocket and data time range for ticker is from 2019-07-11T15:59:41.176999936Z till now. Collectors are continously runing in two hosts.</p>
 <h3 id='data-schema-37'>Data Schema</h3>
 <table><thead>
 <tr>
@@ -5995,7 +6018,7 @@ BTC-PERPETUAL, ETH-PERPETUAL</p>
         &quot;channels&quot;: [&quot;ticker.BTC-PERPETUAL.raw&quot;]}
 }
 </code></p>
-<h3 id='api-return-schema-32'>API Return Schema</h3>
+<h3 id='api-response-schema-32'>API Response Schema</h3>
 <p>Check <a href="https://docs.deribit.com/#public-ticker">api doc</a> </p>
 <h2 id='deribit-orderbook'>Deribit Orderbook</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch orderbook  </span>
 <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">deribit_orderbook</span>
@@ -6086,7 +6109,7 @@ BTC-PERPETUAL, ETH-PERPETUAL</p>
 <td>The number of entries to return for bids and asks</td>
 </tr>
 </tbody></table>
-<h3 id='api-return-schema-33'>API Return Schema</h3>
+<h3 id='api-response-schema-33'>API Response Schema</h3>
 <table><thead>
 <tr>
 <th>Fields</th>
@@ -6098,13 +6121,13 @@ BTC-PERPETUAL, ETH-PERPETUAL</p>
 <tr>
 <td>bids</td>
 <td>list</td>
-<td>&quot;[800(quantity/int),10322.5(price/float), 800(cm/int)&quot;</td>
+<td>[800(quantity/int),10322.5(price/float), 800(cm/int)]</td>
 <td>The list of all bids, best bid first. See below for entry details</td>
 </tr>
 <tr>
 <td>asks</td>
 <td>list</td>
-<td>[800(quantity/int),10322.5(price/float), 800(cm/int)</td>
+<td>[800(quantity/int),10322.5(price/float), 800(cm/int)]</td>
 <td>The list of all asks, best ask first. See below for entry details</td>
 </tr>
 <tr>
@@ -6232,7 +6255,7 @@ BTC-PERPETUAL, ETH-PERPETUAL</p>
   }
 }
 </code></p>
-<h3 id='api-return-schema-34'>API Return Schema</h3>
+<h3 id='api-response-schema-34'>API Response Schema</h3>
 <table><thead>
 <tr>
 <th>Fields</th>
@@ -6442,9 +6465,793 @@ BTC-PERPETUAL, ETH-PERPETUAL</p>
 <p><code>GET https://api.dydx.exchange/v1/markets</code></p>
 <h3 id='api-query-parameters-36'>API Query Parameters</h3>
 <p>Not required.</p>
-<h3 id='api-return-schema-35'>API Return Schema</h3>
+<h3 id='api-response-schema-35'>API Response Schema</h3>
 <p>No information.</p>
-<h1 id='ftx'>FTX</h1><h1 id='gateio'>Gateio</h1>
+<h1 id='ftx'>FTX</h1>
+<p><a href="https://ftx.com/">FTX</a> is a cryptocurrency exchange. Check their <a href="https://docs.ftx.com/#overview">api</a>.</p>
+<h2 id='ftx-funding-rate'>FTX Funding Rate</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch data</span>
+<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">FTX_funding_rates</span> <span class="k">limit</span> <span class="mi">1</span> 
+</code></pre>
+<blockquote>
+<p>response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+          </span><span class="err">'time'</span><span class="p">:</span><span class="w"> </span><span class="err">'</span><span class="mi">2019-09-03</span><span class="err">T</span><span class="mi">15</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="err">Z'</span><span class="p">,</span><span class="w"> 
+          </span><span class="err">'rate'</span><span class="p">:</span><span class="w"> </span><span class="mf">-4.9e-05</span><span class="p">,</span><span class="w"> 
+          </span><span class="err">'symbol'</span><span class="p">:</span><span class="w"> </span><span class="err">'BNB-PERP'</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre><h3 id='description-41'>Description</h3>
+<p><a href="https://docs.ftx.com/#get-funding-rates">FTX funding rates</a> has a frequency of 1 minute and data time range is from 2019-09-03 15:00:00 till now. Collectors are continously runing in two hosts.</p>
+<h3 id='data-schema-41'>Data Schema</h3>
+<table><thead>
+<tr>
+<th>fieldName</th>
+<th>fieldType</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>time</td>
+<td>string</td>
+<td>default database timestamp</td>
+</tr>
+<tr>
+<td>rate</td>
+<td>float</td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>tag values</td>
+</tr>
+</tbody></table>
+<h3 id='tag-values-5'>Tag Values</h3>
+<p><strong>symbol</strong>: 
+&#39;ADA-PERP&#39;, &#39;ALGO-PERP&#39;, &#39;ALT-PERP&#39;, &#39;ATOM-PERP&#39;, &#39;BCH-PERP&#39;, &#39;BNB-PERP&#39;, &#39;BSV-PERP&#39;, &#39;BTC-PERP&#39;, &#39;BTMX-PERP&#39;, &#39;DOGE-PERP&#39;, &#39;DRGN-PERP&#39;, &#39;EOS-PERP&#39;, &#39;ETC-PERP&#39;, &#39;ETH-PERP&#39;, &#39;EXCH-PERP&#39;, &#39;HT-PERP&#39;, &#39;LEO-PERP&#39;, &#39;LINK-PERP&#39;, &#39;LTC-PERP&#39;, &#39;MATIC-PERP&#39;, &#39;MID-PERP&#39;, &#39;OKB-PERP&#39;, &#39;PAXG-PERP&#39;, &#39;PRIV-PERP&#39;, &#39;SHIT-PERP&#39;, &#39;TOMO-PERP&#39;, &#39;TRX-PERP&#39;, &#39;TRYB-PERP&#39;, &#39;USDT-PERP&#39;, &#39;XAUT-PERP&#39;, &#39;XRP-PERP&#39;, &#39;XTZ-PERP</p>
+<h3 id='data-sanity-41'>Data Sanity</h3>
+<p>No downtime.</p>
+<h3 id='api-reference-34'>API Reference</h3>
+<p><code>GET https://ftx.com/api/funding_rates</code></p>
+<h3 id='api-query-parameters-37'>API Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>start_time</td>
+<td>number</td>
+<td>1559881511</td>
+<td>optional</td>
+</tr>
+<tr>
+<td>end_time</td>
+<td>number</td>
+<td>1559881711</td>
+<td>optional</td>
+</tr>
+<tr>
+<td>future</td>
+<td>string</td>
+<td>BTC-PERP</td>
+<td>optional</td>
+</tr>
+</tbody></table>
+<h3 id='api-response-schema-36'>API Response Schema</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>future</td>
+<td>string</td>
+<td>BTC-PERP</td>
+<td></td>
+</tr>
+<tr>
+<td>rate</td>
+<td>number</td>
+<td>0.0025</td>
+<td></td>
+</tr>
+<tr>
+<td>time</td>
+<td>string</td>
+<td>2019-06-02T08:00:00+00:00</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='ftx-futures-statistics'>FTX Futures Statistics</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch data</span>
+<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">FTX_future_stats</span> <span class="k">limit</span> <span class="mi">1</span> 
+</code></pre>
+<blockquote>
+<p>response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+          </span><span class="err">'time'</span><span class="p">:</span><span class="w"> </span><span class="err">'</span><span class="mi">2019-09-04</span><span class="err">T</span><span class="mi">17</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">0</span><span class="mf">1.333594927</span><span class="err">Z'</span><span class="p">,</span><span class="w"> 
+          </span><span class="err">'expirationPrice'</span><span class="p">:</span><span class="w"> </span><span class="err">None</span><span class="p">,</span><span class="w"> 
+          </span><span class="err">'nextFundingRate'</span><span class="p">:</span><span class="w"> </span><span class="mf">-0.000166</span><span class="p">,</span><span class="w"> 
+          </span><span class="err">'nextFundingTime'</span><span class="p">:</span><span class="w"> </span><span class="err">'</span><span class="mi">2019-09-04</span><span class="err">T</span><span class="mi">18</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="err">+</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="err">'</span><span class="p">,</span><span class="w"> 
+          </span><span class="err">'openInterest'</span><span class="p">:</span><span class="w"> </span><span class="mi">3662445</span><span class="p">,</span><span class="w"> 
+          </span><span class="err">'predictedExpirationPrice'</span><span class="p">:</span><span class="w"> </span><span class="err">None</span><span class="p">,</span><span class="w"> 
+          </span><span class="err">'strikePrice'</span><span class="p">:</span><span class="w"> </span><span class="err">None</span><span class="p">,</span><span class="w"> 
+          </span><span class="err">'symbol'</span><span class="p">:</span><span class="w"> </span><span class="err">'ALGO-PERP'</span><span class="p">,</span><span class="w"> 
+          </span><span class="err">'volume'</span><span class="p">:</span><span class="w"> </span><span class="mi">2239354</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre><h3 id='description-42'>Description</h3>
+<p><a href="https://docs.ftx.com/#get-future-stats">FTX future stats</a> has a frequency of 1 nimute and data time range is from 2019-09-04 17:01:01.333594927 till now. Collectors are continously runing in two hosts.</p>
+<h3 id='data-schema-42'>Data Schema</h3>
+<table><thead>
+<tr>
+<th>fieldName</th>
+<th>fieldType</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>time</td>
+<td>string</td>
+<td>default database timestamp</td>
+</tr>
+<tr>
+<td>expirationPrice</td>
+<td>float</td>
+<td></td>
+</tr>
+<tr>
+<td>nextFundingRate</td>
+<td>float</td>
+<td></td>
+</tr>
+<tr>
+<td>nextFundingTime</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>openInterest</td>
+<td>float</td>
+<td></td>
+</tr>
+<tr>
+<td>predictedExpirationPrice</td>
+<td>float</td>
+<td></td>
+</tr>
+<tr>
+<td>strikePrice</td>
+<td>float</td>
+<td></td>
+</tr>
+<tr>
+<td>volume</td>
+<td>float</td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>tag values</td>
+</tr>
+</tbody></table>
+<h3 id='tag-values-6'>Tag Values</h3>
+<p><strong>symbol</strong>: 
+&#39;ADA-0327&#39;, &#39;ADA-0626&#39;, &#39;ADA-1227&#39;, &#39;ADA-PERP&#39;, &#39;ALGO-0327&#39;, &#39;ALGO-0626&#39;, &#39;ALGO-0927&#39;, &#39;ALGO-1227&#39;, &#39;ALGO-PERP&#39;, &#39;ALT-0327&#39;, &#39;ALT-0626&#39;, &#39;ALT-0927&#39;, &#39;ALT-1227&#39;, &#39;ALT-PERP&#39;, &#39;ATOM-0327&#39;, &#39;ATOM-0626&#39;, &#39;ATOM-1227&#39;, &#39;ATOM-PERP&#39;, &#39;BCH-0327&#39;, &#39;BCH-0626&#39;, &#39;BCH-0927&#39;, &#39;BCH-1227&#39;, &#39;BCH-PERP&#39;, &#39;BERNIE&#39;, &#39;BIDEN&#39;, &#39;BLOOMBERG&#39;, &#39;BNB-0327&#39;, &#39;BNB-0626&#39;, &#39;BNB-0927&#39;, &#39;BNB-1227&#39;, &#39;BNB-PERP&#39;, &#39;BSV-0327&#39;, &#39;BSV-0626&#39;, &#39;BSV-0927&#39;, &#39;BSV-1227&#39;, &#39;BSV-PERP&#39;, &#39;BTC-0327&#39;, &#39;BTC-0626&#39;, &#39;BTC-0925&#39;, &#39;BTC-0927&#39;, &#39;BTC-1227&#39;, &#39;BTC-MOVE-0101&#39;, &#39;BTC-MOVE-0102&#39;, &#39;BTC-MOVE-0103&#39;, &#39;BTC-MOVE-0104&#39;, &#39;BTC-MOVE-0105&#39;, &#39;BTC-MOVE-0106&#39;, &#39;BTC-MOVE-0107&#39;, &#39;BTC-MOVE-0108&#39;, &#39;BTC-MOVE-0109&#39;, &#39;BTC-MOVE-0110&#39;, &#39;BTC-MOVE-0111&#39;, &#39;BTC-MOVE-0112&#39;, &#39;BTC-MOVE-0113&#39;, &#39;BTC-MOVE-0114&#39;, &#39;BTC-MOVE-0115&#39;, &#39;BTC-MOVE-0116&#39;, &#39;BTC-MOVE-0117&#39;, &#39;BTC-MOVE-0118&#39;, &#39;BTC-MOVE-0119&#39;, &#39;BTC-MOVE-0120&#39;, &#39;BTC-MOVE-0121&#39;, &#39;BTC-MOVE-0122&#39;, &#39;BTC-MOVE-0123&#39;, &#39;BTC-MOVE-0124&#39;, &#39;BTC-MOVE-0125&#39;, &#39;BTC-MOVE-0126&#39;, &#39;BTC-MOVE-0127&#39;, &#39;BTC-MOVE-0128&#39;, &#39;BTC-MOVE-0129&#39;, &#39;BTC-MOVE-0130&#39;, &#39;BTC-MOVE-0131&#39;, &#39;BTC-MOVE-0201&#39;, &#39;BTC-MOVE-0202&#39;, &#39;BTC-MOVE-0203&#39;, &#39;BTC-MOVE-0204&#39;, &#39;BTC-MOVE-0205&#39;, &#39;BTC-MOVE-0206&#39;, &#39;BTC-MOVE-0207&#39;, &#39;BTC-MOVE-0208&#39;, &#39;BTC-MOVE-0209&#39;, &#39;BTC-MOVE-0210&#39;, &#39;BTC-MOVE-0211&#39;, &#39;BTC-MOVE-0212&#39;, &#39;BTC-MOVE-0213&#39;, &#39;BTC-MOVE-0214&#39;, &#39;BTC-MOVE-0215&#39;, &#39;BTC-MOVE-0216&#39;, &#39;BTC-MOVE-0217&#39;, &#39;BTC-MOVE-0218&#39;, &#39;BTC-MOVE-0219&#39;, &#39;BTC-MOVE-0220&#39;, &#39;BTC-MOVE-0221&#39;, &#39;BTC-MOVE-0222&#39;, &#39;BTC-MOVE-0223&#39;, &#39;BTC-MOVE-0224&#39;, &#39;BTC-MOVE-0225&#39;, &#39;BTC-MOVE-0226&#39;, &#39;BTC-MOVE-0227&#39;, &#39;BTC-MOVE-0228&#39;, &#39;BTC-MOVE-0229&#39;, &#39;BTC-MOVE-0301&#39;, &#39;BTC-MOVE-0302&#39;, &#39;BTC-MOVE-0303&#39;, &#39;BTC-MOVE-0304&#39;, &#39;BTC-MOVE-0305&#39;, &#39;BTC-MOVE-0306&#39;, &#39;BTC-MOVE-0307&#39;, &#39;BTC-MOVE-0308&#39;, &#39;BTC-MOVE-0309&#39;, &#39;BTC-MOVE-0310&#39;, &#39;BTC-MOVE-0311&#39;, &#39;BTC-MOVE-0312&#39;, &#39;BTC-MOVE-0313&#39;, &#39;BTC-MOVE-0314&#39;, &#39;BTC-MOVE-0315&#39;, &#39;BTC-MOVE-0316&#39;, &#39;BTC-MOVE-0317&#39;, &#39;BTC-MOVE-0318&#39;, &#39;BTC-MOVE-0319&#39;, &#39;BTC-MOVE-0320&#39;, &#39;BTC-MOVE-0321&#39;, &#39;BTC-MOVE-0322&#39;, &#39;BTC-MOVE-0323&#39;, &#39;BTC-MOVE-0324&#39;, &#39;BTC-MOVE-0325&#39;, &#39;BTC-MOVE-0326&#39;, &#39;BTC-MOVE-0327&#39;, &#39;BTC-MOVE-0328&#39;, &#39;BTC-MOVE-0329&#39;, &#39;BTC-MOVE-0330&#39;, &#39;BTC-MOVE-0331&#39;, &#39;BTC-MOVE-0401&#39;, &#39;BTC-MOVE-0402&#39;, &#39;BTC-MOVE-0403&#39;, &#39;BTC-MOVE-0404&#39;, &#39;BTC-MOVE-0405&#39;, &#39;BTC-MOVE-0406&#39;, &#39;BTC-MOVE-0407&#39;, &#39;BTC-MOVE-0408&#39;, &#39;BTC-MOVE-0409&#39;, &#39;BTC-MOVE-0410&#39;, &#39;BTC-MOVE-0411&#39;, &#39;BTC-MOVE-0412&#39;, &#39;BTC-MOVE-0413&#39;, &#39;BTC-MOVE-0414&#39;, &#39;BTC-MOVE-0415&#39;, &#39;BTC-MOVE-0416&#39;, &#39;BTC-MOVE-0417&#39;, &#39;BTC-MOVE-0418&#39;, &#39;BTC-MOVE-0419&#39;, &#39;BTC-MOVE-0420&#39;, &#39;BTC-MOVE-0421&#39;, &#39;BTC-MOVE-0422&#39;, &#39;BTC-MOVE-0925&#39;, &#39;BTC-MOVE-0926&#39;, &#39;BTC-MOVE-0927&#39;, &#39;BTC-MOVE-0928&#39;, &#39;BTC-MOVE-0929&#39;, &#39;BTC-MOVE-0930&#39;, &#39;BTC-MOVE-1001&#39;, &#39;BTC-MOVE-1002&#39;, &#39;BTC-MOVE-1003&#39;, &#39;BTC-MOVE-1004&#39;, &#39;BTC-MOVE-1005&#39;, &#39;BTC-MOVE-1006&#39;, &#39;BTC-MOVE-1007&#39;, &#39;BTC-MOVE-1008&#39;, &#39;BTC-MOVE-1009&#39;, &#39;BTC-MOVE-1010&#39;, &#39;BTC-MOVE-1011&#39;, &#39;BTC-MOVE-1012&#39;, &#39;BTC-MOVE-1013&#39;, &#39;BTC-MOVE-1014&#39;, &#39;BTC-MOVE-1015&#39;, &#39;BTC-MOVE-1016&#39;, &#39;BTC-MOVE-1017&#39;, &#39;BTC-MOVE-1018&#39;, &#39;BTC-MOVE-1019&#39;, &#39;BTC-MOVE-1020&#39;, &#39;BTC-MOVE-1121&#39;, &#39;BTC-MOVE-1122&#39;, &#39;BTC-MOVE-1123&#39;, &#39;BTC-MOVE-1124&#39;, &#39;BTC-MOVE-1125&#39;, &#39;BTC-MOVE-1126&#39;, &#39;BTC-MOVE-1127&#39;, &#39;BTC-MOVE-1128&#39;, &#39;BTC-MOVE-1129&#39;, &#39;BTC-MOVE-1130&#39;, &#39;BTC-MOVE-1201&#39;, &#39;BTC-MOVE-1202&#39;, &#39;BTC-MOVE-1203&#39;, &#39;BTC-MOVE-1204&#39;, &#39;BTC-MOVE-1205&#39;, &#39;BTC-MOVE-1206&#39;, &#39;BTC-MOVE-1207&#39;, &#39;BTC-MOVE-1208&#39;, &#39;BTC-MOVE-1209&#39;, &#39;BTC-MOVE-1210&#39;, &#39;BTC-MOVE-1211&#39;, &#39;BTC-MOVE-1212&#39;, &#39;BTC-MOVE-1213&#39;, &#39;BTC-MOVE-1214&#39;, &#39;BTC-MOVE-1215&#39;, &#39;BTC-MOVE-1216&#39;, &#39;BTC-MOVE-1217&#39;, &#39;BTC-MOVE-1218&#39;, &#39;BTC-MOVE-1219&#39;, &#39;BTC-MOVE-1220&#39;, &#39;BTC-MOVE-1221&#39;, &#39;BTC-MOVE-1222&#39;, &#39;BTC-MOVE-1223&#39;, &#39;BTC-MOVE-1224&#39;, &#39;BTC-MOVE-1225&#39;, &#39;BTC-MOVE-1226&#39;, &#39;BTC-MOVE-1227&#39;, &#39;BTC-MOVE-1228&#39;, &#39;BTC-MOVE-1229&#39;, &#39;BTC-MOVE-1230&#39;, &#39;BTC-MOVE-1231&#39;, &#39;BTC-MOVE-2019Q4&#39;, &#39;BTC-MOVE-2020Q1&#39;, &#39;BTC-MOVE-2020Q2&#39;, &#39;BTC-MOVE-2020Q3&#39;, &#39;BTC-MOVE-2020Q4&#39;, &#39;BTC-MOVE-WK-0103&#39;, &#39;BTC-MOVE-WK-0110&#39;, &#39;BTC-MOVE-WK-0117&#39;, &#39;BTC-MOVE-WK-0124&#39;, &#39;BTC-MOVE-WK-0131&#39;, &#39;BTC-MOVE-WK-0207&#39;, &#39;BTC-MOVE-WK-0214&#39;, &#39;BTC-MOVE-WK-0221&#39;, &#39;BTC-MOVE-WK-0228&#39;, &#39;BTC-MOVE-WK-0306&#39;, &#39;BTC-MOVE-WK-0313&#39;, &#39;BTC-MOVE-WK-0320&#39;, &#39;BTC-MOVE-WK-0327&#39;, &#39;BTC-MOVE-WK-0403&#39;, &#39;BTC-MOVE-WK-0410&#39;, &#39;BTC-MOVE-WK-0417&#39;, &#39;BTC-MOVE-WK-0424&#39;, &#39;BTC-MOVE-WK-0501&#39;, &#39;BTC-MOVE-WK-0508&#39;, &#39;BTC-MOVE-WK-0515&#39;, &#39;BTC-MOVE-WK-1122&#39;, &#39;BTC-MOVE-WK-1129&#39;, &#39;BTC-MOVE-WK-1206&#39;, &#39;BTC-MOVE-WK-1213&#39;, &#39;BTC-MOVE-WK-1220&#39;, &#39;BTC-MOVE-WK-1227&#39;, &#39;BTC-PERP&#39;, &#39;BTMX-0327&#39;, &#39;BTMX-0626&#39;, &#39;BTMX-1227&#39;, &#39;BTMX-PERP&#39;, &#39;DOGE-0327&#39;, &#39;DOGE-0626&#39;, &#39;DOGE-1227&#39;, &#39;DOGE-PERP&#39;, &#39;DRGN-0327&#39;, &#39;DRGN-0626&#39;, &#39;DRGN-1227&#39;, &#39;DRGN-PERP&#39;, &#39;EOS-0327&#39;, &#39;EOS-0626&#39;, &#39;EOS-0927&#39;, &#39;EOS-1227&#39;, &#39;EOS-PERP&#39;, &#39;ETC-0327&#39;, &#39;ETC-0626&#39;, &#39;ETC-0927&#39;, &#39;ETC-1227&#39;, &#39;ETC-PERP&#39;, &#39;ETH-0327&#39;, &#39;ETH-0626&#39;, &#39;ETH-0927&#39;, &#39;ETH-1227&#39;, &#39;ETH-PERP&#39;, &#39;EXCH-0327&#39;, &#39;EXCH-0626&#39;, &#39;EXCH-0927&#39;, &#39;EXCH-1227&#39;, &#39;EXCH-PERP&#39;, &#39;HT-0327&#39;, &#39;HT-0626&#39;, &#39;HT-0927&#39;, &#39;HT-1227&#39;, &#39;HT-PERP&#39;, &#39;LEO-0327&#39;, &#39;LEO-0626&#39;, &#39;LEO-0927&#39;, &#39;LEO-1227&#39;, &#39;LEO-PERP&#39;, &#39;LINK-0327&#39;, &#39;LINK-0626&#39;, &#39;LINK-1227&#39;, &#39;LINK-PERP&#39;, &#39;LTC-0327&#39;, &#39;LTC-0626&#39;, &#39;LTC-0927&#39;, &#39;LTC-1227&#39;, &#39;LTC-PERP&#39;, &#39;MATIC-0327&#39;, &#39;MATIC-0626&#39;, &#39;MATIC-1227&#39;, &#39;MATIC-PERP&#39;, &#39;MID-0327&#39;, &#39;MID-0626&#39;, &#39;MID-0927&#39;, &#39;MID-1227&#39;, &#39;MID-PERP&#39;, &#39;OKB-0327&#39;, &#39;OKB-0626&#39;, &#39;OKB-0927&#39;, &#39;OKB-1227&#39;, &#39;OKB-PERP&#39;, &#39;PAXG-0327&#39;, &#39;PAXG-0626&#39;, &#39;PAXG-PERP&#39;, &#39;PETE&#39;, &#39;PRIV-0327&#39;, &#39;PRIV-0626&#39;, &#39;PRIV-PERP&#39;, &#39;SHIT-0327&#39;, &#39;SHIT-0626&#39;, &#39;SHIT-0927&#39;, &#39;SHIT-1227&#39;, &#39;SHIT-PERP&#39;, &#39;TOMO-0327&#39;, &#39;TOMO-0626&#39;, &#39;TOMO-1227&#39;, &#39;TOMO-PERP&#39;, &#39;TRUMP&#39;, &#39;TRX-0327&#39;, &#39;TRX-0626&#39;, &#39;TRX-0927&#39;, &#39;TRX-1227&#39;, &#39;TRX-PERP&#39;, &#39;TRYB-0327&#39;, &#39;TRYB-0626&#39;, &#39;TRYB-1227&#39;, &#39;TRYB-PERP&#39;, &#39;USDT-0327&#39;, &#39;USDT-0626&#39;, &#39;USDT-0927&#39;, &#39;USDT-1227&#39;, &#39;USDT-PERP&#39;, &#39;WARREN&#39;, &#39;XAUT-0327&#39;, &#39;XAUT-0626&#39;, &#39;XAUT-PERP&#39;, &#39;XRP-0327&#39;, &#39;XRP-0626&#39;, &#39;XRP-0927&#39;, &#39;XRP-1227&#39;, &#39;XRP-PERP&#39;, &#39;XTZ-0327&#39;, &#39;XTZ-0626&#39;, &#39;XTZ-1227&#39;, &#39;XTZ-PERP&#39;</p>
+<h3 id='data-sanity-42'>Data Sanity</h3>
+<p>No downtime.</p>
+<h3 id='api-reference-35'>API Reference</h3>
+<p><code>GET https://ftx.com/api/futures/{future_name}/stats</code></p>
+<h3 id='api-query-parameters-38'>API Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>future_name</td>
+<td>string</td>
+<td>LINK-1227</td>
+<td>Futures name</td>
+</tr>
+</tbody></table>
+<h3 id='api-response-schema-37'>API Response Schema</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>volume</td>
+<td>number</td>
+<td>1000.23</td>
+<td>quantity traded in the last 24 hours</td>
+</tr>
+<tr>
+<td>nextFundingRate</td>
+<td>number</td>
+<td>0.00025</td>
+<td>upcoming funding rate (only applicable for perpetual contracts)</td>
+</tr>
+<tr>
+<td>nextFundingTime</td>
+<td>string</td>
+<td>2019-03-29T03:00:00+00:00</td>
+<td>upcoming funding time (only applicable for perpetual contracts)</td>
+</tr>
+<tr>
+<td>expirationPrice</td>
+<td>number</td>
+<td>3992.1</td>
+<td>price to which the future expired (only applicable if the future has expired)</td>
+</tr>
+<tr>
+<td>predictedExpirationPrice</td>
+<td>number</td>
+<td>3993.0</td>
+<td>only applicable if the future has not expired</td>
+</tr>
+<tr>
+<td>openInterest</td>
+<td>number</td>
+<td>21124.583</td>
+<td>number of open contracts in this future</td>
+</tr>
+<tr>
+<td>strikePrice</td>
+<td>number</td>
+<td>8182.35009484</td>
+<td>price of the underlying at the beginning of the expiration day (only applicable for MOVE contracts)</td>
+</tr>
+</tbody></table>
+<h2 id='ftx-leaderboard'>FTX Leaderboard</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch data</span>
+<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">FTX_leaderboard</span> <span class="k">limit</span> <span class="mi">1</span> 
+</code></pre>
+<blockquote>
+<p>response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+          </span><span class="err">'time'</span><span class="p">:</span><span class="w"> </span><span class="err">'</span><span class="mi">2020-04-17</span><span class="err">T</span><span class="mi">18</span><span class="p">:</span><span class="mi">03</span><span class="p">:</span><span class="mf">11.308176903</span><span class="err">Z'</span><span class="p">,</span><span class="w"> 
+          </span><span class="err">'current_timestamp'</span><span class="p">:</span><span class="w"> </span><span class="err">'</span><span class="mi">2020-04-17</span><span class="w"> </span><span class="mi">18</span><span class="p">:</span><span class="mi">03</span><span class="p">:</span><span class="mf">11.301949</span><span class="err">'</span><span class="p">,</span><span class="w"> 
+          </span><span class="err">'isRealName'</span><span class="p">:</span><span class="w"> </span><span class="err">'False'</span><span class="p">,</span><span class="w"> 
+          </span><span class="err">'name'</span><span class="p">:</span><span class="w"> </span><span class="err">'odin@folkvang.io'</span><span class="p">,</span><span class="w"> 
+          </span><span class="err">'rank'</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> 
+          </span><span class="err">'type'</span><span class="p">:</span><span class="w"> </span><span class="err">'volume'</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre><h3 id='description-43'>Description</h3>
+<p><a href="https://ftx.com/leaderboard">FTX leaderboard</a> has a frequency of 1 hour and data time range is from 2020-04-17 18:03:11.308176903 till now. Collectors are continously runing in two hosts.</p>
+<h3 id='data-schema-43'>Data Schema</h3>
+<table><thead>
+<tr>
+<th>fieldName</th>
+<th>fieldType</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>time</td>
+<td>string</td>
+<td>default database timestamp</td>
+</tr>
+<tr>
+<td>current_timestamp</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>isRealName</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>rank</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>type</td>
+<td>string</td>
+<td>tag values</td>
+</tr>
+</tbody></table>
+<h3 id='tag-values-7'>Tag Values</h3>
+<p><strong>Type</strong>: 
+maker_volume, volume, pnl</p>
+<h3 id='data-sanity-43'>Data Sanity</h3>
+<p>No downtime.</p>
+<h3 id='api-reference-36'>API Reference</h3>
+<p><code>GET https://ftx.com/api/leaderboard</code></p>
+<h3 id='api-query-parameters-39'>API Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>string</td>
+<td>volume</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='api-response-schema-38'>API Response Schema</h3>
+<p>No information. </p>
+<h2 id='ftx-option-request'>FTX Option Request</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch data</span>
+<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">FTX_option_request</span> <span class="k">limit</span> <span class="mi">1</span> 
+</code></pre>
+<blockquote>
+<p>response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+          </span><span class="err">'time'</span><span class="p">:</span><span class="w"> </span><span class="err">'</span><span class="mi">2020-02-05</span><span class="err">T</span><span class="mi">06</span><span class="p">:</span><span class="mi">28</span><span class="p">:</span><span class="mf">37.37463808</span><span class="err">Z'</span><span class="p">,</span><span class="w"> 
+          </span><span class="err">'id'</span><span class="p">:</span><span class="w"> </span><span class="mi">5536365</span><span class="p">,</span><span class="w"> 
+          </span><span class="err">'option_exipry'</span><span class="p">:</span><span class="w"> </span><span class="err">'</span><span class="mi">2020-02-06</span><span class="err">T</span><span class="mi">03</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="err">+</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="err">'</span><span class="p">,</span><span class="w"> 
+          </span><span class="err">'option_type'</span><span class="p">:</span><span class="w"> </span><span class="err">'call'</span><span class="p">,</span><span class="w"> 
+          </span><span class="err">'requestExpiry'</span><span class="p">:</span><span class="w"> </span><span class="err">'</span><span class="mi">2020-02-06</span><span class="err">T</span><span class="mi">03</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="err">+</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="err">'</span><span class="p">,</span><span class="w"> 
+          </span><span class="err">'side'</span><span class="p">:</span><span class="w"> </span><span class="err">'buy'</span><span class="p">,</span><span class="w"> 
+          </span><span class="err">'size'</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> 
+          </span><span class="err">'status'</span><span class="p">:</span><span class="w"> </span><span class="err">'open'</span><span class="p">,</span><span class="w"> 
+          </span><span class="err">'strike_price'</span><span class="p">:</span><span class="w"> </span><span class="mi">9200</span><span class="p">,</span><span class="w"> 
+          </span><span class="err">'underlying'</span><span class="p">:</span><span class="w"> </span><span class="err">'BTC'</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre><h3 id='description-44'>Description</h3>
+<p><a href="https://docs.ftx.com/#list-quote-requests">FTX option request</a> has a frequency of 1 second and data time range is from 2020-02-05 06:28:37.37463808 till now. Collectors are continously runing in two hosts.</p>
+<h3 id='data-schema-44'>Data Schema</h3>
+<table><thead>
+<tr>
+<th>fieldName</th>
+<th>fieldType</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>time</td>
+<td>string</td>
+<td>default database timestamp</td>
+</tr>
+</tbody></table>
+
+<p>id            integer
+option_exipry string
+option_type   string
+requestExpiry string
+side          string
+size          float
+status        string
+strike_price  float
+underlying    string</p>
+<h3 id='data-sanity-44'>Data Sanity</h3>
+<p>No downtime.</p>
+<h3 id='api-reference-37'>API Reference</h3>
+<p><code>GET https://ftx.com/api/options/requests</code></p>
+<h3 id='api-query-parameters-40'>API Query Parameters</h3>
+<p>Not required.</p>
+<h3 id='api-response-schema-39'>API Response Schema</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>number</td>
+<td>512</td>
+<td></td>
+</tr>
+<tr>
+<td>option</td>
+<td>dict</td>
+<td>option object; see below</td>
+<td></td>
+</tr>
+<tr>
+<td>size</td>
+<td>number</td>
+<td>1.2</td>
+<td></td>
+</tr>
+<tr>
+<td>side</td>
+<td>string</td>
+<td>buy</td>
+<td></td>
+</tr>
+<tr>
+<td>time</td>
+<td>string</td>
+<td>2020-01-07T22:35:54.626023+00:00</td>
+<td>when the request was placed</td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>open</td>
+<td></td>
+</tr>
+<tr>
+<td>requestExpiry</td>
+<td>string</td>
+<td>2020-01-08T22:35:54.626023+00:00</td>
+<td>when the request expires</td>
+</tr>
+<tr>
+<td>limitPrice</td>
+<td>number</td>
+<td>10.2</td>
+<td>optional; omitted when the request has no limit price or it is hidden</td>
+</tr>
+<tr>
+<td>option -&gt; underlying</td>
+<td>string</td>
+<td>BTC</td>
+<td></td>
+</tr>
+<tr>
+<td>option -&gt; type</td>
+<td>string</td>
+<td>call</td>
+<td>&quot;call&quot; or &quot;put&quot;</td>
+</tr>
+<tr>
+<td>option -&gt; strike</td>
+<td>number</td>
+<td>7800</td>
+<td></td>
+</tr>
+<tr>
+<td>option -&gt; expiry</td>
+<td>string</td>
+<td>2020-01-08T03:00:00+00:00</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='ftx-orderbook'>FTX Orderbook</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch data</span>
+<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">FTX_orderbook</span> <span class="k">limit</span> <span class="mi">1</span> 
+</code></pre>
+<blockquote>
+<p>response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+          </span><span class="err">'time'</span><span class="p">:</span><span class="w"> </span><span class="err">'</span><span class="mi">2020-01-09</span><span class="err">T</span><span class="mi">19</span><span class="p">:</span><span class="mi">29</span><span class="p">:</span><span class="mf">15.768404927</span><span class="err">Z'</span><span class="p">,</span><span class="w"> 
+          </span><span class="err">'price'</span><span class="p">:</span><span class="w"> </span><span class="mf">121.25</span><span class="p">,</span><span class="w"> 
+          </span><span class="err">'size'</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9787</span><span class="p">,</span><span class="w"> 
+          </span><span class="err">'snapshot'</span><span class="p">:</span><span class="w"> </span><span class="err">'</span><span class="mi">2020-01-09</span><span class="w"> </span><span class="mi">19</span><span class="p">:</span><span class="mi">27</span><span class="p">:</span><span class="mf">33.196682</span><span class="err">'</span><span class="p">,</span><span class="w"> 
+          </span><span class="err">'symbol'</span><span class="p">:</span><span class="w"> </span><span class="err">'BTC-MOVE</span><span class="mi">-0109</span><span class="err">'</span><span class="p">,</span><span class="w"> 
+          </span><span class="err">'type'</span><span class="p">:</span><span class="w"> </span><span class="err">'ask'</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre><h3 id='description-45'>Description</h3>
+<p><a href="https://docs.ftx.com/#get-orderbook">FTX orderbook</a> has a frequency of 30 second and data time range is from 2020-01-09 19:29:15.768404927 till now. Collectors are continously runing in two hosts.</p>
+<h3 id='data-schema-45'>Data Schema</h3>
+<table><thead>
+<tr>
+<th>fieldName</th>
+<th>fieldType</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>time</td>
+<td>string</td>
+<td>default database timestamp</td>
+</tr>
+<tr>
+<td>price</td>
+<td>float</td>
+<td></td>
+</tr>
+<tr>
+<td>size</td>
+<td>float</td>
+<td></td>
+</tr>
+<tr>
+<td>snapshot</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>type</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>tag values</td>
+</tr>
+</tbody></table>
+<h3 id='tag-values-8'>Tag Values</h3>
+<p><strong>symbol</strong>: 
+&#39;ADA-0327&#39;, &#39;ADA-0626&#39;, &#39;ADA-PERP&#39;, &#39;ALGO-0327&#39;, &#39;ALGO-0626&#39;, &#39;ALGO-PERP&#39;, &#39;ALT-0327&#39;, &#39;ALT-0626&#39;, &#39;ALT-PERP&#39;, &#39;ATOM-0327&#39;, &#39;ATOM-0626&#39;, &#39;ATOM-PERP&#39;, &#39;BCH-0327&#39;, &#39;BCH-0626&#39;, &#39;BCH-PERP&#39;, &#39;BERNIE&#39;, &#39;BIDEN&#39;, &#39;BLOOMBERG&#39;, &#39;BNB-0327&#39;, &#39;BNB-0626&#39;, &#39;BNB-PERP&#39;, &#39;BSV-0327&#39;, &#39;BSV-0626&#39;, &#39;BSV-PERP&#39;, &#39;BTC-0327&#39;, &#39;BTC-0626&#39;, &#39;BTC-0925&#39;, &#39;BTC-MOVE-0109&#39;, &#39;BTC-MOVE-0110&#39;, &#39;BTC-MOVE-0111&#39;, &#39;BTC-MOVE-0112&#39;, &#39;BTC-MOVE-0113&#39;, &#39;BTC-MOVE-0114&#39;, &#39;BTC-MOVE-0115&#39;, &#39;BTC-MOVE-0116&#39;, &#39;BTC-MOVE-0117&#39;, &#39;BTC-MOVE-0118&#39;, &#39;BTC-MOVE-0119&#39;, &#39;BTC-MOVE-0120&#39;, &#39;BTC-MOVE-0121&#39;, &#39;BTC-MOVE-0122&#39;, &#39;BTC-MOVE-0123&#39;, &#39;BTC-MOVE-0124&#39;, &#39;BTC-MOVE-0125&#39;, &#39;BTC-MOVE-0126&#39;, &#39;BTC-MOVE-0127&#39;, &#39;BTC-MOVE-0128&#39;, &#39;BTC-MOVE-0129&#39;, &#39;BTC-MOVE-0130&#39;, &#39;BTC-MOVE-0131&#39;, &#39;BTC-MOVE-0201&#39;, &#39;BTC-MOVE-0202&#39;, &#39;BTC-MOVE-0203&#39;, &#39;BTC-MOVE-0204&#39;, &#39;BTC-MOVE-0205&#39;, &#39;BTC-MOVE-0206&#39;, &#39;BTC-MOVE-0207&#39;, &#39;BTC-MOVE-0208&#39;, &#39;BTC-MOVE-0209&#39;, &#39;BTC-MOVE-0210&#39;, &#39;BTC-MOVE-0211&#39;, &#39;BTC-MOVE-0212&#39;, &#39;BTC-MOVE-0213&#39;, &#39;BTC-MOVE-0214&#39;, &#39;BTC-MOVE-0215&#39;, &#39;BTC-MOVE-0216&#39;, &#39;BTC-MOVE-0217&#39;, &#39;BTC-MOVE-0218&#39;, &#39;BTC-MOVE-0219&#39;, &#39;BTC-MOVE-0220&#39;, &#39;BTC-MOVE-0221&#39;, &#39;BTC-MOVE-0222&#39;, &#39;BTC-MOVE-0223&#39;, &#39;BTC-MOVE-0224&#39;, &#39;BTC-MOVE-0225&#39;, &#39;BTC-MOVE-0226&#39;, &#39;BTC-MOVE-0227&#39;, &#39;BTC-MOVE-0228&#39;, &#39;BTC-MOVE-0229&#39;, &#39;BTC-MOVE-0301&#39;, &#39;BTC-MOVE-0302&#39;, &#39;BTC-MOVE-0303&#39;, &#39;BTC-MOVE-0304&#39;, &#39;BTC-MOVE-0305&#39;, &#39;BTC-MOVE-0306&#39;, &#39;BTC-MOVE-0307&#39;, &#39;BTC-MOVE-0308&#39;, &#39;BTC-MOVE-0309&#39;, &#39;BTC-MOVE-0310&#39;, &#39;BTC-MOVE-0311&#39;, &#39;BTC-MOVE-0312&#39;, &#39;BTC-MOVE-0313&#39;, &#39;BTC-MOVE-0314&#39;, &#39;BTC-MOVE-0315&#39;, &#39;BTC-MOVE-0316&#39;, &#39;BTC-MOVE-0317&#39;, &#39;BTC-MOVE-0318&#39;, &#39;BTC-MOVE-0319&#39;, &#39;BTC-MOVE-0320&#39;, &#39;BTC-MOVE-0321&#39;, &#39;BTC-MOVE-0322&#39;, &#39;BTC-MOVE-0323&#39;, &#39;BTC-MOVE-0324&#39;, &#39;BTC-MOVE-0325&#39;, &#39;BTC-MOVE-0326&#39;, &#39;BTC-MOVE-0327&#39;, &#39;BTC-MOVE-0328&#39;, &#39;BTC-MOVE-0329&#39;, &#39;BTC-MOVE-0330&#39;, &#39;BTC-MOVE-0331&#39;, &#39;BTC-MOVE-0401&#39;, &#39;BTC-MOVE-0402&#39;, &#39;BTC-MOVE-0403&#39;, &#39;BTC-MOVE-0404&#39;, &#39;BTC-MOVE-0405&#39;, &#39;BTC-MOVE-0406&#39;, &#39;BTC-MOVE-0407&#39;, &#39;BTC-MOVE-0408&#39;, &#39;BTC-MOVE-0409&#39;, &#39;BTC-MOVE-0410&#39;, &#39;BTC-MOVE-0411&#39;, &#39;BTC-MOVE-0412&#39;, &#39;BTC-MOVE-0413&#39;, &#39;BTC-MOVE-0414&#39;, &#39;BTC-MOVE-0415&#39;, &#39;BTC-MOVE-0416&#39;, &#39;BTC-MOVE-0417&#39;, &#39;BTC-MOVE-0418&#39;, &#39;BTC-MOVE-0419&#39;, &#39;BTC-MOVE-0420&#39;, &#39;BTC-MOVE-0421&#39;, &#39;BTC-MOVE-0422&#39;, &#39;BTC-MOVE-2020Q1&#39;, &#39;BTC-MOVE-2020Q2&#39;, &#39;BTC-MOVE-2020Q3&#39;, &#39;BTC-MOVE-2020Q4&#39;, &#39;BTC-MOVE-WK-0110&#39;, &#39;BTC-MOVE-WK-0117&#39;, &#39;BTC-MOVE-WK-0124&#39;, &#39;BTC-MOVE-WK-0131&#39;, &#39;BTC-MOVE-WK-0207&#39;, &#39;BTC-MOVE-WK-0214&#39;, &#39;BTC-MOVE-WK-0221&#39;, &#39;BTC-MOVE-WK-0228&#39;, &#39;BTC-MOVE-WK-0306&#39;, &#39;BTC-MOVE-WK-0313&#39;, &#39;BTC-MOVE-WK-0320&#39;, &#39;BTC-MOVE-WK-0327&#39;, &#39;BTC-MOVE-WK-0403&#39;, &#39;BTC-MOVE-WK-0410&#39;, &#39;BTC-MOVE-WK-0417&#39;, &#39;BTC-MOVE-WK-0424&#39;, &#39;BTC-MOVE-WK-0501&#39;, &#39;BTC-MOVE-WK-0508&#39;, &#39;BTC-MOVE-WK-0515&#39;, &#39;BTC-PERP&#39;, &#39;BTMX-0327&#39;, &#39;BTMX-0626&#39;, &#39;BTMX-PERP&#39;, &#39;DOGE-0327&#39;, &#39;DOGE-0626&#39;, &#39;DOGE-PERP&#39;, &#39;DRGN-0327&#39;, &#39;DRGN-0626&#39;, &#39;DRGN-PERP&#39;, &#39;EOS-0327&#39;, &#39;EOS-0626&#39;, &#39;EOS-PERP&#39;, &#39;ETC-0327&#39;, &#39;ETC-0626&#39;, &#39;ETC-PERP&#39;, &#39;ETH-0327&#39;, &#39;ETH-0626&#39;, &#39;ETH-PERP&#39;, &#39;EXCH-0327&#39;, &#39;EXCH-0626&#39;, &#39;EXCH-PERP&#39;, &#39;HT-0327&#39;, &#39;HT-0626&#39;, &#39;HT-PERP&#39;, &#39;LEO-0327&#39;, &#39;LEO-0626&#39;, &#39;LEO-PERP&#39;, &#39;LINK-0327&#39;, &#39;LINK-0626&#39;, &#39;LINK-PERP&#39;, &#39;LTC-0327&#39;, &#39;LTC-0626&#39;, &#39;LTC-PERP&#39;, &#39;MATIC-0327&#39;, &#39;MATIC-0626&#39;, &#39;MATIC-PERP&#39;, &#39;MID-0327&#39;, &#39;MID-0626&#39;, &#39;MID-PERP&#39;, &#39;OKB-0327&#39;, &#39;OKB-0626&#39;, &#39;OKB-PERP&#39;, &#39;PAXG-0327&#39;, &#39;PAXG-0626&#39;, &#39;PAXG-PERP&#39;, &#39;PETE&#39;, &#39;PRIV-0327&#39;, &#39;PRIV-0626&#39;, &#39;PRIV-PERP&#39;, &#39;SHIT-0327&#39;, &#39;SHIT-0626&#39;, &#39;SHIT-PERP&#39;, &#39;TOMO-0327&#39;, &#39;TOMO-0626&#39;, &#39;TOMO-PERP&#39;, &#39;TRUMP&#39;, &#39;TRX-0327&#39;, &#39;TRX-0626&#39;, &#39;TRX-PERP&#39;, &#39;TRYB-0327&#39;, &#39;TRYB-0626&#39;, &#39;TRYB-PERP&#39;, &#39;USDT-0327&#39;, &#39;USDT-0626&#39;, &#39;USDT-PERP&#39;, &#39;WARREN&#39;, &#39;XAUT-0327&#39;, &#39;XAUT-0626&#39;, &#39;XAUT-PERP&#39;, &#39;XRP-0327&#39;, &#39;XRP-0626&#39;, &#39;XRP-PERP&#39;, &#39;XTZ-0327&#39;, &#39;XTZ-0626&#39;, &#39;XTZ-PERP&#39;</p>
+<h3 id='data-sanity-45'>Data Sanity</h3>
+<p>No downtime.</p>
+<h3 id='api-reference-38'>API Reference</h3>
+<p><code>GET https://ftx.com/api/markets/{market_name}/orderbook?depth={depth}</code></p>
+<h3 id='api-query-parameters-41'>API Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>market_name</td>
+<td>string</td>
+<td>BTC-0628</td>
+<td>Required. Name of the market.</td>
+</tr>
+<tr>
+<td>depth</td>
+<td>number</td>
+<td>35</td>
+<td>max 100, default 20</td>
+</tr>
+</tbody></table>
+<h3 id='api-response-schema-40'>API Response Schema</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>asks</td>
+<td>array</td>
+<td>[4114.25, 6.263]</td>
+<td>Array with price and size</td>
+</tr>
+<tr>
+<td>bids</td>
+<td>array</td>
+<td>[4112, 49.29]</td>
+<td>Array with price and size</td>
+</tr>
+</tbody></table>
+<h2 id='ftx-trades'>FTX Trades</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch data</span>
+<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">FTX_trades</span> <span class="k">limit</span> <span class="mi">1</span> 
+</code></pre>
+<blockquote>
+<p>response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+          </span><span class="err">'time'</span><span class="p">:</span><span class="w"> </span><span class="err">'</span><span class="mi">2019-03-05</span><span class="err">T</span><span class="mi">12</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span><span class="mf">49.486594048</span><span class="err">Z'</span><span class="p">,</span><span class="w"> 
+          </span><span class="err">'id'</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> 
+          </span><span class="err">'liquidation'</span><span class="p">:</span><span class="w"> </span><span class="err">False</span><span class="p">,</span><span class="w"> 
+          </span><span class="err">'price'</span><span class="p">:</span><span class="w"> </span><span class="mf">127.77</span><span class="p">,</span><span class="w"> 
+          </span><span class="err">'side'</span><span class="p">:</span><span class="w"> </span><span class="err">'sell'</span><span class="p">,</span><span class="w"> 
+          </span><span class="err">'size'</span><span class="p">:</span><span class="w"> </span><span class="mf">0.04</span><span class="p">,</span><span class="w"> 
+          </span><span class="err">'symbol'</span><span class="p">:</span><span class="w"> </span><span class="err">'ETH-PERP'</span><span class="p">,</span><span class="w"> 
+          </span><span class="err">'trade_time'</span><span class="p">:</span><span class="w"> </span><span class="err">None</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre><h3 id='description-46'>Description</h3>
+<p><a href="https://docs.ftx.com/#get-trades">FTX trade</a> has a frequency of 10 minutes and data time range is from 2019-03-05 12:26:49.486594048 till now. Collectors are continously runing in two hosts.</p>
+<h3 id='data-schema-46'>Data Schema</h3>
+<table><thead>
+<tr>
+<th>fieldName</th>
+<th>fieldType</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>time</td>
+<td>string</td>
+<td>default database timestamp</td>
+</tr>
+<tr>
+<td>id</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>liquidation</td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>price</td>
+<td>float</td>
+<td></td>
+</tr>
+<tr>
+<td>side</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>size</td>
+<td>float</td>
+<td></td>
+</tr>
+<tr>
+<td>trade_time</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>tag values</td>
+</tr>
+</tbody></table>
+<h3 id='tag-values-9'>Tag Values</h3>
+<p><strong>symbol</strong>: 
+&#39;ADA-0327&#39;, &#39;ADA-0626&#39;, &#39;ADA-1227&#39;, &#39;ADA-PERP&#39;, &#39;ADABEAR/USD&#39;, &#39;ADABULL/USD&#39;, &#39;ADADOOM/USD&#39;, &#39;ADAHEDGE/USD&#39;, &#39;ADAMOON/USD&#39;, &#39;ALGO-0327&#39;, &#39;ALGO-0626&#39;, &#39;ALGO-0927&#39;, &#39;ALGO-1227&#39;, &#39;ALGO-PERP&#39;, &#39;ALGOBEAR/USD&#39;, &#39;ALGOBULL/USD&#39;, &#39;ALGODOOM/USD&#39;, &#39;ALGOHALF/USD&#39;, &#39;ALGOHALF/USDT&#39;, &#39;ALGOHEDGE/USD&#39;, &#39;ALT-0327&#39;, &#39;ALT-0626&#39;, &#39;ALT-0927&#39;, &#39;ALT-1227&#39;, &#39;ALT-PERP&#39;, &#39;ALTBEAR/USD&#39;, &#39;ALTBULL/USD&#39;, &#39;ALTDOOM/USD&#39;, &#39;ALTHEDGE/USD&#39;, &#39;ALTMOON/USD&#39;, &#39;ATOM-0327&#39;, &#39;ATOM-0626&#39;, &#39;ATOM-1227&#39;, &#39;ATOM-PERP&#39;, &#39;ATOMBEAR/USD&#39;, &#39;ATOMBULL/USD&#39;, &#39;ATOMDOOM/USD&#39;, &#39;ATOMHEDGE/USD&#39;, &#39;ATOMMOON/USD&#39;, &#39;BCH-0327&#39;, &#39;BCH-0626&#39;, &#39;BCH-0927&#39;, &#39;BCH-1227&#39;, &#39;BCH-PERP&#39;, &#39;BCH/USD&#39;, &#39;BCH/USDT&#39;, &#39;BCHBEAR/USD&#39;, &#39;BCHBEAR/USDT&#39;, &#39;BCHBULL/USD&#39;, &#39;BCHBULL/USDT&#39;, &#39;BCHDOOM/USD&#39;, &#39;BCHHEDGE/USD&#39;, &#39;BCHMOON/USD&#39;, &#39;BEAR/USD&#39;, &#39;BEAR/USDT&#39;, &#39;BEARSHIT/USD&#39;, &#39;BERNIE&#39;, &#39;BIDEN&#39;, &#39;BLOOMBERG&#39;, &#39;BNB-0327&#39;, &#39;BNB-0626&#39;, &#39;BNB-0927&#39;, &#39;BNB-1227&#39;, &#39;BNB-PERP&#39;, &#39;BNB/USD&#39;, &#39;BNB/USDT&#39;, &#39;BNBBEAR/USD&#39;, &#39;BNBBEAR/USDT&#39;, &#39;BNBBULL/USD&#39;, &#39;BNBBULL/USDT&#39;, &#39;BNBDOOM/USD&#39;, &#39;BNBHEDGE/USD&#39;, &#39;BNBMOON/USD&#39;, &#39;BSV-0327&#39;, &#39;BSV-0626&#39;, &#39;BSV-0927&#39;, &#39;BSV-1227&#39;, &#39;BSV-PERP&#39;, &#39;BSVBEAR/USD&#39;, &#39;BSVBEAR/USDT&#39;, &#39;BSVBULL/USD&#39;, &#39;BSVBULL/USDT&#39;, &#39;BSVDOOM/USD&#39;, &#39;BSVHEDGE/USD&#39;, &#39;BSVMOON/USD&#39;, &#39;BTC-0327&#39;, &#39;BTC-0626&#39;, &#39;BTC-0925&#39;, &#39;BTC-0927&#39;, &#39;BTC-1227&#39;, &#39;BTC-MOVE-0101&#39;, &#39;BTC-MOVE-0102&#39;, &#39;BTC-MOVE-0103&#39;, &#39;BTC-MOVE-0104&#39;, &#39;BTC-MOVE-0105&#39;, &#39;BTC-MOVE-0106&#39;, &#39;BTC-MOVE-0107&#39;, &#39;BTC-MOVE-0108&#39;, &#39;BTC-MOVE-0109&#39;, &#39;BTC-MOVE-0110&#39;, &#39;BTC-MOVE-0111&#39;, &#39;BTC-MOVE-0112&#39;, &#39;BTC-MOVE-0113&#39;, &#39;BTC-MOVE-0114&#39;, &#39;BTC-MOVE-0115&#39;, &#39;BTC-MOVE-0116&#39;, &#39;BTC-MOVE-0117&#39;, &#39;BTC-MOVE-0118&#39;, &#39;BTC-MOVE-0119&#39;, &#39;BTC-MOVE-0120&#39;, &#39;BTC-MOVE-0121&#39;, &#39;BTC-MOVE-0122&#39;, &#39;BTC-MOVE-0123&#39;, &#39;BTC-MOVE-0124&#39;, &#39;BTC-MOVE-0125&#39;, &#39;BTC-MOVE-0126&#39;, &#39;BTC-MOVE-0127&#39;, &#39;BTC-MOVE-0128&#39;, &#39;BTC-MOVE-0129&#39;, &#39;BTC-MOVE-0130&#39;, &#39;BTC-MOVE-0131&#39;, &#39;BTC-MOVE-0201&#39;, &#39;BTC-MOVE-0202&#39;, &#39;BTC-MOVE-0203&#39;, &#39;BTC-MOVE-0204&#39;, &#39;BTC-MOVE-0205&#39;, &#39;BTC-MOVE-0206&#39;, &#39;BTC-MOVE-0207&#39;, &#39;BTC-MOVE-0208&#39;, &#39;BTC-MOVE-0209&#39;, &#39;BTC-MOVE-0210&#39;, &#39;BTC-MOVE-0211&#39;, &#39;BTC-MOVE-0212&#39;, &#39;BTC-MOVE-0213&#39;, &#39;BTC-MOVE-0214&#39;, &#39;BTC-MOVE-0215&#39;, &#39;BTC-MOVE-0216&#39;, &#39;BTC-MOVE-0217&#39;, &#39;BTC-MOVE-0218&#39;, &#39;BTC-MOVE-0219&#39;, &#39;BTC-MOVE-0220&#39;, &#39;BTC-MOVE-0221&#39;, &#39;BTC-MOVE-0222&#39;, &#39;BTC-MOVE-0223&#39;, &#39;BTC-MOVE-0224&#39;, &#39;BTC-MOVE-0225&#39;, &#39;BTC-MOVE-0226&#39;, &#39;BTC-MOVE-0227&#39;, &#39;BTC-MOVE-0228&#39;, &#39;BTC-MOVE-0229&#39;, &#39;BTC-MOVE-0301&#39;, &#39;BTC-MOVE-0302&#39;, &#39;BTC-MOVE-0303&#39;, &#39;BTC-MOVE-0304&#39;, &#39;BTC-MOVE-0305&#39;, &#39;BTC-MOVE-0306&#39;, &#39;BTC-MOVE-0307&#39;, &#39;BTC-MOVE-0308&#39;, &#39;BTC-MOVE-0309&#39;, &#39;BTC-MOVE-0310&#39;, &#39;BTC-MOVE-0311&#39;, &#39;BTC-MOVE-0312&#39;, &#39;BTC-MOVE-0313&#39;, &#39;BTC-MOVE-0314&#39;, &#39;BTC-MOVE-0315&#39;, &#39;BTC-MOVE-0316&#39;, &#39;BTC-MOVE-0317&#39;, &#39;BTC-MOVE-0318&#39;, &#39;BTC-MOVE-0319&#39;, &#39;BTC-MOVE-0320&#39;, &#39;BTC-MOVE-0321&#39;, &#39;BTC-MOVE-0322&#39;, &#39;BTC-MOVE-0323&#39;, &#39;BTC-MOVE-0324&#39;, &#39;BTC-MOVE-0325&#39;, &#39;BTC-MOVE-0326&#39;, &#39;BTC-MOVE-0327&#39;, &#39;BTC-MOVE-0328&#39;, &#39;BTC-MOVE-0329&#39;, &#39;BTC-MOVE-0330&#39;, &#39;BTC-MOVE-0331&#39;, &#39;BTC-MOVE-0401&#39;, &#39;BTC-MOVE-0402&#39;, &#39;BTC-MOVE-0403&#39;, &#39;BTC-MOVE-0404&#39;, &#39;BTC-MOVE-0405&#39;, &#39;BTC-MOVE-0406&#39;, &#39;BTC-MOVE-0407&#39;, &#39;BTC-MOVE-0408&#39;, &#39;BTC-MOVE-0409&#39;, &#39;BTC-MOVE-0410&#39;, &#39;BTC-MOVE-0411&#39;, &#39;BTC-MOVE-0415&#39;, &#39;BTC-MOVE-0416&#39;, &#39;BTC-MOVE-0417&#39;, &#39;BTC-MOVE-0418&#39;, &#39;BTC-MOVE-0420&#39;, &#39;BTC-MOVE-0421&#39;, &#39;BTC-MOVE-0422&#39;, &#39;BTC-MOVE-0925&#39;, &#39;BTC-MOVE-0926&#39;, &#39;BTC-MOVE-0927&#39;, &#39;BTC-MOVE-0928&#39;, &#39;BTC-MOVE-0929&#39;, &#39;BTC-MOVE-0930&#39;, &#39;BTC-MOVE-1001&#39;, &#39;BTC-MOVE-1002&#39;, &#39;BTC-MOVE-1003&#39;, &#39;BTC-MOVE-1004&#39;, &#39;BTC-MOVE-1005&#39;, &#39;BTC-MOVE-1006&#39;, &#39;BTC-MOVE-1007&#39;, &#39;BTC-MOVE-1008&#39;, &#39;BTC-MOVE-1009&#39;, &#39;BTC-MOVE-1010&#39;, &#39;BTC-MOVE-1011&#39;, &#39;BTC-MOVE-1012&#39;, &#39;BTC-MOVE-1013&#39;, &#39;BTC-MOVE-1014&#39;, &#39;BTC-MOVE-1015&#39;, &#39;BTC-MOVE-1016&#39;, &#39;BTC-MOVE-1017&#39;, &#39;BTC-MOVE-1018&#39;, &#39;BTC-MOVE-1019&#39;, &#39;BTC-MOVE-1020&#39;, &#39;BTC-MOVE-1121&#39;, &#39;BTC-MOVE-1122&#39;, &#39;BTC-MOVE-1123&#39;, &#39;BTC-MOVE-1124&#39;, &#39;BTC-MOVE-1125&#39;, &#39;BTC-MOVE-1126&#39;, &#39;BTC-MOVE-1127&#39;, &#39;BTC-MOVE-1128&#39;, &#39;BTC-MOVE-1129&#39;, &#39;BTC-MOVE-1130&#39;, &#39;BTC-MOVE-1201&#39;, &#39;BTC-MOVE-1202&#39;, &#39;BTC-MOVE-1203&#39;, &#39;BTC-MOVE-1204&#39;, &#39;BTC-MOVE-1205&#39;, &#39;BTC-MOVE-1206&#39;, &#39;BTC-MOVE-1207&#39;, &#39;BTC-MOVE-1208&#39;, &#39;BTC-MOVE-1209&#39;, &#39;BTC-MOVE-1210&#39;, &#39;BTC-MOVE-1211&#39;, &#39;BTC-MOVE-1212&#39;, &#39;BTC-MOVE-1213&#39;, &#39;BTC-MOVE-1214&#39;, &#39;BTC-MOVE-1215&#39;, &#39;BTC-MOVE-1216&#39;, &#39;BTC-MOVE-1217&#39;, &#39;BTC-MOVE-1218&#39;, &#39;BTC-MOVE-1219&#39;, &#39;BTC-MOVE-1220&#39;, &#39;BTC-MOVE-1221&#39;, &#39;BTC-MOVE-1222&#39;, &#39;BTC-MOVE-1223&#39;, &#39;BTC-MOVE-1224&#39;, &#39;BTC-MOVE-1225&#39;, &#39;BTC-MOVE-1226&#39;, &#39;BTC-MOVE-1227&#39;, &#39;BTC-MOVE-1228&#39;, &#39;BTC-MOVE-1229&#39;, &#39;BTC-MOVE-1230&#39;, &#39;BTC-MOVE-1231&#39;, &#39;BTC-MOVE-2019Q4&#39;, &#39;BTC-MOVE-2020Q1&#39;, &#39;BTC-MOVE-2020Q2&#39;, &#39;BTC-MOVE-2020Q3&#39;, &#39;BTC-MOVE-2020Q4&#39;, &#39;BTC-MOVE-WK-0103&#39;, &#39;BTC-MOVE-WK-0110&#39;, &#39;BTC-MOVE-WK-0117&#39;, &#39;BTC-MOVE-WK-0124&#39;, &#39;BTC-MOVE-WK-0131&#39;, &#39;BTC-MOVE-WK-0207&#39;, &#39;BTC-MOVE-WK-0214&#39;, &#39;BTC-MOVE-WK-0221&#39;, &#39;BTC-MOVE-WK-0228&#39;, &#39;BTC-MOVE-WK-0306&#39;, &#39;BTC-MOVE-WK-0313&#39;, &#39;BTC-MOVE-WK-0320&#39;, &#39;BTC-MOVE-WK-0327&#39;, &#39;BTC-MOVE-WK-0403&#39;, &#39;BTC-MOVE-WK-0410&#39;, &#39;BTC-MOVE-WK-0417&#39;, &#39;BTC-MOVE-WK-0424&#39;, &#39;BTC-MOVE-WK-0501&#39;, &#39;BTC-MOVE-WK-0508&#39;, &#39;BTC-MOVE-WK-0515&#39;, &#39;BTC-MOVE-WK-1122&#39;, &#39;BTC-MOVE-WK-1129&#39;, &#39;BTC-MOVE-WK-1206&#39;, &#39;BTC-MOVE-WK-1213&#39;, &#39;BTC-MOVE-WK-1220&#39;, &#39;BTC-MOVE-WK-1227&#39;, &#39;BTC-PERP&#39;, &#39;BTC/USD&#39;, &#39;BTC/USDT&#39;, &#39;BTMX-0327&#39;, &#39;BTMX-0626&#39;, &#39;BTMX-1227&#39;, &#39;BTMX-PERP&#39;, &#39;BTMX/USD&#39;, &#39;BTMXBEAR/USD&#39;, &#39;BTMXBEAR/USDT&#39;, &#39;BTMXBULL/USD&#39;, &#39;BTMXBULL/USDT&#39;, &#39;BTMXDOOM/USD&#39;, &#39;BTMXHALF/USD&#39;, &#39;BTMXHEDGE/USD&#39;, &#39;BTMXMOON/USD&#39;, &#39;BULL/USD&#39;, &#39;BULL/USDT&#39;, &#39;BULLSHIT/USD&#39;, &#39;DOGE-0327&#39;, &#39;DOGE-0626&#39;, &#39;DOGE-1227&#39;, &#39;DOGE-PERP&#39;, &#39;DOGEBEAR/USD&#39;, &#39;DOGEBULL/USD&#39;, &#39;DOGEDOOM/USD&#39;, &#39;DOGEMOON/USD&#39;, &#39;DOOM/USD&#39;, &#39;DOOMSHIT/USD&#39;, &#39;DRGN-0327&#39;, &#39;DRGN-0626&#39;, &#39;DRGN-1227&#39;, &#39;DRGN-PERP&#39;, &#39;DRGNBEAR/USD&#39;, &#39;DRGNBULL/USD&#39;, &#39;DRGNDOOM/USD&#39;, &#39;DRGNHEDGE/USD&#39;, &#39;DRGNMOON/USD&#39;, &#39;EOS-0327&#39;, &#39;EOS-0626&#39;, &#39;EOS-0927&#39;, &#39;EOS-1227&#39;, &#39;EOS-PERP&#39;, &#39;EOSBEAR/USD&#39;, &#39;EOSBEAR/USDT&#39;, &#39;EOSBULL/USD&#39;, &#39;EOSBULL/USDT&#39;, &#39;EOSDOOM/USD&#39;, &#39;EOSHEDGE/USD&#39;, &#39;EOSMOON/USD&#39;, &#39;ETC-0327&#39;, &#39;ETC-0626&#39;, &#39;ETC-0927&#39;, &#39;ETC-1227&#39;, &#39;ETC-PERP&#39;, &#39;ETCBEAR/USD&#39;, &#39;ETCBULL/USD&#39;, &#39;ETCDOOM/USD&#39;, &#39;ETCHEDGE/USD&#39;, &#39;ETCMOON/USD&#39;, &#39;ETH-0327&#39;, &#39;ETH-0626&#39;, &#39;ETH-0927&#39;, &#39;ETH-1227&#39;, &#39;ETH-PERP&#39;, &#39;ETH/USD&#39;, &#39;ETH/USDT&#39;, &#39;ETHBEAR/USD&#39;, &#39;ETHBEAR/USDT&#39;, &#39;ETHBULL/USD&#39;, &#39;ETHBULL/USDT&#39;, &#39;ETHDOOM/USD&#39;, &#39;ETHHEDGE/USD&#39;, &#39;ETHMOON/USD&#39;, &#39;EXCH-0327&#39;, &#39;EXCH-0626&#39;, &#39;EXCH-0927&#39;, &#39;EXCH-1227&#39;, &#39;EXCH-PERP&#39;, &#39;EXCHBEAR/USD&#39;, &#39;EXCHBULL/USD&#39;, &#39;EXCHDOOM/USD&#39;, &#39;EXCHHEDGE/USD&#39;, &#39;EXCHMOON/USD&#39;, &#39;FTT/BTC&#39;, &#39;FTT/USD&#39;, &#39;FTT/USDT&#39;, &#39;HALF/USD&#39;, &#39;HEDGE/USD&#39;, &#39;HEDGESHIT/USD&#39;, &#39;HT-0327&#39;, &#39;HT-0626&#39;, &#39;HT-0927&#39;, &#39;HT-1227&#39;, &#39;HT-PERP&#39;, &#39;HTBEAR/USD&#39;, &#39;HTBULL/USD&#39;, &#39;HTDOOM/USD&#39;, &#39;HTHEDGE/USD&#39;, &#39;HTMOON/USD&#39;, &#39;LEO-0327&#39;, &#39;LEO-0626&#39;, &#39;LEO-0927&#39;, &#39;LEO-1227&#39;, &#39;LEO-PERP&#39;, &#39;LEOBEAR/USD&#39;, &#39;LEOBULL/USD&#39;, &#39;LEODOOM/USD&#39;, &#39;LEOHEDGE/USD&#39;, &#39;LEOMOON/USD&#39;, &#39;LINK-0327&#39;, &#39;LINK-0626&#39;, &#39;LINK-1227&#39;, &#39;LINK-PERP&#39;, &#39;LINKBEAR/USD&#39;, &#39;LINKBEAR/USDT&#39;, &#39;LINKBULL/USD&#39;, &#39;LINKBULL/USDT&#39;, &#39;LINKDOOM/USD&#39;, &#39;LINKHALF/USD&#39;, &#39;LINKHEDGE/USD&#39;, &#39;LINKMOON/USD&#39;, &#39;LTC-0327&#39;, &#39;LTC-0626&#39;, &#39;LTC-0927&#39;, &#39;LTC-1227&#39;, &#39;LTC-PERP&#39;, &#39;LTC/USD&#39;, &#39;LTC/USDT&#39;, &#39;LTCBEAR/USD&#39;, &#39;LTCBEAR/USDT&#39;, &#39;LTCBULL/USD&#39;, &#39;LTCBULL/USDT&#39;, &#39;LTCDOOM/USD&#39;, &#39;LTCHEDGE/USD&#39;, &#39;LTCMOON/USD&#39;, &#39;MATIC-0327&#39;, &#39;MATIC-0626&#39;, &#39;MATIC-1227&#39;, &#39;MATIC-PERP&#39;, &#39;MATICBEAR/USD&#39;, &#39;MATICBULL/USD&#39;, &#39;MATICDOOM/USD&#39;, &#39;MATICHEDGE/USD&#39;, &#39;MATICMOON/USD&#39;, &#39;MID-0327&#39;, &#39;MID-0626&#39;, &#39;MID-0927&#39;, &#39;MID-1227&#39;, &#39;MID-PERP&#39;, &#39;MIDBEAR/USD&#39;, &#39;MIDBULL/USD&#39;, &#39;MIDDOOM/USD&#39;, &#39;MIDHEDGE/USD&#39;, &#39;MIDMOON/USD&#39;, &#39;MOON/USD&#39;, &#39;MOONSHIT/USD&#39;, &#39;OKB-0327&#39;, &#39;OKB-0626&#39;, &#39;OKB-0927&#39;, &#39;OKB-1227&#39;, &#39;OKB-PERP&#39;, &#39;OKBBEAR/USD&#39;, &#39;OKBBULL/USD&#39;, &#39;OKBDOOM/USD&#39;, &#39;OKBHEDGE/USD&#39;, &#39;OKBMOON/USD&#39;, &#39;PAXG-0327&#39;, &#39;PAXG-0626&#39;, &#39;PAXG-PERP&#39;, &#39;PAXG/USD&#39;, &#39;PAXG/USDT&#39;, &#39;PAXGBEAR/USD&#39;, &#39;PAXGBULL/USD&#39;, &#39;PAXGHEDGE/USD&#39;, &#39;PETE&#39;, &#39;PRIV-0327&#39;, &#39;PRIV-0626&#39;, &#39;PRIV-PERP&#39;, &#39;PRIVBEAR/USD&#39;, &#39;PRIVBULL/USD&#39;, &#39;PRIVHEDGE/USD&#39;, &#39;SHIT-0327&#39;, &#39;SHIT-0626&#39;, &#39;SHIT-0927&#39;, &#39;SHIT-1227&#39;, &#39;SHIT-PERP&#39;, &#39;TOMO-0327&#39;, &#39;TOMO-0626&#39;, &#39;TOMO-1227&#39;, &#39;TOMO-PERP&#39;, &#39;TOMOBEAR/USD&#39;, &#39;TOMOBULL/USD&#39;, &#39;TOMODOOM/USD&#39;, &#39;TOMOHEDGE/USD&#39;, &#39;TOMOMOON/USD&#39;, &#39;TRUMP&#39;, &#39;TRX-0327&#39;, &#39;TRX-0626&#39;, &#39;TRX-0927&#39;, &#39;TRX-1227&#39;, &#39;TRX-PERP&#39;, &#39;TRXBEAR/USD&#39;, &#39;TRXBULL/USD&#39;, &#39;TRXDOOM/USD&#39;, &#39;TRXHEDGE/USD&#39;, &#39;TRXMOON/USD&#39;, &#39;TRYB-0327&#39;, &#39;TRYB-0626&#39;, &#39;TRYB-1227&#39;, &#39;TRYB-PERP&#39;, &#39;TRYB/USD&#39;, &#39;TRYBBEAR/USD&#39;, &#39;TRYBBULL/USD&#39;, &#39;TRYBHEDGE/USD&#39;, &#39;USDT-0327&#39;, &#39;USDT-0626&#39;, &#39;USDT-0927&#39;, &#39;USDT-1227&#39;, &#39;USDT-PERP&#39;, &#39;USDT/USD&#39;, &#39;USDTBEAR/USD&#39;, &#39;USDTBULL/USD&#39;, &#39;USDTDOOM/USD&#39;, &#39;USDTHEDGE/USD&#39;, &#39;USDTMOON/USD&#39;, &#39;WARREN&#39;, &#39;XAUT-0327&#39;, &#39;XAUT-0626&#39;, &#39;XAUT-PERP&#39;, &#39;XAUT/USD&#39;, &#39;XAUT/USDT&#39;, &#39;XAUTBEAR/USD&#39;, &#39;XAUTBULL/USD&#39;, &#39;XRP-0327&#39;, &#39;XRP-0626&#39;, &#39;XRP-0927&#39;, &#39;XRP-1227&#39;, &#39;XRP-PERP&#39;, &#39;XRPBEAR/USD&#39;, &#39;XRPBEAR/USDT&#39;, &#39;XRPBULL/USD&#39;, &#39;XRPBULL/USDT&#39;, &#39;XRPDOOM/USD&#39;, &#39;XRPHEDGE/USD&#39;, &#39;XRPMOON/USD&#39;, &#39;XTZ-0327&#39;, &#39;XTZ-0626&#39;, &#39;XTZ-1227&#39;, &#39;XTZ-PERP&#39;, &#39;XTZBEAR/USD&#39;, &#39;XTZBEAR/USDT&#39;, &#39;XTZBULL/USD&#39;, &#39;XTZBULL/USDT&#39;, &#39;XTZDOOM/USD&#39;, &#39;XTZHEDGE/USD&#39;, &#39;XTZMOON/USD&#39;</p>
+<h3 id='data-sanity-46'>Data Sanity</h3>
+<p>No downtime.</p>
+<h3 id='api-reference-39'>API Reference</h3>
+<p><code>GET https://ftx.com/api/markets/{market_name}/trades?limit={limit}&amp;start_time={start_time}&amp;end_time={end_time}</code></p>
+<h3 id='api-query-parameters-42'>API Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>market_name</td>
+<td>string</td>
+<td>BTC-0628</td>
+<td>name of the market</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>number</td>
+<td>35</td>
+<td>optional, max 100, default 20</td>
+</tr>
+<tr>
+<td>start_time</td>
+<td>number</td>
+<td>1559881511</td>
+<td>optional</td>
+</tr>
+<tr>
+<td>end_time</td>
+<td>number</td>
+<td>1559881711</td>
+<td>optional</td>
+</tr>
+</tbody></table>
+<h3 id='api-response-schema-41'>API Response Schema</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>number</td>
+<td>3855995</td>
+<td>trade id</td>
+</tr>
+<tr>
+<td>liquidation</td>
+<td>boolean</td>
+<td>false</td>
+<td>if this trade involved a liquidation order</td>
+</tr>
+<tr>
+<td>price</td>
+<td>number</td>
+<td>3857.75</td>
+<td></td>
+</tr>
+<tr>
+<td>side</td>
+<td>string</td>
+<td>buy</td>
+<td></td>
+</tr>
+<tr>
+<td>size</td>
+<td>number</td>
+<td>0.111</td>
+<td></td>
+</tr>
+<tr>
+<td>time</td>
+<td>string</td>
+<td>2019-03-20T18:16:23.397991+00:00</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='ftx-trades-option'>FTX Trades Option</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch data</span>
+<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">FTX_trades_option</span> <span class="k">limit</span> <span class="mi">1</span> 
+</code></pre>
+<blockquote>
+<p>response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+          </span><span class="err">'time'</span><span class="p">:</span><span class="w"> </span><span class="err">'</span><span class="mi">2020-01-13</span><span class="err">T</span><span class="mi">16</span><span class="p">:</span><span class="mi">31</span><span class="p">:</span><span class="mi">0</span><span class="mf">7.307401984</span><span class="err">Z'</span><span class="p">,</span><span class="w"> 
+          </span><span class="err">'id'</span><span class="p">:</span><span class="w"> </span><span class="mi">1068</span><span class="p">,</span><span class="w"> 
+          </span><span class="err">'option_exipry'</span><span class="p">:</span><span class="w"> </span><span class="err">'</span><span class="mi">2020-01-14</span><span class="err">T</span><span class="mi">03</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="err">+</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="err">'</span><span class="p">,</span><span class="w"> 
+          </span><span class="err">'option_type'</span><span class="p">:</span><span class="w"> </span><span class="err">'put'</span><span class="p">,</span><span class="w"> 
+          </span><span class="err">'price'</span><span class="p">:</span><span class="w"> </span><span class="mf">4.4569</span><span class="p">,</span><span class="w"> 
+          </span><span class="err">'size'</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span><span class="p">,</span><span class="w"> 
+          </span><span class="err">'strike_price'</span><span class="p">:</span><span class="w"> </span><span class="mi">7900</span><span class="p">,</span><span class="w"> 
+          </span><span class="err">'underlying'</span><span class="p">:</span><span class="w"> </span><span class="err">'BTC'</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre><h3 id='description-47'>Description</h3>
+<p><a href="https://ftx.com/options">FTX trade options</a> has a frequency of 1 second and data time range is from 2020-01-13 16:31:07.307401984 till now. Collectors are continously runing in two hosts.</p>
+<h3 id='data-schema-47'>Data Schema</h3>
+<table><thead>
+<tr>
+<th>fieldName</th>
+<th>fieldType</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>time</td>
+<td>string</td>
+<td>default database timestamp</td>
+</tr>
+</tbody></table>
+
+<p>id            integer
+option_exipry string
+option_type   string
+price         float
+size          float
+strike_price  float
+underlying    string</p>
+<h3 id='data-sanity-47'>Data Sanity</h3>
+<p>No downtime.</p>
+<h3 id='api-reference-40'>API Reference</h3>
+<p><code>GET https://ftx.com/api/options/trades</code></p>
+<h3 id='api-query-parameters-43'>API Query Parameters</h3>
+<p>Not required.</p>
+<h3 id='api-response-schema-42'>API Response Schema</h3>
+<p>No information.</p>
+<h1 id='gateio'>Gateio</h1>
 <p><a href="https://www.gate.io/">Gateio</a> is a crypto currency exchange. Check their <a href="https://www.gate.io/api2">api</a>. </p>
 <h2 id='gateio-orderbook'>Gateio Orderbook</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch data</span>
 <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">gateio_orderbook</span> <span class="k">limit</span> <span class="mi">1</span> 
@@ -6462,9 +7269,9 @@ BTC-PERPETUAL, ETH-PERPETUAL</p>
           </span><span class="err">'type'</span><span class="p">:</span><span class="w"> </span><span class="err">'ask'</span><span class="w">
    </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre><h3 id='description-41'>Description</h3>
+</span></code></pre><h3 id='description-48'>Description</h3>
 <p><a href="https://www.gate.io/api2#depth">Gateio trades</a> has a frequency of 30 seconds and data time range is from 2020-02-28T20:32:20.344462492Z till now. Collectors are continously runing in two hosts.</p>
-<h3 id='data-schema-41'>Data Schema</h3>
+<h3 id='data-schema-48'>Data Schema</h3>
 <table><thead>
 <tr>
 <th>fieldName</th>
@@ -6477,20 +7284,39 @@ BTC-PERPETUAL, ETH-PERPETUAL</p>
 <td>string</td>
 <td>default database timestamp</td>
 </tr>
+<tr>
+<td>price</td>
+<td>float</td>
+<td></td>
+</tr>
+<tr>
+<td>size</td>
+<td>float</td>
+<td></td>
+</tr>
+<tr>
+<td>snapshot</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>type</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>tag values</td>
+</tr>
 </tbody></table>
-
-<p>price    float
-size     float
-snapshot string
-type     string
-symbol | string | tag values</p>
-<h3 id='tag-values-5'>Tag Values</h3>
+<h3 id='tag-values-10'>Tag Values</h3>
 <p><strong>symbol</strong>: hns_usdt, hns_btc</p>
-<h3 id='data-sanity-41'>Data Sanity</h3>
+<h3 id='data-sanity-48'>Data Sanity</h3>
 <p>No downtime.</p>
-<h3 id='api-reference-34'>API Reference</h3>
+<h3 id='api-reference-41'>API Reference</h3>
 <p><code>GET https://data.gateio.life/api2/1/orderBook/[CURR_A]_[CURR_B]</code></p>
-<h3 id='api-query-parameters-37'>API Query Parameters</h3>
+<h3 id='api-query-parameters-44'>API Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -6506,7 +7332,7 @@ symbol | string | tag values</p>
 <td>Get makret list</td>
 </tr>
 </tbody></table>
-<h3 id='api-return-schema-36'>API Return Schema</h3>
+<h3 id='api-response-schema-43'>API Response Schema</h3>
 <p>No information.</p>
 <h2 id='gateio-trades'>Gateio Trades</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch data</span>
 <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">gateio_trades</span> <span class="k">limit</span> <span class="mi">1</span> 
@@ -6526,9 +7352,9 @@ symbol | string | tag values</p>
          </span><span class="err">'type'</span><span class="p">:</span><span class="w"> </span><span class="err">'sell'</span><span class="w">
    </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre><h3 id='description-42'>Description</h3>
+</span></code></pre><h3 id='description-49'>Description</h3>
 <p><a href="https://www.gate.io/api2#history">Gateio trades</a> has a frequency of 1 hour and data time range is from 2020-02-19T04:31:03.000003072Z till now. Collectors are continously runing in two hosts.</p>
-<h3 id='data-schema-42'>Data Schema</h3>
+<h3 id='data-schema-49'>Data Schema</h3>
 <table><thead>
 <tr>
 <th>fieldName</th>
@@ -6577,13 +7403,13 @@ symbol | string | tag values</p>
 <td>tag values</td>
 </tr>
 </tbody></table>
-<h3 id='tag-values-6'>Tag Values</h3>
+<h3 id='tag-values-11'>Tag Values</h3>
 <p><strong>symbol</strong>: hns_usdt, hns_btc</p>
-<h3 id='data-sanity-42'>Data Sanity</h3>
+<h3 id='data-sanity-49'>Data Sanity</h3>
 <p>No downtime.</p>
-<h3 id='api-reference-35'>API Reference</h3>
+<h3 id='api-reference-42'>API Reference</h3>
 <p><code>GET https://data.gateio.life/api2/1/tradeHistory/[CURR_A]_[CURR_B]</code></p>
-<h3 id='api-query-parameters-38'>API Query Parameters</h3>
+<h3 id='api-query-parameters-45'>API Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -6599,7 +7425,7 @@ symbol | string | tag values</p>
 <td>Get makret list</td>
 </tr>
 </tbody></table>
-<h3 id='api-return-schema-37'>API Return Schema</h3>
+<h3 id='api-response-schema-44'>API Response Schema</h3>
 <p>No information.</p>
 <h1 id='huobidm'>HuobiDM</h1><h1 id='mxc'>MXC</h1>
 <p><a href="https://www.mxc.com/">MXC exchange</a> is a crypto currency. Check their <a href="https://github.com/mxcdevelop/APIDoc/tree/master/api_doc_v1">api</a> </p>
@@ -6619,9 +7445,9 @@ symbol | string | tag values</p>
         </span><span class="err">'trade_time'</span><span class="p">:</span><span class="w"> </span><span class="err">'</span><span class="mi">2020-03-06</span><span class="w"> </span><span class="mi">04</span><span class="p">:</span><span class="mi">19</span><span class="p">:</span><span class="mf">48.771</span><span class="err">'</span><span class="w">
    </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre><h3 id='description-43'>Description</h3>
+</span></code></pre><h3 id='description-50'>Description</h3>
 <p><a href="https://github.com/mxcdevelop/APIDoc/tree/master/api_doc_v1#%E8%8E%B7%E5%8F%96%E5%8D%95%E4%B8%AA%E5%B8%81%E7%A7%8D%E6%88%90%E4%BA%A4%E8%AE%B0%E5%BD%95%E4%BF%A1%E6%81%AF">MXC trades</a> has a frequency of 5 minute and data time range is from 2020-03-05 20:20:10.715612701 till now. Collectors are continously runing in two hosts.</p>
-<h3 id='data-schema-43'>Data Schema</h3>
+<h3 id='data-schema-50'>Data Schema</h3>
 <table><thead>
 <tr>
 <th>fieldName</th>
@@ -6660,13 +7486,13 @@ symbol | string | tag values</p>
 <td>tag values</td>
 </tr>
 </tbody></table>
-<h3 id='tag-values-7'>Tag Values</h3>
+<h3 id='tag-values-12'>Tag Values</h3>
 <p><strong>symbol</strong>: HNS_USDT</p>
-<h3 id='data-sanity-43'>Data Sanity</h3>
+<h3 id='data-sanity-50'>Data Sanity</h3>
 <p>No downtime.</p>
-<h3 id='api-reference-36'>API Reference</h3>
+<h3 id='api-reference-43'>API Reference</h3>
 <p><code>GET https://www.mxc.io/open/api/v1/data/history</code></p>
-<h3 id='api-query-parameters-39'>API Query Parameters</h3>
+<h3 id='api-query-parameters-46'>API Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -6682,7 +7508,7 @@ symbol | string | tag values</p>
 <td>Get makret list</td>
 </tr>
 </tbody></table>
-<h3 id='api-return-schema-38'>API Return Schema</h3>
+<h3 id='api-response-schema-45'>API Response Schema</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -6727,9 +7553,9 @@ symbol | string | tag values</p>
        </span><span class="err">'type'</span><span class="p">:</span><span class="w"> </span><span class="err">'asks'</span><span class="w">
    </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre><h3 id='description-44'>Description</h3>
+</span></code></pre><h3 id='description-51'>Description</h3>
 <p><a href="https://github.com/mxcdevelop/APIDoc/tree/master/api_doc_v1#%E8%8E%B7%E5%8F%96%E6%B7%B1%E5%BA%A6%E4%BF%A1%E6%81%AF">MXC orderbook</a> has a frequency of 30 seconds and data time range is from 2020-03-05T19:57:35.660565377 till now. Collectors are continously runing in two hosts.</p>
-<h3 id='data-schema-44'>Data Schema</h3>
+<h3 id='data-schema-51'>Data Schema</h3>
 <table><thead>
 <tr>
 <th>fieldName</th>
@@ -6768,13 +7594,13 @@ symbol | string | tag values</p>
 <td>tag values</td>
 </tr>
 </tbody></table>
-<h3 id='tag-values-8'>Tag Values</h3>
+<h3 id='tag-values-13'>Tag Values</h3>
 <p><strong>symbol</strong>: HNS_USDT</p>
-<h3 id='data-sanity-44'>Data Sanity</h3>
+<h3 id='data-sanity-51'>Data Sanity</h3>
 <p>No downtime.</p>
-<h3 id='api-reference-37'>API Reference</h3>
+<h3 id='api-reference-44'>API Reference</h3>
 <p><code>GET https://www.mxc.io/open/api/v1/data/depth</code></p>
-<h3 id='api-query-parameters-40'>API Query Parameters</h3>
+<h3 id='api-query-parameters-47'>API Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -6796,7 +7622,7 @@ symbol | string | tag values</p>
 <td>Market depth</td>
 </tr>
 </tbody></table>
-<h3 id='api-return-schema-39'>API Return Schema</h3>
+<h3 id='api-response-schema-46'>API Response Schema</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -6835,9 +7661,9 @@ symbol | string | tag values</p>
        </span><span class="err">'type'</span><span class="p">:</span><span class="w"> </span><span class="err">'offers'</span><span class="w">
    </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre><h3 id='description-45'>Description</h3>
+</span></code></pre><h3 id='description-52'>Description</h3>
 <p><a href="https://docs.poloniex.com/#returnloanorders">Poloniex funding orderbook</a> has a frequency of 1 minute and data time range is from 2019-10-18 20:41:17.431642305 till now. Collectors are continously runing in two hosts.</p>
-<h3 id='data-schema-45'>Data Schema</h3>
+<h3 id='data-schema-52'>Data Schema</h3>
 <table><thead>
 <tr>
 <th>fieldName</th>
@@ -6886,14 +7712,14 @@ symbol | string | tag values</p>
 <td>tag values</td>
 </tr>
 </tbody></table>
-<h3 id='tag-values-9'>Tag Values</h3>
+<h3 id='tag-values-14'>Tag Values</h3>
 <p><strong>symbol</strong>: 
 ATOM, BCHABC, BCHSV, BTC, DASH, DOGE, EOS, ETC, ETH, LTC, STR, TRX, USDC, USDT, XMR, XRP</p>
-<h3 id='data-sanity-45'>Data Sanity</h3>
+<h3 id='data-sanity-52'>Data Sanity</h3>
 <p>No downtime.</p>
-<h3 id='api-reference-38'>API Reference</h3>
+<h3 id='api-reference-45'>API Reference</h3>
 <p><code>GET https://poloniex.com/public?command=returnOrderBook&amp;currencyPair={}&amp;depth=100</code></p>
-<h3 id='api-query-parameters-41'>API Query Parameters</h3>
+<h3 id='api-query-parameters-48'>API Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -6915,7 +7741,7 @@ ATOM, BCHABC, BCHSV, BTC, DASH, DOGE, EOS, ETC, ETH, LTC, STR, TRX, USDC, USDT, 
 <td>Market depth</td>
 </tr>
 </tbody></table>
-<h3 id='api-return-schema-40'>API Return Schema</h3>
+<h3 id='api-response-schema-47'>API Response Schema</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -6960,9 +7786,9 @@ ATOM, BCHABC, BCHSV, BTC, DASH, DOGE, EOS, ETC, ETH, LTC, STR, TRX, USDC, USDT, 
             </span><span class="err">'rank_change'</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
           </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre><h3 id='description-46'>Description</h3>
+</span></code></pre><h3 id='description-53'>Description</h3>
 <p><a href="https://poloniex.com/leaderboard/matic-trading-competition">Poloniex leaderboard</a> has a frequency of 1 hour and data time range is from 2020-01-22T18:44:07.917126986Z to 2020-02-17 21:39:25. Collectors are continously runing in two hosts.</p>
-<h3 id='data-schema-46'>Data Schema</h3>
+<h3 id='data-schema-53'>Data Schema</h3>
 <table><thead>
 <tr>
 <th>fieldName</th>
@@ -6982,7 +7808,7 @@ current_snapshot string
 net_deposit      string
 rank             string
 rank_change      integer</p>
-<h3 id='data-sanity-46'>Data Sanity</h3>
+<h3 id='data-sanity-53'>Data Sanity</h3>
 <p>No downtime.</p>
 <h3 id='webscrapy-2'>Webscrapy</h3>
 <p>The data is collected thourgh webscrapying.</p>
@@ -7006,9 +7832,9 @@ rank_change      integer</p>
        </span><span class="err">'type'</span><span class="p">:</span><span class="w"> </span><span class="err">'buy'</span><span class="w">
    </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre><h3 id='description-47'>Description</h3>
+</span></code></pre><h3 id='description-54'>Description</h3>
 <p><a href="https://docs.poloniex.com/#returntradehistory-public">Poloniex trade</a> has a frequency of 10 minutes and data time range is from 2019-10-18 20:41:17.431642305 till now. Collectors are continously runing in two hosts.</p>
-<h3 id='data-schema-47'>Data Schema</h3>
+<h3 id='data-schema-54'>Data Schema</h3>
 <table><thead>
 <tr>
 <th>fieldName</th>
@@ -7032,14 +7858,14 @@ total         float
 tradeID       integer
 type          string
 symbol | string | tag values</p>
-<h3 id='tag-values-10'>Tag Values</h3>
+<h3 id='tag-values-15'>Tag Values</h3>
 <p><strong>symbol</strong>: 
 BTC_SNX, TRX_SNX, USDT_SNX</p>
-<h3 id='data-sanity-47'>Data Sanity</h3>
+<h3 id='data-sanity-54'>Data Sanity</h3>
 <p>No downtime.</p>
-<h3 id='api-reference-39'>API Reference</h3>
+<h3 id='api-reference-46'>API Reference</h3>
 <p><code>GET https://poloniex.com/public?command=returnTradeHistory&amp;currencyPair={}&amp;start={}&amp;end={}</code></p>
-<h3 id='api-query-parameters-42'>API Query Parameters</h3>
+<h3 id='api-query-parameters-49'>API Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -7067,7 +7893,7 @@ BTC_SNX, TRX_SNX, USDT_SNX</p>
 <td>End timestamp</td>
 </tr>
 </tbody></table>
-<h3 id='api-return-schema-41'>API Return Schema</h3>
+<h3 id='api-response-schema-48'>API Response Schema</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -7127,9 +7953,9 @@ BTC_SNX, TRX_SNX, USDT_SNX</p>
        </span><span class="err">'type'</span><span class="p">:</span><span class="w"> </span><span class="err">'asks'</span><span class="w">
    </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre><h3 id='description-48'>Description</h3>
+</span></code></pre><h3 id='description-55'>Description</h3>
 <p><a href="https://docs.poloniex.com/#returntradehistory-public">Poloniex orderbook</a> has a frequency of 30 seconds and data time range is from 2020-04-03T01:40:20.696600872Z till now. Collectors are continously runing in two hosts.</p>
-<h3 id='data-schema-48'>Data Schema</h3>
+<h3 id='data-schema-55'>Data Schema</h3>
 <table><thead>
 <tr>
 <th>fieldName</th>
@@ -7149,14 +7975,14 @@ price     float
 timestamp string
 type      string
 symbol | string | tag values</p>
-<h3 id='tag-values-11'>Tag Values</h3>
+<h3 id='tag-values-16'>Tag Values</h3>
 <p><strong>symbol</strong>: 
 BTC_SNX, TRX_SNX, USDT_SNX</p>
-<h3 id='data-sanity-48'>Data Sanity</h3>
+<h3 id='data-sanity-55'>Data Sanity</h3>
 <p>No downtime.</p>
-<h3 id='api-reference-40'>API Reference</h3>
+<h3 id='api-reference-47'>API Reference</h3>
 <p><code>GET https://poloniex.com/public?command=returnOrderBook&amp;currencyPair={}&amp;depth=100</code></p>
-<h3 id='api-query-parameters-43'>API Query Parameters</h3>
+<h3 id='api-query-parameters-50'>API Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -7178,7 +8004,7 @@ BTC_SNX, TRX_SNX, USDT_SNX</p>
 <td>Default depth is 50. Max depth is 100.</td>
 </tr>
 </tbody></table>
-<h3 id='api-return-schema-42'>API Return Schema</h3>
+<h3 id='api-response-schema-49'>API Response Schema</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -7231,9 +8057,9 @@ BTC_SNX, TRX_SNX, USDT_SNX</p>
  </span><span class="p">}</span><span class="w">
 
 </span><span class="p">]</span><span class="w">
-</span></code></pre><h3 id='description-49'>Description</h3>
+</span></code></pre><h3 id='description-56'>Description</h3>
 <p>WazirX tickres has a frequency of 1 hour and data time range is from 2020-04-02 17:50:00 till now. Collectors are continously runing in two hosts.</p>
-<h3 id='data-schema-49'>Data Schema</h3>
+<h3 id='data-schema-56'>Data Schema</h3>
 <table><thead>
 <tr>
 <th>fieldName</th>
@@ -7292,15 +8118,15 @@ BTC_SNX, TRX_SNX, USDT_SNX</p>
 <td>tag values</td>
 </tr>
 </tbody></table>
-<h3 id='tag-values-12'>Tag Values</h3>
+<h3 id='tag-values-17'>Tag Values</h3>
 <p>Symbols are BTC/INR, XRP/INR, ETH/INR, USDT/INR, WRX/INR, MATIC/INR, LTC/INR, XRP/BTC, TRX/BTC, ETH/BTC, NCASH/BTC, ZIL/BTC, BAT/BTC, LTC/BTC, QKC/BTC, NPXS/BTC, DASH/BTC, FUN/BTC, GNT/BTC, IOST/BTC, NULS/BTC, OMG/BTC, POE/BTC, REQ/BTC, SNT/BTC, STORM/BTC, SUB/BTC, THETA/BTC, ZRX/BTC, EOS/BTC, ICX/BTC, HOT/BTC, POLY/BTC, PAX/BTC, USDC/BTC, XLM/BTC, BTT/BTC, FET/BTC, CELR/BTC, MATIC/BTC, ADA/BTC, RVN/BTC, XMR/BTC, ATOM/BTC, BNB/BTC, WRX/BTC, BTC/USDT, TRX/USDT, XRP/USDT, EOS/USDT, ETH/USDT, ICX/USDT, LTC/USDT, TUSD/USDT, NPXS/USDT, HOT/USDT, BANCA/USDT, BAT/USDT, DASH/USDT, NCASH/USDT, QKC/USDT, ZIL/USDT, ZRX/USDT, BCHABC/USDT, BCHSV/USDT, PAX/USDT, USDC/USDT, OMG/USDT, POLY/USDT, DENT/USDT, IOST/USDT, STORM/USDT, FUN/USDT, POE/USDT, GNT/USDT, SNT/USDT, THETA/USDT, REQ/USDT, SUB/USDT, CS/USDT, OCN/USDT, ZCO/USDT, STQ/USDT, XLM/USDT, XTZ/USDT, BTT/USDT, FET/USDT, TFUEL/USDT, CELR/USDT, MATIC/USDT, ADA/USDT, RVN/USDT, XMR/USDT, ATOM/USDT, ALGO/USDT, LINK/USDT, QTUM/USDT, ETC/USDT, IOTA/USDT, ZEC/USDT, WAVES/USDT, FTM/USDT, ENJ/USDT, LSK/USDT, STEEM/USDT, XVG/USDT, LOOM/USD, MANA/USDT, REP/USDT, FUEL/USDT, BLZ/USDT, XZC/USDT, NANO/USDT, SC/USDT, BTG/USDT, XEM/USDT, BTS/USDT, ARDR/USDT, STRAT/USDT, NAS/USDT, WIN/USDT, BNB/USDT, CHZ/USDT, WRX/USDT, KAVA/USDT, ANKR/USDT.</p>
-<h3 id='data-sanity-49'>Data Sanity</h3>
+<h3 id='data-sanity-56'>Data Sanity</h3>
 <p>No downtime.</p>
-<h3 id='api-reference-41'>API Reference</h3>
+<h3 id='api-reference-48'>API Reference</h3>
 <p><code>GET https://api.wazirx.com/api/v2/tickers</code></p>
-<h3 id='api-query-parameters-44'>API Query Parameters</h3>
+<h3 id='api-query-parameters-51'>API Query Parameters</h3>
 <p>Not required.</p>
-<h3 id='api-return-schema-43'>API Return Schema</h3>
+<h3 id='api-response-schema-50'>API Response Schema</h3>
 <table><thead>
 <tr>
 <th>Fields</th>
@@ -7400,9 +8226,9 @@ BTC_SNX, TRX_SNX, USDT_SNX</p>
 </span><span class="p">}</span><span class="w">
 
 </span><span class="p">]</span><span class="w">
-</span></code></pre><h3 id='description-50'>Description</h3>
+</span></code></pre><h3 id='description-57'>Description</h3>
 <p>Cosmos validator ranking has a frequency of 12 hours and data time range is from 2020-01-14 22:55:4400 till now. Collectors are continously runing in two hosts.</p>
-<h3 id='data-schema-50'>Data Schema</h3>
+<h3 id='data-schema-57'>Data Schema</h3>
 <table><thead>
 <tr>
 <th>fieldName</th>
@@ -7531,13 +8357,13 @@ BTC_SNX, TRX_SNX, USDT_SNX</p>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='data-sanity-50'>Data Sanity</h3>
+<h3 id='data-sanity-57'>Data Sanity</h3>
 <p>No downtime.</p>
-<h3 id='api-reference-42'>API Reference</h3>
+<h3 id='api-reference-49'>API Reference</h3>
 <p><code>GET https://api.cosmostation.io/v1/staking/validators</code></p>
-<h3 id='api-query-parameters-45'>API Query Parameters</h3>
+<h3 id='api-query-parameters-52'>API Query Parameters</h3>
 <p>Not required.</p>
-<h3 id='api-return-schema-44'>API Return Schema</h3>
+<h3 id='api-response-schema-51'>API Response Schema</h3>
 <p>No information.</p>
 <h2 id='cosmos-validator-status'>Cosmos Validator Status</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch data</span>
 <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">cosmos_validator_status</span> <span class="k">limit</span> <span class="mi">1</span>
@@ -7563,9 +8389,9 @@ BTC_SNX, TRX_SNX, USDT_SNX</p>
 </span><span class="p">}</span><span class="w">
 
 </span><span class="p">]</span><span class="w">
-</span></code></pre><h3 id='description-51'>Description</h3>
+</span></code></pre><h3 id='description-58'>Description</h3>
 <p>Cosmos validator status has a frequency of 12 hours and data time range is from 2020-01-14 22:55:4400 till now. Collectors are continously runing in two hosts.</p>
-<h3 id='data-schema-51'>Data Schema</h3>
+<h3 id='data-schema-58'>Data Schema</h3>
 <table><thead>
 <tr>
 <th>fieldName</th>
@@ -7634,13 +8460,13 @@ BTC_SNX, TRX_SNX, USDT_SNX</p>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='data-sanity-51'>Data Sanity</h3>
+<h3 id='data-sanity-58'>Data Sanity</h3>
 <p>No downtime.</p>
-<h3 id='api-reference-43'>API Reference</h3>
+<h3 id='api-reference-50'>API Reference</h3>
 <p><code>GET https://api.cosmostation.io/v1/status</code></p>
-<h3 id='api-query-parameters-46'>API Query Parameters</h3>
+<h3 id='api-query-parameters-53'>API Query Parameters</h3>
 <p>Not required.</p>
-<h3 id='api-return-schema-45'>API Return Schema</h3>
+<h3 id='api-response-schema-52'>API Response Schema</h3>
 <p>No information.</p>
 <h1 id='hashpool'>Hashpool</h1>
 <p><a href="https://hashpool.com/">Hashpool</a> is blockchain. Check their <a href="https://support.hashpool.com/article/api-documents/">api</a>.</p>
@@ -7664,9 +8490,9 @@ BTC_SNX, TRX_SNX, USDT_SNX</p>
           </span><span class="err">'sort'</span><span class="p">:</span><span class="w"> </span><span class="mi">700</span><span class="w">
       </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre><h3 id='description-52'>Description</h3>
+</span></code></pre><h3 id='description-59'>Description</h3>
 <p><a href="https://hashpool.com/">Hsahpool coins</a> has a frequency of 1 hour and data time range is from 2020-04-08 17:21:32.267377023 till now. Collectors are continously runing in two hosts.</p>
-<h3 id='data-schema-52'>Data Schema</h3>
+<h3 id='data-schema-59'>Data Schema</h3>
 <table><thead>
 <tr>
 <th>fieldName</th>
@@ -7689,11 +8515,11 @@ payoutThreshould float
 poolHashRate     float
 poolHashRateUnit string
 sort             integer</p>
-<h3 id='data-sanity-52'>Data Sanity</h3>
+<h3 id='data-sanity-59'>Data Sanity</h3>
 <p>No downtime.</p>
-<h3 id='api-reference-44'>API Reference</h3>
+<h3 id='api-reference-51'>API Reference</h3>
 <p><code>GET https://hashpool.com/api/blocks/{coin}?offset=0&amp;limit=50</code></p>
-<h3 id='api-query-parameters-47'>API Query Parameters</h3>
+<h3 id='api-query-parameters-54'>API Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -7707,7 +8533,7 @@ sort             integer</p>
 <td>Coin symbol</td>
 </tr>
 </tbody></table>
-<h3 id='api-return-schema-46'>API Return Schema</h3>
+<h3 id='api-response-schema-53'>API Response Schema</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -7772,9 +8598,9 @@ sort             integer</p>
                </span><span class="err">'total_number_bids'</span><span class="p">:</span><span class="w"> </span><span class="mi">21</span><span class="w">
       </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre><h3 id='description-53'>Description</h3>
+</span></code></pre><h3 id='description-60'>Description</h3>
 <p><a href="https://www.namebase.io/domains">Namebase domain</a> has a frequency of 9 hours and data time range is from 2020-03-04 05:11:02.647999179 till now. Collectors are continously runing in two hosts.</p>
-<h3 id='data-schema-53'>Data Schema</h3>
+<h3 id='data-schema-60'>Data Schema</h3>
 <table><thead>
 <tr>
 <th>fieldName</th>
@@ -7823,12 +8649,12 @@ sort             integer</p>
 <td>tag values</td>
 </tr>
 </tbody></table>
-<h3 id='tag-values-13'>Tag Values</h3>
+<h3 id='tag-values-18'>Tag Values</h3>
 <p><strong>Domain Type</strong>:
 bid_now, ending_soon, ending_soon, recently_sold</p>
-<h3 id='data-sanity-53'>Data Sanity</h3>
+<h3 id='data-sanity-60'>Data Sanity</h3>
 <p>No downtime.</p>
-<h3 id='api-reference-45'>API Reference</h3>
+<h3 id='api-reference-52'>API Reference</h3>
 <p><strong>Popular</strong>:
 <code>https://www.namebase.io/api/domains/popular/{}</code></p>
 
@@ -7840,7 +8666,7 @@ bid_now, ending_soon, ending_soon, recently_sold</p>
 
 <p><strong>Recently Sold</strong>:
 <code>https://www.namebase.io/api/domains/recently-sold/{}</code></p>
-<h3 id='api-query-parameters-48'>API Query Parameters</h3>
+<h3 id='api-query-parameters-55'>API Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -7854,7 +8680,7 @@ bid_now, ending_soon, ending_soon, recently_sold</p>
 <td>All available web pages.</td>
 </tr>
 </tbody></table>
-<h3 id='api-return-schema-47'>API Return Schema</h3>
+<h3 id='api-response-schema-54'>API Response Schema</h3>
 <p>No information.</p>
 <h2 id='namebase-trade'>Namebase Trade</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch data</span>
 <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">namebase_trade</span> <span class="k">limit</span> <span class="mi">1</span>
@@ -7875,9 +8701,9 @@ bid_now, ending_soon, ending_soon, recently_sold</p>
             </span><span class="err">'tradeId'</span><span class="p">:</span><span class="w"> </span><span class="mi">1571</span><span class="w">
       </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre><h3 id='description-54'>Description</h3>
+</span></code></pre><h3 id='description-61'>Description</h3>
 <p><a href="https://github.com/namebasehq/exchange-api-documentation/blob/master/rest-api.md">Namebase domain</a> has a frequency of 5 minutes and data time range is from 2020-02-06 22:21:18.460645367 till now. Collectors are continously runing in two hosts.</p>
-<h3 id='data-schema-54'>Data Schema</h3>
+<h3 id='data-schema-61'>Data Schema</h3>
 <table><thead>
 <tr>
 <th>fieldName</th>
@@ -7926,13 +8752,13 @@ bid_now, ending_soon, ending_soon, recently_sold</p>
 <td>Tag Values</td>
 </tr>
 </tbody></table>
-<h3 id='tag-values-14'>Tag Values</h3>
+<h3 id='tag-values-19'>Tag Values</h3>
 <p><strong>Symbol</strong>: HNSBTC</p>
-<h3 id='data-sanity-54'>Data Sanity</h3>
+<h3 id='data-sanity-61'>Data Sanity</h3>
 <p>No downtime.</p>
-<h3 id='api-reference-46'>API Reference</h3>
+<h3 id='api-reference-53'>API Reference</h3>
 <p><code>GET https://www.namebase.io/api/v0/trade?symbol={}&amp;timestamp={}&amp;receiveWindow=1000&amp;limit=1000</code></p>
-<h3 id='api-query-parameters-49'>API Query Parameters</h3>
+<h3 id='api-query-parameters-56'>API Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -7972,7 +8798,7 @@ bid_now, ending_soon, ending_soon, recently_sold</p>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='api-return-schema-48'>API Return Schema</h3>
+<h3 id='api-response-schema-55'>API Response Schema</h3>
 <p><strong>Response</strong>:
 <code>json
 [
@@ -8004,9 +8830,9 @@ bid_now, ending_soon, ending_soon, recently_sold</p>
             </span><span class="err">'type'</span><span class="p">:</span><span class="w"> </span><span class="err">'asks'</span><span class="w">
       </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre><h3 id='description-55'>Description</h3>
+</span></code></pre><h3 id='description-62'>Description</h3>
 <p><a href="https://github.com/namebasehq/exchange-api-documentation/blob/master/rest-api.md">Namebase domain</a> has a frequency of 5 minutes and data time range is from 2020-02-06 22:20:16.089313267 till now. Collectors are continously runing in two hosts.</p>
-<h3 id='data-schema-55'>Data Schema</h3>
+<h3 id='data-schema-62'>Data Schema</h3>
 <table><thead>
 <tr>
 <th>fieldName</th>
@@ -8050,13 +8876,13 @@ bid_now, ending_soon, ending_soon, recently_sold</p>
 <td>Tag Values</td>
 </tr>
 </tbody></table>
-<h3 id='tag-values-15'>Tag Values</h3>
+<h3 id='tag-values-20'>Tag Values</h3>
 <p><strong>Symbol</strong>: HNSBTC</p>
-<h3 id='data-sanity-55'>Data Sanity</h3>
+<h3 id='data-sanity-62'>Data Sanity</h3>
 <p>No downtime.</p>
-<h3 id='api-reference-47'>API Reference</h3>
+<h3 id='api-reference-54'>API Reference</h3>
 <p><code>GET https://www.namebase.io/api/v0/depth?symbol={}</code></p>
-<h3 id='api-query-parameters-50'>API Query Parameters</h3>
+<h3 id='api-query-parameters-57'>API Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -8078,7 +8904,7 @@ bid_now, ending_soon, ending_soon, recently_sold</p>
 <td>Default 100; max 1000. Valid limits:[5, 50, 100, 500, 1000]</td>
 </tr>
 </tbody></table>
-<h3 id='api-return-schema-49'>API Return Schema</h3>
+<h3 id='api-response-schema-56'>API Response Schema</h3>
 <p><strong>Response</strong>:
 <code>json
 {
@@ -8113,9 +8939,9 @@ bid_now, ending_soon, ending_soon, recently_sold</p>
             </span><span class="err">'type'</span><span class="p">:</span><span class="w"> </span><span class="err">'statistic'</span><span class="w">
       </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre><h3 id='description-56'>Description</h3>
+</span></code></pre><h3 id='description-63'>Description</h3>
 <p><a href="https://explorer.nervos.org/">Nervos block</a> has a frequency of 10 minutes and data time range is from 2019-11-21 17:39:36.469853695 till now. Collectors are continously runing in two hosts.</p>
-<h3 id='data-schema-56'>Data Schema</h3>
+<h3 id='data-schema-63'>Data Schema</h3>
 <table><thead>
 <tr>
 <th>fieldName</th>
@@ -8169,13 +8995,13 @@ bid_now, ending_soon, ending_soon, recently_sold</p>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='data-sanity-56'>Data Sanity</h3>
+<h3 id='data-sanity-63'>Data Sanity</h3>
 <p>No downtime.</p>
-<h3 id='api-reference-48'>API Reference</h3>
+<h3 id='api-reference-55'>API Reference</h3>
 <p><code>GET https://api.explorer.nervos.org/api/v1/statistics/blockchain_info</code></p>
-<h3 id='api-query-parameters-51'>API Query Parameters</h3>
+<h3 id='api-query-parameters-58'>API Query Parameters</h3>
 <p>Not required.</p>
-<h3 id='api-return-schema-50'>API Return Schema</h3>
+<h3 id='api-response-schema-57'>API Response Schema</h3>
 <p>No inforamtion.</p>
 <h2 id='nervos-hashrate'>Nervos Hashrate</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch data</span>
 <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">nervos_hashrate</span> <span class="k">limit</span> <span class="mi">1</span>
@@ -8195,9 +9021,9 @@ bid_now, ending_soon, ending_soon, recently_sold</p>
             </span><span class="err">'type'</span><span class="p">:</span><span class="w"> </span><span class="err">'index_statistic'</span><span class="w">
       </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre><h3 id='description-57'>Description</h3>
+</span></code></pre><h3 id='description-64'>Description</h3>
 <p><a href="https://explorer.nervos.org/">Nervos block</a> has a frequency of 10 minutes and data time range is from 2019-11-21 17:39:36.469853695 till now. Collectors are continously runing in two hosts.</p>
-<h3 id='data-schema-57'>Data Schema</h3>
+<h3 id='data-schema-64'>Data Schema</h3>
 <table><thead>
 <tr>
 <th>fieldName</th>
@@ -8218,13 +9044,13 @@ hash_rate                        string
 id                               string
 tip_block_time                   integer
 type       </p>
-<h3 id='data-sanity-57'>Data Sanity</h3>
+<h3 id='data-sanity-64'>Data Sanity</h3>
 <p>No downtime.</p>
-<h3 id='api-reference-49'>API Reference</h3>
+<h3 id='api-reference-56'>API Reference</h3>
 <p><code>GET https://api.explorer.nervos.org/api/v1/statistics/</code></p>
-<h3 id='api-query-parameters-52'>API Query Parameters</h3>
+<h3 id='api-query-parameters-59'>API Query Parameters</h3>
 <p>Not required.</p>
-<h3 id='api-return-schema-51'>API Return Schema</h3>
+<h3 id='api-response-schema-58'>API Response Schema</h3>
 <p>No inforamtion.</p>
 <h1 id='tether'>Tether</h1>
 <p><a href="https://tether.to/">Tether</a> is a blockchian</p>
@@ -8243,9 +9069,9 @@ type       </p>
 </span><span class="err">'Remark'</span><span class="p">:</span><span class="w"> </span><span class="err">'Binance'</span><span class="p">,</span><span class="w"> 
 </span><span class="err">'Update</span><span class="w"> </span><span class="err">Time'</span><span class="p">:</span><span class="w"> </span><span class="err">None</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre><h3 id='description-58'>Description</h3>
+</span></code></pre><h3 id='description-65'>Description</h3>
 <p><a href="https://blockspur.com/tether/richlist">Tezos richlist</a> has a frequency of 1 hour and data time range is from 2019-10-10 20:13:13.319694911Z till now. Collectors are continously runing in two hosts.</p>
-<h3 id='data-schema-58'>Data Schema</h3>
+<h3 id='data-schema-65'>Data Schema</h3>
 <table><thead>
 <tr>
 <th>fieldName</th>
@@ -8266,7 +9092,7 @@ Balance            string
 Last Movement(UTC) string
 Remark             string
 Update Time        string</p>
-<h3 id='data-sanity-58'>Data Sanity</h3>
+<h3 id='data-sanity-65'>Data Sanity</h3>
 <p>No downtime.</p>
 <h3 id='webscrapy-3'>Webscrapy</h3>
 <p>The data is collected thourgh webscrapying and the website </p>
@@ -8291,9 +9117,9 @@ Update Time        string</p>
             </span><span class="s2">"validator_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Coinbase Custody"</span><span class="w">
           </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre><h3 id='description-59'>Description</h3>
+</span></code></pre><h3 id='description-66'>Description</h3>
 <p><a href="https://tezos.fish/leaderboard">Tezos leaderboard</a> has a frequency of 1 hour and data time range is from 2020-02-04 05:46:48.467547 till now. Collectors are continously runing in two hosts.</p>
-<h3 id='data-schema-59'>Data Schema</h3>
+<h3 id='data-schema-66'>Data Schema</h3>
 <table><thead>
 <tr>
 <th>fieldName</th>
@@ -8316,7 +9142,7 @@ staked_amount            float
 staked_amount_percentage float
 validator_address        string
 validator_name           string</p>
-<h3 id='data-sanity-59'>Data Sanity</h3>
+<h3 id='data-sanity-66'>Data Sanity</h3>
 <p>No downtime.</p>
 <h3 id='webscrapy-4'>Webscrapy</h3>
 <p>The data is collected thourgh webscrapying and the website </p>
@@ -8340,9 +9166,9 @@ validator_name           string</p>
  </span><span class="p">}</span><span class="w">
 
 </span><span class="p">]</span><span class="w">
-</span></code></pre><h3 id='description-60'>Description</h3>
+</span></code></pre><h3 id='description-67'>Description</h3>
 <p>OPen Interets has a frequency of 1 minute and data time range is from 2020-04-11 01:50:00 till now. Collectors are continously runing in two hosts.</p>
-<h3 id='data-schema-60'>Data Schema</h3>
+<h3 id='data-schema-67'>Data Schema</h3>
 <table><thead>
 <tr>
 <th>fieldName</th>
@@ -8381,15 +9207,15 @@ validator_name           string</p>
 <td>tag values</td>
 </tr>
 </tbody></table>
-<h3 id='tag-values-16'>Tag Values</h3>
+<h3 id='tag-values-21'>Tag Values</h3>
 <p><strong>contract_symbol</strong>: 
 &#39;ADA-0626&#39;, &#39;ADA-PERP&#39;, &#39;ADAM20&#39;, &#39;ADAUSDT&#39;, &#39;ALGO-0626&#39;, &#39;ALGO-PERP&#39;, &#39;ALT-0626&#39;, &#39;ALT-PERP&#39;, &#39;ATOM-0626&#39;, &#39;ATOM-PERP&#39;, &#39;ATOMUSDT&#39;, &#39;BATUSDT&#39;, &#39;BCH-0626&#39;, &#39;BCH-PERP&#39;, &#39;BCH-USD&#39;, &#39;BCH-USD-200417&#39;, &#39;BCH-USD-200424&#39;, &#39;BCH-USD-200501&#39;, &#39;BCH-USD-200626&#39;, &#39;BCH-USD-200925&#39;, &#39;BCH-USD-SWAP&#39;, &#39;BCH-USDT-200417&#39;, &#39;BCH-USDT-200424&#39;, &#39;BCH-USDT-200501&#39;, &#39;BCH-USDT-200626&#39;, &#39;BCH-USDT-200925&#39;, &#39;BCH-USDT-SWAP&#39;, &#39;BCH200417&#39;, &#39;BCH200424&#39;, &#39;BCH200501&#39;, &#39;BCH200626&#39;, &#39;BCHM20&#39;, &#39;BCHUSDT&#39;, &#39;BERNIE&#39;, &#39;BIDEN&#39;, &#39;BLOOMBERG&#39;, &#39;BNB-0626&#39;, &#39;BNB-PERP&#39;, &#39;BNBUSDT&#39;, &#39;BSV-0626&#39;, &#39;BSV-PERP&#39;, &#39;BSV-USD&#39;, &#39;BSV-USD-200417&#39;, &#39;BSV-USD-200424&#39;, &#39;BSV-USD-200501&#39;, &#39;BSV-USD-200626&#39;, &#39;BSV-USD-200925&#39;, &#39;BSV-USD-SWAP&#39;, &#39;BSV-USDT-200417&#39;, &#39;BSV-USDT-200424&#39;, &#39;BSV-USDT-200501&#39;, &#39;BSV-USDT-200626&#39;, &#39;BSV-USDT-200925&#39;, &#39;BSV-USDT-SWAP&#39;, &#39;BSV200417&#39;, &#39;BSV200424&#39;, &#39;BSV200501&#39;, &#39;BSV200626&#39;, &#39;BTC-0626&#39;, &#39;BTC-0925&#39;, &#39;BTC-11APR20-6375-C&#39;, &#39;BTC-11APR20-6375-P&#39;, &#39;BTC-11APR20-6500-C&#39;, &#39;BTC-11APR20-6500-P&#39;, &#39;BTC-11APR20-6625-C&#39;, &#39;BTC-11APR20-6625-P&#39;, &#39;BTC-11APR20-6750-C&#39;, &#39;BTC-11APR20-6750-P&#39;, &#39;BTC-11APR20-6875-C&#39;, &#39;BTC-11APR20-6875-P&#39;, &#39;BTC-11APR20-7000-C&#39;, &#39;BTC-11APR20-7000-P&#39;, &#39;BTC-11APR20-7125-C&#39;, &#39;BTC-11APR20-7125-P&#39;, &#39;BTC-11APR20-7250-C&#39;, &#39;BTC-11APR20-7250-P&#39;, &#39;BTC-11APR20-7375-C&#39;, &#39;BTC-11APR20-7375-P&#39;, &#39;BTC-11APR20-7500-C&#39;, &#39;BTC-11APR20-7500-P&#39;, &#39;BTC-11APR20-7625-C&#39;, &#39;BTC-11APR20-7625-P&#39;, &#39;BTC-11APR20-7750-C&#39;, &#39;BTC-11APR20-7750-P&#39;, &#39;BTC-11APR20-7875-C&#39;, &#39;BTC-11APR20-7875-P&#39;, &#39;BTC-11APR20-8000-C&#39;, &#39;BTC-11APR20-8000-P&#39;, &#39;BTC-12APR20-6125-C&#39;, &#39;BTC-12APR20-6125-P&#39;, &#39;BTC-12APR20-6250-C&#39;, &#39;BTC-12APR20-6250-P&#39;, &#39;BTC-12APR20-6375-C&#39;, &#39;BTC-12APR20-6375-P&#39;, &#39;BTC-12APR20-6500-C&#39;, &#39;BTC-12APR20-6500-P&#39;, &#39;BTC-12APR20-6625-C&#39;, &#39;BTC-12APR20-6625-P&#39;, &#39;BTC-12APR20-6750-C&#39;, &#39;BTC-12APR20-6750-P&#39;, &#39;BTC-12APR20-6875-C&#39;, &#39;BTC-12APR20-6875-P&#39;, &#39;BTC-12APR20-7000-C&#39;, &#39;BTC-12APR20-7000-P&#39;, &#39;BTC-12APR20-7125-C&#39;, &#39;BTC-12APR20-7125-P&#39;, &#39;BTC-12APR20-7250-C&#39;, &#39;BTC-12APR20-7250-P&#39;, &#39;BTC-12APR20-7375-C&#39;, &#39;BTC-12APR20-7375-P&#39;, &#39;BTC-12APR20-7500-C&#39;, &#39;BTC-12APR20-7500-P&#39;, &#39;BTC-12APR20-7625-C&#39;, &#39;BTC-12APR20-7625-P&#39;, &#39;BTC-13APR20-6250-C&#39;, &#39;BTC-13APR20-6250-P&#39;, &#39;BTC-13APR20-6375-C&#39;, &#39;BTC-13APR20-6375-P&#39;, &#39;BTC-13APR20-6500-C&#39;, &#39;BTC-13APR20-6500-P&#39;, &#39;BTC-13APR20-6625-C&#39;, &#39;BTC-13APR20-6625-P&#39;, &#39;BTC-13APR20-6750-C&#39;, &#39;BTC-13APR20-6750-P&#39;, &#39;BTC-13APR20-6875-C&#39;, &#39;BTC-13APR20-6875-P&#39;, &#39;BTC-13APR20-7000-C&#39;, &#39;BTC-13APR20-7000-P&#39;, &#39;BTC-13APR20-7125-C&#39;, &#39;BTC-13APR20-7125-P&#39;, &#39;BTC-13APR20-7250-C&#39;, &#39;BTC-13APR20-7250-P&#39;, &#39;BTC-13APR20-7375-C&#39;, &#39;BTC-13APR20-7375-P&#39;, &#39;BTC-13APR20-7500-C&#39;, &#39;BTC-13APR20-7500-P&#39;, &#39;BTC-13APR20-7625-C&#39;, &#39;BTC-13APR20-7625-P&#39;, &#39;BTC-14APR20-6125-C&#39;, &#39;BTC-14APR20-6125-P&#39;, &#39;BTC-14APR20-6250-C&#39;, &#39;BTC-14APR20-6250-P&#39;, &#39;BTC-14APR20-6375-C&#39;, &#39;BTC-14APR20-6375-P&#39;, &#39;BTC-14APR20-6500-C&#39;, &#39;BTC-14APR20-6500-P&#39;, &#39;BTC-14APR20-6625-C&#39;, &#39;BTC-14APR20-6625-P&#39;, &#39;BTC-14APR20-6750-C&#39;, &#39;BTC-14APR20-6750-P&#39;, &#39;BTC-14APR20-6875-C&#39;, &#39;BTC-14APR20-6875-P&#39;, &#39;BTC-14APR20-7000-C&#39;, &#39;BTC-14APR20-7000-P&#39;, &#39;BTC-14APR20-7125-C&#39;, &#39;BTC-14APR20-7125-P&#39;, &#39;BTC-14APR20-7250-C&#39;, &#39;BTC-14APR20-7250-P&#39;, &#39;BTC-14APR20-7375-C&#39;, &#39;BTC-14APR20-7375-P&#39;, &#39;BTC-14APR20-7500-C&#39;, &#39;BTC-14APR20-7500-P&#39;, &#39;BTC-14APR20-7625-C&#39;, &#39;BTC-14APR20-7625-P&#39;, &#39;BTC-14APR20-7750-C&#39;, &#39;BTC-14APR20-7750-P&#39;, &#39;BTC-15APR20-6000-C&#39;, &#39;BTC-15APR20-6000-P&#39;, &#39;BTC-15APR20-6125-C&#39;, &#39;BTC-15APR20-6125-P&#39;, &#39;BTC-15APR20-6250-C&#39;, &#39;BTC-15APR20-6250-P&#39;, &#39;BTC-15APR20-6375-C&#39;, &#39;BTC-15APR20-6375-P&#39;, &#39;BTC-15APR20-6500-C&#39;, &#39;BTC-15APR20-6500-P&#39;, &#39;BTC-15APR20-6625-C&#39;, &#39;BTC-15APR20-6625-P&#39;, &#39;BTC-15APR20-6750-C&#39;, &#39;BTC-15APR20-6750-P&#39;, &#39;BTC-15APR20-6875-C&#39;, &#39;BTC-15APR20-6875-P&#39;, &#39;BTC-15APR20-7000-C&#39;, &#39;BTC-15APR20-7000-P&#39;, &#39;BTC-15APR20-7125-C&#39;, &#39;BTC-15APR20-7125-P&#39;, &#39;BTC-15APR20-7250-C&#39;, &#39;BTC-15APR20-7250-P&#39;, &#39;BTC-15APR20-7375-C&#39;, &#39;BTC-15APR20-7375-P&#39;, &#39;BTC-15APR20-7500-C&#39;, &#39;BTC-15APR20-7500-P&#39;, &#39;BTC-16APR20-6125-C&#39;, &#39;BTC-16APR20-6125-P&#39;, &#39;BTC-16APR20-6250-C&#39;, &#39;BTC-16APR20-6250-P&#39;, &#39;BTC-16APR20-6375-C&#39;, &#39;BTC-16APR20-6375-P&#39;, &#39;BTC-16APR20-6500-C&#39;, &#39;BTC-16APR20-6500-P&#39;, &#39;BTC-16APR20-6625-C&#39;, &#39;BTC-16APR20-6625-P&#39;, &#39;BTC-16APR20-6750-C&#39;, &#39;BTC-16APR20-6750-P&#39;, &#39;BTC-16APR20-6875-C&#39;, &#39;BTC-16APR20-6875-P&#39;, &#39;BTC-16APR20-7000-C&#39;, &#39;BTC-16APR20-7000-P&#39;, &#39;BTC-16APR20-7125-C&#39;, &#39;BTC-16APR20-7125-P&#39;, &#39;BTC-16APR20-7250-C&#39;, &#39;BTC-16APR20-7250-P&#39;, &#39;BTC-16APR20-7375-C&#39;, &#39;BTC-16APR20-7375-P&#39;, &#39;BTC-16APR20-7500-C&#39;, &#39;BTC-16APR20-7500-P&#39;, &#39;BTC-16APR20-7625-C&#39;, &#39;BTC-16APR20-7625-P&#39;, &#39;BTC-17APR20-5250-C&#39;, &#39;BTC-17APR20-5250-P&#39;, &#39;BTC-17APR20-5500-C&#39;, &#39;BTC-17APR20-5500-P&#39;, &#39;BTC-17APR20-5750-C&#39;, &#39;BTC-17APR20-5750-P&#39;, &#39;BTC-17APR20-6000-C&#39;, &#39;BTC-17APR20-6000-P&#39;, &#39;BTC-17APR20-6250-C&#39;, &#39;BTC-17APR20-6250-P&#39;, &#39;BTC-17APR20-6500-C&#39;, &#39;BTC-17APR20-6500-P&#39;, &#39;BTC-17APR20-6750-C&#39;, &#39;BTC-17APR20-6750-P&#39;, &#39;BTC-17APR20-7000-C&#39;, &#39;BTC-17APR20-7000-P&#39;, &#39;BTC-17APR20-7250-C&#39;, &#39;BTC-17APR20-7250-P&#39;, &#39;BTC-17APR20-7500-C&#39;, &#39;BTC-17APR20-7500-P&#39;, &#39;BTC-17APR20-7750-C&#39;, &#39;BTC-17APR20-7750-P&#39;, &#39;BTC-17APR20-8000-C&#39;, &#39;BTC-17APR20-8000-P&#39;, &#39;BTC-17APR20-8250-C&#39;, &#39;BTC-17APR20-8250-P&#39;, &#39;BTC-17APR20-8500-C&#39;, &#39;BTC-17APR20-8500-P&#39;, &#39;BTC-17APR20-8750-C&#39;, &#39;BTC-17APR20-8750-P&#39;, &#39;BTC-17APR20-9000-C&#39;, &#39;BTC-17APR20-9000-P&#39;, &#39;BTC-18APR20-6250-C&#39;, &#39;BTC-18APR20-6250-P&#39;, &#39;BTC-18APR20-6375-C&#39;, &#39;BTC-18APR20-6375-P&#39;, &#39;BTC-18APR20-6500-C&#39;, &#39;BTC-18APR20-6500-P&#39;, &#39;BTC-18APR20-6625-C&#39;, &#39;BTC-18APR20-6625-P&#39;, &#39;BTC-18APR20-6750-C&#39;, &#39;BTC-18APR20-6750-P&#39;, &#39;BTC-18APR20-6875-C&#39;, &#39;BTC-18APR20-6875-P&#39;, &#39;BTC-18APR20-7000-C&#39;, &#39;BTC-18APR20-7000-P&#39;, &#39;BTC-18APR20-7125-C&#39;, &#39;BTC-18APR20-7125-P&#39;, &#39;BTC-18APR20-7250-C&#39;, &#39;BTC-18APR20-7250-P&#39;, &#39;BTC-18APR20-7375-C&#39;, &#39;BTC-18APR20-7375-P&#39;, &#39;BTC-18APR20-7500-C&#39;, &#39;BTC-18APR20-7500-P&#39;, &#39;BTC-18APR20-7625-C&#39;, &#39;BTC-18APR20-7625-P&#39;, &#39;BTC-18APR20-7750-C&#39;, &#39;BTC-18APR20-7750-P&#39;, &#39;BTC-19APR20-6375-C&#39;, &#39;BTC-19APR20-6375-P&#39;, &#39;BTC-19APR20-6500-C&#39;, &#39;BTC-19APR20-6500-P&#39;, &#39;BTC-19APR20-6625-C&#39;, &#39;BTC-19APR20-6625-P&#39;, &#39;BTC-19APR20-6750-C&#39;, &#39;BTC-19APR20-6750-P&#39;, &#39;BTC-19APR20-6875-C&#39;, &#39;BTC-19APR20-6875-P&#39;, &#39;BTC-19APR20-7000-C&#39;, &#39;BTC-19APR20-7000-P&#39;, &#39;BTC-19APR20-7125-C&#39;, &#39;BTC-19APR20-7125-P&#39;, &#39;BTC-19APR20-7250-C&#39;, &#39;BTC-19APR20-7250-P&#39;, &#39;BTC-19APR20-7375-C&#39;, &#39;BTC-19APR20-7375-P&#39;, &#39;BTC-19APR20-7500-C&#39;, &#39;BTC-19APR20-7500-P&#39;, &#39;BTC-19APR20-7625-C&#39;, &#39;BTC-19APR20-7625-P&#39;, &#39;BTC-19APR20-7750-C&#39;, &#39;BTC-19APR20-7750-P&#39;, &#39;BTC-1MAY20-5250-C&#39;, &#39;BTC-1MAY20-5250-P&#39;, &#39;BTC-1MAY20-5500-C&#39;, &#39;BTC-1MAY20-5500-P&#39;, &#39;BTC-1MAY20-5750-C&#39;, &#39;BTC-1MAY20-5750-P&#39;, &#39;BTC-1MAY20-6000-C&#39;, &#39;BTC-1MAY20-6000-P&#39;, &#39;BTC-1MAY20-6250-C&#39;, &#39;BTC-1MAY20-6250-P&#39;, &#39;BTC-1MAY20-6500-C&#39;, &#39;BTC-1MAY20-6500-P&#39;, &#39;BTC-1MAY20-6750-C&#39;, &#39;BTC-1MAY20-6750-P&#39;, &#39;BTC-1MAY20-7000-C&#39;, &#39;BTC-1MAY20-7000-P&#39;, &#39;BTC-1MAY20-7250-C&#39;, &#39;BTC-1MAY20-7250-P&#39;, &#39;BTC-1MAY20-7500-C&#39;, &#39;BTC-1MAY20-7500-P&#39;, &#39;BTC-1MAY20-7750-C&#39;, &#39;BTC-1MAY20-7750-P&#39;, &#39;BTC-1MAY20-8000-C&#39;, &#39;BTC-1MAY20-8000-P&#39;, &#39;BTC-1MAY20-8250-C&#39;, &#39;BTC-1MAY20-8250-P&#39;, &#39;BTC-1MAY20-8500-C&#39;, &#39;BTC-1MAY20-8500-P&#39;, &#39;BTC-1MAY20-8750-C&#39;, &#39;BTC-1MAY20-8750-P&#39;, &#39;BTC-1MAY20-9000-C&#39;, &#39;BTC-1MAY20-9000-P&#39;, &#39;BTC-20APR20-6375-C&#39;, &#39;BTC-20APR20-6375-P&#39;, &#39;BTC-20APR20-6500-C&#39;, &#39;BTC-20APR20-6500-P&#39;, &#39;BTC-20APR20-6625-C&#39;, &#39;BTC-20APR20-6625-P&#39;, &#39;BTC-20APR20-6750-C&#39;, &#39;BTC-20APR20-6750-P&#39;, &#39;BTC-20APR20-6875-C&#39;, &#39;BTC-20APR20-6875-P&#39;, &#39;BTC-20APR20-7000-C&#39;, &#39;BTC-20APR20-7000-P&#39;, &#39;BTC-20APR20-7125-C&#39;, &#39;BTC-20APR20-7125-P&#39;, &#39;BTC-20APR20-7250-C&#39;, &#39;BTC-20APR20-7250-P&#39;, &#39;BTC-20APR20-7375-C&#39;, &#39;BTC-20APR20-7375-P&#39;, &#39;BTC-20APR20-7500-C&#39;, &#39;BTC-20APR20-7500-P&#39;, &#39;BTC-20APR20-7625-C&#39;, &#39;BTC-20APR20-7625-P&#39;, &#39;BTC-20APR20-7750-C&#39;, &#39;BTC-20APR20-7750-P&#39;, &#39;BTC-20APR20-7875-C&#39;, &#39;BTC-20APR20-7875-P&#39;, &#39;BTC-21APR20-6500-C&#39;, &#39;BTC-21APR20-6500-P&#39;, &#39;BTC-21APR20-6625-C&#39;, &#39;BTC-21APR20-6625-P&#39;, &#39;BTC-21APR20-6750-C&#39;, &#39;BTC-21APR20-6750-P&#39;, &#39;BTC-21APR20-6875-C&#39;, &#39;BTC-21APR20-6875-P&#39;, &#39;BTC-21APR20-7000-C&#39;, &#39;BTC-21APR20-7000-P&#39;, &#39;BTC-21APR20-7125-C&#39;, &#39;BTC-21APR20-7125-P&#39;, &#39;BTC-21APR20-7250-C&#39;, &#39;BTC-21APR20-7250-P&#39;, &#39;BTC-21APR20-7375-C&#39;, &#39;BTC-21APR20-7375-P&#39;, &#39;BTC-21APR20-7500-C&#39;, &#39;BTC-21APR20-7500-P&#39;, &#39;BTC-21APR20-7625-C&#39;, &#39;BTC-21APR20-7625-P&#39;, &#39;BTC-21APR20-7750-C&#39;, &#39;BTC-21APR20-7750-P&#39;, &#39;BTC-21APR20-7875-C&#39;, &#39;BTC-21APR20-7875-P&#39;, &#39;BTC-22APR20-6250-C&#39;, &#39;BTC-22APR20-6250-P&#39;, &#39;BTC-22APR20-6375-C&#39;, &#39;BTC-22APR20-6375-P&#39;, &#39;BTC-22APR20-6500-C&#39;, &#39;BTC-22APR20-6500-P&#39;, &#39;BTC-22APR20-6625-C&#39;, &#39;BTC-22APR20-6625-P&#39;, &#39;BTC-22APR20-6750-C&#39;, &#39;BTC-22APR20-6750-P&#39;, &#39;BTC-22APR20-6875-C&#39;, &#39;BTC-22APR20-6875-P&#39;, &#39;BTC-22APR20-7000-C&#39;, &#39;BTC-22APR20-7000-P&#39;, &#39;BTC-22APR20-7125-C&#39;, &#39;BTC-22APR20-7125-P&#39;, &#39;BTC-22APR20-7250-C&#39;, &#39;BTC-22APR20-7250-P&#39;, &#39;BTC-22APR20-7375-C&#39;, &#39;BTC-22APR20-7375-P&#39;, &#39;BTC-22APR20-7500-C&#39;, &#39;BTC-22APR20-7500-P&#39;, &#39;BTC-22APR20-7625-C&#39;, &#39;BTC-22APR20-7625-P&#39;, &#39;BTC-22APR20-7750-C&#39;, &#39;BTC-22APR20-7750-P&#39;, &#39;BTC-22APR20-7875-C&#39;, &#39;BTC-22APR20-7875-P&#39;, &#39;BTC-24APR20-10000-C&#39;, &#39;BTC-24APR20-10000-P&#39;, &#39;BTC-24APR20-11000-C&#39;, &#39;BTC-24APR20-11000-P&#39;, &#39;BTC-24APR20-12000-C&#39;, &#39;BTC-24APR20-12000-P&#39;, &#39;BTC-24APR20-13000-C&#39;, &#39;BTC-24APR20-13000-P&#39;, &#39;BTC-24APR20-14000-C&#39;, &#39;BTC-24APR20-14000-P&#39;, &#39;BTC-24APR20-16000-C&#39;, &#39;BTC-24APR20-16000-P&#39;, &#39;BTC-24APR20-20000-C&#39;, &#39;BTC-24APR20-20000-P&#39;, &#39;BTC-24APR20-24000-C&#39;, &#39;BTC-24APR20-24000-P&#39;, &#39;BTC-24APR20-28000-C&#39;, &#39;BTC-24APR20-28000-P&#39;, &#39;BTC-24APR20-3000-C&#39;, &#39;BTC-24APR20-3000-P&#39;, &#39;BTC-24APR20-3500-C&#39;, &#39;BTC-24APR20-3500-P&#39;, &#39;BTC-24APR20-4000-C&#39;, &#39;BTC-24APR20-4000-P&#39;, &#39;BTC-24APR20-4500-C&#39;, &#39;BTC-24APR20-4500-P&#39;, &#39;BTC-24APR20-5000-C&#39;, &#39;BTC-24APR20-5000-P&#39;, &#39;BTC-24APR20-5500-C&#39;, &#39;BTC-24APR20-5500-P&#39;, &#39;BTC-24APR20-6000-C&#39;, &#39;BTC-24APR20-6000-P&#39;, &#39;BTC-24APR20-6250-C&#39;, &#39;BTC-24APR20-6250-P&#39;, &#39;BTC-24APR20-6500-C&#39;, &#39;BTC-24APR20-6500-P&#39;, &#39;BTC-24APR20-6750-C&#39;, &#39;BTC-24APR20-6750-P&#39;, &#39;BTC-24APR20-7000-C&#39;, &#39;BTC-24APR20-7000-P&#39;, &#39;BTC-24APR20-7250-C&#39;, &#39;BTC-24APR20-7250-P&#39;, &#39;BTC-24APR20-7500-C&#39;, &#39;BTC-24APR20-7500-P&#39;, &#39;BTC-24APR20-7750-C&#39;, &#39;BTC-24APR20-7750-P&#39;, &#39;BTC-24APR20-8000-C&#39;, &#39;BTC-24APR20-8000-P&#39;, &#39;BTC-24APR20-8250-C&#39;, &#39;BTC-24APR20-8250-P&#39;, &#39;BTC-24APR20-8500-C&#39;, &#39;BTC-24APR20-8500-P&#39;, &#39;BTC-24APR20-9000-C&#39;, &#39;BTC-24APR20-9000-P&#39;, &#39;BTC-25DEC20-10000-C&#39;, &#39;BTC-25DEC20-10000-P&#39;, &#39;BTC-25DEC20-11000-C&#39;, &#39;BTC-25DEC20-11000-P&#39;, &#39;BTC-25DEC20-12000-C&#39;, &#39;BTC-25DEC20-12000-P&#39;, &#39;BTC-25DEC20-13000-C&#39;, &#39;BTC-25DEC20-13000-P&#39;, &#39;BTC-25DEC20-14000-C&#39;, &#39;BTC-25DEC20-14000-P&#39;, &#39;BTC-25DEC20-16000-C&#39;, &#39;BTC-25DEC20-16000-P&#39;, &#39;BTC-25DEC20-18000-C&#39;, &#39;BTC-25DEC20-18000-P&#39;, &#39;BTC-25DEC20-20000-C&#39;, &#39;BTC-25DEC20-20000-P&#39;, &#39;BTC-25DEC20-24000-C&#39;, &#39;BTC-25DEC20-24000-P&#39;, &#39;BTC-25DEC20-28000-C&#39;, &#39;BTC-25DEC20-28000-P&#39;, &#39;BTC-25DEC20-3000-C&#39;, &#39;BTC-25DEC20-3000-P&#39;, &#39;BTC-25DEC20-32000-C&#39;, &#39;BTC-25DEC20-32000-P&#39;, &#39;BTC-25DEC20-36000-C&#39;, &#39;BTC-25DEC20-36000-P&#39;, &#39;BTC-25DEC20-4000-C&#39;, &#39;BTC-25DEC20-4000-P&#39;, &#39;BTC-25DEC20-5000-C&#39;, &#39;BTC-25DEC20-5000-P&#39;, &#39;BTC-25DEC20-6000-C&#39;, &#39;BTC-25DEC20-6000-P&#39;, &#39;BTC-25DEC20-7000-C&#39;, &#39;BTC-25DEC20-7000-P&#39;, &#39;BTC-25DEC20-8000-C&#39;, &#39;BTC-25DEC20-8000-P&#39;, &#39;BTC-25DEC20-9000-C&#39;, &#39;BTC-25DEC20-9000-P&#39;, &#39;BTC-25SEP20&#39;, &#39;BTC-25SEP20-10000-C&#39;, &#39;BTC-25SEP20-10000-P&#39;, &#39;BTC-25SEP20-11000-C&#39;, &#39;BTC-25SEP20-11000-P&#39;, &#39;BTC-25SEP20-12000-C&#39;, &#39;BTC-25SEP20-12000-P&#39;, &#39;BTC-25SEP20-14000-C&#39;, &#39;BTC-25SEP20-14000-P&#39;, &#39;BTC-25SEP20-16000-C&#39;, &#39;BTC-25SEP20-16000-P&#39;, &#39;BTC-25SEP20-18000-C&#39;, &#39;BTC-25SEP20-18000-P&#39;, &#39;BTC-25SEP20-20000-C&#39;, &#39;BTC-25SEP20-20000-P&#39;, &#39;BTC-25SEP20-24000-C&#39;, &#39;BTC-25SEP20-24000-P&#39;, &#39;BTC-25SEP20-2500-C&#39;, &#39;BTC-25SEP20-2500-P&#39;, &#39;BTC-25SEP20-28000-C&#39;, &#39;BTC-25SEP20-28000-P&#39;, &#39;BTC-25SEP20-3000-C&#39;, &#39;BTC-25SEP20-3000-P&#39;, &#39;BTC-25SEP20-32000-C&#39;, &#39;BTC-25SEP20-32000-P&#39;, &#39;BTC-25SEP20-3500-C&#39;, &#39;BTC-25SEP20-3500-P&#39;, &#39;BTC-25SEP20-36000-C&#39;, &#39;BTC-25SEP20-36000-P&#39;, &#39;BTC-25SEP20-4000-C&#39;, &#39;BTC-25SEP20-4000-P&#39;, &#39;BTC-25SEP20-4500-C&#39;, &#39;BTC-25SEP20-4500-P&#39;, &#39;BTC-25SEP20-5000-C&#39;, &#39;BTC-25SEP20-5000-P&#39;, &#39;BTC-25SEP20-6000-C&#39;, &#39;BTC-25SEP20-6000-P&#39;, &#39;BTC-25SEP20-7000-C&#39;, &#39;BTC-25SEP20-7000-P&#39;, &#39;BTC-25SEP20-8000-C&#39;, &#39;BTC-25SEP20-8000-P&#39;, &#39;BTC-25SEP20-9000-C&#39;, &#39;BTC-25SEP20-9000-P&#39;, &#39;BTC-26JUN20&#39;, &#39;BTC-26JUN20-10000-C&#39;, &#39;BTC-26JUN20-10000-P&#39;, &#39;BTC-26JUN20-11000-C&#39;, &#39;BTC-26JUN20-11000-P&#39;, &#39;BTC-26JUN20-12000-C&#39;, &#39;BTC-26JUN20-12000-P&#39;, &#39;BTC-26JUN20-13000-C&#39;, &#39;BTC-26JUN20-13000-P&#39;, &#39;BTC-26JUN20-14000-C&#39;, &#39;BTC-26JUN20-14000-P&#39;, &#39;BTC-26JUN20-16000-C&#39;, &#39;BTC-26JUN20-16000-P&#39;, &#39;BTC-26JUN20-18000-C&#39;, &#39;BTC-26JUN20-18000-P&#39;, &#39;BTC-26JUN20-20000-C&#39;, &#39;BTC-26JUN20-20000-P&#39;, &#39;BTC-26JUN20-22000-C&#39;, &#39;BTC-26JUN20-22000-P&#39;, &#39;BTC-26JUN20-24000-C&#39;, &#39;BTC-26JUN20-24000-P&#39;, &#39;BTC-26JUN20-2500-C&#39;, &#39;BTC-26JUN20-2500-P&#39;, &#39;BTC-26JUN20-26000-C&#39;, &#39;BTC-26JUN20-26000-P&#39;, &#39;BTC-26JUN20-28000-C&#39;, &#39;BTC-26JUN20-28000-P&#39;, &#39;BTC-26JUN20-3000-C&#39;, &#39;BTC-26JUN20-3000-P&#39;, &#39;BTC-26JUN20-30000-C&#39;, &#39;BTC-26JUN20-30000-P&#39;, &#39;BTC-26JUN20-32000-C&#39;, &#39;BTC-26JUN20-32000-P&#39;, &#39;BTC-26JUN20-3500-C&#39;, &#39;BTC-26JUN20-3500-P&#39;, &#39;BTC-26JUN20-4000-C&#39;, &#39;BTC-26JUN20-4000-P&#39;, &#39;BTC-26JUN20-4500-C&#39;, &#39;BTC-26JUN20-4500-P&#39;, &#39;BTC-26JUN20-5000-C&#39;, &#39;BTC-26JUN20-5000-P&#39;, &#39;BTC-26JUN20-6000-C&#39;, &#39;BTC-26JUN20-6000-P&#39;, &#39;BTC-26JUN20-7000-C&#39;, &#39;BTC-26JUN20-7000-P&#39;, &#39;BTC-26JUN20-8000-C&#39;, &#39;BTC-26JUN20-8000-P&#39;, &#39;BTC-26JUN20-9000-C&#39;, &#39;BTC-26JUN20-9000-P&#39;, &#39;BTC-29MAY20-10000-C&#39;, &#39;BTC-29MAY20-10000-P&#39;, &#39;BTC-29MAY20-11000-C&#39;, &#39;BTC-29MAY20-11000-P&#39;, &#39;BTC-29MAY20-12000-C&#39;, &#39;BTC-29MAY20-12000-P&#39;, &#39;BTC-29MAY20-3500-C&#39;, &#39;BTC-29MAY20-3500-P&#39;, &#39;BTC-29MAY20-4000-C&#39;, &#39;BTC-29MAY20-4000-P&#39;, &#39;BTC-29MAY20-4500-C&#39;, &#39;BTC-29MAY20-4500-P&#39;, &#39;BTC-29MAY20-5000-C&#39;, &#39;BTC-29MAY20-5000-P&#39;, &#39;BTC-29MAY20-5500-C&#39;, &#39;BTC-29MAY20-5500-P&#39;, &#39;BTC-29MAY20-6000-C&#39;, &#39;BTC-29MAY20-6000-P&#39;, &#39;BTC-29MAY20-6500-C&#39;, &#39;BTC-29MAY20-6500-P&#39;, &#39;BTC-29MAY20-7000-C&#39;, &#39;BTC-29MAY20-7000-P&#39;, &#39;BTC-29MAY20-7500-C&#39;, &#39;BTC-29MAY20-7500-P&#39;, &#39;BTC-29MAY20-8000-C&#39;, &#39;BTC-29MAY20-8000-P&#39;, &#39;BTC-29MAY20-8500-C&#39;, &#39;BTC-29MAY20-8500-P&#39;, &#39;BTC-29MAY20-9000-C&#39;, &#39;BTC-29MAY20-9000-P&#39;, &#39;BTC-29MAY20-9500-C&#39;, &#39;BTC-29MAY20-9500-P&#39;, &#39;BTC-MOVE-0411&#39;, &#39;BTC-MOVE-0412&#39;, &#39;BTC-MOVE-0413&#39;, &#39;BTC-MOVE-0414&#39;, &#39;BTC-MOVE-0415&#39;, &#39;BTC-MOVE-0416&#39;, &#39;BTC-MOVE-0417&#39;, &#39;BTC-MOVE-0418&#39;, &#39;BTC-MOVE-0419&#39;, &#39;BTC-MOVE-0420&#39;, &#39;BTC-MOVE-0421&#39;, &#39;BTC-MOVE-2020Q2&#39;, &#39;BTC-MOVE-2020Q3&#39;, &#39;BTC-MOVE-2020Q4&#39;, &#39;BTC-MOVE-WK-0417&#39;, &#39;BTC-MOVE-WK-0424&#39;, &#39;BTC-MOVE-WK-0501&#39;, &#39;BTC-MOVE-WK-0508&#39;, &#39;BTC-MOVE-WK-0515&#39;, &#39;BTC-PERP&#39;, &#39;BTC-PERPETUAL&#39;, &#39;BTC-USD&#39;, &#39;BTC-USD-200417&#39;, &#39;BTC-USD-200424&#39;, &#39;BTC-USD-200501&#39;, &#39;BTC-USD-200626&#39;, &#39;BTC-USD-200925&#39;, &#39;BTC-USD-SWAP&#39;, &#39;BTC-USDT-200417&#39;, &#39;BTC-USDT-200424&#39;, &#39;BTC-USDT-200501&#39;, &#39;BTC-USDT-200626&#39;, &#39;BTC-USDT-200925&#39;, &#39;BTC-USDT-SWAP&#39;, &#39;BTC200417&#39;, &#39;BTC200424&#39;, &#39;BTC200501&#39;, &#39;BTC200626&#39;, &#39;BTCUSDT&#39;, &#39;BTMX-0626&#39;, &#39;BTMX-PERP&#39;, &#39;DASH-USD-SWAP&#39;, &#39;DASH-USDT-SWAP&#39;, &#39;DASHUSDT&#39;, &#39;DOGE-0626&#39;, &#39;DOGE-PERP&#39;, &#39;DRGN-0626&#39;, &#39;DRGN-PERP&#39;, &#39;EOS-0626&#39;, &#39;EOS-PERP&#39;, &#39;EOS-USD&#39;, &#39;EOS-USD-200417&#39;, &#39;EOS-USD-200424&#39;, &#39;EOS-USD-200501&#39;, &#39;EOS-USD-200626&#39;, &#39;EOS-USD-200925&#39;, &#39;EOS-USD-SWAP&#39;, &#39;EOS-USDT-200417&#39;, &#39;EOS-USDT-200424&#39;, &#39;EOS-USDT-200501&#39;, &#39;EOS-USDT-200626&#39;, &#39;EOS-USDT-200925&#39;, &#39;EOS-USDT-SWAP&#39;, &#39;EOS200417&#39;, &#39;EOS200424&#39;, &#39;EOS200501&#39;, &#39;EOS200626&#39;, &#39;EOSM20&#39;, &#39;EOSUSDT&#39;, &#39;ETC-0626&#39;, &#39;ETC-PERP&#39;, &#39;ETC-USD&#39;, &#39;ETC-USD-200417&#39;, &#39;ETC-USD-200424&#39;, &#39;ETC-USD-200501&#39;, &#39;ETC-USD-200626&#39;, &#39;ETC-USD-200925&#39;, &#39;ETC-USD-SWAP&#39;, &#39;ETC-USDT-200417&#39;, &#39;ETC-USDT-200424&#39;, &#39;ETC-USDT-200501&#39;, &#39;ETC-USDT-200626&#39;, &#39;ETC-USDT-200925&#39;, &#39;ETC-USDT-SWAP&#39;, &#39;ETC200417&#39;, &#39;ETC200424&#39;, &#39;ETC200501&#39;, &#39;ETC200626&#39;, &#39;ETCUSDT&#39;, &#39;ETH-0626&#39;, &#39;ETH-11APR20-145-C&#39;, &#39;ETH-11APR20-145-P&#39;, &#39;ETH-11APR20-150-C&#39;, &#39;ETH-11APR20-150-P&#39;, &#39;ETH-11APR20-155-C&#39;, &#39;ETH-11APR20-155-P&#39;, &#39;ETH-11APR20-160-C&#39;, &#39;ETH-11APR20-160-P&#39;, &#39;ETH-11APR20-165-C&#39;, &#39;ETH-11APR20-165-P&#39;, &#39;ETH-11APR20-170-C&#39;, &#39;ETH-11APR20-170-P&#39;, &#39;ETH-11APR20-175-C&#39;, &#39;ETH-11APR20-175-P&#39;, &#39;ETH-11APR20-180-C&#39;, &#39;ETH-11APR20-180-P&#39;, &#39;ETH-11APR20-185-C&#39;, &#39;ETH-11APR20-185-P&#39;, &#39;ETH-11APR20-190-C&#39;, &#39;ETH-11APR20-190-P&#39;, &#39;ETH-12APR20-140-C&#39;, &#39;ETH-12APR20-140-P&#39;, &#39;ETH-12APR20-145-C&#39;, &#39;ETH-12APR20-145-P&#39;, &#39;ETH-12APR20-150-C&#39;, &#39;ETH-12APR20-150-P&#39;, &#39;ETH-12APR20-155-C&#39;, &#39;ETH-12APR20-155-P&#39;, &#39;ETH-12APR20-160-C&#39;, &#39;ETH-12APR20-160-P&#39;, &#39;ETH-12APR20-165-C&#39;, &#39;ETH-12APR20-165-P&#39;, &#39;ETH-12APR20-170-C&#39;, &#39;ETH-12APR20-170-P&#39;, &#39;ETH-12APR20-175-C&#39;, &#39;ETH-12APR20-175-P&#39;, &#39;ETH-13APR20-140-C&#39;, &#39;ETH-13APR20-140-P&#39;, &#39;ETH-13APR20-145-C&#39;, &#39;ETH-13APR20-145-P&#39;, &#39;ETH-13APR20-150-C&#39;, &#39;ETH-13APR20-150-P&#39;, &#39;ETH-13APR20-155-C&#39;, &#39;ETH-13APR20-155-P&#39;, &#39;ETH-13APR20-160-C&#39;, &#39;ETH-13APR20-160-P&#39;, &#39;ETH-13APR20-165-C&#39;, &#39;ETH-13APR20-165-P&#39;, &#39;ETH-13APR20-170-C&#39;, &#39;ETH-13APR20-170-P&#39;, &#39;ETH-13APR20-175-C&#39;, &#39;ETH-13APR20-175-P&#39;, &#39;ETH-14APR20-135-C&#39;, &#39;ETH-14APR20-135-P&#39;, &#39;ETH-14APR20-140-C&#39;, &#39;ETH-14APR20-140-P&#39;, &#39;ETH-14APR20-145-C&#39;, &#39;ETH-14APR20-145-P&#39;, &#39;ETH-14APR20-150-C&#39;, &#39;ETH-14APR20-150-P&#39;, &#39;ETH-14APR20-155-C&#39;, &#39;ETH-14APR20-155-P&#39;, &#39;ETH-14APR20-160-C&#39;, &#39;ETH-14APR20-160-P&#39;, &#39;ETH-14APR20-165-C&#39;, &#39;ETH-14APR20-165-P&#39;, &#39;ETH-14APR20-170-C&#39;, &#39;ETH-14APR20-170-P&#39;, &#39;ETH-14APR20-175-C&#39;, &#39;ETH-14APR20-175-P&#39;, &#39;ETH-14APR20-180-C&#39;, &#39;ETH-14APR20-180-P&#39;, &#39;ETH-15APR20-135-C&#39;, &#39;ETH-15APR20-135-P&#39;, &#39;ETH-15APR20-140-C&#39;, &#39;ETH-15APR20-140-P&#39;, &#39;ETH-15APR20-145-C&#39;, &#39;ETH-15APR20-145-P&#39;, &#39;ETH-15APR20-150-C&#39;, &#39;ETH-15APR20-150-P&#39;, &#39;ETH-15APR20-155-C&#39;, &#39;ETH-15APR20-155-P&#39;, &#39;ETH-15APR20-160-C&#39;, &#39;ETH-15APR20-160-P&#39;, &#39;ETH-15APR20-165-C&#39;, &#39;ETH-15APR20-165-P&#39;, &#39;ETH-15APR20-170-C&#39;, &#39;ETH-15APR20-170-P&#39;, &#39;ETH-15APR20-175-C&#39;, &#39;ETH-15APR20-175-P&#39;, &#39;ETH-16APR20-140-C&#39;, &#39;ETH-16APR20-140-P&#39;, &#39;ETH-16APR20-145-C&#39;, &#39;ETH-16APR20-145-P&#39;, &#39;ETH-16APR20-150-C&#39;, &#39;ETH-16APR20-150-P&#39;, &#39;ETH-16APR20-155-C&#39;, &#39;ETH-16APR20-155-P&#39;, &#39;ETH-16APR20-160-C&#39;, &#39;ETH-16APR20-160-P&#39;, &#39;ETH-16APR20-165-C&#39;, &#39;ETH-16APR20-165-P&#39;, &#39;ETH-16APR20-170-C&#39;, &#39;ETH-16APR20-170-P&#39;, &#39;ETH-16APR20-175-C&#39;, &#39;ETH-16APR20-175-P&#39;, &#39;ETH-17APR20-100-C&#39;, &#39;ETH-17APR20-100-P&#39;, &#39;ETH-17APR20-110-C&#39;, &#39;ETH-17APR20-110-P&#39;, &#39;ETH-17APR20-120-C&#39;, &#39;ETH-17APR20-120-P&#39;, &#39;ETH-17APR20-130-C&#39;, &#39;ETH-17APR20-130-P&#39;, &#39;ETH-17APR20-140-C&#39;, &#39;ETH-17APR20-140-P&#39;, &#39;ETH-17APR20-150-C&#39;, &#39;ETH-17APR20-150-P&#39;, &#39;ETH-17APR20-160-C&#39;, &#39;ETH-17APR20-160-P&#39;, &#39;ETH-17APR20-170-C&#39;, &#39;ETH-17APR20-170-P&#39;, &#39;ETH-17APR20-180-C&#39;, &#39;ETH-17APR20-180-P&#39;, &#39;ETH-17APR20-190-C&#39;, &#39;ETH-17APR20-190-P&#39;, &#39;ETH-17APR20-200-C&#39;, &#39;ETH-17APR20-200-P&#39;, &#39;ETH-17APR20-210-C&#39;, &#39;ETH-17APR20-210-P&#39;, &#39;ETH-17APR20-220-C&#39;, &#39;ETH-17APR20-220-P&#39;, &#39;ETH-17APR20-230-C&#39;, &#39;ETH-17APR20-230-P&#39;, &#39;ETH-18APR20-150-C&#39;, &#39;ETH-18APR20-150-P&#39;, &#39;ETH-18APR20-155-C&#39;, &#39;ETH-18APR20-155-P&#39;, &#39;ETH-18APR20-160-C&#39;, &#39;ETH-18APR20-160-P&#39;, &#39;ETH-18APR20-165-C&#39;, &#39;ETH-18APR20-165-P&#39;, &#39;ETH-18APR20-170-C&#39;, &#39;ETH-18APR20-170-P&#39;, &#39;ETH-18APR20-175-C&#39;, &#39;ETH-18APR20-175-P&#39;, &#39;ETH-18APR20-180-C&#39;, &#39;ETH-18APR20-180-P&#39;, &#39;ETH-18APR20-185-C&#39;, &#39;ETH-18APR20-185-P&#39;, &#39;ETH-18APR20-190-C&#39;, &#39;ETH-18APR20-190-P&#39;, &#39;ETH-19APR20-155-C&#39;, &#39;ETH-19APR20-155-P&#39;, &#39;ETH-19APR20-160-C&#39;, &#39;ETH-19APR20-160-P&#39;, &#39;ETH-19APR20-165-C&#39;, &#39;ETH-19APR20-165-P&#39;, &#39;ETH-19APR20-170-C&#39;, &#39;ETH-19APR20-170-P&#39;, &#39;ETH-19APR20-175-C&#39;, &#39;ETH-19APR20-175-P&#39;, &#39;ETH-19APR20-180-C&#39;, &#39;ETH-19APR20-180-P&#39;, &#39;ETH-19APR20-185-C&#39;, &#39;ETH-19APR20-185-P&#39;, &#39;ETH-19APR20-190-C&#39;, &#39;ETH-19APR20-190-P&#39;, &#39;ETH-19APR20-195-C&#39;, &#39;ETH-19APR20-195-P&#39;, &#39;ETH-1MAY20-120-C&#39;, &#39;ETH-1MAY20-120-P&#39;, &#39;ETH-1MAY20-130-C&#39;, &#39;ETH-1MAY20-130-P&#39;, &#39;ETH-1MAY20-140-C&#39;, &#39;ETH-1MAY20-140-P&#39;, &#39;ETH-1MAY20-150-C&#39;, &#39;ETH-1MAY20-150-P&#39;, &#39;ETH-1MAY20-160-C&#39;, &#39;ETH-1MAY20-160-P&#39;, &#39;ETH-1MAY20-170-C&#39;, &#39;ETH-1MAY20-170-P&#39;, &#39;ETH-1MAY20-180-C&#39;, &#39;ETH-1MAY20-180-P&#39;, &#39;ETH-1MAY20-190-C&#39;, &#39;ETH-1MAY20-190-P&#39;, &#39;ETH-1MAY20-200-C&#39;, &#39;ETH-1MAY20-200-P&#39;, &#39;ETH-1MAY20-210-C&#39;, &#39;ETH-1MAY20-210-P&#39;, &#39;ETH-1MAY20-220-C&#39;, &#39;ETH-1MAY20-220-P&#39;, &#39;ETH-1MAY20-230-C&#39;, &#39;ETH-1MAY20-230-P&#39;, &#39;ETH-1MAY20-240-C&#39;, &#39;ETH-1MAY20-240-P&#39;, &#39;ETH-1MAY20-250-C&#39;, &#39;ETH-1MAY20-250-P&#39;, &#39;ETH-1MAY20-260-C&#39;, &#39;ETH-1MAY20-260-P&#39;, &#39;ETH-20APR20-155-C&#39;, &#39;ETH-20APR20-155-P&#39;, &#39;ETH-20APR20-160-C&#39;, &#39;ETH-20APR20-160-P&#39;, &#39;ETH-20APR20-165-C&#39;, &#39;ETH-20APR20-165-P&#39;, &#39;ETH-20APR20-170-C&#39;, &#39;ETH-20APR20-170-P&#39;, &#39;ETH-20APR20-175-C&#39;, &#39;ETH-20APR20-175-P&#39;, &#39;ETH-20APR20-180-C&#39;, &#39;ETH-20APR20-180-P&#39;, &#39;ETH-20APR20-185-C&#39;, &#39;ETH-20APR20-185-P&#39;, &#39;ETH-20APR20-190-C&#39;, &#39;ETH-20APR20-190-P&#39;, &#39;ETH-20APR20-195-C&#39;, &#39;ETH-20APR20-195-P&#39;, &#39;ETH-20APR20-200-C&#39;, &#39;ETH-20APR20-200-P&#39;, &#39;ETH-20APR20-205-C&#39;, &#39;ETH-20APR20-205-P&#39;, &#39;ETH-21APR20-160-C&#39;, &#39;ETH-21APR20-160-P&#39;, &#39;ETH-21APR20-165-C&#39;, &#39;ETH-21APR20-165-P&#39;, &#39;ETH-21APR20-170-C&#39;, &#39;ETH-21APR20-170-P&#39;, &#39;ETH-21APR20-175-C&#39;, &#39;ETH-21APR20-175-P&#39;, &#39;ETH-21APR20-180-C&#39;, &#39;ETH-21APR20-180-P&#39;, &#39;ETH-21APR20-185-C&#39;, &#39;ETH-21APR20-185-P&#39;, &#39;ETH-21APR20-190-C&#39;, &#39;ETH-21APR20-190-P&#39;, &#39;ETH-21APR20-195-C&#39;, &#39;ETH-21APR20-195-P&#39;, &#39;ETH-21APR20-200-C&#39;, &#39;ETH-21APR20-200-P&#39;, &#39;ETH-21APR20-205-C&#39;, &#39;ETH-21APR20-205-P&#39;, &#39;ETH-22APR20-160-C&#39;, &#39;ETH-22APR20-160-P&#39;, &#39;ETH-22APR20-165-C&#39;, &#39;ETH-22APR20-165-P&#39;, &#39;ETH-22APR20-170-C&#39;, &#39;ETH-22APR20-170-P&#39;, &#39;ETH-22APR20-175-C&#39;, &#39;ETH-22APR20-175-P&#39;, &#39;ETH-22APR20-180-C&#39;, &#39;ETH-22APR20-180-P&#39;, &#39;ETH-22APR20-185-C&#39;, &#39;ETH-22APR20-185-P&#39;, &#39;ETH-22APR20-190-C&#39;, &#39;ETH-22APR20-190-P&#39;, &#39;ETH-22APR20-195-C&#39;, &#39;ETH-22APR20-195-P&#39;, &#39;ETH-22APR20-200-C&#39;, &#39;ETH-22APR20-200-P&#39;, &#39;ETH-24APR20-100-C&#39;, &#39;ETH-24APR20-100-P&#39;, &#39;ETH-24APR20-110-C&#39;, &#39;ETH-24APR20-110-P&#39;, &#39;ETH-24APR20-120-C&#39;, &#39;ETH-24APR20-120-P&#39;, &#39;ETH-24APR20-130-C&#39;, &#39;ETH-24APR20-130-P&#39;, &#39;ETH-24APR20-140-C&#39;, &#39;ETH-24APR20-140-P&#39;, &#39;ETH-24APR20-150-C&#39;, &#39;ETH-24APR20-150-P&#39;, &#39;ETH-24APR20-160-C&#39;, &#39;ETH-24APR20-160-P&#39;, &#39;ETH-24APR20-170-C&#39;, &#39;ETH-24APR20-170-P&#39;, &#39;ETH-24APR20-180-C&#39;, &#39;ETH-24APR20-180-P&#39;, &#39;ETH-24APR20-190-C&#39;, &#39;ETH-24APR20-190-P&#39;, &#39;ETH-24APR20-200-C&#39;, &#39;ETH-24APR20-200-P&#39;, &#39;ETH-24APR20-220-C&#39;, &#39;ETH-24APR20-220-P&#39;, &#39;ETH-24APR20-240-C&#39;, &#39;ETH-24APR20-240-P&#39;, &#39;ETH-24APR20-260-C&#39;, &#39;ETH-24APR20-260-P&#39;, &#39;ETH-24APR20-280-C&#39;, &#39;ETH-24APR20-280-P&#39;, &#39;ETH-24APR20-300-C&#39;, &#39;ETH-24APR20-300-P&#39;, &#39;ETH-24APR20-320-C&#39;, &#39;ETH-24APR20-320-P&#39;, &#39;ETH-24APR20-360-C&#39;, &#39;ETH-24APR20-360-P&#39;, &#39;ETH-24APR20-400-C&#39;, &#39;ETH-24APR20-400-P&#39;, &#39;ETH-24APR20-440-C&#39;, &#39;ETH-24APR20-440-P&#39;, &#39;ETH-24APR20-60-C&#39;, &#39;ETH-24APR20-60-P&#39;, &#39;ETH-24APR20-70-C&#39;, &#39;ETH-24APR20-70-P&#39;, &#39;ETH-24APR20-80-C&#39;, &#39;ETH-24APR20-80-P&#39;, &#39;ETH-24APR20-90-C&#39;, &#39;ETH-24APR20-90-P&#39;, &#39;ETH-25DEC20-100-C&#39;, &#39;ETH-25DEC20-100-P&#39;, &#39;ETH-25DEC20-120-C&#39;, &#39;ETH-25DEC20-120-P&#39;, &#39;ETH-25DEC20-140-C&#39;, &#39;ETH-25DEC20-140-P&#39;, &#39;ETH-25DEC20-160-C&#39;, &#39;ETH-25DEC20-160-P&#39;, &#39;ETH-25DEC20-180-C&#39;, &#39;ETH-25DEC20-180-P&#39;, &#39;ETH-25DEC20-200-C&#39;, &#39;ETH-25DEC20-200-P&#39;, &#39;ETH-25DEC20-220-C&#39;, &#39;ETH-25DEC20-220-P&#39;, &#39;ETH-25DEC20-240-C&#39;, &#39;ETH-25DEC20-240-P&#39;, &#39;ETH-25DEC20-260-C&#39;, &#39;ETH-25DEC20-260-P&#39;, &#39;ETH-25DEC20-280-C&#39;, &#39;ETH-25DEC20-280-P&#39;, &#39;ETH-25DEC20-320-C&#39;, &#39;ETH-25DEC20-320-P&#39;, &#39;ETH-25DEC20-360-C&#39;, &#39;ETH-25DEC20-360-P&#39;, &#39;ETH-25DEC20-40-C&#39;, &#39;ETH-25DEC20-40-P&#39;, &#39;ETH-25DEC20-400-C&#39;, &#39;ETH-25DEC20-400-P&#39;, &#39;ETH-25DEC20-440-C&#39;, &#39;ETH-25DEC20-440-P&#39;, &#39;ETH-25DEC20-480-C&#39;, &#39;ETH-25DEC20-480-P&#39;, &#39;ETH-25DEC20-560-C&#39;, &#39;ETH-25DEC20-560-P&#39;, &#39;ETH-25DEC20-60-C&#39;, &#39;ETH-25DEC20-60-P&#39;, &#39;ETH-25DEC20-640-C&#39;, &#39;ETH-25DEC20-640-P&#39;, &#39;ETH-25DEC20-720-C&#39;, &#39;ETH-25DEC20-720-P&#39;, &#39;ETH-25DEC20-80-C&#39;, &#39;ETH-25DEC20-80-P&#39;, &#39;ETH-25DEC20-800-C&#39;, &#39;ETH-25DEC20-800-P&#39;, &#39;ETH-25SEP20&#39;, &#39;ETH-25SEP20-100-C&#39;, &#39;ETH-25SEP20-100-P&#39;, &#39;ETH-25SEP20-120-C&#39;, &#39;ETH-25SEP20-120-P&#39;, &#39;ETH-25SEP20-140-C&#39;, &#39;ETH-25SEP20-140-P&#39;, &#39;ETH-25SEP20-160-C&#39;, &#39;ETH-25SEP20-160-P&#39;, &#39;ETH-25SEP20-180-C&#39;, &#39;ETH-25SEP20-180-P&#39;, &#39;ETH-25SEP20-200-C&#39;, &#39;ETH-25SEP20-200-P&#39;, &#39;ETH-25SEP20-220-C&#39;, &#39;ETH-25SEP20-220-P&#39;, &#39;ETH-25SEP20-240-C&#39;, &#39;ETH-25SEP20-240-P&#39;, &#39;ETH-25SEP20-280-C&#39;, &#39;ETH-25SEP20-280-P&#39;, &#39;ETH-25SEP20-320-C&#39;, &#39;ETH-25SEP20-320-P&#39;, &#39;ETH-25SEP20-360-C&#39;, &#39;ETH-25SEP20-360-P&#39;, &#39;ETH-25SEP20-400-C&#39;, &#39;ETH-25SEP20-400-P&#39;, &#39;ETH-25SEP20-440-C&#39;, &#39;ETH-25SEP20-440-P&#39;, &#39;ETH-25SEP20-480-C&#39;, &#39;ETH-25SEP20-480-P&#39;, &#39;ETH-25SEP20-520-C&#39;, &#39;ETH-25SEP20-520-P&#39;, &#39;ETH-25SEP20-560-C&#39;, &#39;ETH-25SEP20-560-P&#39;, &#39;ETH-25SEP20-60-C&#39;, &#39;ETH-25SEP20-60-P&#39;, &#39;ETH-25SEP20-600-C&#39;, &#39;ETH-25SEP20-600-P&#39;, &#39;ETH-25SEP20-640-C&#39;, &#39;ETH-25SEP20-640-P&#39;, &#39;ETH-25SEP20-680-C&#39;, &#39;ETH-25SEP20-680-P&#39;, &#39;ETH-25SEP20-720-C&#39;, &#39;ETH-25SEP20-720-P&#39;, &#39;ETH-25SEP20-760-C&#39;, &#39;ETH-25SEP20-760-P&#39;, &#39;ETH-25SEP20-80-C&#39;, &#39;ETH-25SEP20-80-P&#39;, &#39;ETH-25SEP20-800-C&#39;, &#39;ETH-25SEP20-800-P&#39;, &#39;ETH-25SEP20-840-C&#39;, &#39;ETH-25SEP20-840-P&#39;, &#39;ETH-25SEP20-880-C&#39;, &#39;ETH-25SEP20-880-P&#39;, &#39;ETH-26JUN20&#39;, &#39;ETH-26JUN20-100-C&#39;, &#39;ETH-26JUN20-100-P&#39;, &#39;ETH-26JUN20-110-C&#39;, &#39;ETH-26JUN20-110-P&#39;, &#39;ETH-26JUN20-120-C&#39;, &#39;ETH-26JUN20-120-P&#39;, &#39;ETH-26JUN20-140-C&#39;, &#39;ETH-26JUN20-140-P&#39;, &#39;ETH-26JUN20-160-C&#39;, &#39;ETH-26JUN20-160-P&#39;, &#39;ETH-26JUN20-180-C&#39;, &#39;ETH-26JUN20-180-P&#39;, &#39;ETH-26JUN20-200-C&#39;, &#39;ETH-26JUN20-200-P&#39;, &#39;ETH-26JUN20-220-C&#39;, &#39;ETH-26JUN20-220-P&#39;, &#39;ETH-26JUN20-240-C&#39;, &#39;ETH-26JUN20-240-P&#39;, &#39;ETH-26JUN20-280-C&#39;, &#39;ETH-26JUN20-280-P&#39;, &#39;ETH-26JUN20-320-C&#39;, &#39;ETH-26JUN20-320-P&#39;, &#39;ETH-26JUN20-360-C&#39;, &#39;ETH-26JUN20-360-P&#39;, &#39;ETH-26JUN20-400-C&#39;, &#39;ETH-26JUN20-400-P&#39;, &#39;ETH-26JUN20-440-C&#39;, &#39;ETH-26JUN20-440-P&#39;, &#39;ETH-26JUN20-480-C&#39;, &#39;ETH-26JUN20-480-P&#39;, &#39;ETH-26JUN20-50-C&#39;, &#39;ETH-26JUN20-50-P&#39;, &#39;ETH-26JUN20-520-C&#39;, &#39;ETH-26JUN20-520-P&#39;, &#39;ETH-26JUN20-560-C&#39;, &#39;ETH-26JUN20-560-P&#39;, &#39;ETH-26JUN20-60-C&#39;, &#39;ETH-26JUN20-60-P&#39;, &#39;ETH-26JUN20-600-C&#39;, &#39;ETH-26JUN20-600-P&#39;, &#39;ETH-26JUN20-640-C&#39;, &#39;ETH-26JUN20-640-P&#39;, &#39;ETH-26JUN20-680-C&#39;, &#39;ETH-26JUN20-680-P&#39;, &#39;ETH-26JUN20-70-C&#39;, &#39;ETH-26JUN20-70-P&#39;, &#39;ETH-26JUN20-720-C&#39;, &#39;ETH-26JUN20-720-P&#39;, &#39;ETH-26JUN20-80-C&#39;, &#39;ETH-26JUN20-80-P&#39;, &#39;ETH-26JUN20-90-C&#39;, &#39;ETH-26JUN20-90-P&#39;, &#39;ETH-29MAY20-100-C&#39;, &#39;ETH-29MAY20-100-P&#39;, &#39;ETH-29MAY20-110-C&#39;, &#39;ETH-29MAY20-110-P&#39;, &#39;ETH-29MAY20-120-C&#39;, &#39;ETH-29MAY20-120-P&#39;, &#39;ETH-29MAY20-130-C&#39;, &#39;ETH-29MAY20-130-P&#39;, &#39;ETH-29MAY20-140-C&#39;, &#39;ETH-29MAY20-140-P&#39;, &#39;ETH-29MAY20-150-C&#39;, &#39;ETH-29MAY20-150-P&#39;, &#39;ETH-29MAY20-160-C&#39;, &#39;ETH-29MAY20-160-P&#39;, &#39;ETH-29MAY20-180-C&#39;, &#39;ETH-29MAY20-180-P&#39;, &#39;ETH-29MAY20-200-C&#39;, &#39;ETH-29MAY20-200-P&#39;, &#39;ETH-29MAY20-220-C&#39;, &#39;ETH-29MAY20-220-P&#39;, &#39;ETH-29MAY20-240-C&#39;, &#39;ETH-29MAY20-240-P&#39;, &#39;ETH-29MAY20-260-C&#39;, &#39;ETH-29MAY20-260-P&#39;, &#39;ETH-29MAY20-280-C&#39;, &#39;ETH-29MAY20-280-P&#39;, &#39;ETH-29MAY20-70-C&#39;, &#39;ETH-29MAY20-70-P&#39;, &#39;ETH-29MAY20-80-C&#39;, &#39;ETH-29MAY20-80-P&#39;, &#39;ETH-29MAY20-90-C&#39;, &#39;ETH-29MAY20-90-P&#39;, &#39;ETH-PERP&#39;, &#39;ETH-PERPETUAL&#39;, &#39;ETH-USD&#39;, &#39;ETH-USD-200417&#39;, &#39;ETH-USD-200424&#39;, &#39;ETH-USD-200501&#39;, &#39;ETH-USD-200626&#39;, &#39;ETH-USD-200925&#39;, &#39;ETH-USD-SWAP&#39;, &#39;ETH-USDT-200417&#39;, &#39;ETH-USDT-200424&#39;, &#39;ETH-USDT-200501&#39;, &#39;ETH-USDT-200626&#39;, &#39;ETH-USDT-200925&#39;, &#39;ETH-USDT-SWAP&#39;, &#39;ETH200417&#39;, &#39;ETH200424&#39;, &#39;ETH200501&#39;, &#39;ETH200626&#39;, &#39;ETHM20&#39;, &#39;ETHUSD&#39;, &#39;ETHUSDT&#39;, &#39;EXCH-0626&#39;, &#39;EXCH-PERP&#39;, &#39;HT-0626&#39;, &#39;HT-PERP&#39;, &#39;IOSTUSDT&#39;, &#39;IOTAUSDT&#39;, &#39;LEO-0626&#39;, &#39;LEO-PERP&#39;, &#39;LINK-0626&#39;, &#39;LINK-PERP&#39;, &#39;LINK-USD&#39;, &#39;LINK-USD-SWAP&#39;, &#39;LINK-USDT-SWAP&#39;, &#39;LINKUSDT&#39;, &#39;LTC-0626&#39;, &#39;LTC-PERP&#39;, &#39;LTC-USD&#39;, &#39;LTC-USD-200417&#39;, &#39;LTC-USD-200424&#39;, &#39;LTC-USD-200501&#39;, &#39;LTC-USD-200626&#39;, &#39;LTC-USD-200925&#39;, &#39;LTC-USD-SWAP&#39;, &#39;LTC-USDT-200417&#39;, &#39;LTC-USDT-200424&#39;, &#39;LTC-USDT-200501&#39;, &#39;LTC-USDT-200626&#39;, &#39;LTC-USDT-200925&#39;, &#39;LTC-USDT-SWAP&#39;, &#39;LTC200417&#39;, &#39;LTC200424&#39;, &#39;LTC200501&#39;, &#39;LTC200626&#39;, &#39;LTCM20&#39;, &#39;LTCUSDT&#39;, &#39;MATIC-0626&#39;, &#39;MATIC-PERP&#39;, &#39;MID-0626&#39;, &#39;MID-PERP&#39;, &#39;NEO-USD-SWAP&#39;, &#39;NEO-USDT-SWAP&#39;, &#39;NEOUSDT&#39;, &#39;OKB-0626&#39;, &#39;OKB-PERP&#39;, &#39;ONTUSDT&#39;, &#39;PAXG-0626&#39;, &#39;PAXG-PERP&#39;, &#39;PETE&#39;, &#39;PRIV-0626&#39;, &#39;PRIV-PERP&#39;, &#39;QTUMUSDT&#39;, &#39;SHIT-0626&#39;, &#39;SHIT-PERP&#39;, &#39;TOMO-0626&#39;, &#39;TOMO-PERP&#39;, &#39;TRUMP&#39;, &#39;TRX-0626&#39;, &#39;TRX-PERP&#39;, &#39;TRX-USD&#39;, &#39;TRX-USD-200417&#39;, &#39;TRX-USD-200424&#39;, &#39;TRX-USD-200501&#39;, &#39;TRX-USD-200626&#39;, &#39;TRX-USD-200925&#39;, &#39;TRX-USD-SWAP&#39;, &#39;TRX-USDT-200417&#39;, &#39;TRX-USDT-200424&#39;, &#39;TRX-USDT-200501&#39;, &#39;TRX-USDT-200626&#39;, &#39;TRX-USDT-200925&#39;, &#39;TRX-USDT-SWAP&#39;, &#39;TRX200417&#39;, &#39;TRX200424&#39;, &#39;TRX200501&#39;, &#39;TRX200626&#39;, &#39;TRXM20&#39;, &#39;TRXUSDT&#39;, &#39;TRYB-0626&#39;, &#39;TRYB-PERP&#39;, &#39;USDT-0626&#39;, &#39;USDT-PERP&#39;, &#39;VETUSDT&#39;, &#39;WARREN&#39;, &#39;XAUT-0626&#39;, &#39;XAUT-PERP&#39;, &#39;XBTM20&#39;, &#39;XBTU20&#39;, &#39;XBTUSD&#39;, &#39;XLMUSDT&#39;, &#39;XMRUSDT&#39;, &#39;XRP-0626&#39;, &#39;XRP-PERP&#39;, &#39;XRP-USD&#39;, &#39;XRP-USD-200417&#39;, &#39;XRP-USD-200424&#39;, &#39;XRP-USD-200501&#39;, &#39;XRP-USD-200626&#39;, &#39;XRP-USD-200925&#39;, &#39;XRP-USD-SWAP&#39;, &#39;XRP-USDT-200417&#39;, &#39;XRP-USDT-200424&#39;, &#39;XRP-USDT-200501&#39;, &#39;XRP-USDT-200626&#39;, &#39;XRP-USDT-200925&#39;, &#39;XRP-USDT-SWAP&#39;, &#39;XRP200417&#39;, &#39;XRP200424&#39;, &#39;XRP200501&#39;, &#39;XRP200626&#39;, &#39;XRPM20&#39;, &#39;XRPUSD&#39;, &#39;XRPUSDT&#39;, &#39;XTZ-0626&#39;, &#39;XTZ-PERP&#39;, &#39;XTZUSDT&#39;, &#39;ZECUSDT&#39;</p>
 
 <p><strong>contract_exchange</strong>:
 &#39;Binance&#39;, &#39;Bitmex&#39;, &#39;Deribit&#39;, &#39;FTX&#39;, &#39;Huobi&#39;, &#39;Okex&#39;</p>
-<h3 id='data-sanity-60'>Data Sanity</h3>
+<h3 id='data-sanity-67'>Data Sanity</h3>
 <p>No downtime.</p>
-<h3 id='api-reference-50'>API Reference</h3>
+<h3 id='api-reference-57'>API Reference</h3>
 <p><strong>Binance</strong>:
 Check <a href="#binance-open-interest">Binance open interest api</a> </p>
 
@@ -8403,13 +9229,13 @@ Check <a href="#bitmex-instrument">Bitmex open interest api</a> </p>
 <p><strong>Huobi</strong>:</p>
 
 <p><strong>Okex</strong>:</p>
-<h3 id='api-query-parameters-53'>API Query Parameters</h3>
+<h3 id='api-query-parameters-60'>API Query Parameters</h3>
 <p>Not required.</p>
-<h3 id='api-return-schema-52'>API Return Schema</h3><h1 id='futures-market-data'>Futures Market Data</h1><h2 id='cme-group'>CME Group</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch tickers</span>
+<h3 id='api-response-schema-59'>API Response Schema</h3><h1 id='futures-market-data'>Futures Market Data</h1><h2 id='cme-group'>CME Group</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch tickers</span>
 <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">cme_futures_index</span>
-</code></pre><h3 id='description-61'>Description</h3>
+</code></pre><h3 id='description-68'>Description</h3>
 <p><a href="https://www.cmegroup.com/trading/equity-index/us-index/bitcoin_quotes_globex.html">CME futures index</a> has a frequency of 1 minute and data time range is from 2020-04-15 18:35:17 till now. Collectors are continously runing in two hosts.</p>
-<h3 id='data-schema-61'>Data Schema</h3>
+<h3 id='data-schema-68'>Data Schema</h3>
 <table><thead>
 <tr>
 <th>fieldName</th>
@@ -8528,22 +9354,22 @@ Check <a href="#bitmex-instrument">Bitmex open interest api</a> </p>
 <td>tag values</td>
 </tr>
 </tbody></table>
-<h3 id='tag-values-17'>Tag Values</h3>
+<h3 id='tag-values-22'>Tag Values</h3>
 <p><strong>Symbol</strong>: BTCJ0, BTCK0, BTCM0, BTCN0, BTCQ0, BTCU0, BTCV0, BTCZ0, BTCZ1</p>
-<h3 id='data-sanity-61'>Data Sanity</h3>
+<h3 id='data-sanity-68'>Data Sanity</h3>
 <p>No downtime.</p>
-<h3 id='api-reference-51'>API Reference</h3>
+<h3 id='api-reference-58'>API Reference</h3>
 <p><code>GET https://www.cmegroup.com/CmeWS/mvc/Quotes/Future/8478/G?quoteCodes=null</code></p>
-<h3 id='api-query-parameters-54'>API Query Parameters</h3>
+<h3 id='api-query-parameters-61'>API Query Parameters</h3>
 <p>Not required.</p>
-<h3 id='api-return-schema-53'>API Return Schema</h3>
+<h3 id='api-response-schema-60'>API Response Schema</h3>
 <p>No information.</p>
 <h2 id='commodity-futures-trading-commission'>Commodity Futures Trading Commission</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch tickers</span>
 <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">cftc_futures_report</span>
 
-</code></pre><h3 id='description-62'>Description</h3>
+</code></pre><h3 id='description-69'>Description</h3>
 <p><a href="https://www.cftc.gov/MarketReports/CommitmentsofTraders/index.htm">CFTC futures report</a> has a frequency of 1 week and data time range is from 1986-01-15 00:00:00 till now. Collectors are continously runing in two hosts.</p>
-<h3 id='data-schema-62'>Data Schema</h3>
+<h3 id='data-schema-69'>Data Schema</h3>
 <table><thead>
 <tr>
 <th>fieldName</th>
@@ -9182,14 +10008,14 @@ Check <a href="#bitmex-instrument">Bitmex open interest api</a> </p>
 <td>tag Values</td>
 </tr>
 </tbody></table>
-<h3 id='tag-values-18'>Tag values</h3>
+<h3 id='tag-values-23'>Tag values</h3>
 <p><strong>CFTC_Contract_Market_Code</strong>:
 001601, 001602, 00160F, 001611, 001612, 001621, 001623, 001624, 001626, 001627, 001631, 002601, 002602, 002603, 002631, 004601, 004603, 005601, 005602, 005603, 005631, 006261, 006265, 006268, 00626F, 00626U, 006391, 006392, 006393, 00639H, 00639U, 00639V, 00639W, 00639X, 00639Y, 00639Z, 0063A1, 0063A2, 0063A3, 0063A4, 0063AA, 0063AB, 0063AD, 0063AM, 0063AN, 0063AQ, 0063AR, 0063AS, 0063B1, 0063BD, 0063BF, 0063BY, 0063CA, 0063CC, 0063CD, 0063CH, 0063CJ, 0063CL, 0063D9, 0063DB, 0063DJ, 0063DK, 0063DL, 0063DN, 0063DP, 006GEC, 007601, 007631, 014601, 020601, 020604, 020631, 021397, 02141B, 02141C, 02141R, 02141V, 02165A, 02165B, 02165C, 02165E, 02165G, 02165H, 02165I, 02165J, 02165K, 02165L, 02165R, 02165T, 021A17, 
 021A18, 021A19, 021A28, 021A29, 021A35, 021A56, 022651, 02265J, 02265T, 02265U, 02265V, 022A05, 022A09, 022A13, 022A18, 022A22, 022A24, 022A26, 022A60, 022A62, 022A66, 023391, 023392, 023393, 023394, 023395, 023396, 023397, 023398, 023399, 02339E, 02339Q, 02339U, 02339W, 02339Y, 0233A2, 0233A3, 0233A5, 0233A6, 0233A8, 0233AG, 0233AH, 0233AM, 0233AN, 0233AQ, 0233AT, 0233AW, 0233AY, 0233B1, 0233B7, 0233BA, 0233BB, 0233BC, 0233BD, 0233BH, 0233BL, 0233BM, 0233BQ, 0233BW, 0233BY, 0233C1, 0233C9, 0233CG, 0233CH, 0233CS, 0233CU, 0233CV, 0233CW, 0233CY, 0233CZ, 0233D4, 0233DR, 0233DT, 0233DW, 0233E5, 0233EB, 0233ED, 023611, 023651, 023653, 023655, 02365A, 02365B, 02365C, 02365D, 02365E, 02365F, 02365G, 02365J, 02365K, 02365L, 02365M, 02365N, 02365O, 02365P, 02365S, 02365T, 023A09, 023A10, 023A12, 023A13, 023A26, 023A37, 023A39, 023A55, 023A56, 023A85, 023P01, 023P02, 023P03, 024651, 024652, 024653, 024656, 024658, 025601, 025608, 025651, 025652, 026603, 029641, 029642, 03265A, 03265B, 03265C, 03265J, 032741, 033661, 035650, 035651, 035652, 035653, 035654, 035655, 035656, 035657, 035658, 03565B, 03565C, 037642, 039601, 039781, 040701, 041741, 042601, 042661, 043602, 043607, 044601, 044661, 045601, 045741, 045L2T, 047741, 048741, 049601, 049741, 050641, 050642, 052641, 052644, 052645, 052732, 052733, 052734, 054641, 054642, 056641, 056642, 057642, 058641, 058643, 060611, 061641, 06260E, 063642, 063731, 064363, 064391, 064392, 064394, 064395, 064396, 06439A, 06439B, 06439C, 06439E, 06439F, 06439K, 06439L, 06439N, 06439R, 0643A5, 0643A7, 0643A8, 0643AF, 0643AP, 0643AT, 0643AU, 0643AZ, 0643B1, 0643B3, 0643B9, 0643BA, 0643BC, 0643BE, 0643BF, 0643BG, 0643BM, 0643BR, 0643BS, 0643BT, 0643BW, 0643BX, 0643BY, 0643BZ, 0643C3, 0643C4, 0643C7, 0643C8, 0643CB, 0643CC, 0643CJ, 0643CK, 0643CL, 0643CM, 0643CN, 0643CR, 0643CU, 0643CV, 0643CZ, 0643D1, 0643D4, 0643D5, 0643D7, 0643D8, 0643DB, 0643DC, 0643DF, 0643DK, 0643DL, 0643DM, 0643EA, 0643F1, 0643F2, 0643F3, 0643IB, 0643ID, 064651, 064652, 064653, 064654, 064655, 064657, 064658, 06465A, 06465B, 06465C, 06465H, 06465I, 06465K, 06465M, 06465N, 06465O, 06465P, 06465S, 06465T, 064A01, 064A02, 064A34, 064A35, 064A38, 064A39, 064A42, 064A48, 064A49, 064A50, 064A51, 064A52, 064A53, 064A54, 064A55, 064A56, 064A57, 064A58, 064A59, 064A60, 064A61, 064A62, 064A63, 064A64, 064A65, 064A66, 064A67, 064A68, 064A69, 064A71, 064A78, 064A79, 064A80, 064A82, 064A84, 064A85, 064A87, 064A88, 064AAA, 064AAB, 064BFI, 064BFJ, 064C52, 064C74, 064C75, 064C76, 064C77, 064C78, 064C79, 064C86, 064C87, 064C88, 064CXO, 064CXP, 064DEU, 064DEW, 064DLW,
 064DLX, 064DPQ, 064DPR, 064EAS, 064EJI, 064EJJ, 064ERM, 064ERN, 064EUY, 064EUZ, 064EVG, 064EVH, 064EWU, 064EXE, 064EXF, 064FHK, 064FHL, 064FJY, 064FKA, 064FKB, 064FKC, 064FKD, 064FKE, 064FKF, 064FZA, 064FZB, 064GAA, 064HZR, 064IAN, 066411, 066413, 066416, 06641A, 06641D, 06641F, 06641G, 06641H, 066651, 066652, 066653, 066654, 066655, 066657, 06665A, 06665B, 06665G, 06665O, 06665P, 06665Q, 06665R, 06665S, 06665T, 06665W, 06665Z, 066A19, 067411, 06741Q, 06741R, 06741G, 06741R, 06742R, 06742T, 06742U, 067651, 067653, 067655, 06765A, 06765G, 06765I, 06765J, 06765L, 06765M, 06765N, 06765O, 06765T, 0676A5, 067A49, 067A71, 067A75, 067DUI, 073732, 075651, 076651, 080732, 080734, 083731, 084602, 084605, 084691, 085691,
 085692, 088604, 088606, 088691, 089741, 090741, 091741, 092741, 092772, 094741, 094742, 094743, 094771, 095741, 096742, 097741, 097772, 097811, 098661, 098662, 099661, 099741, 102741, 105741, 111415, 111651, 111652, 111655, 11165J, 11165K, 11165L, 111A11, 111A31, 111A34, 111A41, 111A47, 112661, 112741, 116661, 1170E1, 120602, 120741, 121601, 122741, 12460+, 124601, 124603, 124606, 132741, 1330E1, 133741, 134741, 134742, 135731, 136611, 136612, 137611, 13874+, 138741, 138747, 138748, 138749, 13874A, 13874C, 13874E, 13874F, 13874G, 13874H, 13874J, 13874N, 13874I, 13874V, 148771, 148776, 148777, 151602, 1601, 1611, 16164H, 1621, 1624, 16264C, 16264H, 1631, 191651, 191691, 191693, 161694, 192651, 194741, 195651, 196661,
 196741, 197741, 20601, 20631, 209601, 20974+, 209741, 209742, 210741, 218771, 221602, 223771, 22651, 232661, 232741, 23651, 238621, 239741, 239742, 239744, 239771, 239772, 239773, 239777, 23977A, 23977C, 240741, 240743, 244041, 244042, 244741, 244742, 246601, 246602, 2446605, 246606, 247601, 247602, 249601, 251601, 252601, 252691, 253601, 255691, 256741, 2601, 260741, 261P05, 261P07, 261P08, 261P09, 26265A, 26265D, 2631, 263601, 26603, 266741, 267741, 270741, 271741, 272741, 294661, 299661, 299741, 30653, 32741, 332661, 33661, 33663, 338741, 33874A, 343601, 344601, 355691, 390741, 392261, 394741, 39601, 399661, 399741, 40701, 41741, 42601, 42661, 432661, 43602, 43874A, 44601, 44661, 44662, 45601, 4601, 492661, 494661, 499661, 52731, 531601, 532601, 54631, 54641, 5601, 5631, 56641, 57642, 58641, 594661, 597741, 597742, 599661, 60611, 61641, 62601, 63731, 66651, 66752, 67651, 67652, 694661, 70642, 71604, 73732, 75671, 76691, 794661, 799661, 80732, 80733, 80734, 80735, 83731, 84602, 84691, 85691, 85692, 86465A, 86465C, 86465D, 86465K, 86565A, 86565C, 86565D, 86565G, 86565N, 86665A, 86665B, 86665E, 86665G, 86765A, 86665C, 869652, 869654, 88604, 88691, 88741, 90741, 91741, 91811, 92741, 92811, 94741, 94742, 93743, 94771, 94811, 96741, 96742, 967652, 967654, 96765A, 97741, 98661, 98662, 99661, 99741, ZB9105.</p>
-<h3 id='data-sanity-62'>Data Sanity</h3>
+<h3 id='data-sanity-69'>Data Sanity</h3>
 <p>Data is fetched through all <a href="https://www.cftc.gov/MarketReports/CommitmentsofTraders/HistoricalCompressed/index.htm">historical data</a> in the website.</p>
 <h2 id='investing'>Investing</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch funding rate</span>
 <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">sp500_futures</span>
@@ -9209,9 +10035,9 @@ Check <a href="#bitmex-instrument">Bitmex open interest api</a> </p>
  </span><span class="p">}</span><span class="w">
 
 </span><span class="p">]</span><span class="w">
-</span></code></pre><h3 id='description-63'>Description</h3>
+</span></code></pre><h3 id='description-70'>Description</h3>
 <p><a href="https://www.investing.com/indices/us-spx-500-futures-historical-data">S&amp;P 500 futures index</a> has a frequency of 1 second and data time range is from 1990-02-15 00:00:00 till now. Collectors are continously runing in two hosts.</p>
-<h3 id='data-schema-63'>Data Schema</h3>
+<h3 id='data-schema-70'>Data Schema</h3>
 <table><thead>
 <tr>
 <th>fieldName</th>
@@ -9255,11 +10081,11 @@ Check <a href="#bitmex-instrument">Bitmex open interest api</a> </p>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='data-sanity-63'>Data Sanity</h3>
+<h3 id='data-sanity-70'>Data Sanity</h3>
 <p>No downtime.</p>
-<h3 id='api-reference-52'>API Reference</h3>
+<h3 id='api-reference-59'>API Reference</h3>
 <p><code>GET https://www.investing.com/instruments/HistoricalDataAjax</code></p>
-<h3 id='api-query-parameters-55'>API Query Parameters</h3>
+<h3 id='api-query-parameters-62'>API Query Parameters</h3>
 <p><strong>Parameters</strong>
 <code>
          {&quot;curr_id&quot;:8839,
@@ -9270,7 +10096,7 @@ Check <a href="#bitmex-instrument">Bitmex open interest api</a> </p>
           &quot;sort_col&quot;:&quot;date&quot;,
           &quot;sort_ord&quot;:&quot;DESC&quot;}
 </code></p>
-<h3 id='api-return-schema-54'>API Return Schema</h3>
+<h3 id='api-response-schema-61'>API Response Schema</h3>
 <p>No information.</p>
 
       </div>
