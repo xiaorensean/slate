@@ -5985,205 +5985,8 @@ BTC-PERPETUAL, ETH-PERPETUAL</p>
         &quot;channels&quot;: [&quot;ticker.ETH-9APR20-190-C.raw&quot;]}
  }
 </code></p>
-<h3 id='api-query-parameters-35'>API Query Parameters</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Required</th>
-<th>Type</th>
-<th>Enum</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>instrument_name</td>
-<td>true</td>
-<td>string</td>
-<td>Instrument name</td>
-<td></td>
-</tr>
-<tr>
-<td>interval</td>
-<td>true</td>
-<td>string</td>
-<td>100ms; raw</td>
-<td>Frequency of notifications. Events will be aggregated over this interval. The value raw means no aggregation will be applied</td>
-</tr>
-</tbody></table>
 <h3 id='api-return-schema-32'>API Return Schema</h3>
-<table><thead>
-<tr>
-<th>Fields</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>data</td>
-<td>object</td>
-<td></td>
-</tr>
-<tr>
-<td>›  ask_iv</td>
-<td>number</td>
-<td>(Only for option) implied volatility for best ask</td>
-</tr>
-<tr>
-<td>›  best_ask_amount</td>
-<td>number</td>
-<td>It represents the requested order size of all best asks</td>
-</tr>
-<tr>
-<td>›  best_ask_price</td>
-<td>number</td>
-<td>The current best ask price, null if there aren&#39;t any asks</td>
-</tr>
-<tr>
-<td>›  best_bid_amount</td>
-<td>number</td>
-<td>It represents the requested order size of all best bids</td>
-</tr>
-<tr>
-<td>›  best_bid_price</td>
-<td>number</td>
-<td>The current best bid price, null if there aren&#39;t any bids</td>
-</tr>
-<tr>
-<td>›  bid_iv</td>
-<td>number</td>
-<td>(Only for option) implied volatility for best bid</td>
-</tr>
-<tr>
-<td>›  delivery_price</td>
-<td>number</td>
-<td>The settlement price for the instrument. Only when state = closed</td>
-</tr>
-<tr>
-<td>›  greeks</td>
-<td>object</td>
-<td></td>
-</tr>
-<tr>
-<td>›    ›  delta</td>
-<td>number</td>
-<td>(Only for option) The delta value for the option</td>
-</tr>
-<tr>
-<td>›    ›  gamma</td>
-<td>number</td>
-<td>(Only for option) The gamma value for the option</td>
-</tr>
-<tr>
-<td>›    ›  rho</td>
-<td>number</td>
-<td>(Only for option) The rho value for the option</td>
-</tr>
-<tr>
-<td>›    ›  theta</td>
-<td>number</td>
-<td>(Only for option) The theta value for the option</td>
-</tr>
-<tr>
-<td>›    ›  vega</td>
-<td>number</td>
-<td>(Only for option) The vega value for the option</td>
-</tr>
-<tr>
-<td>›  index_price</td>
-<td>number</td>
-<td>Current index price</td>
-</tr>
-<tr>
-<td>›  instrument_name</td>
-<td>string Unique instrument identifier</td>
-<td></td>
-</tr>
-<tr>
-<td>›  interest_rate</td>
-<td>number</td>
-<td>Interest rate used in implied volatility calculations (options only)</td>
-</tr>
-<tr>
-<td>›  last_price</td>
-<td>number</td>
-<td>The price for the last trade</td>
-</tr>
-<tr>
-<td>›  mark_iv</td>
-<td>number</td>
-<td>(Only for option) implied volatility for mark price</td>
-</tr>
-<tr>
-<td>›  mark_price</td>
-<td>number</td>
-<td>The mark price for the instrument</td>
-</tr>
-<tr>
-<td>›  max_price</td>
-<td>number</td>
-<td>The maximum price for the future. Any buy orders you submit higher than this price, will be clamped to this maximum.</td>
-</tr>
-<tr>
-<td>›  min_price</td>
-<td>number</td>
-<td>The minimum price for the future. Any sell orders you submit lower than this price will be clamped to this minimum.</td>
-</tr>
-<tr>
-<td>›  open_interest</td>
-<td>number</td>
-<td>The total amount of outstanding contracts in the corresponding amount units. For perpetual and futures the amount is in USD units, for options it is amount of corresponding cryptocurrency contracts, e.g., BTC or ETH.</td>
-</tr>
-<tr>
-<td>›  settlement_price</td>
-<td>number</td>
-<td>The settlement price for the instrument. Only when state = open</td>
-</tr>
-<tr>
-<td>›  state</td>
-<td>string</td>
-<td>The state of the order book. Possible values are open and closed.</td>
-</tr>
-<tr>
-<td>›  stats</td>
-<td>object</td>
-<td></td>
-</tr>
-<tr>
-<td>›    ›  high</td>
-<td>number</td>
-<td>highest price during 24h</td>
-</tr>
-<tr>
-<td>›    ›  low</td>
-<td>number</td>
-<td>lowest price during 24h</td>
-</tr>
-<tr>
-<td>›    ›  price_change</td>
-<td>number</td>
-<td>24-hour price change expressed as a percentage, null if there weren&#39;t any trades</td>
-</tr>
-<tr>
-<td>›    ›  volume</td>
-<td>number</td>
-<td>volume during last 24h in base currency</td>
-</tr>
-<tr>
-<td>›  timestamp</td>
-<td>integer</td>
-<td>The timestamp (milliseconds since the Unix epoch)</td>
-</tr>
-<tr>
-<td>›  underlying_index</td>
-<td>number</td>
-<td>Name of the underlying future, or index_price (options only)</td>
-</tr>
-<tr>
-<td>›  underlying_price</td>
-<td>number</td>
-<td>Underlying price for implied volatility calculations (options only)</td>
-</tr>
-</tbody></table>
+<p>Check <a href="https://docs.deribit.com/#public-ticker">api doc</a> </p>
 <h2 id='deribit-ticker'>Deribit Ticker</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch ticker </span>
 <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">deribit_ticker</span>
 </code></pre>
@@ -6363,160 +6166,8 @@ BTC-PERPETUAL, ETH-PERPETUAL</p>
         &quot;channels&quot;: [&quot;ticker.BTC-PERPETUAL.raw&quot;]}
 }
 </code></p>
-<h3 id='api-query-parameters-36'>API Query Parameters</h3>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Required</th>
-<th>Type</th>
-<th>Enum</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>instrument_name</td>
-<td>true</td>
-<td>string</td>
-<td>Instrument name</td>
-<td></td>
-</tr>
-<tr>
-<td>interval</td>
-<td>true</td>
-<td>string</td>
-<td>100ms; raw</td>
-<td>Frequency of notifications. Events will be aggregated over this interval. The value raw means no aggregation will be applied</td>
-</tr>
-</tbody></table>
 <h3 id='api-return-schema-33'>API Return Schema</h3>
-<table><thead>
-<tr>
-<th>Fields</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>data</td>
-<td>object</td>
-<td></td>
-</tr>
-<tr>
-<td>›  best_ask_amount</td>
-<td>number</td>
-<td>It represents the requested order size of all best asks</td>
-</tr>
-<tr>
-<td>›  best_ask_price</td>
-<td>number</td>
-<td>The current best ask price, null if there aren&#39;t any asks</td>
-</tr>
-<tr>
-<td>›  best_bid_amount</td>
-<td>number</td>
-<td>It represents the requested order size of all best bids</td>
-</tr>
-<tr>
-<td>›  best_bid_price</td>
-<td>number</td>
-<td>The current best bid price, null if there aren&#39;t any bids</td>
-</tr>
-<tr>
-<td>›  current_funding</td>
-<td>number</td>
-<td>Current funding (perpetual only)</td>
-</tr>
-<tr>
-<td>›  delivery_price</td>
-<td>number</td>
-<td>The settlement price for the instrument. Only when state = closed</td>
-</tr>
-<tr>
-<td>›  funding_8h</td>
-<td>number</td>
-<td>Funding 8h (perpetual only)</td>
-</tr>
-<tr>
-<td>›  greeks</td>
-<td>object</td>
-<td></td>
-</tr>
-<tr>
-<td>›  index_price</td>
-<td>number</td>
-<td>Current index price</td>
-</tr>
-<tr>
-<td>›  instrument_name</td>
-<td>string Unique instrument identifier</td>
-<td></td>
-</tr>
-<tr>
-<td>›  last_price</td>
-<td>number</td>
-<td>The price for the last trade</td>
-</tr>
-<tr>
-<td>›  mark_price</td>
-<td>number</td>
-<td>The mark price for the instrument</td>
-</tr>
-<tr>
-<td>›  max_price</td>
-<td>number</td>
-<td>The maximum price for the future. Any buy orders you submit higher than this price, will be clamped to this maximum.</td>
-</tr>
-<tr>
-<td>›  min_price</td>
-<td>number</td>
-<td>The minimum price for the future. Any sell orders you submit lower than this price will be clamped to this minimum.</td>
-</tr>
-<tr>
-<td>›  open_interest</td>
-<td>number</td>
-<td>The total amount of outstanding contracts in the corresponding amount units. For perpetual and futures the amount is in USD units, for options it is amount of corresponding cryptocurrency contracts, e.g., BTC or ETH.</td>
-</tr>
-<tr>
-<td>›  settlement_price</td>
-<td>number</td>
-<td>The settlement price for the instrument. Only when state = open</td>
-</tr>
-<tr>
-<td>›  state</td>
-<td>string</td>
-<td>The state of the order book. Possible values are open and closed.</td>
-</tr>
-<tr>
-<td>›  stats</td>
-<td>object</td>
-<td></td>
-</tr>
-<tr>
-<td>›    ›  high</td>
-<td>number</td>
-<td>highest price during 24h</td>
-</tr>
-<tr>
-<td>›    ›  low</td>
-<td>number</td>
-<td>lowest price during 24h</td>
-</tr>
-<tr>
-<td>›    ›  price_change</td>
-<td>number</td>
-<td>24-hour price change expressed as a percentage, null if there weren&#39;t any trades</td>
-</tr>
-<tr>
-<td>›    ›  volume</td>
-<td>number</td>
-<td>volume during last 24h in base currency</td>
-</tr>
-<tr>
-<td>›  timestamp</td>
-<td>integer</td>
-<td>The timestamp (milliseconds since the Unix epoch)</td>
-</tr>
-</tbody></table>
+<p>Check <a href="https://docs.deribit.com/#public-ticker">api doc</a> </p>
 <h2 id='deribit-orderbook'>Deribit Orderbook</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch orderbook  </span>
 <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">deribit_orderbook</span>
 </code></pre>
@@ -6584,7 +6235,7 @@ BTC-PERPETUAL, ETH-PERPETUAL</p>
 <p>No downtime.</p>
 <h3 id='api-reference-32'>API Reference</h3>
 <p><code>GET https://www.deribit.com/api/v1/public/getorderbook</code></p>
-<h3 id='api-query-parameters-37'>API Query Parameters</h3>
+<h3 id='api-query-parameters-35'>API Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -6943,7 +6594,7 @@ select * from compound_borrow_rates limit 1
 <p>No downtime.</p>
 <h3 id='api-reference-34'>API Reference</h3>
 <p><code>GET https://api.dydx.exchange/v1/markets</code></p>
-<h3 id='api-query-parameters-38'>API Query Parameters</h3>
+<h3 id='api-query-parameters-36'>API Query Parameters</h3>
 <p>Not required.</p>
 <h3 id='api-return-schema-35'>API Return Schema</h3>
 <p>No information.</p>
@@ -6993,7 +6644,7 @@ symbol | string | tag values</p>
 <p>No downtime.</p>
 <h3 id='api-reference-35'>API Reference</h3>
 <p><code>GET https://data.gateio.life/api2/1/orderBook/[CURR_A]_[CURR_B]</code></p>
-<h3 id='api-query-parameters-39'>API Query Parameters</h3>
+<h3 id='api-query-parameters-37'>API Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -7086,7 +6737,7 @@ symbol | string | tag values</p>
 <p>No downtime.</p>
 <h3 id='api-reference-36'>API Reference</h3>
 <p><code>GET https://data.gateio.life/api2/1/tradeHistory/[CURR_A]_[CURR_B]</code></p>
-<h3 id='api-query-parameters-40'>API Query Parameters</h3>
+<h3 id='api-query-parameters-38'>API Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -7169,7 +6820,7 @@ symbol | string | tag values</p>
 <p>No downtime.</p>
 <h3 id='api-reference-37'>API Reference</h3>
 <p><code>GET https://www.mxc.io/open/api/v1/data/history</code></p>
-<h3 id='api-query-parameters-41'>API Query Parameters</h3>
+<h3 id='api-query-parameters-39'>API Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -7277,7 +6928,7 @@ symbol | string | tag values</p>
 <p>No downtime.</p>
 <h3 id='api-reference-38'>API Reference</h3>
 <p><code>GET https://www.mxc.io/open/api/v1/data/depth</code></p>
-<h3 id='api-query-parameters-42'>API Query Parameters</h3>
+<h3 id='api-query-parameters-40'>API Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -7396,7 +7047,7 @@ ATOM, BCHABC, BCHSV, BTC, DASH, DOGE, EOS, ETC, ETH, LTC, STR, TRX, USDC, USDT, 
 <p>No downtime.</p>
 <h3 id='api-reference-39'>API Reference</h3>
 <p><code>GET https://poloniex.com/public?command=returnOrderBook&amp;currencyPair={}&amp;depth=100</code></p>
-<h3 id='api-query-parameters-43'>API Query Parameters</h3>
+<h3 id='api-query-parameters-41'>API Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -7542,7 +7193,7 @@ BTC_SNX, TRX_SNX, USDT_SNX</p>
 <p>No downtime.</p>
 <h3 id='api-reference-40'>API Reference</h3>
 <p><code>GET https://poloniex.com/public?command=returnTradeHistory&amp;currencyPair={}&amp;start={}&amp;end={}</code></p>
-<h3 id='api-query-parameters-44'>API Query Parameters</h3>
+<h3 id='api-query-parameters-42'>API Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -7659,7 +7310,7 @@ BTC_SNX, TRX_SNX, USDT_SNX</p>
 <p>No downtime.</p>
 <h3 id='api-reference-41'>API Reference</h3>
 <p><code>GET https://poloniex.com/public?command=returnOrderBook&amp;currencyPair={}&amp;depth=100</code></p>
-<h3 id='api-query-parameters-45'>API Query Parameters</h3>
+<h3 id='api-query-parameters-43'>API Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -7801,7 +7452,7 @@ BTC_SNX, TRX_SNX, USDT_SNX</p>
 <p>No downtime.</p>
 <h3 id='api-reference-42'>API Reference</h3>
 <p><code>GET https://api.wazirx.com/api/v2/tickers</code></p>
-<h3 id='api-query-parameters-46'>API Query Parameters</h3>
+<h3 id='api-query-parameters-44'>API Query Parameters</h3>
 <p>Not required.</p>
 <h3 id='api-return-schema-43'>API Return Schema</h3>
 <table><thead>
@@ -8038,7 +7689,7 @@ BTC_SNX, TRX_SNX, USDT_SNX</p>
 <p>No downtime.</p>
 <h3 id='api-reference-43'>API Reference</h3>
 <p><code>GET https://api.cosmostation.io/v1/staking/validators</code></p>
-<h3 id='api-query-parameters-47'>API Query Parameters</h3>
+<h3 id='api-query-parameters-45'>API Query Parameters</h3>
 <p>Not required.</p>
 <h3 id='api-return-schema-44'>API Return Schema</h3>
 <p>No information.</p>
@@ -8141,7 +7792,7 @@ BTC_SNX, TRX_SNX, USDT_SNX</p>
 <p>No downtime.</p>
 <h3 id='api-reference-44'>API Reference</h3>
 <p><code>GET https://api.cosmostation.io/v1/status</code></p>
-<h3 id='api-query-parameters-48'>API Query Parameters</h3>
+<h3 id='api-query-parameters-46'>API Query Parameters</h3>
 <p>Not required.</p>
 <h3 id='api-return-schema-45'>API Return Schema</h3>
 <p>No information.</p>
@@ -8196,7 +7847,7 @@ sort             integer</p>
 <p>No downtime.</p>
 <h3 id='api-reference-45'>API Reference</h3>
 <p><code>GET https://hashpool.com/api/blocks/{coin}?offset=0&amp;limit=50</code></p>
-<h3 id='api-query-parameters-49'>API Query Parameters</h3>
+<h3 id='api-query-parameters-47'>API Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -8343,7 +7994,7 @@ bid_now, ending_soon, ending_soon, recently_sold</p>
 
 <p><strong>Recently Sold</strong>:
 <code>https://www.namebase.io/api/domains/recently-sold/{}</code></p>
-<h3 id='api-query-parameters-50'>API Query Parameters</h3>
+<h3 id='api-query-parameters-48'>API Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -8435,7 +8086,7 @@ bid_now, ending_soon, ending_soon, recently_sold</p>
 <p>No downtime.</p>
 <h3 id='api-reference-47'>API Reference</h3>
 <p><code>GET https://www.namebase.io/api/v0/trade?symbol={}&amp;timestamp={}&amp;receiveWindow=1000&amp;limit=1000</code></p>
-<h3 id='api-query-parameters-51'>API Query Parameters</h3>
+<h3 id='api-query-parameters-49'>API Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -8559,7 +8210,7 @@ bid_now, ending_soon, ending_soon, recently_sold</p>
 <p>No downtime.</p>
 <h3 id='api-reference-48'>API Reference</h3>
 <p><code>GET https://www.namebase.io/api/v0/depth?symbol={}</code></p>
-<h3 id='api-query-parameters-52'>API Query Parameters</h3>
+<h3 id='api-query-parameters-50'>API Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -8676,7 +8327,7 @@ bid_now, ending_soon, ending_soon, recently_sold</p>
 <p>No downtime.</p>
 <h3 id='api-reference-49'>API Reference</h3>
 <p><code>GET https://api.explorer.nervos.org/api/v1/statistics/blockchain_info</code></p>
-<h3 id='api-query-parameters-53'>API Query Parameters</h3>
+<h3 id='api-query-parameters-51'>API Query Parameters</h3>
 <p>Not required.</p>
 <h3 id='api-return-schema-50'>API Return Schema</h3>
 <p>No inforamtion.</p>
@@ -8725,7 +8376,7 @@ type       </p>
 <p>No downtime.</p>
 <h3 id='api-reference-50'>API Reference</h3>
 <p><code>GET https://api.explorer.nervos.org/api/v1/statistics/</code></p>
-<h3 id='api-query-parameters-54'>API Query Parameters</h3>
+<h3 id='api-query-parameters-52'>API Query Parameters</h3>
 <p>Not required.</p>
 <h3 id='api-return-schema-51'>API Return Schema</h3>
 <p>No inforamtion.</p>
@@ -8906,7 +8557,7 @@ Check <a href="#bitmex-instrument">Bitmex open interest api</a> </p>
 <p><strong>Huobi</strong>:</p>
 
 <p><strong>Okex</strong>:</p>
-<h3 id='api-query-parameters-55'>API Query Parameters</h3>
+<h3 id='api-query-parameters-53'>API Query Parameters</h3>
 <p>Not required.</p>
 <h3 id='api-return-schema-52'>API Return Schema</h3><h1 id='futures-market-data'>Futures Market Data</h1><h2 id='cme-group'>CME Group</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch tickers</span>
 <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">cme_futures_index</span>
@@ -9037,7 +8688,7 @@ Check <a href="#bitmex-instrument">Bitmex open interest api</a> </p>
 <p>No downtime.</p>
 <h3 id='api-reference-52'>API Reference</h3>
 <p><code>GET https://www.cmegroup.com/CmeWS/mvc/Quotes/Future/8478/G?quoteCodes=null</code></p>
-<h3 id='api-query-parameters-56'>API Query Parameters</h3>
+<h3 id='api-query-parameters-54'>API Query Parameters</h3>
 <p>Not required.</p>
 <h3 id='api-return-schema-53'>API Return Schema</h3>
 <p>No information.</p>
@@ -9762,7 +9413,7 @@ Check <a href="#bitmex-instrument">Bitmex open interest api</a> </p>
 <p>No downtime.</p>
 <h3 id='api-reference-53'>API Reference</h3>
 <p><code>GET https://www.investing.com/instruments/HistoricalDataAjax</code></p>
-<h3 id='api-query-parameters-57'>API Query Parameters</h3>
+<h3 id='api-query-parameters-55'>API Query Parameters</h3>
 <p><strong>Parameters</strong>
 <code>
          {&quot;curr_id&quot;:8839,
