@@ -2851,15 +2851,15 @@ No downtime.
 `GET https://www.deribit.com/api/v1/public/getorderbook`
 
 ### API Query Parameters
-Name | Type | Mandatory | Description | Example
----- | ---- | ---------- | -------- | ----------
-instrument	|string|		REQUIRED |The instrument name for which to retrieve the order book, see getinstruments to obtain instrument names.
-depth	|integer|	Not required	|The number of entries to return for bids and asks
+Name | Type | Mandatory | Description | 
+---- | ---- | ---------- | -------- | 
+instrument	|string|REQUIRED |The instrument name for which to retrieve the order book, see getinstruments to obtain instrument names.
+depth	|integer|	Not Required	|The number of entries to return for bids and asks
 
 ### API Return Schema
 Fields	|Type	| Example | Description
---------| ----| ----------|
-bids	|list|	[800(quantity/int),10322.5(price/float), 800(cm/int)|	The list of all bids, best bid first. See below for entry details
+--------| ----| ----------| ---------
+bids	|list|	"[800(quantity/int),10322.5(price/float), 800(cm/int)"|	The list of all bids, best bid first. See below for entry details
 asks	|list| [800(quantity/int),10322.5(price/float), 800(cm/int)	|	The list of all asks, best ask first. See below for entry details
 state	|string |"open"|	The state of the order book. Possible values include "open" and "closed".
 
