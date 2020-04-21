@@ -95,21 +95,21 @@ TableName | Frequency | DataType | CurrentStatus
 [gateio_orderbook](#gateio-orderbook) | 30 seconds | Orderbook | Running
 [gateio_trades_data](#gateio-trades) | RealTime | Trades | Running
 [hashpool_coins](#hashpool-coins) | 1 hour | Summary | Running
-hnscan_block_info | RealTime | BlockChain | Running
-hnscan_chart_data | 1 day | Chart | Running
-hnscan_chart_data_snapshot | 1 day | Chart | Running
-hnscan_status | 1 hour | Summary | Running
-hnscan_summary | 1 hour | Summary | Running
-hnscan_transaction | RealTime | BlockChian | Running
-huobidm_contract_delivery_price | 1 minute | Delivery Price | Running
-huobidm_contract_market_overvoew | 1 minute | Market Overview | Running
-huobidm_contract_price_limit | 1 minute | Price Limit | Running  
-huobidm_contract_risk_info | 1 minute | Risk Info | Running
-huobidm_index_price | 1 minute | Index Price | Running
-huobidm_insurance_fund | 1 minute | Insurance Fund | Running
-huobidm_open_interest | 1 minute | Open Interest | Running
-huobidm_orderbook | 30 seconds | Orderbook | Running
-huobidm_trades | RealTime | Trade | Running
+[hnscan_block_info](#hnscan-block-info) | 1 hour | BlockChain | Running
+[hnscan_chart_data](#hnscan-chart) | 1 day | Chart | Running
+[hnscan_chart_data_snapshot](#hnscan-chart) | 1 day | Chart | Running
+[hnscan_status](#hnscan-status) | 9 minutes | Summary | Running
+[hnscan_summary](#hnscan-summary) | 9 minutes | Summary | Running
+[hnscan_transaction](#hnscan-blcok-info) | 1 hour | BlockChian | Running
+[huobidm_contract_delivery_price](#huobidm-contract-delivery-price) | 1 minute | Delivery Price | Running
+[huobidm_contract_market_overview](#huobidm-contract-market-overview) | 1 minute | Market Overview | Running
+[huobidm_contract_price_limit](#huobidm-contract-price-limit) | 1 minute | Price Limit | Running  
+[huobidm_contract_risk_info](#huobidm-contract-risk-info) | 1 minute | Risk Info | Running
+[huobidm_index_price](#huobidm-index-price) | 1 minute | Index Price | Running
+[huobidm_insurance_fund](#huobidm-insurance-fund) | 1 minute | Insurance Fund | Running
+[huobidm_open_interest](#huobidm-open-interest) | 1 minute | Open Interest | Running
+[huobidm_orderbook](#huobidm-orderbook) | 30 seconds | Orderbook | Running
+[huobidm_trades](#huobidm-trade) | RealTime | Trade | Running
 [mxc_trades](#mxc-trades) | 5 minutes | Trade | Running
 [mxc_orderbook](#mxc-orderbook) | 30 seconds | Orderbook | Running
 [namebase_domain](#namebase-domain) | 9 hours | Domain Data | Running
@@ -3571,6 +3571,534 @@ No information.
 
 
 # HuobiDM
+[Huobi Derivative Makret](https://www.hbdm.com/) is a cryptocurrency exchange that has all derivatives. Check their [api](https://docs.huobigroup.com/docs/dm/v1/en/#introduction).
+
+## Huobidm Contract Delivery Price
+```sql
+-- fetch data
+select * from huobidm_contract_delivery_price limit 1 
+```
+> response
+
+```json
+[
+    {
+        'time': '2020-01-29T00:14:35.339000064Z', 
+        'delivery_price': 8307.7331803005, 
+        'symbol': 'BTC'
+   }
+]
+```
+
+### Description
+[Huobidm contract delivery price](https://docs.huobigroup.com/docs/dm/v1/en/#get-the-estimated-delivery-price) has a frequency of 1 minute and data time range is from 2020-01-29 00:14:35.339000064 till now. Collectors are continously runing in two hosts.
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | default database timestamp
+delivery_price |float|
+symbol | string | tag values
+
+### Tag Values
+**symbol**: 
+'BCH', 'BSV', 'BTC', 'EOS', 'ETC', 'ETH', 'LTC', 'TRX', 'XRP'
+
+### Data Sanity
+No downtime.
+
+### API Reference
+`GET https://api.hbdm.com/api/v1/contract_delivery_price?symbol={symbol}`
+
+### API Query Parameters
+Name | Type | Required | Description
+-----| --------| ----------| --------- |
+symbol	|string	|true	|Case-Insenstive.Both uppercase and lowercase are supported.e.g."BTC","ETH"...
+
+### API Response Schema
+Name | Type | |Description
+---- | ---- | ----------
+status	|string	|Request Processing Result
+delivery_price |	string	|estimated delivery price	
+ts |long	|Time of Respond Generation, Unit: Millisecond
+
+
+
+## Huobidm Contract Market Overview
+```sql
+-- fetch data
+select * from huobidm_contract_market_overview limit 1 
+```
+> response
+
+```json
+[
+    {
+        'time': '2020-01-29T00:51:08.304Z', 
+        'amount': '8579307.0972995652712865674097690524479882706', 
+        'ask_amt': '270', 
+        'ask_price': '11.668', 
+        'bid_amt': '55', 
+        'bid_price': '11.657', 
+        'close': '11.657', 
+        'contract_type': 'ETC_CW', 
+        'count': 46701, 
+        'high': '11.817', 
+        'id': 1580259068, 
+        'low': '10.8', 
+        'open': '10.951', 
+        'vol': '9525756'
+   }
+]
+```
+
+### Description
+[Huobidm contract market overview](https://docs.huobigroup.com/docs/dm/v1/en/#get-the-estimated-delivery-price) has a frequency of 1 minute and data time range is from 2020-01-29 00:51:08.304 till now. Collectors are continously runing in two hosts.
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | default database timestamp
+amount    |string|
+ask_amt   |string|
+ask_price |string|
+bid_amt   |string|
+bid_price |string|
+close     |string|
+count     |integer|
+high      |string|
+id        |integer|
+low       |string|
+open      |string|
+vol       |string|
+contract_type | string | tag values
+
+### Tag Values
+**symbol**: 
+'BCH200131', 'BCH200207', 'BCH200214', 'BCH200221', 'BCH200228', 'BCH200306', 'BCH200313', 'BCH200320', 'BCH200327', 'BCH200403', 'BCH200410', 'BCH200417', 'BCH200424', 'BCH200501', 'BCH200626', 'BCH_CQ', 'BCH_CW', 'BCH_NW', 'BSV200131', 'BSV200207', 'BSV200214', 'BSV200221', 'BSV200228', 'BSV200306', 'BSV200313', 'BSV200320', 'BSV200327', 'BSV200403', 'BSV200410', 'BSV200417', 'BSV200424', 'BSV200501', 'BSV200626', 'BSV_CQ', 'BSV_CW', 'BSV_NW', 'BTC200131', 'BTC200207', 'BTC200214', 'BTC200221', 'BTC200228', 'BTC200306', 'BTC200313', 'BTC200320', 'BTC200327', 'BTC200403', 'BTC200410', 'BTC200417', 'BTC200424', 'BTC200501', 'BTC200626', 'BTC_CQ', 'BTC_CW', 'BTC_NW', 'EOS200131', 'EOS200207', 'EOS200214', 'EOS200221', 'EOS200228', 'EOS200306', 'EOS200313', 'EOS200320', 'EOS200327', 'EOS200403', 'EOS200410', 'EOS200417', 'EOS200424', 'EOS200501', 'EOS200626', 'EOS_CQ', 'EOS_CW', 'EOS_NW', 'ETC200131', 'ETC200207', 'ETC200214', 'ETC200221', 'ETC200228', 'ETC200306', 'ETC200313', 'ETC200320', 'ETC200327', 'ETC200403', 'ETC200410', 'ETC200417', 'ETC200424', 'ETC200501', 'ETC200626', 'ETC_CQ', 'ETC_CW', 'ETC_NW', 'ETH200131', 'ETH200207', 'ETH200214', 'ETH200221', 'ETH200228', 'ETH200306', 'ETH200313', 'ETH200320', 'ETH200327', 'ETH200403', 'ETH200410', 'ETH200417', 'ETH200424', 'ETH200501', 'ETH200626', 'ETH_CQ', 'ETH_CW', 'ETH_NW', 'LTC200131', 'LTC200207', 'LTC200214', 'LTC200221', 'LTC200228', 'LTC200306', 'LTC200313', 'LTC200320', 'LTC200327', 'LTC200403', 'LTC200410', 'LTC200417', 'LTC200424', 'LTC200501', 'LTC200626', 'LTC_CQ', 'LTC_CW', 'LTC_NW', 'TRX200131', 'TRX200207', 'TRX200214', 'TRX200221', 'TRX200228', 'TRX200306', 'TRX200313', 'TRX200320', 'TRX200327', 'TRX200403', 'TRX200410', 'TRX200417', 'TRX200424', 'TRX200501', 'TRX200626', 'TRX_CQ', 'TRX_CW', 'TRX_NW', 'XRP200131', 'XRP200207', 'XRP200214', 'XRP200221', 'XRP200228', 'XRP200306', 'XRP200313', 'XRP200320', 'XRP200327', 'XRP200403', 'XRP200410', 'XRP200417', 'XRP200424', 'XRP200501', 'XRP200626', 'XRP_CQ', 'XRP_CW', 'XRP_NW'
+
+### Data Sanity
+No downtime.
+
+### API Reference
+`GET https://api.hbdm.com/market/detail/merged?symbol={contract_type}`
+
+### API Query Parameters
+Name | Type | Required | Description
+-----| --------| ----------| --------- |
+contract_type	|string	|true	|Case-Insenstive.Both uppercase and lowercase are supported.
+
+### API Response Schema
+Name | Type | |Description
+---- | ---- | ----------
+status	|string	|Request Processing Result
+tick |	string	|estimated delivery price	
+ts |long	|Time of Respond Generation, Unit: Millisecond
+
+
+## Huobidm Contract Price Limit 
+```sql
+-- fetch data
+select * from huobidm_contract_price_limit limit 1 
+```
+> response
+
+```json
+[
+    {
+        'time': '1970-01-01T00:26:20.256885167Z', 
+        'contract_code': 'BTC200131', 
+        'contract_type': 'this_week',
+        'high_limit': 9761.84,
+        'low_limit': 9039.79, 
+        'symbol': 'BTC'
+   }
+]
+```
+
+### Description
+[Huobidm contract price limit](https://docs.huobigroup.com/docs/dm/v1/en/#contract-price-limitation) has a frequency of 1 minute and data time range is from 2020-01-29 00:51:08.304 till now. Collectors are continously runing in two hosts.
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | default database timestamp
+contract_code |string|
+high_limit    |float|
+low_limit     |float|
+contract_type | string |
+symbol | string|
+
+### Tag Values
+**Contract Type**: 
+this_week, next_week, quarter
+
+**Symbol**:
+'BCH', 'BSV', 'BTC', 'EOS', 'ETC', 'ETH', 'LTC', 'TRX', 'XRP'
+
+### Data Sanity
+No downtime.
+
+### API Reference
+`GET https://api.hbdm.com/api/v1/contract_price_limit?symbol={symbol}&contract_type={contract_type}`
+
+### API Query Parameters
+Name | Type | Required | Description
+-----| --------| ----------| --------- |
+contract_type	|string	|true	|Case-Insenstive.Both uppercase and lowercase are supported.
+symbol | string | true | Symbol name
+
+### API Response Schema
+Name | Type | |Description
+---- | ---- | ----------
+status	|string	|Request Processing Result
+symbol	|	string|	Variety code	"BTC","ETH" ...
+high_limit|	decimal|	Highest Buying Price	
+low_limit|	decimal|	Lowest Selling Price	
+contract_code	|string|	Contract Code	eg "BTC180914" ...
+contract_type	|string|	Contract Type	"this_week","next_week","quarter"
+ts |long	|Time of Respond Generation, Unit: Millisecond
+
+
+## Huobidm Contract Risk Info
+```sql
+-- fetch data
+select * from huobidm_contract_risk_info limit 1 
+```
+> response
+
+```json
+[
+    {
+        'time': '2020-01-29T00:14:37.136Z',
+        'estimated_clawback': 0, 
+        'insurance_fund': 870.6348136893932, 
+        'symbol': 'BTC'
+   }
+]
+```
+
+### Description
+[Huobidm contract risk info](https://docs.huobigroup.com/docs/dm/v1/en/#query-information-on-contract-insurance-fund-balance-and-estimated-clawback-rate) has a frequency of 1 minute and data time range is from 2020-01-29 00:51:08.304 till now. Collectors are continously runing in two hosts.
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | default database timestamp
+estimated_clawback |float|
+insurance_fund     |float|
+symbol | string|
+
+### Tag Values
+**Symbol**:
+'BCH', 'BSV', 'BTC', 'EOS', 'ETC', 'ETH', 'LTC', 'TRX', 'XRP'
+
+### Data Sanity
+No downtime.
+
+### API Reference
+`GET https://api.hbdm.com/api/v1/contract_risk_info?symbol={symbol}`
+
+### API Query Parameters
+Name | Type | Required | Description
+-----| --------| ----------| --------- |
+symbol | string | true | Symbol name
+
+### API Response Schema
+Name | Type | |Description
+---- | ---- | ----------
+status	|string	|Request Processing Result
+symbol | string | symbol name
+insurance_fund |	float	| insurance fund balance
+estimated_clawback | float | estimated clawback rate
+ts |long	|Time of Respond Generation, Unit: Millisecond
+
+
+
+## Huobidm Index Price 
+```sql
+-- fetch data
+select * from huobidm_index_price limit 1 
+```
+> response
+
+```json
+[
+    {
+        'time': '2020-01-28T18:41:00.028999936Z', 
+        'index_price': 285.84063562725, 
+        'index_ts': 1580236860029, 
+        'symbol': 'BSV'
+   }
+]
+```
+
+### Description
+[Huobidm index price](https://docs.huobigroup.com/docs/dm/v1/en/#get-contract-index-price-information) has a frequency of 1 minute and data time range is from 2020-01-29 00:51:08.304 till now. Collectors are continously runing in two hosts.
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | default database timestamp
+index_price |float|
+index_ts    |integer|
+symbol | string | Tag values
+ 
+### Tag Values
+**Symbol**: 
+'BCH', 'BSV', 'BTC', 'EOS', 'ETC', 'ETH', 'LTC', 'TRX', 'XRP'
+
+### Data Sanity
+No downtime.
+
+### API Reference
+`GET https://api.hbdm.com/api/v1/contract_index?symbol={symmbol}`
+
+### API Query Parameters
+Name | Type | Required | Description
+-----| --------| ----------| --------- |
+symbol |string	|true	| Symbol name.
+
+### API Response Schema
+Name | Type | |Description
+---- | ---- | ----------
+status	|string	|Request Processing Result
+symbol | string | symbol name
+index_price |	float	| index price	
+ts |long	|Time of Respond Generation, Unit: Millisecond
+
+
+## Huobidm Insurance Fund
+```sql
+-- fetch data
+select * from huobidm_insurance_fund limit 1 
+```
+> response
+
+```json
+[
+    {
+        'time': '2018-11-10T08:00:00Z', 
+        'insurance_fund': 0, 
+        'symbol': 'BTC'
+   }
+]
+```
+
+### Description
+[Huobidm insurance fund](https://docs.huobigroup.com/docs/dm/v1/en/#query-history-records-of-insurance-fund-balance) has a frequency of 1 day and data time range is from 2018-11-10 08:00:00 till now. Collectors are continously runing in two hosts.
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | default database timestamp
+index_price |float|
+index_ts    |integer|
+symbol | string | Tag values
+ 
+### Tag Values
+**Symbol**: 
+'BCH', 'BSV', 'BTC', 'EOS', 'ETC', 'ETH', 'LTC', 'TRX', 'XRP'
+
+### Data Sanity
+No downtime.
+
+### API Reference
+`GET https://api.hbdm.com/api/v1/contract_insurance_fund?symbol={symmbol}`
+
+### API Query Parameters
+Name | Type | Required | Description
+-----| --------| ----------| --------- |
+symbol |string	|true	| Symbol name.
+
+### API Response Schema
+Name | Type | |Description
+---- | ---- | ----------
+status	|string	|Request Processing Result
+symbol | string | symbol name
+insurance_fund |	float	| insurance fund
+ts |long	|Time of Respond Generation, Unit: Millisecond
+
+
+## Huobidm Open Interest 
+```sql
+-- fetch data
+select * from huobidm_open_interest limit 1 
+```
+> response
+
+```json
+[
+    {
+        'time': '2020-01-23T23:29:17.432110597Z', 
+        'amount': 279899.30625102425, 
+        'contract_code': 'LTC200327', 
+        'contract_type': 'quarter', 
+        'symbol': 'LTC', 
+        'ts': 1579822034204, 
+        'volume': 1537179
+   }
+]
+```
+
+### Description
+[Huobidm open interest](https://docs.huobigroup.com/docs/dm/v1/en/#query-information-on-open-interest) has a frequency of 1 minute and data time range is from 2020-01-23 23:29:17.432110597 till now. Collectors are continously runing in two hosts.
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | default database timestamp
+amount        |float|
+contract_code |string|
+contract_type |string|
+ts            |integer|
+volume        |float|
+symbol | string | Tag values
+ 
+### Tag Values
+**Symbol**: 
+'BCH', 'BSV', 'BTC', 'EOS', 'ETC', 'ETH', 'LTC', 'TRX', 'XRP'
+
+### Data Sanity
+No downtime.
+
+### API Reference
+`GET https://api.hbdm.com/api/v1/contract_his_open_interest?symbol={symmbol}`
+
+### API Query Parameters
+Name | Type | Required | Description
+-----| --------| ----------| --------- |
+symbol |string	|true	| Symbol name.
+
+### API Response Schema
+Name | Type | |Description
+---- | ---- | ----------
+status	|string	|Request Processing Result
+symbol | string | symbol name
+volume|	float	| open interst
+amount_type | string | open interest unit
+ts |long	|Time of Respond Generation, Unit: Millisecond
+
+
+## Huobidm Orderbook
+```sql
+-- fetch data
+select * from huobidm_orderbook limit 1 
+```
+> response
+
+```json
+[
+    {
+        'time': '2020-02-25T00:47:54.152897372Z', 
+        'contract_code': 'BTC200228', 
+        'current_timestamp': 1582591673815, 
+        'id': 48226038904, 
+        'price': 9645.21, 
+        'type': 'ask', 
+        'vol': 275
+   }
+]
+```
+
+### Description
+[Huobidm orderbook](https://docs.huobigroup.com/docs/dm/v1/en/#get-market-depth) has a frequency of 30 seconds and data time range is from 2020-01-23 23:29:17.432110597 till now. Collectors are continously runing in two hosts.
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | default database timestamp
+current_timestamp |integer|
+id                |integer|
+price             |float|
+type              |string|
+vol               |float|
+contract_code | string | Tag values
+ 
+### Tag Values
+**Contract_code**: 
+'BCH-USD', 'BCH200228', 'BCH200306', 'BCH200313', 'BCH200320', 'BCH200327', 'BCH200403', 'BCH200410', 'BCH200417', 'BCH200424', 'BCH200501', 'BCH200626', 'BSV-USD', 'BSV200228', 'BSV200306', 'BSV200313', 'BSV200320', 'BSV200327', 'BSV200403', 'BSV200410', 'BSV200417', 'BSV200424', 'BSV200501', 'BSV200626', 'BTC-USD', 'BTC200228', 'BTC200306', 'BTC200313', 'BTC200320', 'BTC200327', 'BTC200403', 'BTC200410', 'BTC200417', 'BTC200424', 'BTC200501', 'BTC200626', 'EOS-USD', 'EOS200228', 'EOS200306', 'EOS200313', 'EOS200320', 'EOS200327', 'EOS200403', 'EOS200410', 'EOS200417', 'EOS200424', 'EOS200501', 'EOS200626', 'ETC-USD', 'ETC200228', 'ETC200306', 'ETC200313', 'ETC200320', 'ETC200327', 'ETC200403', 'ETC200410', 'ETC200417', 'ETC200424', 'ETC200501', 'ETC200626', 'ETH-USD', 'ETH200228', 'ETH200306', 'ETH200313', 'ETH200320', 'ETH200327', 'ETH200403', 'ETH200410', 'ETH200417', 'ETH200424', 'ETH200501', 'ETH200626', 'LINK-USD', 'LTC-USD', 'LTC200228', 'LTC200306', 'LTC200313', 'LTC200320', 'LTC200327', 'LTC200403', 'LTC200410', 'LTC200417', 'LTC200424', 'LTC200501', 'LTC200626', 'TRX-USD', 'TRX200228', 'TRX200306', 'TRX200313', 'TRX200320', 'TRX200327', 'TRX200403', 'TRX200410', 'TRX200417', 'TRX200424', 'TRX200501', 'TRX200626', 'XRP-USD', 'XRP200228', 'XRP200306', 'XRP200313', 'XRP200320', 'XRP200327', 'XRP200403', 'XRP200410', 'XRP200417', 'XRP200424', 'XRP200501', 'XRP200626'
+
+### Data Sanity
+No downtime.
+
+### API Reference
+`GET https://api.hbdm.com/market/depth?symbol={symbol}&type={step}`
+
+### API Query Parameters
+Name | Type | Required | Description
+-----| --------| ----------| --------- |
+symbol	|string	|true|	Case-Senstive.Only uppercase is supported.e.g. "BTC_CW" represents BTC “This Week”，"BTC_NW" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter”
+type	|string	|true	|Get depth data within step 150, use step0, step1, step2, step3, step4, step5（merged depth data 0-5）；when step is 0，depth data will not be merged; Get depth data within step 20, use step6, step7, step8, step9, step10, step11(merged depth data 7-11); when step is 6, depth data will not be merged.
+
+### API Response Schema
+Name | Type | |Description
+---- | ---- | ----------
+status	|string	|Request Processing Result
+asks | list | symbol name
+bids |	list	| open interst
+amount_type | string | open interest unit
+ts |long	|Time of Respond Generation, Unit: Millisecond
+
+
+
+
+## Huobidm Trade
+```sql
+-- fetch data
+select * from huobidm_trades limit 1 
+```
+> response
+
+```json
+[
+    {
+        'time': '2020-01-29T11:34:29.923000064Z', 
+        'amount': 34, 
+        'direction': 'sell', 
+        'id': 424745151260000, 
+        'price': 0.2393, 
+        'symbol': 'XRP200207'
+   }
+]
+```
+
+### Description
+[Huobidm trades](https://docs.huobigroup.com/docs/dm/v1/en/#the-last-trade-of-a-contract) has a frequency of 1 minute and data time range is from 2020-01-29 11:34:29.923000064 till now. Collectors are continously runing in two hosts.
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | default database timestamp
+direction |string|
+id        |integer|
+price     |float|
+symbol | string | Tag values
+ 
+### Tag Values
+**Symbol**: 
+'BCH-USD', 'BCH200131', 'BCH200207', 'BCH200214', 'BCH200221', 'BCH200228', 'BCH200306', 'BCH200313', 'BCH200320', 'BCH200327', 'BCH200403', 'BCH200410', 'BCH200417', 'BCH200424', 'BCH200501', 'BCH200626', 'BSV-USD', 'BSV200131', 'BSV200207', 'BSV200214', 'BSV200221', 'BSV200228', 'BSV200306', 'BSV200313', 'BSV200320', 'BSV200327', 'BSV200403', 'BSV200410', 'BSV200417', 'BSV200424', 'BSV200501', 'BSV200626', 'BTC-USD', 'BTC200131', 'BTC200207', 'BTC200214', 'BTC200221', 'BTC200228', 'BTC200306', 'BTC200313', 'BTC200320', 'BTC200327', 'BTC200403', 'BTC200410', 'BTC200417', 'BTC200424', 'BTC200501', 'BTC200626', 'EOS-USD', 'EOS200131', 'EOS200207', 'EOS200214', 'EOS200221', 'EOS200228', 'EOS200306', 'EOS200313', 'EOS200320', 'EOS200327', 'EOS200403', 'EOS200410', 'EOS200417', 'EOS200424', 'EOS200501', 'EOS200626', 'ETC-USD', 'ETC200131', 'ETC200207', 'ETC200214', 'ETC200221', 'ETC200228', 'ETC200306', 'ETC200313', 'ETC200320', 'ETC200327', 'ETC200403', 'ETC200410', 'ETC200417', 'ETC200424', 'ETC200501', 'ETC200626', 'ETH-USD', 'ETH200131', 'ETH200207', 'ETH200214', 'ETH200221', 'ETH200228', 'ETH200306', 'ETH200313', 'ETH200320', 'ETH200327', 'ETH200403', 'ETH200410', 'ETH200417', 'ETH200424', 'ETH200501', 'ETH200626', 'LINK-USD', 'LTC-USD', 'LTC200131', 'LTC200207', 'LTC200214', 'LTC200221', 'LTC200228', 'LTC200306', 'LTC200313', 'LTC200320', 'LTC200327', 'LTC200403', 'LTC200410', 'LTC200417', 'LTC200424', 'LTC200501', 'LTC200626', 'TRX-USD', 'TRX200131', 'TRX200207', 'TRX200214', 'TRX200221', 'TRX200228', 'TRX200306', 'TRX200313', 'TRX200320', 'TRX200327', 'TRX200403', 'TRX200410', 'TRX200417', 'TRX200424', 'TRX200501', 'TRX200626', 'XRP-USD', 'XRP200131', 'XRP200207', 'XRP200214', 'XRP200221', 'XRP200228', 'XRP200306', 'XRP200313', 'XRP200320', 'XRP200327', 'XRP200403', 'XRP200410', 'XRP200417', 'XRP200424', 'XRP200501', 'XRP200626'
+
+### Data Sanity
+No downtime.
+
+### API Reference
+`GET https://api.hbdm.com/market/trade?symbol={symbol}`
+
+### API Query Parameters
+Name | Type | Required | Description
+-----| --------| ----------| --------- |
+symbol	|string	|true|	Case-Senstive.Only uppercase is supported.e.g. "BTC_CW" represents BTC “This Week”，"BTC_NW" represents BTC “Next 
+
+### API Response Schema
+Name | Type | |Description
+---- | ---- | ----------
+status	|string	|Request Processing Result
+tick | object| trade data
+ts |long	|Time of Respond Generation, Unit: Millisecond
+
+
+
 
 # MXC
 [MXC exchange](https://www.mxc.com/) is a crypto currency. Check their [api](https://github.com/mxcdevelop/APIDoc/tree/master/api_doc_v1) 
@@ -4153,7 +4681,7 @@ No information.
 ## Hashpool Coins
 ```sql
 -- fetch data
-select * from cosmos_validator_ranking limit 1
+select * from hashpool_coins limit 1
 ```
 > response
 
@@ -4215,6 +4743,278 @@ netHashrateUnit | string | The unit of network hashrate
 
 
 # HNScan
+[HNSCAN](https://hnscan.com/) is a blockchain and they have issued token called HNS. 
+
+## HHScan Block Info
+```sql
+-- fetch data
+select * from hnscan_block_info limit 1
+```
+> response
+
+```json
+[
+
+      {     
+          'time': '2020-03-04T23:19:29.759560883Z', 
+          'averageFee': 36500, 
+          'bits': 436425535, 
+          'chainwork': '000000000000000000000000000000000000000000000001fb05f10db38c926e', 
+          'coinbase': '6632706f6f6c;0eaeb63ca16e32df;0000000000000000', 
+          'confirmations': 1, 
+          'difficulty': 5045429.038128846, 
+          'fees': 292000, 
+          'hash': '00000000000000c09cac081eab89f6a784af4a008a9cf47e06c946a55883d2d9', 
+          'height': 4853, 
+          'mask': '0000000000000000000000000000000000000000000000000000000000000000', 
+          'medianTime': 1583361324, 
+          'merkleRoot': 'a90bfb87d502095d9e06a2a470d48759b518403c10a09c026d35c745f8518d6b', 
+          'miner': 'hs1qqzlmrc6phwz2drwshstcr30vuhjacv5z0u2x9l', 
+          'nextHash': None, 
+          'nonce': 4189087, 
+          'prevBlock': '0000000000000154466ef6ed90a0254dc50074bba469189c39ec7077ab760452', 
+          'reservedRoot': '0000000000000000000000000000000000000000000000000000000000000000', 
+          'size': 4540, 
+          'strippedSize': 2797, 
+          'treeRoot': '197fcbc1c0f5acea51221800ec407299b57b73a65e900276644f8d1360b4c332', 
+          'txs': 8, 
+          'version': 0, 
+          'weight': 12931, 
+          'witnessRoot': 'c832921f2811a66ecf5e614953caeccef5c1ef5725efe74e785d83969eb850c5'
+      }
+]
+```
+
+### Description
+[Hnscan block info](https://hnscan.com/blocks) has a freqeuncy of 1 hour and data time range is from 2020-03-04 23:19:29.759560883 till now. Collectors are continously runing in two hosts.
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | default database timestamp
+averageFee    |integer|
+bits          |integer|
+chainwork     |string|
+coinbase      |string|
+confirmations |integer|
+difficulty    |float|
+fees          |integer
+hash          |string
+height        |integer|
+mask          |string|
+medianTime    |integer|
+merkleRoot    |string|
+miner         |string|
+nextHash      |string|
+nonce         |integer|
+prevBlock     |string|
+reservedRoot  |string|
+size          |integer|
+strippedSize  |integer|
+treeRoot      |string|
+txs           |integer|
+version       |integer|
+weight        |integer|
+witnessRoot   |string|
+
+### Data Sanity
+No downtime.
+
+### API Reference
+`GET https://api.hnscan.com/blocks/?offset={}&limit={}`
+
+### API Query Parameters
+Name | Type | Description 
+---- | ---- |----------
+offset | int | how far to gp back
+limit | int | number of return data
+
+### API Response Schema
+No information. 
+
+
+## HNScan Chart 
+```sql
+-- fetch data
+select * from hnscan_chart_data limit 1
+```
+> response
+
+```json
+[
+
+      {     
+          'time': '2019-04-04T00:00:00Z', 
+          'burned': 0, 
+          'daily_tx': 182, 
+          'difficulty': 0.026332745837485908, 
+          'supply': 366373.032008, 
+          'total_tx': 181
+      }
+]
+```
+
+### Description
+[Hnscan chart](https://hnscan.com/charts) has a freqeuncy of 1 day and data time range is from 2019-04-04 00:00:00  till now. Collectors are continously runing in two hosts.
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | default database timestamp
+burned     |float|
+daily_tx   |integer|
+difficulty |float|
+supply     |float|
+total_tx   |integer|
+
+### Data Sanity
+No downtime.
+
+### API Reference
+**Difficulty**:
+`GET https://api.hnscan.com/charts/difficulty?endTime={}&startTime={}`
+
+**DailyTX**:
+`GET https://api.hnscan.com/charts/dailyTransactions?endTime={}&startTime={}`
+
+**DailyTotalTx**:
+`GET https://api.hnscan.com/charts/dailyTotalTransactions?endTime={}&startTime={}`
+
+**Supply**:
+`GET https://api.hnscan.com/charts/supply?endTime={}&startTime={}`
+
+**Burned**:
+`GET https://api.hnscan.com/charts/burned?endTime={}&startTime={}`
+
+### API Query Parameters
+Name | Type | Description 
+---- | ---- |----------
+startTime | int | start timestamp
+endTime | int | end timestamp
+
+### API Response Schema
+No information. 
+
+
+
+## HNScan Summary
+```sql
+-- fetch data
+select * from hnscan_summary limit 1
+```
+> response
+
+```json
+[
+
+      {     
+          'time': '2020-02-07T04:34:02.057248932Z', 
+          'chainWork': '000000000000000000000000000000000000000000000000073571d46064ea4b', 
+          'difficulty': 532765.0078885447, 
+          'hashrate': 4064061692099.727, 
+          'network': 'main', 
+          'registeredNames': 0, 
+          'unconfirmed': 0, 
+          'unconfirmedSize': 0
+      }
+]
+```
+
+### Description
+Hnscan summary has a freqeuncy of 9 minutes and data time range is from 2020-02-07 04:34:02.057248932 till now. Collectors are continously runing in two hosts.
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | default database timestamp
+chainWork       |string|
+difficulty      |float|
+hashrate        |float|
+network         |string|
+registeredNames |integer|
+unconfirmed     |integer|
+unconfirmedSize |integer|
+
+### Data Sanity
+No downtime.
+
+### API Reference
+`GET https://api.hnscan.com/summary`
+
+### API Query Parameters
+Not required.
+
+### API Response Schema
+No information. 
+
+
+
+## HNScan Status 
+```sql
+-- fetch data
+select * from hnscan_status limit 1
+```
+> response
+
+```json
+[
+
+      {     
+          'time': '2020-03-03T22:11:31.390484993Z', 
+          'agent': '/hsd:2.0.2/', 
+          'connections': 155, 
+          'difficulty': 3858106.8013179735, 
+          'height': 4688, 
+          'host': '138.68.61.31',
+          'key': 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 
+          'network': 'main', 
+          'port': 12038, 
+          'progress': 1, 
+          'totalBytesRecv': 348831794, 
+          'totalBytesSent': 770841723, 
+          'uptime': 1569528, 
+          'version': '0.0.0'}
+      }
+]
+```
+
+### Description
+[Hnscan status](https://hnscan.com/status) has a freqeuncy of 9 minutes and data time range is from2020-03-03 22:11:31.390484993 till now. Collectors are continously runing in two hosts.
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | default database timestamp
+agent          |string |
+connections    |integer| 
+difficulty     |float|
+height         |integer |
+host           |string|
+key            |string|
+network        |string|
+port           |integer |
+progress       |integer |
+totalBytesRecv |integer |
+totalBytesSent |integer |
+uptime         |integer |
+version        |string |
+
+### Data Sanity
+No downtime.
+
+### API Reference
+`GET https://api.hnscan.com/status/`
+
+### API Query Parameters
+Not required.
+
+### API Response Schema
+No information. 
+
+
+
+
+
 
 # Namebase
 [Namebase](https://www.namebase.io/) is a platform that can either trade crypto currency HNS or auction on website domian. Check their [api](https://github.com/namebasehq/exchange-api-documentation/blob/master/rest-api.md).
