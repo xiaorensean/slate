@@ -72,14 +72,14 @@ TableName | Frequency | DataType | CurrentStatus
 [coinex_trades](#coinex-trades) | 30 seconds | Trade Data | Running
 [coinflex_burn_fees](#coinflex-burn-fees) | 1 day | Burn Fees | NoLongerUpdating
 [compound_borrow_rates](#compound-borrow-rates) | 1 minute | Borrow Rates | Running
-[cosmos_validator_ranking](#comos-validator-ranking) | 1 hour | Validator Ranking | Running
-[cosmos_validator_status](#comos-validator-status) | 1 hour | Validator Status | Running
+[cosmos_validator_ranking](#cosmos-validator-ranking) | 1 hour | Validator Ranking | Running
+[cosmos_validator_status](#cosmos-validator-status) | 1 hour | Validator Status | Running
 deribit_fundingRate | 8 hours | Funding Rate | Running
 deribit_optoinTicker | RealTime | Option Ticker | Running
 deribit_orderbook | RealTime | Orderbok | Running
 deribit_ticker | RealTime | Ticker | Running
 deribit_trades | RealTime | Trade Data | Running
-dydx_borrow_rates | 1 minute | Borrow Rates | Running
+[dydx_borrow_rates](#dydx-borrow-rates) | 1 minute | Borrow Rates | Running
 [exchange_open_interest](#open-interest) | 1 minute | Open Interest | Running
 FTX_funding_rates | 8 hours | Funding Rates | Running
 FTX_future_stats | 1 minute | Market Summary | Running
@@ -106,8 +106,8 @@ huobidm_insurance_fund | 1 minute | Insurance Fund | Running
 huobidm_open_interest | 1 minute | Open Interest | Running
 huobidm_orderbook | 30 seconds | Orderbook | Running
 huobidm_trades | RealTime | Trade | Running
-mxc_trades | RealTime | Trade | Running
-mxc_orderbook | 30 seconds | Orderbook | Running
+[mxc_trades](#mxc-trades) | 5 minutes | Trade | Running
+[mxc_orderbook](#mxc-orderbook) | 30 seconds | Orderbook | Running
 namebase_domain | 8 hours | Domain Data | Running
 namebase_orderbook |30 seconds | Orderbook | Running 
 namebase_trade | RealTime | Trade | Running
@@ -136,7 +136,7 @@ poloniex_leaderboard | 1 hour | Leaderboard | Running
 poloniex_orderbook | 1 minute | Orderbook | Running
 poloniex_trades | 1 minute | Trade | Running
 [sp500_futures](#investing) | 1 second | Trade | Running
-tether_richlist | 1 hour | Leaderboard | Running
+[tether_richlist](#tether-richlist) | 1 hour | Leaderboard | Running
 [tezos_leaderboard](#tezos-leaderboard) | 1 hour | Leaderboard | Running
 [wazirx_tickers](#wazirx-tickers) | 1 hour | Ticker | Running
 
@@ -2616,7 +2616,100 @@ CTokenMeta	| meta	|  Metadata for all CTokens specified
 
 # Deribit
 
+
+
 # Dydx
+[Dydx](https://dydx.exchange/) is a crypto currency exchange. Check thier [api](https://docs.dydx.exchange/#/).
+
+## Dydx Borrow Rates
+```sql
+-- fetch data
+select * from compound_borrow_rates limit 1 
+```
+> response
+
+```json
+[
+{
+'time': '2019-12-13T21:09:53.898804006Z', 
+'borrowIndex': '1.006031229754822259', 
+'borrowInterestRateSeconds': '0.00000000010466883', 
+'collateralRatio': '1.15', 
+'contractAddress': '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2', 
+'createdAt': '2018-07-10T04:08:53.352Z', 
+'currencyUuid': '9debe831-5ccd-448b-91f7-cd247ecddc22', 
+'decimals': 18, 
+'id': 0, 
+'lastIndexUpdateSeconds': '1576271271', 
+'marginPremium': '0', 
+'name': 'Ethereum', 
+'oraclePrice': '144250000000000000000', 
+'spreadPremium': '0', 
+'supplyIndex': '1.000753414014796151', 
+'supplyInterestRateSeconds': '0.00000000000820549837405634341628924066685701737125718373287686068422216351405335', 
+'symbol': 'WETH', 
+'totalBorrowAPR': '0.00330083622288', 
+'totalBorrowAPY': '0.0033062899817690727', 
+'totalBorrowPar': '7999732470426071831156', 
+'totalBorrowWei': '8047980694932323332662.809402813438501404', 
+'totalSupplyAPR': '0.0002587685967242408459760974936700028998199665462000046785376301485791864456', 
+'totalSupplyAPY': '0.00025880208020567785', 
+'totalSupplyPar': '97453140705341277722335', 
+'totalSupplyWei': '97526563267334583101049.371353402604732585', 
+'updatedAt': '2018-07-10T04:08:53.352Z', 
+'uuid': '9debe831-5ccd-448b-91f7-cd247ecddc22'
+}
+]
+```
+
+### Description
+[Dydx borrow rates](https://defirate.com/dydx/) has a frequency of 1 minute and data time range is from 2019-12-13 21:09:44.88 till now. Collectors are continously runing in two hosts.
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | default database timestamp
+borrowIndex               |string|
+borrowInterestRateSeconds |string|
+collateralRatio           |string|
+contractAddress           |string|
+createdAt                 |string|
+currencyUuid              |string|
+decimals                  |integer|
+id                        |integer|
+lastIndexUpdateSeconds    |string|
+marginPremium             |string|
+name                      |string|
+oraclePrice               |string|
+spreadPremium             |string|
+supplyIndex               |string|
+supplyInterestRateSeconds |string|
+symbol                    |string|
+totalBorrowAPR            |string|
+totalBorrowAPY            |string|
+totalBorrowPar            |string|
+totalBorrowWei            |string|
+totalSupplyAPR            |string|
+totalSupplyAPY            |string|
+totalSupplyPar            |string|
+totalSupplyWei            |string|
+updatedAt                 |string|
+uuid                      |string|
+
+
+### Data Sanity
+No downtime.
+
+### API Reference
+`GET https://api.dydx.exchange/v1/markets`
+
+### API Query Parameters
+Not required.
+
+### API Return Schema
+No information.
+
+
 
 # FTX
 
@@ -2625,10 +2718,132 @@ CTokenMeta	| meta	|  Metadata for all CTokens specified
 # HuobiDM
 
 # MXC
+(MXC exchange)[https://www.mxc.com/] is a crypto currency. Check their [api](https://github.com/mxcdevelop/APIDoc/tree/master/api_doc_v1) 
+
+## MXC Trades
+```sql
+-- fetch data
+select * from mxc_trades limit 1 
+```
+> response
+
+```json
+[
+    {
+        'time': '2020-03-05T20:20:10.715612701Z', 
+        'amount': 124.7, 
+        'price': 0.39951, 
+        'side': 'sell', 
+        'symbol': 'HNS_USDT', 
+        'trade_time': '2020-03-06 04:19:48.771'
+   }
+]
+```
+
+### Description
+[MXC trades](https://github.com/mxcdevelop/APIDoc/tree/master/api_doc_v1#%E8%8E%B7%E5%8F%96%E5%8D%95%E4%B8%AA%E5%B8%81%E7%A7%8D%E6%88%90%E4%BA%A4%E8%AE%B0%E5%BD%95%E4%BF%A1%E6%81%AF) has a frequency of 5 minute and data time range is from 2020-03-05 20:20:10.715612701 till now. Collectors are continously runing in two hosts.
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | default database timestamp
+amount     |float|
+price      |float|
+side       |string|
+trade_time |string| data time
+symbol | string | tag values
+
+### Tag Values
+**symbol**: HNS_USDT
+
+### Data Sanity
+No downtime.
+
+### API Reference
+`GET https://www.mxc.io/open/api/v1/data/history`
+
+### API Query Parameters
+Name | Type | Required | Description
+-----| --------| ----------| --------- |
+market	|String|	Yes	| Get makret list
+
+### API Return Schema
+Name | Type | Description
+---- | ---- | ----------
+tradeTime	|Integer|	Transaction time
+tradePrice	|float|	Transaction price
+tradeQuantity	|float|	Transaction amount
+tradeType	|String|	buy/sell
+
+
+## MXC Orderbook
+```sql
+-- fetch data
+select * from mxc_orderbook limit 1 
+```
+> response
+
+```json
+[
+    {
+       'time': '2020-03-05T19:57:35.660565377Z', 
+       'amount': 15.03, 
+       'current_timetamp': '2020-03-05 19:57:35.634187', 
+       'price': 0.40517, 
+       'symbol': 'HNS_USDT', 
+       'type': 'asks'
+   }
+]
+```
+
+### Description
+[MXC orderbook](https://github.com/mxcdevelop/APIDoc/tree/master/api_doc_v1#%E8%8E%B7%E5%8F%96%E6%B7%B1%E5%BA%A6%E4%BF%A1%E6%81%AF) has a frequency of 30 seconds and data time range is from 2020-03-05T19:57:35.660565377 till now. Collectors are continously runing in two hosts.
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | default database timestamp
+amount           |float|
+current_timetamp |string|
+price            |float|
+type             |string| asks/bids
+symbol | string | tag values
+
+### Tag Values
+**symbol**: HNS_USDT
+
+### Data Sanity
+No downtime.
+
+### API Reference
+`GET https://www.mxc.io/open/api/v1/data/depth`
+
+### API Query Parameters
+Name | Type | Required | Description
+-----| --------| ----------| --------- |
+market	|String|	Yes	| Get makret list
+depth | string | Yes | Market depth
+
+### API Return Schema
+Name | Type | Description
+---- | ---- | ----------
+Price	|float|	Book price
+Quantity	|float|	Book amount
+
+
 
 # OKEX
 
+
+
+
 # Poloniex
+
+
+
+
+
+
 
 # WazirX
 [WazirX](https://wazirx.com/) is a cryptocurrency exchange in India. The [api](https://github.com/WazirX/wazirx-api) is listed.
@@ -2712,7 +2927,7 @@ at | string  | Timestamp when ticker information is fetched
 ## Cosmos Validator Ranking 
 ```sql
 -- fetch data
-select * from cosmos_validator_ranking
+select * from cosmos_validator_ranking limit 1
 ```
 > response
 
@@ -2794,7 +3009,7 @@ No information.
 ## Cosmos Validator Status
 ```sql
 -- fetch data
-select * from cosmos_validator_status
+select * from cosmos_validator_status limit 1
 ```
 > response
 
@@ -2859,6 +3074,48 @@ No information.
 # Nervos
 
 # Tether
+[Tether](https://tether.to/) is a blockchian
+
+## Tether Richlist
+```sql
+-- fetch data
+select * from tether_richlist limit 1 
+```
+> response
+
+```json
+[
+{'time': '2019-10-10T20:13:13.319694911Z', 
+'Address': '1FoWyxwPXuj4C6abqwhjDWdz6D4PZgYRjA', 
+'Amount': None, 
+'Balance': '372,673,332', 
+'Last Movement(UTC)': 'Oct 10 01:50 PM', 
+'Remark': 'Binance', 
+'Update Time': None
+]
+```
+
+### Description
+[Tezos richlist](https://blockspur.com/tether/richlist) has a frequency of 1 hour and data time range is from 2019-10-10 20:13:13.319694911Z till now. Collectors are continously runing in two hosts.
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | default database timestamp
+Address            string
+Amount             float
+Balance            string
+Last Movement(UTC) string
+Remark             string
+Update Time        string
+
+### Data Sanity
+No downtime.
+
+### Webscrapy
+The data is collected thourgh webscrapying and the website 
+
+
 
 # Tezos
 [Tezos](https://stake.fish/en/tezos/) is a blockchain. 
