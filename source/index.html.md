@@ -4,6 +4,9 @@ title: VQR Data Catalogue
 language_tabs: # must be one of https://git.io/vQNgJ
   - sql
   
+toc_footers:
+  -<a href='https://github.com/virdevop/Market-Data-Host-1'>Check out scripts</a>
+
 search: true
 ---
 
