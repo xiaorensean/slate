@@ -5790,7 +5790,7 @@ BTC-PERPETUAL, ETH-PERPETUAL</p>
 
 </span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='description-37'>Description</h3>
-<p><a href="https://docs.deribit.com/?python#ticker-instrument_name-interval">Deribit ticker/ Deribit optionTicker</a> is connected thourgh websocket and data time range for ticker is from 2019-07-11T15:59:41.176999936Z till now. Collectors are continously runing in two hosts.</p>
+<p><a href="https://docs.deribit.com/?python#ticker-instrument_name-interval">Deribit option ticker</a> is connected thourgh websocket and data time range for ticker is from 2019-07-11T15:59:41.176999936Z till now. Collectors are continously runing in two hosts.</p>
 <h3 id='data-schema-37'>Data Schema</h3>
 <table><thead>
 <tr>
@@ -5989,8 +5989,8 @@ interval    |true   |string |100ms; raw |Frequency of notifications. Events will
 Fields  |Type | Description
 --------| ----| ----------|
 data    | object    |
-  ›  ask_iv   |number|    (Only for option) implied volatility for best ask
-  ›  best_ask_amount  |number|    It represents the requested order size of all best asks
+›  ask_iv |number|    (Only for option) implied volatility for best ask
+›  best_ask_amount    |number|    It represents the requested order size of all best asks
   ›  best_ask_price   |number|    The current best ask price, null if there aren't any asks
   ›  best_bid_amount  |number|    It represents the requested order size of all best bids
   ›  best_bid_price   |number|    The current best bid price, null if there aren't any bids
@@ -6023,6 +6023,11 @@ data    | object    |
   ›  timestamp    |integer|   The timestamp (milliseconds since the Unix epoch)
   ›  underlying_index |number|    Name of the underlying future, or index_price (options only)
   ›  underlying_price |number|    Underlying price for implied volatility calculations (options only)
+
+
+
+
+
 
 
 ## Deribit Ticker
@@ -6063,7 +6068,7 @@ select * from deribit_ticker
 
 </span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='description-38'>Description</h3>
-<p><a href="https://docs.deribit.com/?python#ticker-instrument_name-interval">Deribit ticker/ Deribit optionTicker</a> is connected thourgh websocket and data time range for ticker is from 2019-07-11T15:59:41.176999936Z till now. Collectors are continously runing in two hosts.</p>
+<p><a href="https://docs.deribit.com/?python#ticker-instrument_name-interval">Deribit ticker</a> is connected thourgh websocket and data time range for ticker is from 2019-07-11T15:59:41.176999936Z till now. Collectors are continously runing in two hosts.</p>
 <h3 id='data-schema-38'>Data Schema</h3>
 <table><thead>
 <tr>
