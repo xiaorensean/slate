@@ -1030,7 +1030,7 @@ Need credentials to log in.
 <td>Running</td>
 </tr>
 <tr>
-<td><a href="#hnscan-blcokchain">hnscan_transaction</a></td>
+<td><a href="#hnscan-blockchain">hnscan_transaction</a></td>
 <td>1 hour</td>
 <td>BlockChian</td>
 <td>Running</td>
@@ -7800,15 +7800,49 @@ this_week, next_week, quarter</p>
 </tr>
 </tbody></table>
 <h3 id='api-response-schema-47'>API Response Schema</h3>
-<p>Name | Type | |Description
----- | ---- | ----------
-status  |string |Request Processing Result
-symbol  |   string| Variety code    &quot;BTC&quot;,&quot;ETH&quot; ...
-high_limit| decimal|    Highest Buying Price<br>
-low_limit|  decimal|    Lowest Selling Price<br>
-contract_code   |string|    Contract Code   eg &quot;BTC180914&quot; ...
-contract_type   |string|    Contract Type   &quot;this_week&quot;,&quot;next_week&quot;,&quot;quarter&quot;
-ts |long    |Time of Respond Generation, Unit: Millisecond</p>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>Request Processing Result</td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>Variety code    &quot;BTC&quot;,&quot;ETH&quot; ...</td>
+</tr>
+<tr>
+<td>high_limit</td>
+<td>decimal</td>
+<td>Highest Buying Price</td>
+</tr>
+<tr>
+<td>low_limit</td>
+<td>decimal</td>
+<td>Lowest Selling Price</td>
+</tr>
+<tr>
+<td>contract_code</td>
+<td>string</td>
+<td>Contract Code   eg &quot;BTC180914&quot; ...</td>
+</tr>
+<tr>
+<td>contract_type</td>
+<td>string</td>
+<td>Contract Type   &quot;this_week&quot;,&quot;next_week&quot;,&quot;quarter&quot;</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>long</td>
+<td>Time of Respond Generation, Unit: Millisecond</td>
+</tr>
+</tbody></table>
 <h2 id='huobidm-contract-risk-info'>Huobidm Contract Risk Info</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch data</span>
 <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">huobidm_contract_risk_info</span> <span class="k">limit</span> <span class="mi">1</span> 
 </code></pre>
