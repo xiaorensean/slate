@@ -90,7 +90,7 @@ FTX_trades | RealTime | Trades | Running
 FTX_trades_option | RealTime | Trades | Running
 [gateio_orderbook](#gateio-orderbook) | 30 seconds | Orderbook | Running
 [gateio_trades_data](#gateio-trades) | RealTime | Trades | Running
-hashpool_coins | 1 hour | Summary | Running
+[hashpool_coins](#hashpool-coins) | 1 hour | Summary | Running
 hnscan_block_info | RealTime | BlockChain | Running
 hnscan_chart_data | 1 day | Chart | Running
 hnscan_chart_data_snapshot | 1 day | Chart | Running
@@ -3171,6 +3171,71 @@ Not required.
 
 ### API Return Schema
 No information.
+
+# Hashpool
+[Hashpool](https://hashpool.com/) is blockchain. Check their [api](https://support.hashpool.com/article/api-documents/).
+
+## Hashpool Coins
+```sql
+-- fetch data
+select * from cosmos_validator_ranking limit 1
+```
+> response
+
+```json
+[
+
+      {     
+          'time': '2020-04-08T17:21:32.267377023Z', 
+          'coin': 'TRB', 
+          'fee': 5, 
+          'netHashRate': 15.35, 
+          'netHashRateUnit': 'TH/s', 
+          'payoutThreshould': 1, 
+          'poolHashRate': 4.06, 
+          'poolHashRateUnit': 'TH/s', 
+          'sort': 700
+      }
+]
+```
+
+### Description
+[Hsahpool coins](https://hashpool.com/) has a frequency of 1 hour and data time range is from 2020-04-08 17:21:32.267377023 till now. Collectors are continously runing in two hosts.
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | default database timestamp
+coin             string
+fee              float
+netHashRate      float
+netHashRateUnit  string
+payoutThreshould float
+poolHashRate     float
+poolHashRateUnit string
+sort             integer
+
+### Data Sanity
+No downtime.
+
+### API Reference
+`GET https://hashpool.com/api/blocks/{coin}?offset=0&limit=50`
+
+### API Query Parameters
+Name | Type | Description 
+---- | ---- |----------
+coin |  string | Coin symbol
+
+### API Return Schema
+Name | Type | Description 
+---- | ---- | ----------
+coin | string  |Coin symbol
+fee |  float |  Pool mining fee percent
+minPay| int | Minimum payout
+poolHashrate |float | Hashrate of hashpool
+poolHashrateUnit | string  |  The unit of pool hashrate
+netHashrate | float  |  Total hashrate of network
+netHashrateUnit | string | The unit of network hashrate
 
 
 
