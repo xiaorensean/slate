@@ -18,7 +18,7 @@ Welcome to the **Data Catalogue**! The document gives you descriptions on databa
 Database is [InfluxDB](https://docs.influxdata.com/influxdb/v1.8/),whihc is a time-series database. Few terminologies to explain, tags in the influxdb is the unqie index and it is very useful to sort tickers via taging. Measurement is another word for table in the influxdb. Time is the defalut column in the table, which means the time that data wrote into database. Currently, we have two influxbd servers, one is primary server and another one is backup server.
 
 **Host Server 1**: 
-`Host-1 (Primary): 99-79-47-186`
+`Host-1 (Primary): 35-183-117-153`
 **Host Server 2**:
 `Host-2 (Backup): 15-223-68-239`
 
@@ -3034,7 +3034,7 @@ select * from poloniex_leaderboard limit 1
 ```
 
 ### Description
-[Poloniex leaderboard](https://coinflex.com/flexcoin/) has a frequency of 1 hour and data time range is from 2020-01-22T18:44:07.917126986Z to 2020-02-17 21:39:25. Collectors are continously runing in two hosts.
+[Poloniex leaderboard](https://poloniex.com/leaderboard/matic-trading-competition) has a frequency of 1 hour and data time range is from 2020-01-22T18:44:07.917126986Z to 2020-02-17 21:39:25. Collectors are continously runing in two hosts.
 
 ### Data Schema
 fieldName | fieldType | description
