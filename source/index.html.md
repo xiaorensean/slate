@@ -2949,7 +2949,6 @@ data	| object	|
   ›  greeks	| object	|
   ›  index_price	|number|	Current index price
   ›  instrument_name	|string	Unique instrument identifier
-  ›  interest_rate	|number|	Interest rate used in implied volatility calculations (options only)
   ›  last_price	|number|	The price for the last trade
   ›  mark_price	|number|	The mark price for the instrument
   ›  max_price	|number|	The maximum price for the future. Any buy orders you submit higher than this price, will be clamped to this maximum.
@@ -2963,8 +2962,69 @@ data	| object	|
   ›    ›  price_change	|number|	24-hour price change expressed as a percentage, null if there weren't any trades
   ›    ›  volume	|number|	volume during last 24h in base currency
   ›  timestamp	|integer|	The timestamp (milliseconds since the Unix epoch)
-  ›  underlying_index	|number|	Name of the underlying future, or index_price (options only)
-  ›  underlying_price	|number|	Underlying price for implied volatility calculations (options only)
+
+
+## Deribit Orderbook
+```sql
+-- fetch orderbook  
+select * from deribit_orderbook
+```
+
+> response
+
+```json
+[
+
+ {
+   'time': '2020-02-25T00:47:24.731618392Z', 
+   'amount': 1330, 
+   'price': 9618.5, 
+   'symbol': 'BTC-PERPETUAL', 
+   'timestamp': 1582591644630, 
+   'type': 'asks'
+   
+ }
+
+]
+```
+
+### Description
+[Deribit orderbook](https://deribitexchange.gitbooks.io/deribit-api/rpc-endpoints.html) has a frequency of 10 or 20 seconds and data time range is from 2020-02-25T00:47:24.731618392Z till now but the data is consistently collecting for at least from 2020-03-15. Collectors are continously runing in two hosts.
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | default database timestamp
+amount    |float|
+price     |float|
+timestamp |integer|
+type      |string|
+symbol | string | tag values
+
+### Tag Vlaues 
+**Futures, Options and Swap Symbols**(Symbol Snapshot and symbols will increase per day due to rolling option tickers):
+'BTC-10APR20-4750-C', 'BTC-10APR20-4750-P', 'BTC-10APR20-5000-C', 'BTC-10APR20-5000-P', 'BTC-10APR20-5250-C', 'BTC-10APR20-5250-P', 'ETH-9APR20-155-C', 'ETH-9APR20-155-P', 'ETH-9APR20-160-C', 'ETH-9APR20-160-P', 'ETH-9APR20-165-C', 'ETH-9APR20-165-P', 'ETH-9APR20-170-C', 'ETH-9APR20-170-P', 'ETH-9APR20-175-C', 'ETH-9APR20-175-P', 'ETH-9APR20-180-C', 'ETH-9APR20-180-P', 'ETH-9APR20-185-C', 'ETH-9APR20-185-P', 'ETH-9APR20-190-C', 'ETH-9APR20-190-P', 'ETH-9APR20-195-C', 'ETH-9APR20-195-P', 'ETH-PERPETUAL'
+
+
+### Data Sanity
+No downtime.
+
+### API Reference
+
+`GET https://www.deribit.com/api/v1/public/getorderbook`
+
+### API Query Parameters
+Name | Type | Mandatory | Description | Example
+---- | ---- | ---------- | -------- | ----------
+instrument	|string|		REQUIRED |The instrument name for which to retrieve the order book, see getinstruments to obtain instrument names.
+depth	|integer|	Not required	|The number of entries to return for bids and asks
+
+### API Return Schema
+Fields	|Type	| Example | Description
+--------| ----| ----------|
+bids	|list|	[800(quantity/int),10322.5(price/float), 800(cm/int)|	The list of all bids, best bid first. See below for entry details
+asks	|list| [800(quantity/int),10322.5(price/float), 800(cm/int)	|	The list of all asks, best ask first. See below for entry details
+state	|string |"open"|	The state of the order book. Possible values include "open" and "closed".
 
 
 ## Deribit Trades
@@ -3050,30 +3110,13 @@ kind	|false|	string|	future;option	|Instrument kind, if not provided instruments
 start_id|	false	|string	| |The ID number of the first trade to be returned
 end_id	|false	|string	| |The ID number of the last trade to be returned
 count	|false	|integer	| |Number of requested items, default - 10
-include_old	|false	|boolean	| |	Include trades older than a few recent days, default - false
-sorting	|false	|string	|asc;desc;default	|Direction of results sorting (default value means no sorting)
 
 
 ### API Return Schema
 Fields	|Type | Description
 --------| ----| ----------|
-id	|integer	|The id that was sent in the request
-jsonrpc	|string	|The JSON-RPC version (2.0)
-result	|object	|
-  ›  has_more	|boolean|	
-  ›  trades	|array of object|	
-  ›    ›  amount	|number	|Trade amount. For perpetual and futures - in USD units, for options it is amount of corresponding cryptocurrency contracts, e.g., BTC or ETH.
-  ›    ›  block_trade_id	|string	| Block trade id - when trade was part of block trade
-  ›    ›  direction	|string	|Direction: buy, or sell
-  ›    ›  index_price	|number	|Index Price at the moment of trade
-  ›    ›  instrument_name	|string	|Unique instrument identifier
-  ›    ›  iv	number	|Option |implied volatility for the price (Option only)
-  ›    ›  liquidation	|string	|Optional field (only for trades caused by liquidation): "M" when maker side of trade was under liquidation, "T" when taker side was under liquidation, "MT" when both sides of trade were under liquidation
-  ›    ›  price	|number	|Price in base currency
-  ›    ›  tick_direction	|integer|	Direction of the "tick" (0 = Plus Tick, 1 = Zero-Plus Tick, 2 = Minus Tick, 3 = Zero-Minus Tick).
-  ›    ›  timestamp	|integer|	The timestamp of the trade
-  ›    ›  trade_id	|string|	Unique (per currency) trade identifier
-  ›    ›  trade_seq	|integer|	The sequence number of the trade within instrument
+amount|number|Trade amount.For perpetual and futures in USD units, for options it is amount of corresponding cryptocurrency contracts
+price	|number	|Price in base currency
 
 
 
