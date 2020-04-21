@@ -72,8 +72,8 @@ TableName | Frequency | DataType | CurrentStatus
 [coinex_trades](#coinex-trades) | 30 seconds | Trade Data | Running
 [coinflex_burn_fees](#coinflex-burn-fees) | 1 day | Burn Fees | NoLongerUpdating
 [compound_borrow_rates](#compound-borrow-rates) | 1 minute | Borrow Rates | Running
-cosmos_validator_ranking | 1 hour | Validator Ranking | Running
-cosmos_validator_status | 1 hour | Validator Status | Running
+[cosmos_validator_ranking](#comos-validator-ranking) | 1 hour | Validator Ranking | Running
+[cosmos_validator_status](#comos-validator-status) | 1 hour | Validator Status | Running
 deribit_fundingRate | 8 hours | Funding Rate | Running
 deribit_optoinTicker | RealTime | Option Ticker | Running
 deribit_orderbook | RealTime | Orderbok | Running
@@ -138,7 +138,7 @@ poloniex_trades | 1 minute | Trade | Running
 [sp500_futures](#investing) | 1 second | Trade | Running
 tether_richlist | 1 hour | Leaderboard | Running
 [tezos_leaderboard](#tezos-leaderboard) | 1 hour | Leaderboard | Running
-[wazirx_tickers](wazirx-tickers) | 1 hour | Ticker | Running
+[wazirx_tickers](#wazirx-tickers) | 1 hour | Ticker | Running
 
 
 
@@ -2707,6 +2707,150 @@ at | string  | Timestamp when ticker information is fetched
 
 
 # Cosmos
+[Cosmos](https://cosmos.network/) is a blockchain platform. Check their [api](https://docs.cosmos.network/).
+
+## Cosmos Validator Ranking 
+```sql
+-- fetch data
+select * from cosmos_validator_ranking
+```
+> response
+
+```json
+[
+
+{
+'time': '2020-01-14T22:11:55.440187916Z', 
+'consensus_pubkey': 'cosmosvalconspub1zcjduepq6fpkt3qn9xd7u44478ypkhrvtx45uhfj3uhdny420hzgsssrvh3qnzwdpe', 
+'current_snapshot': '2020-01-14 22:10:05.695135', 'delegator_shares': '13024650451734.000000000000000000', 
+'details': 'We are the leading staking service provider for blockchain projects. Join our community to help secure networks and earn rewards. We know staking.', 
+'identity': '90B597A673FC950E', 
+'jailed': False, 
+'keybase_url': 'https://s3.amazonaws.com/keybase_processed_uploads/e1378cd4d5203ded716906687ad53905_360_360.jpg', 
+'max_change_rate': '0.010000000000000000', 
+'max_rate': '1.000000000000000000', 
+'min_self_delegation': '1', 
+'moniker': 'stake.fish', 
+'operator_address': 'cosmosvaloper1sjllsnramtg3ewxqwwrwjxfgc4n4ef9u2lcnj0', 
+'rank': 1, 'rate': '0.040000000000000000', 
+'status': 2, 
+'tokens': '13024650451734', 
+'unbonding_height': '0', 
+'unbonding_time': '1970-01-01T00:00:00Z', 
+'update_time': '2019-03-13T23:00:00Z', 
+'uptime_address': 'AC2D56057CD84765E6FBE318979093E8E44AA18F', 
+'uptime_missed_blocks': 0, 
+'uptime_over_blocks': 100, 
+'website': 'stake.fish'
+}
+
+]
+```
+
+### Description
+Cosmos validator ranking has a frequency of 12 hours and data time range is from 2020-01-14 22:55:4400 till now. Collectors are continously runing in two hosts.
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | default database timestamp
+consensus_pubkey     |string|
+current_snapshot     |string|
+delegator_shares     |string|
+details              |string|
+identity             |string|
+jailed               |boolean|
+keybase_url          |string|
+max_change_rate      |string|
+max_rate             |string|
+min_self_delegation  |string|
+moniker              |string|
+operator_address     |string|
+rank                 |integer|
+rate                 |string|
+status               |integer|
+tokens               |string|
+unbonding_height     |string|
+unbonding_time       |string|
+update_time          |string|
+uptime_address       |string|
+uptime_missed_blocks |integer|
+uptime_over_blocks   |integer|
+website              |string|
+
+### Data Sanity
+No downtime.
+
+### API Reference
+`GET https://api.cosmostation.io/v1/staking/validators`
+
+### API Query Parameters
+Not required.
+
+### API Return Schema
+No information.
+
+
+## Cosmos Validator Status
+```sql
+-- fetch data
+select * from cosmos_validator_status
+```
+> response
+
+```json
+[
+
+{
+'time': '2020-01-14T22:09:52.259536896Z', 
+'block_height': 419669, 
+'block_time': 7.110479, 
+'bonded_tokens': 185528854760059, 
+'chain_id': 'cosmoshub-3', 
+'jailed_validator_num': 103, 
+'not_bonded_tokens': 3038646508792, 
+'total_circulating_tokens': 188567501268851, 
+'total_supply_tokens': 250002065076468, 
+'total_txs_num': 101530, 
+'total_validator_num': 228, 
+'unjailed_validator_num': 125
+}
+
+]
+```
+
+### Description
+Cosmos validator status has a frequency of 12 hours and data time range is from 2020-01-14 22:55:4400 till now. Collectors are continously runing in two hosts.
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | default database timestamp
+block_height             |integer|
+block_time               |float|
+bonded_tokens            |integer|
+chain_id                 |string|
+jailed_validator_num     |integer|
+not_bonded_tokens        |integer|
+total_circulating_tokens |integer|
+total_supply_tokens      |integer|
+total_txs_num            |integer|
+total_validator_num      |integer|
+unjailed_validator_num   |integer|
+
+### Data Sanity
+No downtime.
+
+### API Reference
+`GET https://api.cosmostation.io/v1/status`
+
+### API Query Parameters
+Not required.
+
+### API Return Schema
+No information.
+
+
 
 # HNScan
 
