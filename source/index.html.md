@@ -108,9 +108,9 @@ huobidm_orderbook | 30 seconds | Orderbook | Running
 huobidm_trades | RealTime | Trade | Running
 [mxc_trades](#mxc-trades) | 5 minutes | Trade | Running
 [mxc_orderbook](#mxc-orderbook) | 30 seconds | Orderbook | Running
-namebase_domain | 8 hours | Domain Data | Running
-namebase_orderbook |30 seconds | Orderbook | Running 
-namebase_trade | RealTime | Trade | Running
+[namebase_domain](#namebase-domain) | 9 hours | Domain Data | Running
+[namebase_orderbook](#namebase-orderbook) |30 seconds | Orderbook | Running 
+[namebase_trade](#namebase-trade) | RealTime | Trade | Running
 nervos_block | 1 minute | BLockChain | Running
 nervos_hashrate | 1 minute | Hash Rate | Running
 okex_fundingRate | 8 hours | Funding Rate | Running
@@ -3242,8 +3242,221 @@ netHashrateUnit | string | The unit of network hashrate
 # HNScan
 
 # Namebase
+[Namebase](https://www.namebase.io/) is a platform that can either trade crypto currency HNS or auction on website domian. Check their [api](https://github.com/namebasehq/exchange-api-documentation/blob/master/rest-api.md).
+
+## Namebase Domain
+```sql
+-- fetch data
+select * from namebase_domain limit 1
+```
+> response
+
+```json
+[
+
+      {     
+               'time': '2020-03-04T05:11:02.647999179Z', 
+               'close_amount': None, 
+               'current_snapshot': None, 
+               'domain_type': 'bid_now', 
+               'name': 'yang', 
+               'release_block': None, 
+               'reveal_block': 4791, 
+               'total_number_bids': 21
+      }
+]
+```
+
+### Description
+[Namebase domain](https://www.namebase.io/domains) has a frequency of 9 hours and data time range is from 2020-03-04 05:11:02.647999179 till now. Collectors are continously runing in two hosts.
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | default database timestamp
+close_amount      |string|
+current_snapshot  |integer|
+name              |string|
+release_block     |integer|
+reveal_block      |integer|
+total_number_bids |integer|
+domain_type  |string | tag values
+
+### Tag Values
+**Domain Type**:
+bid_now, ending_soon, ending_soon, recently_sold
+
+
+### Data Sanity
+No downtime.
+
+### API Reference
+**Popular**:
+`https://www.namebase.io/api/domains/popular/{}`
+
+**Ending Soon**:
+`https://www.namebase.io/api/domains/ending-soon/{}`
+
+**Anticipated**:
+`https://www.namebase.io/api/domains/anticipated/{}`
+
+**Recently Sold**:
+`https://www.namebase.io/api/domains/recently-sold/{}`
+
+### API Query Parameters
+Name | Type | Description 
+---- | ---- |----------
+page |  string | All available web pages.
+
+### API Return Schema
+No information.
+
+
+## Namebase Trade
+```sql
+-- fetch data
+select * from namebase_trade limit 1
+```
+> response
+
+```json
+[
+
+      {     
+            'time': '2020-02-06T22:21:18.460645367Z', 
+            'createdAt': 1581027120481, 
+            'isBuyerMaker': False, 
+            'price': 5.95e-05, 
+            'quantity': 458.960337, 
+            'quoteQuantity': 0.02730814, 
+            'symbol': 'HNSBTC', 
+            'tradeId': 1571
+      }
+]
+```
+
+### Description
+[Namebase domain](https://github.com/namebasehq/exchange-api-documentation/blob/master/rest-api.md) has a frequency of 5 minutes and data time range is from 2020-02-06 22:21:18.460645367 till now. Collectors are continously runing in two hosts.
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | default database timestamp
+createdAt     |integer|
+isBuyerMaker  |boolean|
+price         |float|
+quantity      |float|
+quoteQuantity |float|
+tradeId       |integer|
+symbol | string | Tag Values
+
+### Tag Values
+**Symbol**: HNSBTC
+
+### Data Sanity
+No downtime.
+
+### API Reference
+`GET https://www.namebase.io/api/v0/trade?symbol={}&timestamp={}&receiveWindow=1000&limit=1000`
+
+### API Query Parameters
+Name | Type | Mandatory | Description 
+---- | ---- |----------- | --------
+symbol	|STRING|	YES	
+tradeId	|LONG|	NO	|Trade id to fetch from. Default gets most recent trades.
+limit	|INT|	NO	|Default 100; max 1000.
+receiveWindow	|LONG	|NO	
+timestamp	|LONG	|YES
+
+### API Return Schema
+**Response**:
+```sql
+[
+  {
+    "tradeId": 28457,
+    "price": "0.00003000",
+    "quantity": "500.000000",
+    "quoteQuantity": "0.01500000",
+    "createdAt": 1555556529865,
+    "isBuyerMaker": true
+  }
+]
+```
+
+## Namebase Orderbook
+```sql
+-- fetch data
+select * from namebase_orderbook limit 1
+```
+> response
+
+```json
+[
+
+      {     
+            'time': '2020-02-06T22:20:16.089313267Z', 
+            'amount': 2290.179625, 
+            'current_timetamp': '2020-02-06 22:17:52.513521', 
+            'last_event_id': 74203, 
+            'price': 0.0006211, 
+            'symbol': 'HNSBTC', 
+            'type': 'asks'
+      }
+]
+```
+
+### Description
+[Namebase domain](https://github.com/namebasehq/exchange-api-documentation/blob/master/rest-api.md) has a frequency of 5 minutes and data time range is from 2020-02-06 22:20:16.089313267 till now. Collectors are continously runing in two hosts.
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | default database timestamp
+amount           |float|
+current_timetamp |string|
+last_event_id    |integer|
+price            |float|
+type             |string|
+symbol | string | Tag Values
+
+### Tag Values
+**Symbol**: HNSBTC
+
+### Data Sanity
+No downtime.
+
+### API Reference
+`GET https://www.namebase.io/api/v0/depth?symbol={}`
+
+### API Query Parameters
+Name | Type | Mandatory | Description 
+---- | ---- |----------- | --------
+symbol	|STRING|	YES	
+limit	|INT|	NO	|Default 100; max 1000. Valid limits:[5, 50, 100, 500, 1000]
+
+### API Return Schema
+**Response**:
+```sql
+{
+  "lastEventId": 6828,         // The last event id this includes
+  "bids": [
+    ["0.00003000",  "200.000000"] // [Price level, Quantity]
+  ],
+  "asks": [
+    ["0.00003100", "100.000000"]
+  ]
+}
+```
+
+
 
 # Nervos
+
+
+
+
+
+
 
 # Tether
 [Tether](https://tether.to/) is a blockchian
