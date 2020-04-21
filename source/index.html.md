@@ -2771,9 +2771,8 @@ volume                   |float|
 symbol | string | tag values
 
 ### Tag Vlaues 
-**Option Symbols** (Snapshot symbols since symbols will increase per day due to rolling option tickers):
-'BTC-10APR20-4750-C', 'BTC-10APR20-4750-P', 'BTC-10APR20-5000-C', 'BTC-10APR20-5000-P', 'BTC-10APR20-5250-C', 'BTC-10APR20-5250-P',  'BTC-9APR20-7625-C', 'BTC-9APR20-7625-P', 'BTC-9APR20-7750-C', 'BTC-9APR20-7750-P', 'BTC-9APR20-7875-C', 'BTC-9APR20-7875-P', 'BTC-9APR20-8000-C',  'ETH-9APR20-185-C', 'ETH-9APR20-185-P', 'ETH-9APR20-190-C', 'ETH-9APR20-190-P', 'ETH-9APR20-195-C', 'ETH-9APR20-195-P'.
-
+**Option Symbols** ([Snapshot symbols](https://www.deribit.com/main#/options?tab=all) since symbols will increase per day due to rolling option tickers):
+'BTC-10APR20-4750-C',  'ETH-9APR20-185-C'
 
 ### Data Sanity
 No downtime.
@@ -2810,9 +2809,7 @@ data	| object	|
   ›  best_bid_amount	|number|	It represents the requested order size of all best bids
   ›  best_bid_price	|number|	The current best bid price, null if there aren't any bids
   ›  bid_iv	|number|	(Only for option) implied volatility for best bid
-  ›  current_funding	|number|	Current funding (perpetual only)
   ›  delivery_price	|number|	The settlement price for the instrument. Only when state = closed
-  ›  funding_8h	|number|	Funding 8h (perpetual only)
   ›  greeks	| object	|
   ›    ›  delta	|number|	(Only for option) The delta value for the option
   ›    ›  gamma	|number|	(Only for option) The gamma value for the option
@@ -2929,7 +2926,6 @@ No downtime.
      "params": {
         "channels": ["ticker.BTC-PERPETUAL.raw"]}
 }
-
 ```
 
 ### API Query Parameters
@@ -2969,84 +2965,6 @@ data	| object	|
   ›  timestamp	|integer|	The timestamp (milliseconds since the Unix epoch)
   ›  underlying_index	|number|	Name of the underlying future, or index_price (options only)
   ›  underlying_price	|number|	Underlying price for implied volatility calculations (options only)
-
-
-## Deribit Orderbook
-```sql
--- fetch orderbook  
-select * from deribit_orderbook
-```
-
-> response
-
-```json
-[
-
- {
-   'time': '2020-02-25T00:47:24.731618392Z', 
-   'amount': 1330, 
-   'price': 9618.5, 
-   'symbol': 'BTC-PERPETUAL', 
-   'timestamp': 1582591644630, 
-   'type': 'asks'
-   
- }
-
-]
-```
-
-### Description
-[Deribit orderbook](https://deribitexchange.gitbooks.io/deribit-api/rpc-endpoints.html) has a frequency of 10 or 20 seconds and data time range is from 2020-02-25T00:47:24.731618392Z till now but the data is consistently collecting for at least from 2020-03-15. Collectors are continously runing in two hosts.
-
-### Data Schema
-fieldName | fieldType | description
---------- | --------- | ---------- |
-time | string | default database timestamp
-amount    |float|
-price     |float|
-timestamp |integer|
-type      |string|
-symbol | string | tag values
-
-### Tag Vlaues 
-**Futures, Options and Swap Symbols**(Symbol Snapshot and symbols will increase per day due to rolling option tickers):
-'BTC-10APR20-4750-C', 'BTC-10APR20-4750-P', 'BTC-10APR20-5000-C', 'BTC-10APR20-5000-P', 'BTC-10APR20-5250-C', 'BTC-10APR20-5250-P', 'ETH-9APR20-155-C', 'ETH-9APR20-155-P', 'ETH-9APR20-160-C', 'ETH-9APR20-160-P', 'ETH-9APR20-165-C', 'ETH-9APR20-165-P', 'ETH-9APR20-170-C', 'ETH-9APR20-170-P', 'ETH-9APR20-175-C', 'ETH-9APR20-175-P', 'ETH-9APR20-180-C', 'ETH-9APR20-180-P', 'ETH-9APR20-185-C', 'ETH-9APR20-185-P', 'ETH-9APR20-190-C', 'ETH-9APR20-190-P', 'ETH-9APR20-195-C', 'ETH-9APR20-195-P', 'ETH-PERPETUAL'
-
-
-### Data Sanity
-No downtime.
-
-### API Reference
-
-`GET https://www.deribit.com/api/v1/public/getorderbook`
-
-### API Query Parameters
-Name | Type | Mandatory | Description | Example
----- | ---- | ---------- | -------- | ----------
-instrument	|string|		REQUIRED |The instrument name for which to retrieve the order book, see getinstruments to obtain instrument names.
-depth	|integer|	Not required	|The number of entries to return for bids and asks
-
-### API Return Schema
-Fields	|Type	| Example | Description
---------| ----| ----------|
-bids	|list|	[800(quantity/int),10322.5(price/float), 800(cm/int)|	The list of all bids, best bid first. See below for entry details
-asks	|list| [800(quantity/int),10322.5(price/float), 800(cm/int)	|	The list of all asks, best ask first. See below for entry details
-state	|string |"open"|	The state of the order book. Possible values include "open" and "closed".
-settlementPrice	|float|	11013.37	|The settlement price for this currency
-instrument	|string|	"BTC-23FEB18"	|REQUIRED, The name of the instrument.
-tstamp	|int	|1517329113791	|The order book timestamp in milliseconds
-last	|float	|10350	|The price for the last trade
-low	|float	|10296.11	|The 24h low for the instrument
-high	|float	|10916.03	|The 24h high for the instrument
-mark	|float	|10334.06	|The mark price for the instrument
-uPx	|float	|10408.16	|(Only for option) underlying price used for ask/bid implied volatility
-uIx	|float	|"BTC-30MAR18"	|(Only for option) underlying future instrument name or "index_price"
-iR	|float	|0	|(Only for option) Interest rate used for implied volatility calculations
-markIv	|float	|135	|(Only for option) implied volatility for mark price
-askIv	|float	|130.06	|(Only for option) implied volatility for best ask
-bidIv	|float	|109.99	|(Only for option) implied volatility for best bid
-max	|float|	|(Only for futures) The maximum price for the future. Any buy orders you submit higher than this price, will be clamped to this maximum.
-min	|float| |(Only for futures) The minimum price for the future. Any sell orders you submit lower than this price will be clamped to this minimum.
 
 
 ## Deribit Trades
