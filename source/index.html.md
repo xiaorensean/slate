@@ -79,7 +79,7 @@ TableName | Frequency | DataType | CurrentStatus
 [cosmos_validator_ranking](#cosmos-validator-ranking) | 1 hour | Validator Ranking | Running
 [cosmos_validator_status](#cosmos-validator-status) | 1 hour | Validator Status | Running
 [deribit_fundingRate](#deribit-funding-rate) | 8 hours | Funding Rate | Running
-[deribit_optoinTicker](#deribit-option-ticker) | RealTime | Option Ticker | Running
+[deribit_optoinTicker](#deribit-ticker) | RealTime | Option Ticker | Running
 [deribit_orderbook](#deribit-orderbook) | 30 seconds | Orderbok | Running
 [deribit_ticker](#deribit-ticker) | RealTime | Ticker | Running
 [deribit_trades](#deribit-trades) | RealTime | Trade Data | Running
@@ -2694,8 +2694,11 @@ data	| object	|
 
 ## Deribit Option Ticker
 ```sql
--- fetch ticker 
+-- fetch option ticker 
 select * from deribit_optionsTicker
+
+-- fetch ticker 
+select * from deribit_ticker
 ```
 > response
 
@@ -2774,97 +2777,6 @@ symbol | string | tag values
 **Option Symbols** ([Snapshot symbols](https://www.deribit.com/main#/options?tab=all) since symbols will increase per day due to rolling option tickers):
 'BTC-10APR20-4750-C',  'ETH-9APR20-185-C'
 
-### Data Sanity
-No downtime.
-
-### API Reference
-**Endpoint**:
-`Websocket wss://www.deribit.com/ws/api/v2`
-
-**Message**:
-```json
- {
-     "jsonrpc": "2.0",
-     "method": "public/subscribe",
-     "id": 42,
-     "params": {
-        "channels": ["ticker.ETH-9APR20-190-C.raw"]}
- }
-```
-### API Return Schema
-Check [api doc](https://docs.deribit.com/#public-ticker) 
-
-
-## Deribit Ticker
-```sql
--- fetch ticker 
-select * from deribit_ticker
-```
-> response
-
-```json
-[
-
- {
-   'time': '2019-07-11T15:59:41.176999936Z', 
-   'best_ask_amount': 94830, 
-   'best_ask_price': 11545.5, 
-   'best_bid_amount': 130, 
-   'best_bid_price': 11545, 
-   'current_funding': 0, 
-   'delivery_price': None, 
-   'estimated_delivery_price': None, 
-   'funding_8h': -6.37e-05, 
-   'high': 12391.5, 
-   'index_price': 11548.49, 
-   'last_price': 11545, 
-   'low': 11072.5, 
-   'mark_price': 11547.79, 
-   'max_price': 11721.43, 
-   'min_price': 11374.98, 
-   'open_interest': 72838741, 
-   'price_change': None, 
-   'settlement_price': 11603.01, 
-   'state': 'open', 
-   'symbol': 'BTC-PERPETUAL', 
-   'volume': 78539.90505946, 
-   'volume_usd': None
- }
-
-]
-```
-
-### Description
-[Deribit ticker](https://docs.deribit.com/?python#ticker-instrument_name-interval) is connected thourgh websocket and data time range for ticker is from 2019-07-11T15:59:41.176999936Z till now. Collectors are continously runing in two hosts.
-
-### Data Schema
-fieldName | fieldType | description
---------- | --------- | ---------- |
-time | string | default database timestamp
-best_ask_amount          |float|
-best_ask_price           |float|
-best_bid_amount          |float|
-best_bid_price           |float|
-current_funding          |float|
-delivery_price           |float|
-estimated_delivery_price |float|
-funding_8h               |float|
-high                     |float|
-index_price              |float|
-last_price               |float|
-low                      |float|
-mark_price               |float|
-max_price                |float|
-min_price                |float|
-open_interest            |integer|
-price_change             |float|
-settlement_price         |float|
-state                    |string|
-volume                   |float|
-volume_usd               |float|
-symbol | string | tag values
-
-### Tag Vlaues 
 **Futures and Swap Symbols**:
 'BTC-25SEP20', 'BTC-26JUN20', 'BTC-27DEC19', 'BTC-27MAR20', 'BTC-27SEP19', 'BTC-PERPETUAL', 'ETH-25SEP20', 'ETH-26JUN20', 'ETH-27DEC19', 'ETH-27MAR20', 'ETH-27SEP19', 'ETH-PERPETUAL'
 
@@ -3042,6 +2954,8 @@ Fields	|Type | Description
 --------| ----| ----------|
 amount|number|Trade amount.For perpetual and futures in USD units, for options it is amount of corresponding cryptocurrency contracts
 price	|number	|Price in base currency
+
+
 
 
 
