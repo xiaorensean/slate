@@ -95,12 +95,12 @@ TableName | Frequency | DataType | CurrentStatus
 [gateio_orderbook](#gateio-orderbook) | 30 seconds | Orderbook | Running
 [gateio_trades_data](#gateio-trades) | RealTime | Trades | Running
 [hashpool_coins](#hashpool-coins) | 1 hour | Summary | Running
-[hnscan_block_info](#hnscan-block-info) | 1 hour | BlockChain | Running
+[hnscan_block_info](#hnscan-blockchain) | 1 hour | BlockChain | Running
 [hnscan_chart_data](#hnscan-chart) | 1 day | Chart | Running
 [hnscan_chart_data_snapshot](#hnscan-chart) | 1 day | Chart | Running
 [hnscan_status](#hnscan-status) | 9 minutes | Summary | Running
 [hnscan_summary](#hnscan-summary) | 9 minutes | Summary | Running
-[hnscan_transaction](#hnscan-blcok-info) | 1 hour | BlockChian | Running
+[hnscan_transaction](#hnscan-blcokchain) | 1 hour | BlockChian | Running
 [huobidm_contract_delivery_price](#huobidm-contract-delivery-price) | 1 minute | Delivery Price | Running
 [huobidm_contract_market_overview](#huobidm-contract-market-overview) | 1 minute | Market Overview | Running
 [huobidm_contract_price_limit](#huobidm-contract-price-limit) | 1 minute | Price Limit | Running  
@@ -3616,7 +3616,7 @@ Name | Type | Required | Description
 symbol	|string	|true	|Case-Insenstive.Both uppercase and lowercase are supported.e.g."BTC","ETH"...
 
 ### API Response Schema
-Name | Type | |Description
+Name | Type | Description
 ---- | ---- | ----------
 status	|string	|Request Processing Result
 delivery_price |	string	|estimated delivery price	
@@ -3689,7 +3689,7 @@ Name | Type | Required | Description
 contract_type	|string	|true	|Case-Insenstive.Both uppercase and lowercase are supported.
 
 ### API Response Schema
-Name | Type | |Description
+Name | Type | Description
 ---- | ---- | ----------
 status	|string	|Request Processing Result
 tick |	string	|estimated delivery price	
@@ -3805,7 +3805,7 @@ Name | Type | Required | Description
 symbol | string | true | Symbol name
 
 ### API Response Schema
-Name | Type | |Description
+Name | Type | Description
 ---- | ---- | ----------
 status	|string	|Request Processing Result
 symbol | string | symbol name
@@ -3860,7 +3860,7 @@ Name | Type | Required | Description
 symbol |string	|true	| Symbol name.
 
 ### API Response Schema
-Name | Type | |Description
+Name | Type | Description
 ---- | ---- | ----------
 status	|string	|Request Processing Result
 symbol | string | symbol name
@@ -3912,7 +3912,7 @@ Name | Type | Required | Description
 symbol |string	|true	| Symbol name.
 
 ### API Response Schema
-Name | Type | |Description
+Name | Type | Description
 ---- | ---- | ----------
 status	|string	|Request Processing Result
 symbol | string | symbol name
@@ -3971,7 +3971,7 @@ Name | Type | Required | Description
 symbol |string	|true	| Symbol name.
 
 ### API Response Schema
-Name | Type | |Description
+Name | Type | Description
 ---- | ---- | ----------
 status	|string	|Request Processing Result
 symbol | string | symbol name
@@ -4032,7 +4032,7 @@ symbol	|string	|true|	Case-Senstive.Only uppercase is supported.e.g. "BTC_CW" re
 type	|string	|true	|Get depth data within step 150, use step0, step1, step2, step3, step4, step5（merged depth data 0-5）；when step is 0，depth data will not be merged; Get depth data within step 20, use step6, step7, step8, step9, step10, step11(merged depth data 7-11); when step is 6, depth data will not be merged.
 
 ### API Response Schema
-Name | Type | |Description
+Name | Type | Description
 ---- | ---- | ----------
 status	|string	|Request Processing Result
 asks | list | symbol name
@@ -4091,7 +4091,7 @@ Name | Type | Required | Description
 symbol	|string	|true|	Case-Senstive.Only uppercase is supported.e.g. "BTC_CW" represents BTC “This Week”，"BTC_NW" represents BTC “Next 
 
 ### API Response Schema
-Name | Type | |Description
+Name | Type | Description
 ---- | ---- | ----------
 status	|string	|Request Processing Result
 tick | object| trade data
@@ -4745,7 +4745,7 @@ netHashrateUnit | string | The unit of network hashrate
 # HNScan
 [HNSCAN](https://hnscan.com/) is a blockchain and they have issued token called HNS. 
 
-## HHScan Block Info
+## HHScan Blockchain
 ```sql
 -- fetch data
 select * from hnscan_block_info limit 1
