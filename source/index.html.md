@@ -33,7 +33,7 @@ The summary for all available data feeds.
 TableName | Frequency | DataType | CurrentStatus
 --------- | --------- | ---------| -----------|
 [bigone_orderbook](#bigone-orderbook) | 30 seconds | Orderbook Data | Running
-[bigone_trades](#bigone-trade)  | RealTime | Trades Data | Running
+[bigone_trades](#bigone-trade)  | 30 seconds | Trades Data | Running
 [binance_borrow_rates_clean](#binance-borrow-rate) | 30 minutes | Borrow Rates | Running
 [binance_funding_rates](#binance-funding-rate) | 8 hours | Trades Data | Running
 [binance_future_stats_long_short_ratio](#binance-long-short-ratio) | Varies | Futures Data | Running
@@ -88,8 +88,8 @@ FTX_option_request | RealTime | Request Data | Running
 FTX_orderbook | 30 seconds | Orderbook | Running
 FTX_trades | RealTime | Trades | Running
 FTX_trades_option | RealTime | Trades | Running
-gateio_orderbook | 30 seconds | Orderbook | Running
-gateio_trades_data | RealTime | Trades | Running
+[gateio_orderbook](#gateio-orderbook) | 30 seconds | Orderbook | Running
+[gateio_trades_data](#gateio-trades) | RealTime | Trades | Running
 hashpool_coins | 1 hour | Summary | Running
 hnscan_block_info | RealTime | BlockChain | Running
 hnscan_chart_data | 1 day | Chart | Running
@@ -2714,11 +2714,118 @@ No information.
 # FTX
 
 # Gateio
+[Gateio](https://www.gate.io/) is a crypto currency exchange. Check their [api](https://www.gate.io/api2). 
+
+## Gateio Orderbook
+```sql
+-- fetch data
+select * from gateio_orderbook limit 1 
+```
+> response
+
+```json
+[
+    {
+          'time': '2020-02-28T20:32:20.344462492Z', 
+          'price': 1.3333, 
+          'size': 692.98, 
+          'snapshot': '2020-02-28 20:32:19.602171', 
+          'symbol': 'hns_usdt', 
+          'type': 'ask'
+   }
+]
+```
+
+### Description
+[Gateio trades](https://www.gate.io/api2#depth) has a frequency of 30 seconds and data time range is from 2020-02-28T20:32:20.344462492Z till now. Collectors are continously runing in two hosts.
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | default database timestamp
+price    float
+size     float
+snapshot string
+type     string
+symbol | string | tag values
+
+### Tag Values
+**symbol**: hns_usdt, hns_btc
+
+### Data Sanity
+No downtime.
+
+### API Reference
+`GET https://data.gateio.life/api2/1/orderBook/[CURR_A]_[CURR_B]`
+
+### API Query Parameters
+Name | Type | Required | Description
+-----| --------| ----------| --------- |
+market	|String|	Yes	| Get makret list
+
+### API Return Schema
+No information.
+
+
+## Gateio Trades
+```sql
+-- fetch data
+select * from gateio_trades limit 1 
+```
+> response
+
+```json
+[
+    {
+         'time': '2020-02-19T04:31:03.000003072Z', 
+         'amount': 176.77, 
+         'price': 3e-05, 
+         'symbol': 'hns_btc', 
+         'timestamp': 1582086663, 
+         'total': 0.0053031, 
+         'tradeID': 228611456, 
+         'type': 'sell'
+   }
+]
+```
+
+### Description
+[Gateio trades](https://www.gate.io/api2#history) has a frequency of 1 hour and data time range is from 2020-02-19T04:31:03.000003072Z till now. Collectors are continously runing in two hosts.
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | default database timestamp
+amount    |float|
+price     |float|
+timestamp |integer|
+total     |float|
+tradeID   |integer|
+type      |string|
+symbol | string | tag values
+
+### Tag Values
+**symbol**: hns_usdt, hns_btc
+
+### Data Sanity
+No downtime.
+
+### API Reference
+`GET https://data.gateio.life/api2/1/tradeHistory/[CURR_A]_[CURR_B]`
+
+### API Query Parameters
+Name | Type | Required | Description
+-----| --------| ----------| --------- |
+market	|String|	Yes	| Get makret list
+
+### API Return Schema
+No information.
+
 
 # HuobiDM
 
 # MXC
-(MXC exchange)[https://www.mxc.com/] is a crypto currency. Check their [api](https://github.com/mxcdevelop/APIDoc/tree/master/api_doc_v1) 
+[MXC exchange](https://www.mxc.com/) is a crypto currency. Check their [api](https://github.com/mxcdevelop/APIDoc/tree/master/api_doc_v1) 
 
 ## MXC Trades
 ```sql
