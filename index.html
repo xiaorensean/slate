@@ -535,7 +535,7 @@
             <a href="#hnscan" class="toc-h1 toc-link" data-title="HNScan">HNScan</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#hhscan-block-info" class="toc-h2 toc-link" data-title="HHScan Block Info">HHScan Block Info</a>
+                    <a href="#hhscan-blockchain" class="toc-h2 toc-link" data-title="HHScan Blockchain">HHScan Blockchain</a>
                   </li>
                   <li>
                     <a href="#hnscan-chart" class="toc-h2 toc-link" data-title="HNScan Chart">HNScan Chart</a>
@@ -1000,7 +1000,7 @@ Need credentials to log in.
 <td>Running</td>
 </tr>
 <tr>
-<td><a href="#hnscan-block-info">hnscan_block_info</a></td>
+<td><a href="#hnscan-blockchain">hnscan_block_info</a></td>
 <td>1 hour</td>
 <td>BlockChain</td>
 <td>Running</td>
@@ -1030,7 +1030,7 @@ Need credentials to log in.
 <td>Running</td>
 </tr>
 <tr>
-<td><a href="#hnscan-blcok-info">hnscan_transaction</a></td>
+<td><a href="#hnscan-blcokchain">hnscan_transaction</a></td>
 <td>1 hour</td>
 <td>BlockChian</td>
 <td>Running</td>
@@ -7535,11 +7535,29 @@ underlying    string</p>
 </tr>
 </tbody></table>
 <h3 id='api-response-schema-45'>API Response Schema</h3>
-<p>Name | Type | |Description
----- | ---- | ----------
-status  |string |Request Processing Result
-delivery_price |    string  |estimated delivery price<br>
-ts |long    |Time of Respond Generation, Unit: Millisecond</p>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>Request Processing Result</td>
+</tr>
+<tr>
+<td>delivery_price</td>
+<td>string</td>
+<td>estimated delivery price</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>long</td>
+<td>Time of Respond Generation, Unit: Millisecond</td>
+</tr>
+</tbody></table>
 <h2 id='huobidm-contract-market-overview'>Huobidm Contract Market Overview</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch data</span>
 <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">huobidm_contract_market_overview</span> <span class="k">limit</span> <span class="mi">1</span> 
 </code></pre>
@@ -7669,11 +7687,29 @@ ts |long    |Time of Respond Generation, Unit: Millisecond</p>
 </tr>
 </tbody></table>
 <h3 id='api-response-schema-46'>API Response Schema</h3>
-<p>Name | Type | |Description
----- | ---- | ----------
-status  |string |Request Processing Result
-tick |  string  |estimated delivery price<br>
-ts |long    |Time of Respond Generation, Unit: Millisecond</p>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>Request Processing Result</td>
+</tr>
+<tr>
+<td>tick</td>
+<td>string</td>
+<td>estimated delivery price</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>long</td>
+<td>Time of Respond Generation, Unit: Millisecond</td>
+</tr>
+</tbody></table>
 <h2 id='huobidm-contract-price-limit'>Huobidm Contract Price Limit</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch data</span>
 <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">huobidm_contract_price_limit</span> <span class="k">limit</span> <span class="mi">1</span> 
 </code></pre>
@@ -7842,13 +7878,39 @@ ts |long    |Time of Respond Generation, Unit: Millisecond</p>
 </tr>
 </tbody></table>
 <h3 id='api-response-schema-48'>API Response Schema</h3>
-<p>Name | Type | |Description
----- | ---- | ----------
-status  |string |Request Processing Result
-symbol | string | symbol name
-insurance_fund |    float   | insurance fund balance
-estimated_clawback | float | estimated clawback rate
-ts |long    |Time of Respond Generation, Unit: Millisecond</p>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>Request Processing Result</td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>symbol name</td>
+</tr>
+<tr>
+<td>insurance_fund</td>
+<td>float</td>
+<td>insurance fund balance</td>
+</tr>
+<tr>
+<td>estimated_clawback</td>
+<td>float</td>
+<td>estimated clawback rate</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>long</td>
+<td>Time of Respond Generation, Unit: Millisecond</td>
+</tr>
+</tbody></table>
 <h2 id='huobidm-index-price'>Huobidm Index Price</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch data</span>
 <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">huobidm_index_price</span> <span class="k">limit</span> <span class="mi">1</span> 
 </code></pre>
@@ -7918,12 +7980,34 @@ ts |long    |Time of Respond Generation, Unit: Millisecond</p>
 </tr>
 </tbody></table>
 <h3 id='api-response-schema-49'>API Response Schema</h3>
-<p>Name | Type | |Description
----- | ---- | ----------
-status  |string |Request Processing Result
-symbol | string | symbol name
-index_price |   float   | index price<br>
-ts |long    |Time of Respond Generation, Unit: Millisecond</p>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>Request Processing Result</td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>symbol name</td>
+</tr>
+<tr>
+<td>index_price</td>
+<td>float</td>
+<td>index price</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>long</td>
+<td>Time of Respond Generation, Unit: Millisecond</td>
+</tr>
+</tbody></table>
 <h2 id='huobidm-insurance-fund'>Huobidm Insurance Fund</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch data</span>
 <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">huobidm_insurance_fund</span> <span class="k">limit</span> <span class="mi">1</span> 
 </code></pre>
@@ -7992,12 +8076,34 @@ ts |long    |Time of Respond Generation, Unit: Millisecond</p>
 </tr>
 </tbody></table>
 <h3 id='api-response-schema-50'>API Response Schema</h3>
-<p>Name | Type | |Description
----- | ---- | ----------
-status  |string |Request Processing Result
-symbol | string | symbol name
-insurance_fund |    float   | insurance fund
-ts |long    |Time of Respond Generation, Unit: Millisecond</p>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>Request Processing Result</td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>symbol name</td>
+</tr>
+<tr>
+<td>insurance_fund</td>
+<td>float</td>
+<td>insurance fund</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>long</td>
+<td>Time of Respond Generation, Unit: Millisecond</td>
+</tr>
+</tbody></table>
 <h2 id='huobidm-open-interest'>Huobidm Open Interest</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch data</span>
 <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">huobidm_open_interest</span> <span class="k">limit</span> <span class="mi">1</span> 
 </code></pre>
@@ -8085,13 +8191,39 @@ ts |long    |Time of Respond Generation, Unit: Millisecond</p>
 </tr>
 </tbody></table>
 <h3 id='api-response-schema-51'>API Response Schema</h3>
-<p>Name | Type | |Description
----- | ---- | ----------
-status  |string |Request Processing Result
-symbol | string | symbol name
-volume| float   | open interst
-amount_type | string | open interest unit
-ts |long    |Time of Respond Generation, Unit: Millisecond</p>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>Request Processing Result</td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>symbol name</td>
+</tr>
+<tr>
+<td>volume</td>
+<td>float</td>
+<td>open interst</td>
+</tr>
+<tr>
+<td>amount_type</td>
+<td>string</td>
+<td>open interest unit</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>long</td>
+<td>Time of Respond Generation, Unit: Millisecond</td>
+</tr>
+</tbody></table>
 <h2 id='huobidm-orderbook'>Huobidm Orderbook</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch data</span>
 <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">huobidm_orderbook</span> <span class="k">limit</span> <span class="mi">1</span> 
 </code></pre>
@@ -8185,13 +8317,39 @@ ts |long    |Time of Respond Generation, Unit: Millisecond</p>
 </tr>
 </tbody></table>
 <h3 id='api-response-schema-52'>API Response Schema</h3>
-<p>Name | Type | |Description
----- | ---- | ----------
-status  |string |Request Processing Result
-asks | list | symbol name
-bids |  list    | open interst
-amount_type | string | open interest unit
-ts |long    |Time of Respond Generation, Unit: Millisecond</p>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>Request Processing Result</td>
+</tr>
+<tr>
+<td>asks</td>
+<td>list</td>
+<td>symbol name</td>
+</tr>
+<tr>
+<td>bids</td>
+<td>list</td>
+<td>open interst</td>
+</tr>
+<tr>
+<td>amount_type</td>
+<td>string</td>
+<td>open interest unit</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>long</td>
+<td>Time of Respond Generation, Unit: Millisecond</td>
+</tr>
+</tbody></table>
 <h2 id='huobidm-trade'>Huobidm Trade</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch data</span>
 <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">huobidm_trades</span> <span class="k">limit</span> <span class="mi">1</span> 
 </code></pre>
@@ -8268,11 +8426,29 @@ ts |long    |Time of Respond Generation, Unit: Millisecond</p>
 </tr>
 </tbody></table>
 <h3 id='api-response-schema-53'>API Response Schema</h3>
-<p>Name | Type | |Description
----- | ---- | ----------
-status  |string |Request Processing Result
-tick | object| trade data
-ts |long    |Time of Respond Generation, Unit: Millisecond</p>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>Request Processing Result</td>
+</tr>
+<tr>
+<td>tick</td>
+<td>object</td>
+<td>trade data</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>long</td>
+<td>Time of Respond Generation, Unit: Millisecond</td>
+</tr>
+</tbody></table>
 <h1 id='mxc'>MXC</h1>
 <p><a href="https://www.mxc.com/">MXC exchange</a> is a crypto currency. Check their <a href="https://github.com/mxcdevelop/APIDoc/tree/master/api_doc_v1">api</a> </p>
 <h2 id='mxc-trades'>MXC Trades</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch data</span>
@@ -9425,7 +9601,7 @@ sort             integer</p>
 </tbody></table>
 <h1 id='hnscan'>HNScan</h1>
 <p><a href="https://hnscan.com/">HNSCAN</a> is a blockchain and they have issued token called HNS. </p>
-<h2 id='hhscan-block-info'>HHScan Block Info</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch data</span>
+<h2 id='hhscan-blockchain'>HHScan Blockchain</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch data</span>
 <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">hnscan_block_info</span> <span class="k">limit</span> <span class="mi">1</span>
 </code></pre>
 <blockquote>
