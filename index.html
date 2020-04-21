@@ -386,13 +386,21 @@
                     <a href="#deribit-funding-rate" class="toc-h2 toc-link" data-title="Deribit Funding Rate">Deribit Funding Rate</a>
                   </li>
                   <li>
-                    <a href="#deribit-option-ticker" class="toc-h2 toc-link" data-title="Deribit Option Ticker">Deribit Option Ticker</a>
+                    <a href="#deribit-ticker" class="toc-h2 toc-link" data-title="Deribit Ticker">Deribit Ticker</a>
                   </li>
                   <li>
                     <a href="#deribit-orderbook" class="toc-h2 toc-link" data-title="Deribit Orderbook">Deribit Orderbook</a>
                   </li>
                   <li>
                     <a href="#deribit-trades" class="toc-h2 toc-link" data-title="Deribit Trades">Deribit Trades</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#dydx" class="toc-h1 toc-link" data-title="Dydx">Dydx</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#dydx-borrow-rates" class="toc-h2 toc-link" data-title="Dydx Borrow Rates">Dydx Borrow Rates</a>
                   </li>
               </ul>
           </li>
@@ -5757,7 +5765,7 @@ BTC-PERPETUAL, ETH-PERPETUAL</p>
 <td>The timestamp (milliseconds since the Unix epoch)</td>
 </tr>
 </tbody></table>
-<h2 id='deribit-option-ticker'>Deribit Option Ticker</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch option ticker </span>
+<h2 id='deribit-ticker'>Deribit Ticker</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch option ticker </span>
 <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">deribit_optionsTicker</span>
 
 <span class="c1">-- fetch ticker </span>
@@ -6051,7 +6059,7 @@ BTC-PERPETUAL, ETH-PERPETUAL</p>
 </tbody></table>
 <h3 id='tag-vlaues-25'>Tag Vlaues</h3>
 <p><strong>Futures, Options and Swap Symbols</strong>(Symbol Snapshot and symbols will increase per day due to rolling option tickers):
-&#39;BTC-10APR20-4750-C&#39;, &#39;BTC-10APR20-4750-P&#39;, &#39;BTC-10APR20-5000-C&#39;, &#39;BTC-10APR20-5000-P&#39;, &#39;BTC-10APR20-5250-C&#39;, &#39;BTC-10APR20-5250-P&#39;, &#39;ETH-9APR20-155-C&#39;, &#39;ETH-9APR20-155-P&#39;, &#39;ETH-9APR20-160-C&#39;, &#39;ETH-9APR20-160-P&#39;, &#39;ETH-9APR20-165-C&#39;, &#39;ETH-9APR20-165-P&#39;, &#39;ETH-9APR20-170-C&#39;, &#39;ETH-9APR20-170-P&#39;, &#39;ETH-9APR20-175-C&#39;, &#39;ETH-9APR20-175-P&#39;, &#39;ETH-9APR20-180-C&#39;, &#39;ETH-9APR20-180-P&#39;, &#39;ETH-9APR20-185-C&#39;, &#39;ETH-9APR20-185-P&#39;, &#39;ETH-9APR20-190-C&#39;, &#39;ETH-9APR20-190-P&#39;, &#39;ETH-9APR20-195-C&#39;, &#39;ETH-9APR20-195-P&#39;, &#39;ETH-PERPETUAL&#39;</p>
+&#39;BTC-10APR20-4750-C&#39;, &#39;ETH-9APR20-155-C&#39;, &#39;ETH-PERPETUAL&#39;</p>
 <h3 id='data-sanity-38'>Data Sanity</h3>
 <p>No downtime.</p>
 <h3 id='api-reference-31'>API Reference</h3>
@@ -6185,7 +6193,7 @@ state   |string |&quot;open&quot;|    The state of the order book. Possible valu
 </tbody></table>
 <h3 id='tag-vlaues-26'>Tag Vlaues</h3>
 <p><strong>Futures, Options and Swap Symbols</strong>(Symbol Snapshot and symbols will increase per day due to rolling option tickers):
-&#39;BTC-10APR20-4750-C&#39;, &#39;BTC-10APR20-4750-P&#39;, &#39;BTC-10APR20-5000-C&#39;, &#39;BTC-10APR20-5000-P&#39;, &#39;BTC-10APR20-5250-C&#39;, &#39;BTC-10APR20-5250-P&#39;, &#39;ETH-9APR20-155-C&#39;, &#39;ETH-9APR20-155-P&#39;, &#39;ETH-9APR20-160-C&#39;, &#39;ETH-9APR20-160-P&#39;, &#39;ETH-9APR20-165-C&#39;, &#39;ETH-9APR20-165-P&#39;, &#39;ETH-9APR20-170-C&#39;, &#39;ETH-9APR20-170-P&#39;, &#39;ETH-9APR20-175-C&#39;, &#39;ETH-9APR20-175-P&#39;, &#39;ETH-9APR20-180-C&#39;, &#39;ETH-9APR20-180-P&#39;, &#39;ETH-9APR20-185-C&#39;, &#39;ETH-9APR20-185-P&#39;, &#39;ETH-9APR20-190-C&#39;, &#39;ETH-9APR20-190-P&#39;, &#39;ETH-9APR20-195-C&#39;, &#39;ETH-9APR20-195-P&#39;, &#39;ETH-PERPETUAL&#39;</p>
+&#39;BTC-10APR20-4750-C&#39;, &#39;ETH-9APR20-155-C&#39;, &#39;ETH-PERPETUAL&#39;</p>
 <h3 id='data-sanity-39'>Data Sanity</h3>
 <p>No downtime.</p>
 <h3 id='api-reference-32'>API Reference</h3>
@@ -6193,7 +6201,7 @@ state   |string |&quot;open&quot;|    The state of the order book. Possible valu
 <code>Websocket wss://www.deribit.com/ws/api/v2</code></p>
 
 <p><strong>Message</strong>:
-```json
+<code>json
 {
   &quot;jsonrpc&quot; : &quot;2.0&quot;,
   &quot;id&quot; : 4497,
@@ -6203,35 +6211,31 @@ state   |string |&quot;open&quot;|    The state of the order book. Possible valu
     &quot;type&quot; : &quot;delivery&quot;,
     &quot;count&quot; : 2
   }
-}</p>
-<pre class="highlight plaintext"><code>
-### API Query Parameters
-Name | Required | Type | Enum | Description
----- | -------- | ---- | ---- | -----------
-currency    |true|  string  |BTC;ETH    |The currency symbol
-kind    |false| string| future;option   |Instrument kind, if not provided instruments of all kinds are considered
-start_id|   false   |string | |The ID number of the first trade to be returned
-end_id  |false  |string | |The ID number of the last trade to be returned
-count   |false  |integer    | |Number of requested items, default - 10
-
-
-### API Return Schema
-Fields  |Type | Description
---------| ----| ----------|
-amount|number|Trade amount.For perpetual and futures in USD units, for options it is amount of corresponding cryptocurrency contracts
-price   |number |Price in base currency
-
-
-
-
-
-# Dydx
-[Dydx](https://dydx.exchange/) is a crypto currency exchange. Check thier [api](https://docs.dydx.exchange/#/).
-
-## Dydx Borrow Rates
-```sql
--- fetch data
-select * from compound_borrow_rates limit 1 
+}
+</code></p>
+<h3 id='api-return-schema-34'>API Return Schema</h3>
+<table><thead>
+<tr>
+<th>Fields</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>amount</td>
+<td>number</td>
+<td>Trade amount.For perpetual and futures in USD units, for options it is amount of corresponding cryptocurrency contracts</td>
+</tr>
+<tr>
+<td>price</td>
+<td>number</td>
+<td>Price in base currency</td>
+</tr>
+</tbody></table>
+<h1 id='dydx'>Dydx</h1>
+<p><a href="https://dydx.exchange/">Dydx</a> is a crypto currency exchange. Check thier <a href="https://docs.dydx.exchange/#/">api</a>.</p>
+<h2 id='dydx-borrow-rates'>Dydx Borrow Rates</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch data</span>
+<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">compound_borrow_rates</span> <span class="k">limit</span> <span class="mi">1</span> 
 </code></pre>
 <blockquote>
 <p>response</p>
@@ -6419,7 +6423,7 @@ select * from compound_borrow_rates limit 1
 <p><code>GET https://api.dydx.exchange/v1/markets</code></p>
 <h3 id='api-query-parameters-36'>API Query Parameters</h3>
 <p>Not required.</p>
-<h3 id='api-return-schema-34'>API Return Schema</h3>
+<h3 id='api-return-schema-35'>API Return Schema</h3>
 <p>No information.</p>
 <h1 id='ftx'>FTX</h1><h1 id='gateio'>Gateio</h1>
 <p><a href="https://www.gate.io/">Gateio</a> is a crypto currency exchange. Check their <a href="https://www.gate.io/api2">api</a>. </p>
@@ -6483,7 +6487,7 @@ symbol | string | tag values</p>
 <td>Get makret list</td>
 </tr>
 </tbody></table>
-<h3 id='api-return-schema-35'>API Return Schema</h3>
+<h3 id='api-return-schema-36'>API Return Schema</h3>
 <p>No information.</p>
 <h2 id='gateio-trades'>Gateio Trades</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch data</span>
 <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">gateio_trades</span> <span class="k">limit</span> <span class="mi">1</span> 
@@ -6576,7 +6580,7 @@ symbol | string | tag values</p>
 <td>Get makret list</td>
 </tr>
 </tbody></table>
-<h3 id='api-return-schema-36'>API Return Schema</h3>
+<h3 id='api-return-schema-37'>API Return Schema</h3>
 <p>No information.</p>
 <h1 id='huobidm'>HuobiDM</h1><h1 id='mxc'>MXC</h1>
 <p><a href="https://www.mxc.com/">MXC exchange</a> is a crypto currency. Check their <a href="https://github.com/mxcdevelop/APIDoc/tree/master/api_doc_v1">api</a> </p>
@@ -6659,7 +6663,7 @@ symbol | string | tag values</p>
 <td>Get makret list</td>
 </tr>
 </tbody></table>
-<h3 id='api-return-schema-37'>API Return Schema</h3>
+<h3 id='api-return-schema-38'>API Return Schema</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -6773,7 +6777,7 @@ symbol | string | tag values</p>
 <td>Market depth</td>
 </tr>
 </tbody></table>
-<h3 id='api-return-schema-38'>API Return Schema</h3>
+<h3 id='api-return-schema-39'>API Return Schema</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -6892,7 +6896,7 @@ ATOM, BCHABC, BCHSV, BTC, DASH, DOGE, EOS, ETC, ETH, LTC, STR, TRX, USDC, USDT, 
 <td>Market depth</td>
 </tr>
 </tbody></table>
-<h3 id='api-return-schema-39'>API Return Schema</h3>
+<h3 id='api-return-schema-40'>API Return Schema</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -7044,7 +7048,7 @@ BTC_SNX, TRX_SNX, USDT_SNX</p>
 <td>End timestamp</td>
 </tr>
 </tbody></table>
-<h3 id='api-return-schema-40'>API Return Schema</h3>
+<h3 id='api-return-schema-41'>API Return Schema</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -7155,7 +7159,7 @@ BTC_SNX, TRX_SNX, USDT_SNX</p>
 <td>Default depth is 50. Max depth is 100.</td>
 </tr>
 </tbody></table>
-<h3 id='api-return-schema-41'>API Return Schema</h3>
+<h3 id='api-return-schema-42'>API Return Schema</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -7277,7 +7281,7 @@ BTC_SNX, TRX_SNX, USDT_SNX</p>
 <p><code>GET https://api.wazirx.com/api/v2/tickers</code></p>
 <h3 id='api-query-parameters-44'>API Query Parameters</h3>
 <p>Not required.</p>
-<h3 id='api-return-schema-42'>API Return Schema</h3>
+<h3 id='api-return-schema-43'>API Return Schema</h3>
 <table><thead>
 <tr>
 <th>Fields</th>
@@ -7514,7 +7518,7 @@ BTC_SNX, TRX_SNX, USDT_SNX</p>
 <p><code>GET https://api.cosmostation.io/v1/staking/validators</code></p>
 <h3 id='api-query-parameters-45'>API Query Parameters</h3>
 <p>Not required.</p>
-<h3 id='api-return-schema-43'>API Return Schema</h3>
+<h3 id='api-return-schema-44'>API Return Schema</h3>
 <p>No information.</p>
 <h2 id='cosmos-validator-status'>Cosmos Validator Status</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch data</span>
 <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">cosmos_validator_status</span> <span class="k">limit</span> <span class="mi">1</span>
@@ -7617,7 +7621,7 @@ BTC_SNX, TRX_SNX, USDT_SNX</p>
 <p><code>GET https://api.cosmostation.io/v1/status</code></p>
 <h3 id='api-query-parameters-46'>API Query Parameters</h3>
 <p>Not required.</p>
-<h3 id='api-return-schema-44'>API Return Schema</h3>
+<h3 id='api-return-schema-45'>API Return Schema</h3>
 <p>No information.</p>
 <h1 id='hashpool'>Hashpool</h1>
 <p><a href="https://hashpool.com/">Hashpool</a> is blockchain. Check their <a href="https://support.hashpool.com/article/api-documents/">api</a>.</p>
@@ -7684,7 +7688,7 @@ sort             integer</p>
 <td>Coin symbol</td>
 </tr>
 </tbody></table>
-<h3 id='api-return-schema-45'>API Return Schema</h3>
+<h3 id='api-return-schema-46'>API Return Schema</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -7831,7 +7835,7 @@ bid_now, ending_soon, ending_soon, recently_sold</p>
 <td>All available web pages.</td>
 </tr>
 </tbody></table>
-<h3 id='api-return-schema-46'>API Return Schema</h3>
+<h3 id='api-return-schema-47'>API Return Schema</h3>
 <p>No information.</p>
 <h2 id='namebase-trade'>Namebase Trade</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch data</span>
 <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">namebase_trade</span> <span class="k">limit</span> <span class="mi">1</span>
@@ -7949,7 +7953,7 @@ bid_now, ending_soon, ending_soon, recently_sold</p>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='api-return-schema-47'>API Return Schema</h3>
+<h3 id='api-return-schema-48'>API Return Schema</h3>
 <p><strong>Response</strong>:
 <code>json
 [
@@ -8055,7 +8059,7 @@ bid_now, ending_soon, ending_soon, recently_sold</p>
 <td>Default 100; max 1000. Valid limits:[5, 50, 100, 500, 1000]</td>
 </tr>
 </tbody></table>
-<h3 id='api-return-schema-48'>API Return Schema</h3>
+<h3 id='api-return-schema-49'>API Return Schema</h3>
 <p><strong>Response</strong>:
 <code>json
 {
@@ -8152,7 +8156,7 @@ bid_now, ending_soon, ending_soon, recently_sold</p>
 <p><code>GET https://api.explorer.nervos.org/api/v1/statistics/blockchain_info</code></p>
 <h3 id='api-query-parameters-51'>API Query Parameters</h3>
 <p>Not required.</p>
-<h3 id='api-return-schema-49'>API Return Schema</h3>
+<h3 id='api-return-schema-50'>API Return Schema</h3>
 <p>No inforamtion.</p>
 <h2 id='nervos-hashrate'>Nervos Hashrate</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch data</span>
 <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">nervos_hashrate</span> <span class="k">limit</span> <span class="mi">1</span>
@@ -8201,7 +8205,7 @@ type       </p>
 <p><code>GET https://api.explorer.nervos.org/api/v1/statistics/</code></p>
 <h3 id='api-query-parameters-52'>API Query Parameters</h3>
 <p>Not required.</p>
-<h3 id='api-return-schema-50'>API Return Schema</h3>
+<h3 id='api-return-schema-51'>API Return Schema</h3>
 <p>No inforamtion.</p>
 <h1 id='tether'>Tether</h1>
 <p><a href="https://tether.to/">Tether</a> is a blockchian</p>
@@ -8382,7 +8386,7 @@ Check <a href="#bitmex-instrument">Bitmex open interest api</a> </p>
 <p><strong>Okex</strong>:</p>
 <h3 id='api-query-parameters-53'>API Query Parameters</h3>
 <p>Not required.</p>
-<h3 id='api-return-schema-51'>API Return Schema</h3><h1 id='futures-market-data'>Futures Market Data</h1><h2 id='cme-group'>CME Group</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch tickers</span>
+<h3 id='api-return-schema-52'>API Return Schema</h3><h1 id='futures-market-data'>Futures Market Data</h1><h2 id='cme-group'>CME Group</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch tickers</span>
 <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">cme_futures_index</span>
 </code></pre><h3 id='description-61'>Description</h3>
 <p><a href="https://www.cmegroup.com/trading/equity-index/us-index/bitcoin_quotes_globex.html">CME futures index</a> has a frequency of 1 minute and data time range is from 2020-04-15 18:35:17 till now. Collectors are continously runing in two hosts.</p>
@@ -8513,7 +8517,7 @@ Check <a href="#bitmex-instrument">Bitmex open interest api</a> </p>
 <p><code>GET https://www.cmegroup.com/CmeWS/mvc/Quotes/Future/8478/G?quoteCodes=null</code></p>
 <h3 id='api-query-parameters-54'>API Query Parameters</h3>
 <p>Not required.</p>
-<h3 id='api-return-schema-52'>API Return Schema</h3>
+<h3 id='api-return-schema-53'>API Return Schema</h3>
 <p>No information.</p>
 <h2 id='commodity-futures-trading-commission'>Commodity Futures Trading Commission</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch tickers</span>
 <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">cftc_futures_report</span>
@@ -9247,7 +9251,7 @@ Check <a href="#bitmex-instrument">Bitmex open interest api</a> </p>
           &quot;sort_col&quot;:&quot;date&quot;,
           &quot;sort_ord&quot;:&quot;DESC&quot;}
 </code></p>
-<h3 id='api-return-schema-53'>API Return Schema</h3>
+<h3 id='api-return-schema-54'>API Return Schema</h3>
 <p>No information.</p>
 
       </div>
