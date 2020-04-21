@@ -100,7 +100,7 @@ TableName | Frequency | DataType | CurrentStatus
 [hnscan_chart_data_snapshot](#hnscan-chart) | 1 day | Chart | Running
 [hnscan_status](#hnscan-status) | 9 minutes | Summary | Running
 [hnscan_summary](#hnscan-summary) | 9 minutes | Summary | Running
-[hnscan_transaction](#hnscan-blcokchain) | 1 hour | BlockChian | Running
+[hnscan_transaction](#hnscan-blockchain) | 1 hour | BlockChian | Running
 [huobidm_contract_delivery_price](#huobidm-contract-delivery-price) | 1 minute | Delivery Price | Running
 [huobidm_contract_market_overview](#huobidm-contract-market-overview) | 1 minute | Market Overview | Running
 [huobidm_contract_price_limit](#huobidm-contract-price-limit) | 1 minute | Price Limit | Running  
@@ -3749,7 +3749,7 @@ contract_type	|string	|true	|Case-Insenstive.Both uppercase and lowercase are su
 symbol | string | true | Symbol name
 
 ### API Response Schema
-Name | Type | |Description
+Name | Type | Description
 ---- | ---- | ----------
 status	|string	|Request Processing Result
 symbol	|	string|	Variety code	"BTC","ETH" ...
