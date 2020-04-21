@@ -5,7 +5,8 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - sql
   
 toc_footers:
-  -<a href='https://github.com/virdevop/Market-Data-Host-1'>Check out scripts</a>
+  - <a href='https://github.com/virdevop/Market-Data-Host-1'>Check out scripts on Github</a>
+
 
 search: true
 ---
