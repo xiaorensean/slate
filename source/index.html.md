@@ -85,9 +85,9 @@ TableName | Frequency | DataType | CurrentStatus
 [deribit_trades](#deribit-trades) | RealTime | Trade Data | Running
 [dydx_borrow_rates](#dydx-borrow-rates) | 1 minute | Borrow Rates | Running
 [exchange_open_interest](#open-interest) | 1 minute | Open Interest | Running
-[FTX_funding_rates](#ftx-funding-rates) | 1 minute | Funding Rates | Running
-[FTX_future_stats](#ftx-future-stats) | 1 minute | Market Summary | Running
-[FTX_leaderboard](#ftx-leaderbaord) | 1 hour | Leaderboard | Running
+[FTX_funding_rates](#ftx-funding-rate) | 1 minute | Funding Rates | Running
+[FTX_future_stats](#ftx-futures-statistics) | 1 minute | Market Summary | Running
+[FTX_leaderboard](#ftx-leaderboard) | 1 hour | Leaderboard | Running
 [FTX_option_request](#ftx-option-request) | 1 second | Request Data | Running
 [FTX_orderbook](#ftx-orderbook) | 30 seconds | Orderbook | Running
 [FTX_trades](#ftx-trades) | 10 minutes | Trades | Running
