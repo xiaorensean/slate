@@ -105,6 +105,8 @@ TableName | Frequency | DataType | CurrentStatus
 [huobidm_contract_market_overview](#huobidm-contract-market-overview) | 1 minute | Market Overview | Running
 [huobidm_contract_price_limit](#huobidm-contract-price-limit) | 1 minute | Price Limit | Running  
 [huobidm_contract_risk_info](#huobidm-contract-risk-info) | 1 minute | Risk Info | Running
+huobidm_liquidation | 1 minute | Liquidation | Coming Soon
+huobidm_contract_elite_account_ratio | 1 minute | Futures Data | Coming Soon
 [huobidm_index_price](#huobidm-index-price) | 1 minute | Index Price | Running
 [huobidm_insurance_fund](#huobidm-insurance-fund) | 1 minute | Insurance Fund | Running
 [huobidm_open_interest](#huobidm-open-interest) | 1 minute | Open Interest | Running
