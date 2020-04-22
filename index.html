@@ -9734,15 +9734,17 @@ biweekly, weekly, quarterly</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-       </span><span class="err">'time'</span><span class="p">:</span><span class="w"> </span><span class="err">'</span><span class="mi">2019-07-11</span><span class="err">T</span><span class="mi">15</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mf">45.007000064</span><span class="err">Z'</span><span class="p">,</span><span class="w"> 
-       </span><span class="err">'expiration'</span><span class="p">:</span><span class="w"> </span><span class="err">None</span><span class="p">,</span><span class="w"> 
-       </span><span class="err">'highest'</span><span class="p">:</span><span class="w"> </span><span class="err">'</span><span class="mf">275.09</span><span class="err">'</span><span class="p">,</span><span class="w"> 
-       </span><span class="err">'lowest'</span><span class="p">:</span><span class="w"> </span><span class="err">'</span><span class="mf">264.30</span><span class="err">'</span><span class="p">,</span><span class="w"> 
-       </span><span class="err">'symbol'</span><span class="p">:</span><span class="w"> </span><span class="err">'ETH-USD-SWAP</span><span class="w">
+       </span><span class="err">'time'</span><span class="p">:</span><span class="w"> </span><span class="err">'</span><span class="mi">2019-10-01</span><span class="err">T</span><span class="mi">20</span><span class="p">:</span><span class="mi">17</span><span class="p">:</span><span class="mf">47.402132336</span><span class="err">Z'</span><span class="p">,</span><span class="w"> 
+       </span><span class="err">'orders_depth'</span><span class="p">:</span><span class="w"> </span><span class="err">'</span><span class="mi">2</span><span class="err">'</span><span class="p">,</span><span class="w"> 
+       </span><span class="err">'price_amount'</span><span class="p">:</span><span class="w"> </span><span class="err">'</span><span class="mi">8500</span><span class="err">'</span><span class="p">,</span><span class="w"> 
+       </span><span class="err">'price_depth'</span><span class="p">:</span><span class="w"> </span><span class="err">'</span><span class="mf">0.0381</span><span class="err">'</span><span class="p">,</span><span class="w"> 
+       </span><span class="err">'symbol'</span><span class="p">:</span><span class="w"> </span><span class="err">'HBAR-USDT'</span><span class="p">,</span><span class="w"> 
+       </span><span class="err">'timestamp'</span><span class="p">:</span><span class="w"> </span><span class="err">'</span><span class="mi">2019-10-01</span><span class="err">T</span><span class="mi">20</span><span class="p">:</span><span class="mi">17</span><span class="p">:</span><span class="mf">18.304</span><span class="err">Z'</span><span class="p">,</span><span class="w"> 
+       </span><span class="err">'type'</span><span class="p">:</span><span class="w"> </span><span class="err">'bids'</span><span class="w">
    </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='description-72'>Description</h3>
-<p><a href="https://www.okex.com/docs/en/#ws_swap-rate">OKEX price range</a> is connected through websocket and data time range is from 2019-07-11 15:59:41.304 till now. Collectors are continously runing in two hosts.</p>
+<p><a href="https://www.okex.com/docs/en/#futures_ws-depth">OKEX orderbook</a> is connected through websocket and data time range is from 2019-10-01 20:17:47.402132336 till now. Collectors are continously runing in two hosts.</p>
 <h3 id='data-schema-72'>Data Schema</h3>
 <table><thead>
 <tr>
@@ -9788,10 +9790,8 @@ biweekly, weekly, quarterly</p>
 </tr>
 </tbody></table>
 <h3 id='tag-values-34'>Tag Values</h3>
-<p><strong>symbol</strong>: </p>
-
-<p><strong>Expiration</strong>:
-biweekly, weekly, quarterly</p>
+<p><strong>symbol</strong>: 
+&#39;ALGO-BTC&#39;, &#39;ALGO-ETH&#39;, &#39;ALGO-USDK&#39;, &#39;ALGO-USDT&#39;, &#39;BCH-USD-200228&#39;, &#39;BCH-USD-200306&#39;, &#39;BCH-USD-200313&#39;, &#39;BCH-USD-200320&#39;, &#39;BCH-USD-200327&#39;, &#39;BCH-USD-200403&#39;, &#39;BCH-USD-200410&#39;, &#39;BCH-USD-200417&#39;, &#39;BCH-USD-200424&#39;, &#39;BCH-USD-200501&#39;, &#39;BCH-USD-200626&#39;, &#39;BCH-USD-200925&#39;, &#39;BCH-USD-SWAP&#39;, &#39;BCH-USDT-200228&#39;, &#39;BCH-USDT-200306&#39;, &#39;BCH-USDT-200313&#39;, &#39;BCH-USDT-200320&#39;, &#39;BCH-USDT-200327&#39;, &#39;BCH-USDT-200403&#39;, &#39;BCH-USDT-200410&#39;, &#39;BCH-USDT-200417&#39;, &#39;BCH-USDT-200424&#39;, &#39;BCH-USDT-200501&#39;, &#39;BCH-USDT-200626&#39;, &#39;BCH-USDT-200925&#39;, &#39;BCH-USDT-SWAP&#39;, &#39;BSV-USD-200228&#39;, &#39;BSV-USD-200306&#39;, &#39;BSV-USD-200313&#39;, &#39;BSV-USD-200320&#39;, &#39;BSV-USD-200327&#39;, &#39;BSV-USD-200403&#39;, &#39;BSV-USD-200410&#39;, &#39;BSV-USD-200417&#39;, &#39;BSV-USD-200424&#39;, &#39;BSV-USD-200501&#39;, &#39;BSV-USD-200626&#39;, &#39;BSV-USD-200925&#39;, &#39;BSV-USD-SWAP&#39;, &#39;BSV-USDT-200228&#39;, &#39;BSV-USDT-200306&#39;, &#39;BSV-USDT-200313&#39;, &#39;BSV-USDT-200320&#39;, &#39;BSV-USDT-200327&#39;, &#39;BSV-USDT-200403&#39;, &#39;BSV-USDT-200410&#39;, &#39;BSV-USDT-200417&#39;, &#39;BSV-USDT-200424&#39;, &#39;BSV-USDT-200501&#39;, &#39;BSV-USDT-200626&#39;, &#39;BSV-USDT-200925&#39;, &#39;BSV-USDT-SWAP&#39;, &#39;BTC-USD-200228&#39;, &#39;BTC-USD-200306&#39;, &#39;BTC-USD-200313&#39;, &#39;BTC-USD-200320&#39;, &#39;BTC-USD-200327&#39;, &#39;BTC-USD-200403&#39;, &#39;BTC-USD-200410&#39;, &#39;BTC-USD-200417&#39;, &#39;BTC-USD-200424&#39;, &#39;BTC-USD-200501&#39;, &#39;BTC-USD-200626&#39;, &#39;BTC-USD-200925&#39;, &#39;BTC-USD-SWAP&#39;, &#39;BTC-USDT&#39;, &#39;BTC-USDT-200228&#39;, &#39;BTC-USDT-200306&#39;, &#39;BTC-USDT-200313&#39;, &#39;BTC-USDT-200320&#39;, &#39;BTC-USDT-200327&#39;, &#39;BTC-USDT-200403&#39;, &#39;BTC-USDT-200410&#39;, &#39;BTC-USDT-200417&#39;, &#39;BTC-USDT-200424&#39;, &#39;BTC-USDT-200501&#39;, &#39;BTC-USDT-200626&#39;, &#39;BTC-USDT-200925&#39;, &#39;BTC-USDT-SWAP&#39;, &#39;DASH-USD-SWAP&#39;, &#39;DASH-USDT-SWAP&#39;, &#39;EOS-USD-200228&#39;, &#39;EOS-USD-200306&#39;, &#39;EOS-USD-200313&#39;, &#39;EOS-USD-200320&#39;, &#39;EOS-USD-200327&#39;, &#39;EOS-USD-200403&#39;, &#39;EOS-USD-200410&#39;, &#39;EOS-USD-200417&#39;, &#39;EOS-USD-200424&#39;, &#39;EOS-USD-200501&#39;, &#39;EOS-USD-200626&#39;, &#39;EOS-USD-200925&#39;, &#39;EOS-USD-SWAP&#39;, &#39;EOS-USDT-200228&#39;, &#39;EOS-USDT-200306&#39;, &#39;EOS-USDT-200313&#39;, &#39;EOS-USDT-200320&#39;, &#39;EOS-USDT-200327&#39;, &#39;EOS-USDT-200403&#39;, &#39;EOS-USDT-200410&#39;, &#39;EOS-USDT-200417&#39;, &#39;EOS-USDT-200424&#39;, &#39;EOS-USDT-200501&#39;, &#39;EOS-USDT-200626&#39;, &#39;EOS-USDT-200925&#39;, &#39;EOS-USDT-SWAP&#39;, &#39;ETC-USD-200228&#39;, &#39;ETC-USD-200306&#39;, &#39;ETC-USD-200313&#39;, &#39;ETC-USD-200320&#39;, &#39;ETC-USD-200327&#39;, &#39;ETC-USD-200403&#39;, &#39;ETC-USD-200410&#39;, &#39;ETC-USD-200417&#39;, &#39;ETC-USD-200424&#39;, &#39;ETC-USD-200501&#39;, &#39;ETC-USD-200626&#39;, &#39;ETC-USD-200925&#39;, &#39;ETC-USD-SWAP&#39;, &#39;ETC-USDT-200228&#39;, &#39;ETC-USDT-200306&#39;, &#39;ETC-USDT-200313&#39;, &#39;ETC-USDT-200320&#39;, &#39;ETC-USDT-200327&#39;, &#39;ETC-USDT-200403&#39;, &#39;ETC-USDT-200410&#39;, &#39;ETC-USDT-200417&#39;, &#39;ETC-USDT-200424&#39;, &#39;ETC-USDT-200501&#39;, &#39;ETC-USDT-200626&#39;, &#39;ETC-USDT-200925&#39;, &#39;ETC-USDT-SWAP&#39;, &#39;ETH-USD-200228&#39;, &#39;ETH-USD-200306&#39;, &#39;ETH-USD-200313&#39;, &#39;ETH-USD-200320&#39;, &#39;ETH-USD-200327&#39;, &#39;ETH-USD-200403&#39;, &#39;ETH-USD-200410&#39;, &#39;ETH-USD-200417&#39;, &#39;ETH-USD-200424&#39;, &#39;ETH-USD-200501&#39;, &#39;ETH-USD-200626&#39;, &#39;ETH-USD-200925&#39;, &#39;ETH-USD-SWAP&#39;, &#39;ETH-USDT&#39;, &#39;ETH-USDT-200228&#39;, &#39;ETH-USDT-200306&#39;, &#39;ETH-USDT-200313&#39;, &#39;ETH-USDT-200320&#39;, &#39;ETH-USDT-200327&#39;, &#39;ETH-USDT-200403&#39;, &#39;ETH-USDT-200410&#39;, &#39;ETH-USDT-200417&#39;, &#39;ETH-USDT-200424&#39;, &#39;ETH-USDT-200501&#39;, &#39;ETH-USDT-200626&#39;, &#39;ETH-USDT-200925&#39;, &#39;ETH-USDT-SWAP&#39;, &#39;HBAR-BTC&#39;, &#39;HBAR-USDK&#39;, &#39;HBAR-USDT&#39;, &#39;LINK-USD-SWAP&#39;, &#39;LINK-USDT-SWAP&#39;, &#39;LTC-USD-200228&#39;, &#39;LTC-USD-200306&#39;, &#39;LTC-USD-200313&#39;, &#39;LTC-USD-200320&#39;, &#39;LTC-USD-200327&#39;, &#39;LTC-USD-200403&#39;, &#39;LTC-USD-200410&#39;, &#39;LTC-USD-200417&#39;, &#39;LTC-USD-200424&#39;, &#39;LTC-USD-200501&#39;, &#39;LTC-USD-200626&#39;, &#39;LTC-USD-200925&#39;, &#39;LTC-USD-SWAP&#39;, &#39;LTC-USDT-200228&#39;, &#39;LTC-USDT-200306&#39;, &#39;LTC-USDT-200313&#39;, &#39;LTC-USDT-200320&#39;, &#39;LTC-USDT-200327&#39;, &#39;LTC-USDT-200403&#39;, &#39;LTC-USDT-200410&#39;, &#39;LTC-USDT-200417&#39;, &#39;LTC-USDT-200424&#39;, &#39;LTC-USDT-200501&#39;, &#39;LTC-USDT-200626&#39;, &#39;LTC-USDT-200925&#39;, &#39;LTC-USDT-SWAP&#39;, &#39;NEO-USD-SWAP&#39;, &#39;NEO-USDT-SWAP&#39;, &#39;TRX-USD-200228&#39;, &#39;TRX-USD-200306&#39;, &#39;TRX-USD-200313&#39;, &#39;TRX-USD-200320&#39;, &#39;TRX-USD-200327&#39;, &#39;TRX-USD-200403&#39;, &#39;TRX-USD-200410&#39;, &#39;TRX-USD-200417&#39;, &#39;TRX-USD-200424&#39;, &#39;TRX-USD-200501&#39;, &#39;TRX-USD-200626&#39;, &#39;TRX-USD-200925&#39;, &#39;TRX-USD-SWAP&#39;, &#39;TRX-USDT-200228&#39;, &#39;TRX-USDT-200306&#39;, &#39;TRX-USDT-200313&#39;, &#39;TRX-USDT-200320&#39;, &#39;TRX-USDT-200327&#39;, &#39;TRX-USDT-200403&#39;, &#39;TRX-USDT-200410&#39;, &#39;TRX-USDT-200417&#39;, &#39;TRX-USDT-200424&#39;, &#39;TRX-USDT-200501&#39;, &#39;TRX-USDT-200626&#39;, &#39;TRX-USDT-200925&#39;, &#39;TRX-USDT-SWAP&#39;, &#39;XRP-USD-200228&#39;, &#39;XRP-USD-200306&#39;, &#39;XRP-USD-200313&#39;, &#39;XRP-USD-200320&#39;, &#39;XRP-USD-200327&#39;, &#39;XRP-USD-200403&#39;, &#39;XRP-USD-200410&#39;, &#39;XRP-USD-200417&#39;, &#39;XRP-USD-200424&#39;, &#39;XRP-USD-200501&#39;, &#39;XRP-USD-200626&#39;, &#39;XRP-USD-200925&#39;, &#39;XRP-USD-SWAP&#39;, &#39;XRP-USDT-200228&#39;, &#39;XRP-USDT-200306&#39;, &#39;XRP-USDT-200313&#39;, &#39;XRP-USDT-200320&#39;, &#39;XRP-USDT-200327&#39;, &#39;XRP-USDT-200403&#39;, &#39;XRP-USDT-200410&#39;, &#39;XRP-USDT-200417&#39;, &#39;XRP-USDT-200424&#39;, &#39;XRP-USDT-200501&#39;, &#39;XRP-USDT-200626&#39;, &#39;XRP-USDT-200925&#39;, &#39;XRP-USDT-SWAP&#39;</p>
 <h3 id='data-sanity-72'>Data Sanity</h3>
 <p>No downtime.</p>
 <h3 id='api-reference-65'>API Reference</h3>
@@ -9799,10 +9799,10 @@ biweekly, weekly, quarterly</p>
 <code>Websocket wss://real.okex.com:8443/ws/v3</code></p>
 
 <p><strong>Futures Payload</strong>:
-<code>{&quot;op&quot;: &quot;subscribe&quot;, &quot;args&quot;:[&quot;futures/price_range:BTC-USD-190628&quot;]</code></p>
+<code>{&quot;op&quot;: &quot;subscribe&quot;, &quot;args&quot;:[&quot;futures/depth:BTC-USD-190628&quot;]</code></p>
 
-<p><strong>Swap Payload</strong>:
-<code>{&quot;op&quot;: &quot;subscribe&quot;, &quot;args&quot;:[&quot;swap/price_range:BTC-USD-190628&quot;]</code></p>
+<p><strong>Spot Payload</strong>:
+<code>{&quot;op&quot;: &quot;subscribe&quot;, &quot;args&quot;:[&quot;spot/depth:BTC-USD&quot;]</code></p>
 <h3 id='api-query-parameters-68'>API Query Parameters</h3>
 <table><thead>
 <tr>
@@ -9828,24 +9828,29 @@ biweekly, weekly, quarterly</p>
 </tr>
 </thead><tbody>
 <tr>
-<td>timestamp</td>
-<td>String</td>
-<td>timestamp</td>
+<td>asks</td>
+<td>List<String></td>
+<td>Sell side depth</td>
 </tr>
 <tr>
-<td>lowest</td>
+<td>bids</td>
+<td>List<String></td>
+<td>Buy side depth</td>
+</tr>
+<tr>
+<td>timestamp</td>
 <td>String</td>
-<td>Minimum buying price</td>
+<td>System time stamp</td>
 </tr>
 <tr>
 <td>instrument_id</td>
 <td>String</td>
-<td>Contract ID, e.g. BTC-USD-170310,BTC-USDT-191227</td>
+<td>Contract ID，e.g .BTC-USD-191227 ,BTC-USDT-191227</td>
 </tr>
 <tr>
-<td>highest</td>
+<td>checksum</td>
 <td>String</td>
-<td>Maximum buying price</td>
+<td>checksum</td>
 </tr>
 </tbody></table>
 <h2 id='okex-recent-trades'>OKEX Recent Trades</h2><h2 id='okex-spot-trades'>OKEX Spot Trades</h2><h2 id='okex-open-interest-swap'>OKEX Open Interest Swap</h2><h2 id='okex-ticker'>OKEX Ticker</h2><h2 id='okex-ticker-swap'>OKEX Ticker Swap</h2><h2 id='okex-ticker-v1'>OKEX Ticker V1</h2><h1 id='poloniex'>Poloniex</h1>
