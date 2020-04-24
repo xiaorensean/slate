@@ -1011,6 +1011,12 @@ Need credentials to log in.
 <td>Running</td>
 </tr>
 <tr>
+<td><a href="#ftx-trades">FTX_liquidation</a></td>
+<td>Unknown</td>
+<td>Liquidation</td>
+<td>Running</td>
+</tr>
+<tr>
 <td><a href="#ftx-option-request">FTX_option_request</a></td>
 <td>1 second</td>
 <td>Request Data</td>
@@ -6620,7 +6626,7 @@ BTC-PERPETUAL, ETH-PERPETUAL</p>
 <p><strong>Symbol (Symbols are subject to change)</strong>: 
 &#39;ADA-PERP&#39;, &#39;ALGO-PERP&#39;, &#39;ALT-PERP&#39;, &#39;ATOM-PERP&#39;, &#39;BCH-PERP&#39;, &#39;BNB-PERP&#39;, &#39;BSV-PERP&#39;, &#39;BTC-PERP&#39;, &#39;BTMX-PERP&#39;, &#39;DOGE-PERP&#39;, &#39;DRGN-PERP&#39;, &#39;EOS-PERP&#39;, &#39;ETC-PERP&#39;, &#39;ETH-PERP&#39;, &#39;EXCH-PERP&#39;, &#39;HT-PERP&#39;, &#39;LEO-PERP&#39;, &#39;LINK-PERP&#39;, &#39;LTC-PERP&#39;, &#39;MATIC-PERP&#39;, &#39;MID-PERP&#39;, &#39;OKB-PERP&#39;, &#39;PAXG-PERP&#39;, &#39;PRIV-PERP&#39;, &#39;SHIT-PERP&#39;, &#39;TOMO-PERP&#39;, &#39;TRX-PERP&#39;, &#39;TRYB-PERP&#39;, &#39;USDT-PERP&#39;, &#39;XAUT-PERP&#39;, &#39;XRP-PERP&#39;, &#39;XTZ-PERP</p>
 <h3 id='data-sanity-41'>Data Sanity</h3>
-<p>No downtime.</p>
+<p>No downtime. Double check with <a href="https://ftx.com/funding">FTX GUI</a>.</p>
 <h3 id='api-reference-34'>API Reference</h3>
 <p><code>GET https://ftx.com/api/funding_rates</code></p>
 <h3 id='api-query-parameters-37'>API Query Parameters</h3>
@@ -6699,7 +6705,7 @@ BTC-PERPETUAL, ETH-PERPETUAL</p>
    </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='description-42'>Description</h3>
-<p><a href="https://docs.ftx.com/#get-future-stats">FTX future stats</a> has a frequency of 1 nimute and data time range is from 2019-09-04 17:01:01.333594927 till now. Collectors are continously runing in two hosts.</p>
+<p><a href="https://docs.ftx.com/#get-future-stats">FTX future stats</a> has a frequency of 1 minute and data time range is from 2019-09-04 17:01:01.333594927 till now. Collectors are continously runing in two hosts.</p>
 <h3 id='data-schema-42'>Data Schema</h3>
 <table><thead>
 <tr>
@@ -7153,8 +7159,11 @@ underlying    string</p>
 <td>Array with price and size</td>
 </tr>
 </tbody></table>
-<h2 id='ftx-trades'>FTX Trades</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch data</span>
-<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">FTX_trades</span> <span class="k">limit</span> <span class="mi">1</span> 
+<h2 id='ftx-trades'>FTX Trades</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch trades data</span>
+<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">FTX_trades</span> <span class="k">where</span> <span class="n">liquidation</span> <span class="o">=</span> <span class="k">false</span> <span class="k">limit</span> <span class="mi">1</span> 
+
+<span class="c1">-- fetch liquidation</span>
+<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">FTX_trades</span> <span class="k">where</span> <span class="n">liquidation</span> <span class="o">=</span> <span class="k">true</span> <span class="k">limit</span> <span class="mi">1</span>
 </code></pre>
 <blockquote>
 <p>response</p>
@@ -7194,7 +7203,7 @@ underlying    string</p>
 <tr>
 <td>liquidation</td>
 <td>boolean</td>
-<td></td>
+<td>Filter out liquidation trades by true and false</td>
 </tr>
 <tr>
 <td>price</td>
