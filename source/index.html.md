@@ -88,6 +88,7 @@ TableName | Frequency | DataType | CurrentStatus
 [FTX_funding_rates](#ftx-funding-rate) | 1 minute | Funding Rates | Running
 [FTX_future_stats](#ftx-futures-statistics) | 1 minute | Market Summary | Running
 [FTX_leaderboard](#ftx-leaderboard) | 1 hour | Leaderboard | Running
+[FTX_liquidation](#ftx-trades) | Unknown | Liquidation | Running
 [FTX_option_request](#ftx-option-request) | 1 second | Request Data | Running
 [FTX_orderbook](#ftx-orderbook) | 30 seconds | Orderbook | Running
 [FTX_trades](#ftx-trades) | 10 minutes | Trades | Running
@@ -3079,7 +3080,7 @@ symbol | string | tag values
 'ADA-PERP', 'ALGO-PERP', 'ALT-PERP', 'ATOM-PERP', 'BCH-PERP', 'BNB-PERP', 'BSV-PERP', 'BTC-PERP', 'BTMX-PERP', 'DOGE-PERP', 'DRGN-PERP', 'EOS-PERP', 'ETC-PERP', 'ETH-PERP', 'EXCH-PERP', 'HT-PERP', 'LEO-PERP', 'LINK-PERP', 'LTC-PERP', 'MATIC-PERP', 'MID-PERP', 'OKB-PERP', 'PAXG-PERP', 'PRIV-PERP', 'SHIT-PERP', 'TOMO-PERP', 'TRX-PERP', 'TRYB-PERP', 'USDT-PERP', 'XAUT-PERP', 'XRP-PERP', 'XTZ-PERP
 
 ### Data Sanity
-No downtime.
+No downtime. Double check with [FTX GUI](https://ftx.com/funding).
 
 ### API Reference
 `GET https://ftx.com/api/funding_rates`
@@ -3123,7 +3124,7 @@ select * from FTX_future_stats limit 1
 ```
 
 ### Description
-[FTX future stats](https://docs.ftx.com/#get-future-stats) has a frequency of 1 nimute and data time range is from 2019-09-04 17:01:01.333594927 till now. Collectors are continously runing in two hosts.
+[FTX future stats](https://docs.ftx.com/#get-future-stats) has a frequency of 1 minute and data time range is from 2019-09-04 17:01:01.333594927 till now. Collectors are continously runing in two hosts.
 
 ### Data Schema
 fieldName | fieldType | description
@@ -3347,8 +3348,11 @@ bids|	array	|[4112, 49.29]	|Array with price and size
 
 ## FTX Trades 
 ```sql
--- fetch data
-select * from FTX_trades limit 1 
+-- fetch trades data
+select * from FTX_trades where liquidation = false limit 1 
+
+-- fetch liquidation
+select * from FTX_trades where liquidation = true limit 1
 ```
 > response
 
@@ -3375,7 +3379,7 @@ fieldName | fieldType | description
 --------- | --------- | ---------- |
 time | string | default database timestamp
 id          |integer|
-liquidation |boolean|
+liquidation |boolean| Filter out liquidation trades by true and false
 price       |float|
 side        |string|
 size        |float|
