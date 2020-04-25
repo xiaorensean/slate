@@ -88,7 +88,7 @@ TableName | Frequency | DataType | CurrentStatus
 [FTX_funding_rates](#ftx-funding-rate) | 1 minute | Funding Rates | Running
 [FTX_future_stats](#ftx-futures-statistics) | 1 minute | Market Summary | Running
 [FTX_leaderboard](#ftx-leaderboard) | 1 hour | Leaderboard | Running
-[FTX_liquidation](#ftx-trades) | Unknown | Liquidation | Running
+[FTX_liquidation](#ftx-trades) | 1 hour | Liquidation | Running
 [FTX_option_request](#ftx-option-request) | 1 second | Request Data | Running
 [FTX_orderbook](#ftx-orderbook) | 30 seconds | Orderbook | Running
 [FTX_trades](#ftx-trades) | 10 minutes | Trades | Running
@@ -106,8 +106,9 @@ TableName | Frequency | DataType | CurrentStatus
 [huobidm_contract_market_overview](#huobidm-contract-market-overview) | 1 minute | Market Overview | Running
 [huobidm_contract_price_limit](#huobidm-contract-price-limit) | 1 minute | Price Limit | Running  
 [huobidm_contract_risk_info](#huobidm-contract-risk-info) | 1 minute | Risk Info | Running
-huobidm_liquidation | 1 minute | Liquidation | Coming Soon
-huobidm_contract_elite_account_ratio | 1 minute | Futures Data | Coming Soon
+[huobidm_liquidation](#huobidm-liquidation) | 1 minute | Liquidation | Running
+[huobidm_contract_elite_account_ratio](#huobidm-contract-elite-account-ratio) | 1 minute | Futures Data | Runnning
+[huobidm_contract_elite_position_ratio](#huobidm-contract-elite-position-ratio) | 1 minute | Futures Data | Runnning
 [huobidm_index_price](#huobidm-index-price) | 1 minute | Index Price | Running
 [huobidm_insurance_fund](#huobidm-insurance-fund) | 1 minute | Insurance Fund | Running
 [huobidm_open_interest](#huobidm-open-interest) | 1 minute | Open Interest | Running
@@ -3372,7 +3373,12 @@ select * from FTX_trades where liquidation = true limit 1
 ```
 
 ### Description
-[FTX trade](https://docs.ftx.com/#get-trades) has a frequency of 10 minutes and data time range is from 2019-03-05 12:26:49.486594048 till now. Collectors are continously runing in two hosts.
+[FTX trade](https://docs.ftx.com/#get-trades) has a frequency of 10 minutes and data time range is from 2019-03-05 12:26:49.486594048 till now. Collectors are continously runing in two hosts. FTX liquidation shares the same table with FTX trade.
+
+<aside class="notice">
+To select liquidation trades, set liquidation = true. i.e. `select * from FTX_trades where liquidation = true`  
+</aside>
+
 
 ### Data Schema
 fieldName | fieldType | description
@@ -3984,6 +3990,211 @@ symbol | string | symbol name
 volume|	float	| open interst
 amount_type | string | open interest unit
 ts |long	|Time of Respond Generation, Unit: Millisecond
+
+
+## Huobidm Liquidation
+```sql
+-- fetch data
+select * from huobidm_liquidation limit 1 
+```
+> response
+
+```json
+[
+    {
+        'time': '2020-04-23T02:46:39.430815831Z', 
+        'contract_code': 'BTC200626', 
+        'direction': 'buy', 
+        'offset': 'close', 
+        'price': 7207.98, 
+        'symbol': 'BTC', 
+        'timestamp': 1587606977462, 
+        'volume': 20
+   }
+]
+```
+
+### Description
+[Huobidm liquidation](https://docs.huobigroup.com/docs/dm/v1/en/#query-information-on-open-interest) has a frequency of 1 week and data time range is from 2020-01-26 13:51:39.430815831Z till now. Collectors are continously runing in two hosts.
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | default database timestamp
+direction |string|
+offset    |string|
+price     |float|
+timestamp |integer|
+volume    |integer|
+symbol | string | Tag values
+ 
+### Tag Values
+**Symbol**: 
+'BCH', 'BSV', 'BTC', 'EOS', 'ETC', 'ETH', 'LTC', 'TRX', 'XRP'
+
+### Data Sanity
+No downtime. Check Huobi [GUI](https://www.hbdm.com/en-us/contract/info/liquidation/) for reference.
+
+### API Reference
+**Futures**
+`GET https://api.hbdm.com/api/v1/contract_liquidation_orders?symbol=BTC&trade_type=0&create_date=7`
+
+
+### API Query Parameters
+Name | Type | Required | Description
+-----| --------| ----------| --------- |
+symbol |string	|true	| Symbol name.
+trade_type | int | true | long&short, long, short 
+create_date | int | true | 7 days or 90 days
+
+### API Response Schema
+Name | Type | Description
+---- | ---- | ----------
+status	|string	|Request Processing Result
+symbol | string | symbol name
+price|	float	| liquidation price
+volume | float | liquidation amount
+ts |long	|Time of Respond Generation, Unit: Millisecond
+
+
+
+## Huobidm Contract Elite Account Ratio
+```sql
+-- fetch data
+select * from huobidm_contract_elite_account_ratio limit 1 
+```
+> response
+
+```json
+[
+    {
+        'time': '2020-03-24T16:00:00Z', 
+        'buy_ratio': 0.42, 
+        'frequency': '1440', 
+        'locked_ratio': 0.02, 
+        'sell_ratio': 0.56, 
+        'symbol': 'BCH', 
+        'timestamp': 1585065600000
+   }
+]
+```
+
+### Description
+[Huobidm contract elite account ratio]("https://api.hbdm.com/api/v1/contract_elite_account_ratio?symbol=BTC&period=60min") has a varity of frequency for 5, 15, 30, 60, 240, 1440 minutes and data time range is from 2020-03-24 16:00:00 till now. Collectors are continously runing in two hosts.
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | default database timestamp
+buy_ratio    |float|
+locked_ratio |float|
+sell_ratio   |float
+timestamp    |integer|
+frequency |string| Tag values
+symbol | string | Tag values
+ 
+### Tag Values
+**Symbol**: 
+'BCH', 'BSV', 'BTC', 'EOS', 'ETC', 'ETH', 'LTC', 'TRX', 'XRP'
+
+**Frequency**:
+5, 15, 30, 60, 240, 14440
+
+### Data Sanity
+No downtime. 
+
+### API Reference
+**Futures**
+`GET https://api.hbdm.com/api/v1/contract_elite_account_ratio?symbol=BTC&period=60min`
+
+**SWAP**:
+`GET https://api.hbdm.com/swap-api/v1/swap_elite_account_ratio?contract_code=BTC-USD&period=60min`
+
+
+### API Query Parameters
+Name | Type | Required | Description
+-----| --------| ----------| --------- |
+symbol|	string	| true |symbol	Case-Insenstive.Both uppercase and lowercase are supported."BTC","ETH"...
+period|	string	| true |period	5min, 15min, 30min, 60min,4hour,1day
+
+### API Response Schema
+Name | Type | Description
+---- | ---- | ----------
+status	|string	|Request Processing Result
+symbol | string | symbol name
+buy_ratio |	float	| net long account ratio
+sell_ratio | float | net short account ratio
+locked_ratio | float | locked account ratio
+ts |long	|Time of Respond Generation, Unit: Millisecond
+
+
+
+## Huobidm Contract Elite Position Ratio
+```sql
+-- fetch data
+select * from huobidm_contract_elite_position_ratio limit 1 
+```
+> response
+
+```json
+[
+    {
+        'time': '2020-03-24T16:00:00Z', 
+        'buy_ratio': 0.471, 
+        'frequency': '1440', 
+        'sell_ratio': 0.529, 
+        'symbol': 'BCH', 
+        'timestamp': 1585065600000
+   
+]
+```
+
+### Description
+[Huobidm contract elite position ratio]("https://api.hbdm.com/api/v1/contract_elite_position_ratio?symbol=BTC&period=60min") has a varity of frequency for 5, 15, 30, 60, 240, 1440 minutes and data time range is from 2020-03-24 16:00:00 till now. Collectors are continously runing in two hosts.
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | default database timestamp
+buy_ratio    |float|
+sell_ratio   |float
+timestamp    |integer|
+frequency |string| Tag values
+symbol | string | Tag values
+ 
+### Tag Values
+**Symbol**: 
+'BCH', 'BSV', 'BTC', 'EOS', 'ETC', 'ETH', 'LTC', 'TRX', 'XRP'
+
+**Frequency**:
+5, 15, 30, 60, 240, 14440
+
+### Data Sanity
+No downtime. 
+
+### API Reference
+**Futures**
+`GET https://api.hbdm.com/api/v1/contract_elite_position_ratio?symbol=BTC&period=60min`
+
+**SWAP**:
+`GET https://api.hbdm.com/swap-api/v1/swap_elite_position_ratio?contract_code=BTC-USD&period=60min`
+
+
+### API Query Parameters
+Name | Type | Required | Description
+-----| --------| ----------| --------- |
+symbol|	string	| true |symbol	Case-Insenstive.Both uppercase and lowercase are supported."BTC","ETH"...
+period|	string	| true |period	5min, 15min, 30min, 60min,4hour,1day
+
+### API Response Schema
+Name | Type | Description
+---- | ---- | ----------
+status	|string	|Request Processing Result
+symbol | string | symbol name
+buy_ratio |	float	| net long account ratio
+sell_ratio | float | net short account ratio
+ts |long	|Time of Respond Generation, Unit: Millisecond
+
 
 
 ## Huobidm Orderbook
