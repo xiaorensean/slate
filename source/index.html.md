@@ -20,7 +20,7 @@ Database is [InfluxDB](https://docs.influxdata.com/influxdb/v1.8/),whihc is a ti
 **Host Server 1**: 
 `Host-1 (Primary): 35-183-117-153`
 **Host Server 2**:
-`Host-2 (Backup): 15-223-68-239`
+`Host-2 (Backup): 15-223-67-67`
 
 <aside class="notice">
 Need credentials to log in.
