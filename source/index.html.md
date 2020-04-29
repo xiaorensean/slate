@@ -76,6 +76,7 @@ TableName | Frequency | DataType | CurrentStatus
 [coinex_trades](#coinex-trades) | 30 seconds | Trade Data | Running
 [coinflex_burn_fees](#coinflex-burn-fees) | 1 day | Burn Fees | NoLongerUpdating
 [compound_borrow_rates](#compound-borrow-rates) | 1 minute | Borrow Rates | Running
+[compound_leaderboard](#compound-leaderboard) | 12 hours | Leaderboard | Runnning
 [cosmos_validator_ranking](#cosmos-validator-ranking) | 1 hour | Validator Ranking | Running
 [cosmos_validator_status](#cosmos-validator-status) | 1 hour | Validator Status | Running
 [deribit_fundingRate](#deribit-funding-rate) | 8 hours | Funding Rate | Running
@@ -2619,6 +2620,78 @@ Error	| error |
 CTokenRequest	| request | The request parameters are echoed in the response.
 CToken	| cToken |	The list of cToken matching the requested filter.
 CTokenMeta	| meta	|  Metadata for all CTokens specified
+
+
+## Compound Leaderboard
+```sql
+-- fetch data
+select * from compound_leaderboard limit 1 
+```
+> response
+
+```json
+{
+   'time': '2020-04-28T18:38:34.664867271Z', 
+   'account_url': 'https://polychain.capital/', 
+   'address': '0xed409c9ff60f3020abf9012bcd45fc294f5608ff', 
+   'balance': 0, 'name': 
+   'Polychain Capital', 
+   'proposals_created': 0, 
+   'rank': 1, 
+   'timestamp': 1588099114, 
+   'vote': 325712.27, 
+   'vote_weight': 0.032571227
+}
+```
+
+### Description
+[Compound borrow rates](https://compound.finance/governance/leaderboard) has a frequency of 12 hours and data time range is from 2020-04-28 18:38:34.664867271 till now. Collectors are continously runing in two hosts.
+
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | default database timestamp
+account_url       |string|
+address           |string|
+balance           |float|
+name              |string|
+proposals_created |integer|
+rank              |integer|
+timestamp         |integer|
+vote              |float|
+vote_weight       |float|
+
+
+### Data Sanity
+No downtime.
+
+### API Reference
+`GET https://api.compound.finance/api/v2/governance/accounts?page_size=100&page_number=1&with_history=false&network=mainnet`
+
+### API Query Parameters
+Type | Key | Description 
+---- | --- | -----------
+int	|page_size|	number of data
+int	|page_number	| number of page data
+boolean	| with_history	| Fetch all historical data
+string	| network	| mainnet or testnet
+
+
+### API Response Schema
+Type | Key | Description
+---- | --- | ----------
+bytes	|address	|The address of the given COMP account
+string	|display_name	|A human readable name that describes who owns the account
+string	|image_url	|A url to retrieve an account image
+string	|account_url	|A url for the organization/user of the COMP account
+string	|balance	|The balance of COMP for the given account
+string	|votes	|The total votes delegated to the account
+string	|vote_weight	|The percentage of voting weight of the 10,000,000 total COMP
+uint32	|proposals_created	|The number of proposals created in the Compound Governance System
+DisplayCompAccount	|delegate	|The account this COMP account is delegating to (See DisplayCompAccount)
+uint32	|rank	Either null or the rank order of top 100 COMP accounts for votes
+CompAccountTransaction	|transactions	| Either null or a list of historical transactions for the account (See CompAccountTransaction)
 
 
 
