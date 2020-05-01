@@ -6941,7 +6941,6 @@ fieldName | fieldType | description
 time | string | data timestamp
 coin_denominated_open_interest  |float|
 usd_denominated_open_interest   |float|
-coin_denominated_open_interest  |string|
 contract_symbol | string | tag values
 contract_exchange | string | tag values
 
