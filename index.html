@@ -978,6 +978,12 @@ Need credentials to log in.
 <td>Running</td>
 </tr>
 <tr>
+<td><a href="#deribit-trades">deribit_liquidation</a></td>
+<td>RealTime</td>
+<td>Liquidation Trade</td>
+<td>Running</td>
+</tr>
+<tr>
 <td><a href="#deribit-ticker-historical-data">deribit_optoinTicker</a></td>
 <td>RealTime</td>
 <td>Option Ticker</td>
@@ -6594,8 +6600,11 @@ BTC-PERPETUAL, ETH-PERPETUAL</p>
 <td>The state of the order book. Possible values include &quot;open&quot; and &quot;closed&quot;.</td>
 </tr>
 </tbody></table>
-<h2 id='deribit-trades'>Deribit Trades</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch orderbook  </span>
+<h2 id='deribit-trades'>Deribit Trades</h2><pre class="highlight sql tab-sql"><code><span class="c1">-- fetch trades</span>
 <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">deribit_trades</span>
+
+<span class="c1">-- ftech liquidation trades</span>
+<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">deribit_trades</span> <span class="k">where</span> <span class="n">liquidation</span> <span class="o">=</span> <span class="n">M</span>
 </code></pre>
 <blockquote>
 <p>response</p>
@@ -6620,7 +6629,7 @@ BTC-PERPETUAL, ETH-PERPETUAL</p>
 
 </span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='description-41'>Description</h3>
-<p><a href="https://deribitexchange.gitbooks.io/deribit-api/rpc-endpoints.html">Deribit trades</a> is connected thourgh websocket and data time range is from 2019-07-11T15:55:52.404Z till now. Collectors are continously runing in two hosts.</p>
+<p><a href="https://deribitexchange.gitbooks.io/deribit-api/rpc-endpoints.html">Deribit trades</a> is connected thourgh websocket and data time range is from 2019-07-11T15:55:52.404Z till now. Collectors are continously runing in two hosts. And liquidation trades can be fetched by sorting liquidation column equls to M.</p>
 <h3 id='data-schema-41'>Data Schema</h3>
 <table><thead>
 <tr>
