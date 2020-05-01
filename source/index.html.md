@@ -80,9 +80,10 @@ TableName | Frequency | DataType | CurrentStatus
 [cosmos_validator_ranking](#cosmos-validator-ranking) | 1 hour | Validator Ranking | Running
 [cosmos_validator_status](#cosmos-validator-status) | 1 hour | Validator Status | Running
 [deribit_fundingRate](#deribit-funding-rate) | 8 hours | Funding Rate | Running
-[deribit_optoinTicker](#deribit-ticker) | RealTime | Option Ticker | Running
+[deribit_optoinTicker](#deribit-ticker-historical-data) | RealTime | Option Ticker | Stopped
 [deribit_orderbook](#deribit-orderbook) | 30 seconds | Orderbok | Running
-[deribit_ticker](#deribit-ticker) | RealTime | Ticker | Running
+[deribit_ticker](#deribit-ticker-historcal-data) | RealTime | Ticker | Stopped
+[deribit_tickers](#deribit-tickers) | 1 minute | Ticker | Stopped
 [deribit_trades](#deribit-trades) | RealTime | Trade Data | Running
 [dydx_borrow_rates](#dydx-borrow-rates) | 1 minute | Borrow Rates | Running
 [exchange_open_interest](#open-interest) | 1 minute | Open Interest | Running
@@ -2169,10 +2170,12 @@ symbol | string |
 Symbols are BTCUSD, ETHUSD, EOSUSD, XRPUSD
 
 ### Data Sanity
-No downtime.
+No downtime. The open_interest entry is wrong for a period of time. 
+
+<aside class="warning"> <code> The UTC time period is from 2020-04-29 02:52:36.097878988 to 2020-04-29 20:30:00 </code> applys in table names </aside>
+
 
 ### API Reference
-
 `GET https://api2.bybit.com/v2/public/tickers`
 
 ### API Query Parameters
@@ -2769,7 +2772,7 @@ data	| object	|
   ›  timestamp	|integer	|The timestamp (milliseconds since the Unix epoch)
 
 
-## Deribit Ticker
+## Deribit Ticker Historical Data
 ```sql
 -- fetch option ticker 
 select * from deribit_optionsTicker
@@ -2812,7 +2815,7 @@ select * from deribit_ticker
 ```
 
 ### Description
-[Deribit option ticker and ticker](https://docs.deribit.com/?python#ticker-instrument_name-interval) is connected thourgh websocket and data time range for ticker is from 2019-07-11T15:59:41.176999936Z till now. Collectors are continously runing in two hosts.
+[Deribit option ticker and ticker](https://docs.deribit.com/?python#ticker-instrument_name-interval) is connected thourgh websocket and data time range for ticker is from 2019-07-11T15:59:41.176999936Z till 2020-04-30 18:33:10. The collector is closed due to connection errors.
 
 ### Data Schema
 fieldName | fieldType | description
@@ -2876,6 +2879,82 @@ No downtime.
 
 ### API Response Schema
 Check [api doc](https://docs.deribit.com/#public-ticker) 
+
+
+
+## Deribit Tickers
+```sql
+-- fetch option ticker 
+select * from deribit_tickers
+```
+> response
+
+```json
+[
+
+ {
+   'time': '2020-04-30T19:16:02.529614956Z', 
+   'askPrice': 0.506, 
+   'bidPrice': 0.291, 
+   'high': None, 
+   'instrument_name': 'ETH-29MAY20-150-C', 
+   'last': 0.267, 
+   'low': None, 
+   'markPrice': 0.3053, 
+   'midPrice': 0.39849999999999997, 
+   'open_interest': 1118, 
+   'timestamp': '2020-04-30 19:16:02 GMT', 
+   'uIx': 'SYN.ETH-29MAY20', 
+   'uPx': 210.40805013776597, 
+   'volume': None, 
+   'volume_btc': None, 
+   'volume_eth': None
+ }
+
+]
+```
+
+### Description
+[Deribit tickers](https://deribitexchange.gitbooks.io/deribit-api/rpc-endpoints.html#getsummary) is connected thourgh RPC and data time range for ticker is from 2020-07-11T15:59:41.176999936Z till now. Collectors are continously runing in two hosts.
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | default database timestamp
+askPrice      |float|
+bidPrice      |float|
+high          |float|
+last          |float|
+low           |float|
+markPrice     |float|
+midPrice      |float|
+open_interest |float|
+timestamp     |string|
+uIx           |string|
+uPx           |float|
+volume        |float|
+volume_btc    |float|
+volume_eth    |float|
+symbol | string | tag values
+
+### Tag Vlaues 
+**Option Symbols** ([Snapshot symbols](https://www.deribit.com/main#/options?tab=all) since symbols will increase per day due to rolling option tickers):
+'BTC-10APR20-4750-C',  'ETH-9APR20-185-C'
+
+**Futures and Swap Symbols**:
+'BTC-25SEP20', 'BTC-26JUN20', 'BTC-27DEC19', 'BTC-27MAR20', 'BTC-27SEP19', 'BTC-PERPETUAL', 'ETH-25SEP20', 'ETH-26JUN20', 'ETH-27DEC19', 'ETH-27MAR20', 'ETH-27SEP19', 'ETH-PERPETUAL'
+
+### Data Sanity
+No downtime.
+
+### API Reference
+**Endpoint**:
+`GET /api/v1/public/getsummary`
+
+### API Response Schema
+Check [api doc](https://deribitexchange.gitbooks.io/deribit-api/rpc-endpoints.html#getsummary) 
+
+
 
 
 ## Deribit Orderbook
