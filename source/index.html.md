@@ -56,7 +56,7 @@ TableName | Frequency | DataType | CurrentStatus
 [bitfinex_leaderboard](#bitfinex-leaderboard) | Varies | Leaderboard | Running
 [bitmex_full_orderbook](#bitmex-full-orderbook) | RealTime | Orderbook | Running
 [bitmex_funding](#bitmex-funding) | 8 hours | Funding | Running
-[bitmex_funding_rates](#bitmex-funding-rate) | 8 hours | Funding | Running
+[bitmex_funding_rates](#bitmex-funding-rate) | 1 minute | Funding | Running
 [bitmex_instrument](#bitmex-instrument) | 1 minute | Market Summary | Running 
 [bitmex_insurance](#bitmex-insurance) | None | None | Running
 [bitmex_leaderboard_notional](#bitmex-leaderboard) | 1 hour | Leaderboard | Running
@@ -1268,7 +1268,7 @@ select * from bitmex_funding_rates where symbol = 'XBTUSD'
 ```
 
 ### Description
-[Bitmex funding rate](https://www.bitmex.com/app/fundingHistory) has a frequency of 8 hours. And data time range is from 2016-05-04 12:00:00 till now. Collectors are continously runing in two hosts.
+[Bitmex funding rate](https://www.bitmex.com/app/fundingHistory) has a frequency of 1 minute. And data time range is from 2016-05-04 12:00:00 till now. Collectors are continously runing in two hosts.
 
 ### Data Schema
 fieldName | fieldType | description
@@ -6953,7 +6953,7 @@ contract_exchange | string | tag values
 
 
 ### Data Sanity
-No downtime.
+OKEX all USDT tickers's USD denominated open interest is not corrected untill 1588352536827448309/ 2020-05-01 17:02:16.  
 
 
 ### API Reference
