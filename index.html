@@ -835,7 +835,7 @@ Need credentials to log in.
 </tr>
 <tr>
 <td><a href="#bitmex-funding-rate">bitmex_funding_rates</a></td>
-<td>8 hours</td>
+<td>1 minute</td>
 <td>Funding</td>
 <td>Running</td>
 </tr>
@@ -3235,7 +3235,7 @@ Trade data may have some gaps in the past but api can fetch all historical, so w
 
 </span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='description-17'>Description</h3>
-<p><a href="https://www.bitmex.com/app/fundingHistory">Bitmex funding rate</a> has a frequency of 8 hours. And data time range is from 2016-05-04 12:00:00 till now. Collectors are continously runing in two hosts.</p>
+<p><a href="https://www.bitmex.com/app/fundingHistory">Bitmex funding rate</a> has a frequency of 1 minute. And data time range is from 2016-05-04 12:00:00 till now. Collectors are continously runing in two hosts.</p>
 <h3 id='data-schema-17'>Data Schema</h3>
 <table><thead>
 <tr>
@@ -13363,7 +13363,7 @@ validator_name           string</p>
 <p><strong>contract_exchange</strong>:
 &#39;Binance&#39;, &#39;Bitmex&#39;, &#39;Deribit&#39;, &#39;FTX&#39;, &#39;Huobi&#39;, &#39;Okex&#39;</p>
 <h3 id='data-sanity-102'>Data Sanity</h3>
-<p>No downtime.</p>
+<p>OKEX all USDT tickers&#39;s USD denominated open interest is not corrected untill 1588352536827448309/ 2020-05-01 17:02:16.  </p>
 <h3 id='api-reference-92'>API Reference</h3>
 <p><strong>Binance</strong>:
 Check <a href="#binance-open-interest">Binance open interest api</a> </p>
