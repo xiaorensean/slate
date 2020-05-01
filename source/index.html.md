@@ -80,6 +80,7 @@ TableName | Frequency | DataType | CurrentStatus
 [cosmos_validator_ranking](#cosmos-validator-ranking) | 1 hour | Validator Ranking | Running
 [cosmos_validator_status](#cosmos-validator-status) | 1 hour | Validator Status | Running
 [deribit_fundingRate](#deribit-funding-rate) | 8 hours | Funding Rate | Running
+[deribit_liquidation](#deribit-trades) | RealTime | Liquidation Trade | Running
 [deribit_optoinTicker](#deribit-ticker-historical-data) | RealTime | Option Ticker | Stopped
 [deribit_orderbook](#deribit-orderbook) | 30 seconds | Orderbok | Running
 [deribit_ticker](#deribit-ticker-historcal-data) | RealTime | Ticker | Stopped
@@ -3022,8 +3023,11 @@ state	|string |"open"|	The state of the order book. Possible values include "ope
 
 ## Deribit Trades
 ```sql
--- fetch orderbook  
+-- fetch trades
 select * from deribit_trades
+
+-- ftech liquidation trades
+select * from deribit_trades where liquidation = M
 ```
 
 > response
@@ -3051,7 +3055,7 @@ select * from deribit_trades
 ```
 
 ### Description
-[Deribit trades](https://deribitexchange.gitbooks.io/deribit-api/rpc-endpoints.html) is connected thourgh websocket and data time range is from 2019-07-11T15:55:52.404Z till now. Collectors are continously runing in two hosts.
+[Deribit trades](https://deribitexchange.gitbooks.io/deribit-api/rpc-endpoints.html) is connected thourgh websocket and data time range is from 2019-07-11T15:55:52.404Z till now. Collectors are continously runing in two hosts. And liquidation trades can be fetched by sorting liquidation column equls to M.
 
 ### Data Schema
 fieldName | fieldType | description
