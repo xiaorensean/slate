@@ -5989,7 +5989,7 @@ No Information
 ## Synthetix Dashboard
 ```sql
 -- fetch data
-select * from synthetix_open_interest
+select * from synthetix_dashboard_data
 ```
 
 > response
