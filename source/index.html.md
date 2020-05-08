@@ -146,6 +146,8 @@ TableName | Frequency | DataType | CurrentStatus
 [poloniex_leaderboard](#poloniex-leaderboard) | 1 hour | Leaderboard | Running
 [poloniex_orderbook](#poloniex-orderbook) | 30 seconds | Orderbook | Running
 [poloniex_trades](#poloniex-trades) | 10 minutes | Trade | Running
+[synthetix_open_interest](#synthetix-open-interest) | 1 hour | Open Interest | Running
+[synthetix_dashboard_data](#synthetix-dashboard-data) | 1 hour | Mix | Running
 [sp500_futures](#investing) | 1 second | Trade | Running
 [tether_richlist](#tether-richlist) | 1 hour | Leaderboard | Running
 [tezos_leaderboard](#tezos-leaderboard) | 1 hour | Leaderboard | Running
@@ -2710,7 +2712,7 @@ Deribit websocket connection is very unstable so use rpc api instead if possible
 ## Deribit Funding Rate
 ```sql
 -- fetch funding orderbook  
-select * from deribit_funding_rate 
+select * from deribit_fundingRate
 ```
 
 > response
@@ -5930,6 +5932,112 @@ asks|float|	An array of price aggregated offers in the book ordered from low to 
 bids|float| An array of price aggregated bids in the book ordered from high to low price.
 isFrozen|boolean|	Indicates if trading the market is currently disabled or not.
 seq	|int|An always-incrementing sequence number for this market.
+
+# Synthetix
+[Synthetix](https://www.synthetix.io/) is a protocol fo trading synthetic assets on Ethereum.
+
+## Synthetix Open Interest
+```sql
+-- fetch data
+select * from synthetix_open_interest
+```
+
+> response
+
+```json
+[
+
+ {
+   'time': '2020-05-08T02:43:55.922030898Z', 
+   'long_open_interest': 1137511.4865866182, 
+   'short_open_interest': 33900.846024030354, 
+   'symbol': 'BTC', 
+   'total_open_interest': 1171412.3326106486
+ }
+
+]
+```
+
+### Description
+[Synthetix open interest](https://dashboard.synthetix.io/) has a frequency of 1 hour and data time range is from 2020-05-08 02:43:56 till now. Collectors are continously runing in two hosts.
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | default database timestamp
+long_open_interest  |float|
+short_open_interest |float|
+total_open_interest |float|
+symbol | string | tag values
+
+### Tag Values
+Symbols are 'ADA', 'BCH', 'BNB', 'BTC', 'CEX', 'DASH', 'DEFI', 'EOS', 'ETC', 'ETH', 'LINK', 'LTC', 'TRX', 'XMR', 'XRP', 'XTZ'
+
+### Data Sanity
+No downtime.
+
+### API Reference
+`GET https://api.synthetix.io/api/exchange/openInterest`
+
+### API Query Parameters
+Not required.
+
+### API Response Schema
+No Information
+
+
+## Synthetix Dashboard
+```sql
+-- fetch data
+select * from synthetix_open_interest
+```
+
+> response
+
+```json
+[
+
+ {
+   'time': '2020-05-08T03:01:53.085625926Z', 
+   'ActiveCollateralizationRatio': 0.11388472795482954, 
+   'LockedHavBalance': 143900197.85960978, 
+   'LockedHavRatio': 0.7829395175483044, 
+   'LockedHavUsdBalance': 126889301.83503677, 
+   'NetworkCollateralizationRatio': 0.10184858031584323, 
+   'NominFeesCollected': 20268.74910677504, 
+   'UnlockedHavBalance': 39894584.02880305
+ }
+
+]
+```
+
+### Description
+[Synthetix dashboard data](https://dashboard.synthetix.io/) has a frequency of 1 hour and data time range is from 2020-05-08 02:43:56 till now. Collectors are continously runing in two hosts.
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | default database timestamp
+ActiveCollateralizationRatio  |float|
+LockedHavBalance              |float|
+LockedHavRatio                |float|
+LockedHavUsdBalance           |float|
+NetworkCollateralizationRatio |float|
+NominFeesCollected            |float|
+UnlockedHavBalance            |float|
+
+
+### Data Sanity
+No downtime.
+
+### API Reference
+`GET https://api.synthetix.io/api/dataPoint/dashboardData`
+
+### API Query Parameters
+Not required.
+
+### API Response Schema
+No Information
 
 
 
