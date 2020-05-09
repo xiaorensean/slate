@@ -36,6 +36,7 @@ The summary for all available data feeds.
 
 TableName | Frequency | DataType | CurrentStatus
 --------- | --------- | ---------| -----------|
+[aave_rates](#aave-rates) | realtime | Lending Rate | Running
 [bigone_orderbook](#bigone-orderbook) | 30 seconds | Orderbook Data | Running
 [bigone_trades](#bigone-trade)  | 30 seconds | Trades Data | Running
 [binance_borrow_rates_clean](#binance-borrow-rate) | 30 minutes | Borrow Rates | Running
@@ -154,6 +155,65 @@ TableName | Frequency | DataType | CurrentStatus
 [wazirx_tickers](#wazirx-tickers) | 1 hour | Ticker | Running
 
 
+# Aave
+[Aave](https://aave.com/) is a Decentrailized borrowing and lending platform.
+
+
+## Aave Rates
+
+```sql
+-- fetch one ticker
+select * from aave_rates where symbol = 'REP'
+```
+
+> response
+
+```json
+[
+    {
+        'time': '2020-03-10T02:16:46Z', 
+        'liquidationRate': 0.003351196162669402, 
+        'stableBorrowRate': 0.05288284074185489, 
+        'symbol': 'REP', 
+        'utilizationRate': 0.18306272, 
+        'variableBorrowRate': 0.018306272593483913
+    }
+]
+```
+
+### Description
+[Aave rates](https://app.aave.com/home) includes borrow rates and ledning rates. Data feed is connected with websocket and updated realtime and data time range is from 2020-03-10T02:16:46 till now. Collectors are continously runing in two hosts.
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | default database timestamp
+liquidationRate    |float|
+stableBorrowRate   |float|
+utilizationRate    |float|
+variableBorrowRate |float|
+symbol | string | symbol is tag
+
+### Tag Vlaues 
+**Symbol**
+'BAT', 'BUSD', 'DAI', 'ETH', 'KNC', 'LEND', 'LINK', 'MANA', 'MKR', 'REP', 'SNX', 'TUSD', 'USDC', 'USDT', 'WBTC', 'ZRX', 'sUSD'
+
+### Data Sanity
+No downtime.
+
+### API Reference
+`WSS wss://api.thegraph.com/subgraphs/name/aave/protocol-raw`
+
+### API Query Parameters
+No parameters.
+
+### API Response Schema
+No Information.
+
+
+
+
+
 
 # Binance 
 [Binance](https://www.binance.com/en) is a cryptocurrency exchange that provides a platform for trading various cryptocurrencies. Biance provide a powerful [api](https://binance-docs.github.io/apidocs/spot/en/#change-log).
@@ -161,7 +221,6 @@ TableName | Frequency | DataType | CurrentStatus
 
 
 ## Binance Borrow Rate 
-
 ```sql
 -- fetch one ticker
 select * from binance_borrow_rates_clean where symbol = 'ADA'
