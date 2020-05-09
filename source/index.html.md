@@ -148,7 +148,7 @@ TableName | Frequency | DataType | CurrentStatus
 [poloniex_orderbook](#poloniex-orderbook) | 30 seconds | Orderbook | Running
 [poloniex_trades](#poloniex-trades) | 10 minutes | Trade | Running
 [synthetix_open_interest](#synthetix-open-interest) | 1 hour | Open Interest | Running
-[synthetix_dashboard_data](#synthetix-dashboard-data) | 1 hour | Mix | Running
+[synthetix_dashboard_data](#synthetix-dashboard) | 1 hour | Mix | Running
 [sp500_futures](#investing) | 1 second | Trade | Running
 [tether_richlist](#tether-richlist) | 1 hour | Leaderboard | Running
 [tezos_leaderboard](#tezos-leaderboard) | 1 hour | Leaderboard | Running
