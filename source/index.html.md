@@ -62,6 +62,8 @@ TableName | Frequency | DataType | CurrentStatus
 [bitmex_insurance](#bitmex-insurance) | None | None | Running
 [bitmex_leaderboard_notional](#bitmex-leaderboard) | 1 hour | Leaderboard | Running
 [bitmex_leaderboard_ROE](#bitmex-leaderboard) | 1 hour | Leaderboard | Running
+[bitmex_leaderboard_notional_1m](#bitmex-leaderboard) | 1 minute | Leaderboard | Running
+[bitmex_leaderboard_ROE_1m](#bitmex-leaderboard) | 1 minute | Leaderboard | Running
 [bitmex_liquidation](#bitmex-liquidation) | RealTime | Liquidation | Running
 [bitmex_settlement](#bitmex-settlement) | 1 week | Settlement | NoLongerUpated
 [bitmex_trade](#bitmex-trade) | RealTime | Trade Data | Running
