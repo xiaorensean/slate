@@ -47,6 +47,7 @@ TableName | Frequency | DataType | CurrentStatus
 [binance_future_stats_open_interest](#binance-future-stats-open-interest) | Varies | Futures Data | Running
 [binance_future_stats_taker_buy_sell_volume](#binance-taker-buy-sell-volume) | Varies | Futures Data | Running
 [binance_liquidation_trades](#binance-liquidation-trade) | 1 hour | Liquidation Trades Data | Running
+[binance_insurance_fund](#binance-insurance-fund) | 1 day | Insurance Fund | Running
 [binance_open_interest_clean](#binance-open-interest) | 1 minute | Open Interest | Running
 [binance_orderbook_futures_clean](#binance-orderbook) | 30 seconds | Orderbook Data | Running
 [binance_orderbook_spot_clean](#binance-orderbook) | 30 seconds | Orderbook Data | Running
@@ -785,6 +786,60 @@ startTime | integer | no |
 endTime | integer | no | 
 
 1. If the symbol is not sent, liquidation orders for all symbols will be returned.
+
+### API Response Schema
+See code comments.
+
+
+
+## Binance Insurance Fund
+
+```sql
+-- fetch one ticker
+select * from binance_insurance_fund where symbol = 'BTCUSDT'
+```
+
+> response
+
+```json
+[
+
+    {
+          time: 1589155204583000064 
+          insurance_fund_balance_usdt: 7731989.46265009            
+          symbol: BTCUSDT 
+          timestamp:1589155204583
+    }
+]
+```
+
+### Description
+[Binance insurance fund](https://www.binance.com/en/futures/funding-history/1) has a frequency of 1 day and data time range is different from ticker to ticker but all hostorical data is available. Collectors are continously runing in two hosts.
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | data timestamp
+insurance_fund_balance_usdt | float | 
+timestamp | int |
+symbol | string | tag values
+
+### Tag Vlaues 
+Symbol tags are ADAUSDT, ATOMUSDT, BATUSDT, BCHUSDT, BNBUSDT, BTCUSDT, DASHUSDT, EOSUSDT, ETCUSDT, ETHUSDT, IOSTUSDT, IOTAUSDT, LINKUSDT, LTCUSDT,  NEOUSDT, ONTUSDT, QTUMUSDT, TRXUSDT, VETUSDT, XLMUSDT, XMRUSDT, XRPUSDT, XTZUSDT, ZECUSDT. 
+
+### Data Sanity
+No downtime.
+
+### API Reference
+
+`POST https://www.binance.com/gateway-api/v1/public/future/common/insuranceFundBalanceLogs`
+
+### API Query Parameters
+Name | Type | Mandatory | Description
+---- | ---- | ---------- | -------- |
+symbol | string | yes | 
+page | int | yes | 
+
 
 ### API Response Schema
 See code comments.
