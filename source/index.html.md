@@ -3217,7 +3217,7 @@ select * from compound_borrow_rates limit 1
 ```
 
 ### Description
-[Dydx borrow rates](https://defirate.com/dydx/) has a frequency of 1 minute and data time range is from 2019-12-13 21:09:44.88 till now. Collectors are continously runing in two hosts.
+[Dydx borrow rates](https://trade.dydx.exchange/balances has a frequency of 1 minute and data time range is from 2019-12-13 21:09:44.88 till now. Collectors are continously runing in two hosts.
 
 ### Data Schema
 fieldName | fieldType | description
