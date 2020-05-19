@@ -59,8 +59,9 @@ TableName | Frequency | DataType | CurrentStatus
 [bitmex_full_orderbook](#bitmex-full-orderbook) | RealTime | Orderbook | Running
 [bitmex_funding](#bitmex-funding) | 8 hours | Funding | Running
 [bitmex_funding_rates](#bitmex-funding-rate) | 1 minute | Funding | Running
-[bitmex_instrument](#bitmex-instrument) | 1 minute | Market Summary | Running 
-[bitmex_insurance](#bitmex-insurance) | None | None | Running
+[bitmex_instrument](#bitmex-instrument) | Realtime | Market Summary | Running 
+[bitmex_instrument_v1](#bitmex-instrument) | Realtime | Market Summary | Running 
+[bitmex_insurance](#bitmex-insurance) | 1 day | Insurance Fund | Running
 [bitmex_leaderboard_notional](#bitmex-leaderboard) | 1 hour | Leaderboard | Running
 [bitmex_leaderboard_ROE](#bitmex-leaderboard) | 1 hour | Leaderboard | Running
 [bitmex_leaderboard_notional_1m](#bitmex-leaderboard) | 1 minute | Leaderboard | Running
@@ -95,6 +96,7 @@ TableName | Frequency | DataType | CurrentStatus
 [FTX_funding_rates](#ftx-funding-rate) | 1 minute | Funding Rates | Running
 [FTX_future_stats](#ftx-futures-statistics) | 1 minute | Market Summary | Running
 [FTX_leaderboard](#ftx-leaderboard) | 1 hour | Leaderboard | Running
+[FTX_leaderboard_1m](#ftx-leaderboard) | 1 minute | Leaderboard | Running
 [FTX_liquidation](#ftx-trades) | 1 hour | Liquidation | Running
 [FTX_option_request](#ftx-option-request) | 1 second | Request Data | Running
 [FTX_orderbook](#ftx-orderbook) | 30 seconds | Orderbook | Running
@@ -138,10 +140,12 @@ TableName | Frequency | DataType | CurrentStatus
 [okex_future_stats_topTraderSentimentIndex](#okex-future-stats-top-trader-sentimental-index) | Varies | Futures Data | Running
 [okex_liquidation](#okex-liquidation) | RealTime | Liquidation | Running
 [okex_markPrice](#okex-mark-price) | RealTime | Mark Price | Running
-[okex_Orderbook](#okex-orderbook) | RealTime | Orderbook | Running
+[okex_Orderbook](#okex-orderbook) | RealTime | Orderbook | StoppedCollecting
+[okex_Orderbook_clean](#okex-orderbook) | 30 seconds | Orderbook | Running
 [okex_priceRange](#okex-price-range) | RealTime | Price Range | Running
-[okex_recentTrades](#okex-trades) | RealTime | Trade | Running
-[okex_spotTrades](#okex-trades) | RealTime | Trade | Running
+[okex_recentTrades](#okex-trades) | RealTime | Trade | StoppedCollecting
+[okex_recentTrades_clean](#okex-trades) | 30 seconds | Trade | Running
+[okex_spotTrades](#okex-trades) | RealTime | Trade | StoppedCollecting
 [okex_SwapOpenInterest](#okex-open-interest-swap) | RealTime | Open Interest | Running
 [okex_ticker](#okex-ticker) | RealTime | Ticker | Running
 [okex_ticker_swap](#okex-ticker-swap) | RealTime | Ticker | Running
@@ -5461,20 +5465,20 @@ select * from okex_spotTrades limit 1
 ```
 
 ### Description
-[OKEX trades](https://www.okex.com/docs/en/#futures_ws-sub) is connected through websocket and data time range is from2019-07-11 15:59:41.101000192 till now. okex_recentTrades has the same data schema as okex_spotTrades. Collectors are continously runing in two hosts.
+[OKEX trades](https://www.okex.com/docs/en/#futures_ws-sub) is connected through websocket and data time range is from 2019-07-11 15:59:41.101000192 till now. okex_recentTrades has the same data schema as okex_spotTrades. Collectors are continously runing in two hosts.
 
 ### Data Schema
 fieldName | fieldType | description
 --------- | --------- | ---------- |
 time | string | default database timestamp
-price     |string|
-qty       |string|
-side_1      |string| duplicated for tag value side
-size      |string|
+price     |float| okex_recentTrades & okex_spotTrades are in string
+qty       |float|okex_recentTrades & okex_spotTrades are in string
+side_1    |string| duplicated for tag value side for okex_recentTrades
+size      |float| okex_recentTrades & okex_spotTrades are in string
 timestamp |string|
-trade_id  |string|
+trade_id  |int| okex_recentTrades & okex_spotTrades are in string
 symbol | string | tag values
-side | string | tag values 
+side | string | tag values for okex_recentTrades & okex_spotTrades
 
 ### Tag Values
 **Futures, Spot and Swap Symbol (Symbols are subject to change)**: 
