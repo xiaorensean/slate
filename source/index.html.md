@@ -2098,6 +2098,7 @@ asks | PriceaLevel array | asks
 
 
 
+
 # Bybit
 [Bybit](https://www.bybit.com/) is a cryptocurrency exchange that only has BTCUSD, ETHUSD, EOSUSD, XRPUSD, and BTCUSDT with inverse perpetual and USDT perpetual [api](https://bybit-exchange.github.io/docs/inverse/#t-introduction).
 
@@ -2312,6 +2313,69 @@ symbol | string | True | Contract Type |
 No information.
 
 
+## Bybit Liquidation
+
+```sql
+-- fetch trades
+select * from bybit_liquidation where symbol = 'BTCUSDT'
+
+```
+
+> response
+
+```json
+[
+
+ {
+   "time": "2020-05-22T16:47:38Z",
+   "id":32665362,
+   "price": "8324",
+   "qty": 3000,
+   "symbol": "BTCUSD",
+   "side": "Sell",
+ }
+
+]
+```
+
+### Description
+[Bybit liquidation](https://bybit-exchange.github.io/docs/inverse/#t-query_liqrecords) has a frequency of 5 minutes and data time range is from 2020-05-22 till now. Collectors are continously runing in two hosts.
+
+### Data Schema
+fieldName | fieldType | description
+--------- | --------- | ---------- |
+time | string | default data timestamp
+id | integer | 
+price | string | 
+qty | float |
+side | string | Sell/Buy
+symbol | string | tag values
+
+### Tag Vlaues 
+**Symbol**: BTCUSD, BTCUSDT, EOSUSD, ETHUSD, XRPUSD
+
+### Data Sanity
+
+
+### API Reference
+`GET https://api.bybit.com/v2/public/liq-records?symbol=BTCUSD&limit=1&start_time=1589979415000`
+
+
+### API Query Parameters
+parameter | Type | Required | Description | 
+-------------- | ---- | ---------- | -------- | 
+symbol | string | True | Contract Type |
+start_time | int | False | 
+end_time | int | False | 
+limit | int | False |  default 500; max 1000
+
+### API Response Schema
+No information.
+
+
+
+
+
 
 # Coinbase
 [Coinbase](https://pro.coinbase.com/) is a American based exchange. Check their [api](https://docs.pro.coinbase.com/). 
@@ -2424,67 +2488,6 @@ If a level is not aggregated, then all of the orders at each price will be retur
 
 ### API Response Schema
 No information.
-
-
-## Bybit Liquidation
-
-```sql
--- fetch trades
-select * from bybit_liquidation where symbol = 'BTCUSDT'
-
-```
-
-> response
-
-```json
-[
-
- {
-   "time": "2020-05-22T16:47:38Z",
-   "id":32665362,
-   "price": "8324",
-   "qty": 3000,
-   "symbol": "BTCUSD",
-   "side": "Sell",
- }
-
-]
-```
-
-### Description
-[Bybit liquidation](https://bybit-exchange.github.io/docs/inverse/#t-query_liqrecords) has a frequency of 5 minutes and data time range is from 2020-05-22 till now. Collectors are continously runing in two hosts.
-
-### Data Schema
-fieldName | fieldType | description
---------- | --------- | ---------- |
-time | string | default data timestamp
-id | integer | 
-price | string | 
-qty | float |
-side | string | Sell/Buy
-symbol | string | tag values
-
-### Tag Vlaues 
-**Symbol**: BTCUSD, BTCUSDT, EOSUSD, ETHUSD, XRPUSD
-
-### Data Sanity
-
-
-### API Reference
-`GET https://api.bybit.com/v2/public/liq-records?symbol=BTCUSD&limit=1&start_time=1589979415000`
-
-
-### API Query Parameters
-parameter | Type | Required | Description | 
--------------- | ---- | ---------- | -------- | 
-symbol | string | True | Contract Type |
-start_time | int | False | 
-end_time | int | False | 
-limit | int | False |  default 500; max 1000
-
-### API Response Schema
-No information.
-
 
 
 ## Coinbase Trades
